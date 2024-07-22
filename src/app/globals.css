@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 @layer base {
     body {
         @apply h-full w-full overflow-x-hidden bg-white-background;

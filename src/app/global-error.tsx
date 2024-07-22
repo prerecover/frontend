@@ -1,10 +1,15 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import * as Sentry from "@sentry/nextjs";
 import NextError from "next/error";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import errorImg from '/public/assets/500.svg'
 import { useEffect } from "react";
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
+    const router = useRouter()
     useEffect(() => {
         Sentry.captureException(error);
     }, [error]);
@@ -12,12 +17,11 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
     return (
         <html>
             <body>
-                {/* `NextError` is the default Next.js error page component. Its type
-        definition requires a `statusCode` prop. However, since the App Router
-        does not expose status codes for errors, we simply pass 0 to render a
-        generic error message. */}
-                <NextError statusCode={0} />
-                <h1>asdajskd</h1>
+                <div className="flex-center w-dvw h-dvh gap-9 flex-col">
+
+                    <Image src={errorImg} alt="Internal Server Error" width={500} height={373} priority />
+                    <Button width="436px" onClick={() => router.push("/home")}>Вернуться</Button>
+                </div>
             </body>
         </html>
     );

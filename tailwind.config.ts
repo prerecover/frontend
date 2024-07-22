@@ -11,6 +11,7 @@ const config = {
     prefix: "",
     theme: {
         screens: {
+            'not_found': { 'max': '576px' },
             'mobile': { 'max': '1023px' },
             'desktop': { 'min': '1023px' },
             'tablet': { 'min': '600px', 'max': '1023px' },

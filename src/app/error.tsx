@@ -1,22 +1,23 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
-
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import errorImg from '/public/assets/500.svg'
 export default function Error({
     error,
     reset,
 }: {
-    error: Error & { digest?: string };
-    reset: () => void;
+    error: Error & { digest?: string }
+    reset: () => void
 }) {
-    useEffect(() => {
-        // Optionally log the error to an error reporting service
-        console.error(error);
-    }, [error]);
-
+    const router = useRouter();
     return (
-        <div className="flex-center w-dvw h-dvh gap-9 flex-col">
-error
+        <div>
+            <div className="flex-center w-dvw h-dvh gap-9 flex-col">
+                <Image src={errorImg} alt="Internal Server Error" width={500} height={373} priority />
+                <Button width="436px" onClick={() => router.push("/home")}>Вернуться</Button>
+            </div>
         </div>
-    );
+    )
 }
