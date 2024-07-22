@@ -1,9 +1,5 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import WhiteContentBlock from "./whiteContentBlock";
-
-interface AuthContainerProps {
-    children: ReactNode
-}
 
 export default function AuthContainer({
     children,

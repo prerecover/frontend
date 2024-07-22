@@ -1,6 +1,5 @@
 "use client"
 import Image from 'next/image'
-import Link from 'next/link'
 import notFound from '/public/assets/404.svg'
 import { Text } from '@/components/ui/text'
 import { Button } from '@/components/ui/button'

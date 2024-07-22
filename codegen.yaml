@@ -1,0 +1,17 @@
+# https://73f0-178-234-149-103.ngrok-free.app/graphql
+overwrite: true
+schema: "https://73f0-178-234-149-103.ngrok-free.app/graphql"
+documents: "graphql/*.ts"
+generates:
+  generated/index.tsx:
+    config:
+      reactApolloVersion: 3
+      withHooks: true
+    plugins:
+      - add:
+          content: "// THIS IS A GENERATED FILE, use `yarn codegen` to regenerate"
+      - add:
+          content: "/* tslint:disable */"
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

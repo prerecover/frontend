@@ -1,8 +1,5 @@
-import { ChangeEvent, FC, Ref, Reference, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 
-
-import styles from "./styles.module.scss";
-import { Input } from "./input";
 import ShowPassword from "@/features/ShowPassword";
 
 interface PasswordInputFieldProps {
@@ -12,7 +9,6 @@ interface PasswordInputFieldProps {
 
 export const PasswordInputField: FC<PasswordInputFieldProps> = ({
     onChange,
-    error,
 }) => {
     const [isShow, setIsShow] = useState(false);
 

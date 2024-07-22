@@ -6,7 +6,7 @@ import AuthWithFacebook from "@/features/AuthWithFacebook";
 import AuthWithGoogle from "@/features/AuthWithGoogle";
 import { UserLogin } from "@/features/UserLogin";
 
-export default function Login() {
+export default async function Login() {
     return (
         <AuthContainer>
             <Text type="h2" position="center" className="text-[20px] text-center" >Вход</Text>
@@ -20,8 +20,8 @@ export default function Login() {
             </div>
             <div className="grid gap-4">
                 <AuthWithGoogle />
-                <AuthWithApple/>
-                <AuthWithFacebook/>
+                <AuthWithApple />
+                <AuthWithFacebook />
             </div>
         </AuthContainer >
 
