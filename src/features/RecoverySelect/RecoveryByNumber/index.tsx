@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { useResetPasswordStore } from "@/shared/store/resetPasswordStore";
 import { gql, useMutation } from "@apollo/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,7 @@ const RECOVERY_BY_NUMBER = gql(`
     }
 `)
 export const RecoveryByNumber: FC = () => {
+    const { setNumber } = useResetPasswordStore();
     const router = useRouter();
     const [mutate, { data, error, loading }] = useMutation(RECOVERY_BY_NUMBER, {
         onCompleted() {
@@ -32,6 +34,7 @@ export const RecoveryByNumber: FC = () => {
         },
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
+        setNumber(values.number)
         mutate({ variables: { number: values.number } })
     }
     const { toast } = useToast();
