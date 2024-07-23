@@ -29,6 +29,11 @@ yarn-error.log*
 .env*.local
 .env
 
+
+sw.*
+workbox-*
+swe-worker-*
+
 # vercel
 .vercel
 

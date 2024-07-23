@@ -14,7 +14,8 @@ const montserrat = Montserrat({
 
 
 export const metadata: Metadata = {
-    title: "Pre-recover",
+    manifest: "/manifest.json",
+    title: "Pre Recover",
     description: "Aggregate medical services",
 };
 
