@@ -12,7 +12,7 @@ export default function AuthWith({
     return (
         <BlueBox className="flex-center">
             < div className="flex gap-[10px]" >
-                <Image src={img} alt="auth icon" width={24} height={24} />
+                <Image src={img} alt="auth icon" width={24} height={24} priority />
                 <Text type="p">{text}</Text>
             </div >
         </BlueBox >

@@ -1,5 +1,5 @@
 "use client";
-import { HttpLink } from "@apollo/client";
+import { HttpLink, } from "@apollo/client";
 import {
     ApolloNextAppProvider,
     ApolloClient,
@@ -8,15 +8,20 @@ import {
 
 function makeClient() {
     const httpLink = new HttpLink({
-        uri: "https://73f0-178-234-149-103.ngrok-free.app/graphql",
+        uri: "http://localhost:3000/graphql",
         fetchOptions: { cache: "no-store" },
     });
 
+    // use the `ApolloClient` from "@apollo/experimental-nextjs-app-support"
     return new ApolloClient({
+        // use the `InMemoryCache` from "@apollo/experimental-nextjs-app-support"
         cache: new InMemoryCache(),
         link: httpLink,
     });
 }
+
+
+
 export function ApolloWrapper({ children }: React.PropsWithChildren) {
     return (
         <ApolloNextAppProvider makeClient={makeClient}>

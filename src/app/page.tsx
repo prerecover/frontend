@@ -1,5 +1,6 @@
 import { getClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
+import { cookies } from "next/headers";
 
 interface Country {
     __typename: string;

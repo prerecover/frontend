@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import { loadDevMessages, loadErrorMessages } from '@apollo/client/dev';
 import { ApolloWrapper } from "./apollo-wrapper";
 import { Toaster } from "@/components/ui/toaster";
+import AuthProvider from "./(auth)/auth-wrapper";
 
 const montserrat = Montserrat({
     subsets: ["latin", "cyrillic"],
@@ -26,18 +26,17 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    loadDevMessages();
-    loadErrorMessages();
     return (
         <html lang="en">
             <body className={montserrat.className}>
-
                 <ApolloWrapper>
+                    {/* <AuthProvider> */}
                     {children}
-                </ApolloWrapper>
-                <Toaster />
-
+                    <Toaster />
+                    {/* </AuthProvider> */}
+                </ApolloWrapper >
             </body>
-        </html >
+        </html>
+
     );
 }

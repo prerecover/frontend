@@ -10,6 +10,6 @@ export default function ShowPassword({
     onClick: () => void
 }) {
     return (
-        <Image src={isShow ? eyeOpen : eyeClose} alt="eye" onClick={onClick} width={24} height={24} />
+        <Image src={isShow ? eyeOpen : eyeClose} alt="eye" onClick={onClick} width={24} height={24} priority />
     )
 }
