@@ -1,5 +1,4 @@
 "use client"
-import { useAuth } from "@/app/(auth)/auth-wrapper"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -24,8 +23,7 @@ const LOGIN_MUTATION = gql(`
 `)
 export default function LoginForm() {
     const router = useRouter();
-    const { user } = useAuth();
-    const [mutate, { data, error, loading }] = useMutation(LOGIN_MUTATION, {
+    const [mutate, { error, loading }] = useMutation(LOGIN_MUTATION, {
         onCompleted(data) {
             setCookie('access_token', data.signIn.access_token, 90)
             router.replace('/')
@@ -40,7 +38,7 @@ export default function LoginForm() {
     const formSchema = z.object({
         emailOrNumber: z.string().
             min(8, {
-                message: "Email or password must be at least 8 characters"
+                message: "Email or number must be at least 8 characters"
             }).
             max(50, {
                 message: "Email or number must be at less 50 characters."
@@ -93,7 +91,7 @@ export default function LoginForm() {
                     )}
                 />
                 <Link href={"/forgot-password"}>
-                    <Text type="p" position="end" className="text-grey text-[12px]" >Забыли пароль? {user.number}</Text>
+                    <Text type="p" position="end" className="text-grey text-[12px]" >Забыли пароль?</Text>
                 </Link>
                 <Button type="submit" className="mt-3">{loading ? "Загрузка" : "Войти"}</Button>
             </form>

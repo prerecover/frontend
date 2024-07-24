@@ -10,32 +10,26 @@ import { Timer } from "@/components/ui/timer";
 import { useRouter } from "next/navigation";
 import { gql, useMutation } from "@apollo/client";
 import { useToast } from "@/components/ui/use-toast";
-import { useResetPasswordStore } from "@/shared/store/resetPasswordStore";
-
-
+import { useCredStore } from "@/shared/store/credStore";
+import { useRouteStore } from "@/shared/store/prevRouter";
+import { Text } from "@/components/ui/text";
 interface ConfirmationProps {
     type: "registration" | "reset"
 }
 
-const LOGIN_MUTATION = gql(`
-        mutation Login($email: String, $number: String, $password: String!){
-            signIn(signIn: {email: $email, password: $password, number: $number}){
-                access_token
-        }
-    }
-`)
 const VERIFY_CODE = gql(`
     mutation VerifyCode($email: String!, $code: Int!) {
         verifyCode(verifyCodeInput: { code: $code, email: $email})
 }
 `)
-export const ConfirmationForm: FC<ConfirmationProps> = ({ type }) => {
-    const { number, email } = useResetPasswordStore();
+export const ConfirmationForm: FC<ConfirmationProps> = () => {
+    const { route: prevRoute } = useRouteStore();
+    const { number, email } = useCredStore();
     const router = useRouter()
     const { toast } = useToast();
     const [mutate, { data, error }] = useMutation(VERIFY_CODE, {
         onCompleted() {
-            router.replace('/new-password')
+            prevRoute == '/registration' ? router.replace('/login') : router.replace('/new-password')
         }
     })
     const formSchema = z.object({
@@ -60,6 +54,9 @@ export const ConfirmationForm: FC<ConfirmationProps> = ({ type }) => {
     }
     return (
         <>
+            <Text type="h2" position="center" className="text-[20px] text-center" >{prevRoute == "/registration" ? "Завершение регистрации" : "Запрос на восстановление"}</Text>
+            <Text type="p" position="center" className="text-[14px] text-grey-700 ">Введите код который был отправлен, для {prevRoute == "/registration" ? "завершения регистрации" : "восстановления доступа"}</Text>
+
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col ">
                     <FormField

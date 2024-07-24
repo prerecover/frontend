@@ -5,10 +5,12 @@ import ShowPassword from "@/features/ShowPassword";
 interface PasswordInputFieldProps {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     error?: boolean;
+    placeholder?: string;
 }
 
 export const PasswordInputField: FC<PasswordInputFieldProps> = ({
     onChange,
+    placeholder
 }) => {
     const [isShow, setIsShow] = useState(false);
 
@@ -21,7 +23,7 @@ export const PasswordInputField: FC<PasswordInputFieldProps> = ({
                 <input
                     type={isShow ? "text" : "password"}
                     className="placeholder:text-[14px] placeholder:font-normal placeholder:text-grey"
-                    placeholder="Введите пароль"
+                    placeholder={placeholder ? placeholder : "Введите пароль"}
                     onChange={onChange}
                 />
                 <ShowPassword isShow={isShow} onClick={handleClick} />

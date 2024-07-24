@@ -1,7 +1,6 @@
 import AuthContainer from "@/components/ui/authContainer";
 import Line from "@/components/ui/line";
 import { Text } from "@/components/ui/text";
-import { Toaster } from "@/components/ui/toaster";
 import AuthWithApple from "@/features/AuthWithApple";
 import AuthWithFacebook from "@/features/AuthWithFacebook";
 import AuthWithGoogle from "@/features/AuthWithGoogle";

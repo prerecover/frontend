@@ -8,7 +8,7 @@ interface IDataStore {
     setEmail: (email: string) => void;
 }
 
-export const useResetPasswordStore = create<IDataStore>()(
+export const useCredStore = create<IDataStore>()(
     immer((set) => ({
         number: "",
         email: "",

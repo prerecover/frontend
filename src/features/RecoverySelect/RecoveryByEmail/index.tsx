@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { useResetPasswordStore } from "@/shared/store/resetPasswordStore";
+import { useCredStore } from "@/shared/store/credStore";
 import { gql, useMutation } from "@apollo/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -15,15 +15,10 @@ const RECOVERY_BY_EMAIL = gql(`
             forgotPassword(forgotPasswordInput: {email: $email})
     }
 `)
-const RECOVERY_BY_NUMBER = gql(`
-        mutation ForgotPassword($number: String){
-            forgotPassword(forgotPasswordInput: {number: $number})
-    }
-`)
 export const RecoveryByEmail: FC = () => {
-    const { setEmail } = useResetPasswordStore();
+    const { setEmail } = useCredStore();
     const router = useRouter();
-    const [mutate, { data, error, loading }] = useMutation(RECOVERY_BY_EMAIL, {
+    const [mutate, { error, loading }] = useMutation(RECOVERY_BY_EMAIL, {
         onCompleted() {
             router.replace('/confirmation')
         },
