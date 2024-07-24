@@ -1,8 +1,8 @@
 "use client"
 import { client } from "@/lib/apollo";
-import { getCookie, useCookie } from "@/shared/lib/hooks/useCookie";
+import { getCookie } from "@/shared/lib/hooks/useCookie";
 import { User } from "@/shared/types";
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { createContext, useContext, useEffect, useState } from "react";
 
 

@@ -74,7 +74,7 @@ export default function LoginForm() {
                             <FormControl>
                                 <Input placeholder="Введите номер или почту " {...field} />
                             </FormControl>
-                            <FormMessage className="flex-center text-red-400" />
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -86,7 +86,7 @@ export default function LoginForm() {
                             <FormControl>
                                 <PasswordInputField onChange={field.onChange} />
                             </FormControl>
-                            <FormMessage className="flex-center text-red-400" />
+                            <FormMessage />
                         </FormItem>
                     )}
                 />

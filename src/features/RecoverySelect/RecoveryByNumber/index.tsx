@@ -55,7 +55,7 @@ export const RecoveryByNumber: FC = () => {
                                 <FormControl>
                                     <Input placeholder="Введите номер телефона" {...field} />
                                 </FormControl>
-                                <FormMessage className="flex-center text-red-400" />
+                                <FormMessage />
                             </FormItem>
                         )}
                     />

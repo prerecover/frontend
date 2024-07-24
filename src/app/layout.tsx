@@ -3,7 +3,6 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ApolloWrapper } from "./apollo-wrapper";
 import { Toaster } from "@/components/ui/toaster";
-import AuthProvider from "./(auth)/auth-wrapper";
 
 const montserrat = Montserrat({
     subsets: ["latin", "cyrillic"],
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
 };
 
 
-// Adds messages only in a dev environment
 
 export default function RootLayout({
     children,
@@ -31,10 +29,8 @@ export default function RootLayout({
         <html lang="en">
             <body className={montserrat.className}>
                 <ApolloWrapper>
-                    {/* <AuthProvider> */}
                     {children}
                     <Toaster />
-                    {/* </AuthProvider> */}
                 </ApolloWrapper >
             </body>
         </html>

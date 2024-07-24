@@ -54,7 +54,7 @@ export const RecoveryByEmail: FC = () => {
                                 <FormControl>
                                     <Input placeholder="Введите эл.почту " {...field} />
                                 </FormControl>
-                                <FormMessage className="flex-center text-red-400" />
+                                <FormMessage  />
                             </FormItem>
                         )}
                     />

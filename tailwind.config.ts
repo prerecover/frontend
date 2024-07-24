@@ -12,12 +12,16 @@ const config = {
     theme: {
         screens: {
             'not_found': { 'max': '576px' },
+            'open_sidebar': { 'min': '1024px', 'max': '1280' },
+            'closed_sidebar': { 'min': '1280px' },
+            'layout-1024': { 'min': '1023px', 'max': '1279px' },
             'mobile': { 'max': '1023px' },
             'desktop': { 'min': '1023px' },
             'tablet': { 'min': '600px', 'max': '1023px' },
             'small_laptop': { 'min': '1024px', 'max': '1439px' },
             'laptop': { 'min': '1440px', 'max': '1919px' },
             'pc': { 'min': '1920px' },
+            'logo': { 'max': '1280px' }
         },
         fontFamily: {
             sans: ['var(--font-montserrat)']

@@ -1,6 +1,5 @@
 import { getClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
-import { cookies } from "next/headers";
 
 interface Country {
     __typename: string;
@@ -8,7 +7,7 @@ interface Country {
     title?: string;
 }
 
-export default async function Home() {
+export default async function Search() {
     const COUNTRY_QUERY = gql(`
         query Countries{
             countries{
@@ -17,7 +16,7 @@ export default async function Home() {
         }
     }
     `)
-    const { data, error, loading } = await getClient().query({ query: COUNTRY_QUERY })
+    const { data, loading } = await getClient().query({ query: COUNTRY_QUERY })
     const countries: Country[] = data.countries
     if (loading) return <h1>Loading...</h1>
     return (
@@ -29,3 +28,4 @@ export default async function Home() {
         </>
     );
 }
+
