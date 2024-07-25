@@ -1,7 +1,7 @@
 import { ICountry } from "./country.interface";
 
-export interface IUser {
-    _id?: string;
+export interface IDoctor {
+    _id: string;
     address?: string;
     avatar?: string;
     birthday?: number;
@@ -10,12 +10,12 @@ export interface IUser {
     email?: string;
     login?: string;
     number?: string;
-    firstName?: string;
-    lastName?: string;
+    firstName: string;
+    lastName: string;
+    specialization: string;
     country?: ICountry;
-    surname?: string;
-    isStaff: boolean;
-    online: boolean;
+    surname: string;
+    isMain?: boolean;
     sex: boolean;
     isVerified: boolean;
     verificationCode: number;

@@ -1,15 +1,15 @@
 "use client"
 import { client } from "@/lib/apollo";
 import { getCookie } from "@/shared/lib/hooks/useCookie";
-import { User } from "@/shared/types";
+import { IUser } from "@/shared/types";
 import { gql } from "@apollo/client";
 import { createContext, useContext, useEffect, useState } from "react";
 
 
 
 interface IContextType {
-    user: Partial<User>;
-    setUser: React.Dispatch<React.SetStateAction<Partial<User>>>;
+    user: Partial<IUser>;
+    setUser: React.Dispatch<React.SetStateAction<Partial<IUser>>>;
     isAuth: boolean;
     setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -39,7 +39,7 @@ query GetMe {
 }
 `)
 
-export const INITIAL_USER: Partial<User> = {
+export const INITIAL_USER: Partial<IUser> = {
 }
 
 
@@ -54,7 +54,7 @@ const INITIAL_STATE = {
 const AuthContext = createContext<IContextType>(INITIAL_STATE)
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<Partial<User>>(INITIAL_USER)
+    const [user, setUser] = useState<Partial<IUser>>(INITIAL_USER)
     const [isAuth, setIsAuth] = useState(false)
     useEffect(() => {
         const token = getCookie('access_token')

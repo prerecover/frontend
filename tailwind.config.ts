@@ -21,7 +21,13 @@ const config = {
             'small_laptop': { 'min': '1024px', 'max': '1439px' },
             'laptop': { 'min': '1440px', 'max': '1919px' },
             'pc': { 'min': '1920px' },
-            'logo': { 'max': '1280px' }
+            'slider': { 'min': '768px' },
+            'reverse_slider': { 'max': '768px' },
+            'logo': { 'max': '1280px' },
+            'extra_desktop': { 'min': '500px' },
+            'burger_first': { 'max': '375px' },
+            'burger_second': { 'max': '320px' },
+            'mobile_header': { 'min': '576px', 'max': '768px' }
         },
         fontFamily: {
             sans: ['var(--font-montserrat)']

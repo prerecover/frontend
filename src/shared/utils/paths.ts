@@ -31,4 +31,32 @@ export const ROUTES = {
         path: "/messages",
         label: "Сообщения"
     },
+    account: {
+        path: "/account",
+        label: "Аккаунт"
+    },
+    saved: {
+        path: "/saved",
+        label: "Сохранённое",
+    },
+    payments: {
+        path: "/payments",
+        label: "Платежи",
+    },
+    notes: {
+        path: "/notes",
+        label: "Записи",
+    },
+    notifications: {
+        path: "/notifications",
+        label: "Уведомления",
+    },
+    history: {
+        path: "/history",
+        label: "История",
+    },
+    statistic: {
+        path: "/statistic",
+        label: "Статистика",
+    },
 }

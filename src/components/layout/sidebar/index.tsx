@@ -1,10 +1,7 @@
 "use client"
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/shared/store/sidebarStore";
-import Image from "next/image";
-import userImg from "/public/assets/doctor.svg"
-import { useAuth } from "@/app/(auth)/auth-wrapper";
 import Logo from "@/components/logo";
 import { useEffect } from "react";
 import { UserMenu } from "./menu";
@@ -13,8 +10,6 @@ export default function Sidebar({ className }: {
     className: string;
 }) {
     const { isOpenSidebar, setOpenSidebar } = useSidebarStore();
-    const { user } = useAuth();
-    const { push } = useRouter();
     const pathname = usePathname();
     useEffect(() => {
         const resizeWindow = () => {
