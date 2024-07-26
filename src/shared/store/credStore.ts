@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 interface IDataStore {
     number: string;
@@ -10,8 +10,8 @@ interface IDataStore {
 
 export const useCredStore = create<IDataStore>()(
     immer((set) => ({
-        number: "",
-        email: "",
+        number: '',
+        email: '',
         setNumber: (number: string) => {
             set((state) => {
                 state.number = number;
@@ -22,5 +22,5 @@ export const useCredStore = create<IDataStore>()(
                 state.email = email;
             });
         },
-    }))
+    })),
 );

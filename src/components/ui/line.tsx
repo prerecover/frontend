@@ -1,13 +1,12 @@
-import { cn } from "@/lib/utils";
-import { CSSProperties, FC } from "react";
-
+import { cn } from '@/lib/utils';
+import { CSSProperties, FC } from 'react';
 
 export default function Line({
     color,
     height,
     width,
     style,
-    className
+    className,
 }: {
     color?: string;
     height?: string;
@@ -17,9 +16,8 @@ export default function Line({
 }) {
     return (
         <div
-            className={cn("h-[1px] w-full bg-blue-100", className)}
+            className={cn('h-[1px] w-full bg-blue-100', className)}
             style={{ ...style, backgroundColor: color, width, height }}
-        ></div >
+        ></div>
     );
-};
-
+}

@@ -1,4 +1,4 @@
-export * from "./user.interface"
+export * from './user.interface';
 export type PropsWithClassName<P = unknown> = P & {
     className?: string;
 };

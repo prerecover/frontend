@@ -1,37 +1,28 @@
-import { CSSProperties, FC, ReactNode } from "react";
+import { CSSProperties, FC, ReactNode } from 'react';
 
 interface TextProps {
-    type: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    type: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     children: ReactNode;
-    position?:
-    | "start"
-    | "end"
-    | "left"
-    | "right"
-    | "center"
-    | "justify"
-    | "match-parent";
+    position?: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent';
     fz?: string | number;
     color?: string;
     fw?: number;
     onClick?: () => void;
     style?: CSSProperties;
     className?: string;
-
 }
 export const Text: FC<TextProps> = ({
-    type = "p",
+    type = 'p',
     children,
-    position = "start",
+    position = 'start',
     color,
     fw,
     onClick,
     style,
-    className
-
+    className,
 }) => {
     switch (type) {
-        case "h1":
+        case 'h1':
             return (
                 <h1
                     className={`${className} font-semibold`}
@@ -47,7 +38,7 @@ export const Text: FC<TextProps> = ({
                     {children}
                 </h1>
             );
-        case "h2":
+        case 'h2':
             return (
                 <h2
                     className={`${className} font-semibold`}
@@ -62,7 +53,7 @@ export const Text: FC<TextProps> = ({
                     {children}
                 </h2>
             );
-        case "h3":
+        case 'h3':
             return (
                 <h3
                     className={`${className} font-semibold`}
@@ -77,7 +68,7 @@ export const Text: FC<TextProps> = ({
                     {children}
                 </h3>
             );
-        case "h4":
+        case 'h4':
             return (
                 <h4
                     className={`${className} font-semibold`}
@@ -92,7 +83,7 @@ export const Text: FC<TextProps> = ({
                     {children}
                 </h4>
             );
-        case "h5":
+        case 'h5':
             return (
                 <h5
                     className={`${className} font-semibold`}
@@ -107,7 +98,7 @@ export const Text: FC<TextProps> = ({
                     {children}
                 </h5>
             );
-        case "h6":
+        case 'h6':
             return (
                 <h6
                     className={`${className} font-semibold`}
@@ -137,6 +128,5 @@ export const Text: FC<TextProps> = ({
                     {children}
                 </p>
             );
-
     }
-}
+};

@@ -1,44 +1,40 @@
-import type { Config } from "tailwindcss"
+import type { Config } from 'tailwindcss';
 
 const config = {
-    darkMode: ["class"],
-    content: [
-        './pages/**/*.{ts,tsx}',
-        './components/**/*.{ts,tsx}',
-        './app/**/*.{ts,tsx}',
-        './src/**/*.{ts,tsx}',
-    ],
-    prefix: "",
+    darkMode: ['class'],
+    content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+    prefix: '',
     theme: {
         screens: {
-            'not_found': { 'max': '576px' },
-            'open_sidebar': { 'min': '1024px', 'max': '1280' },
-            'closed_sidebar': { 'min': '1280px' },
-            'layout-1024': { 'min': '1023px', 'max': '1279px' },
-            'mobile': { 'max': '1023px' },
-            'desktop': { 'min': '1023px' },
-            'tablet': { 'min': '600px', 'max': '1023px' },
-            'small_laptop': { 'min': '1024px', 'max': '1439px' },
-            'laptop': { 'min': '1440px', 'max': '1919px' },
-            'pc': { 'min': '1920px' },
-            'slider': { 'min': '768px' },
-            'reverse_slider': { 'max': '768px' },
-            'logo': { 'max': '1280px' },
-            'extra_desktop': { 'min': '500px' },
-            'burger_first': { 'max': '375px' },
-            'burger_second': { 'max': '320px' },
-            'mobile_header': { 'min': '576px', 'max': '768px' }
+            not_found: { max: '576px' },
+            open_sidebar: { min: '1024px', max: '1280' },
+            closed_sidebar: { min: '1280px' },
+            'layout-1024': { min: '1023px', max: '1279px' },
+            mobile: { max: '1023px' },
+            desktop: { min: '1023px' },
+            tablet: { min: '600px', max: '1023px' },
+            small_laptop: { min: '1024px', max: '1439px' },
+            laptop: { min: '1440px', max: '1919px' },
+            pc: { min: '1920px' },
+            slider: { min: '768px' },
+            reverse_slider: { max: '768px' },
+            logo: { max: '1280px' },
+
+            extra_desktop: { min: '500px' },
+            burger_first: { max: '375px' },
+            burger_second: { max: '320px' },
+            mobile_header: { min: '576px', max: '768px' },
         },
         fontFamily: {
-            sans: ['var(--font-montserrat)']
+            sans: ['var(--font-montserrat)'],
         },
         colors: {
-            'white': {
+            white: {
                 DEFAULT: '#FFFFFF',
-                'background': '#F5F8FC',
+                background: '#F5F8FC',
             },
-            'dark': '#262626',
-            'grey': {
+            dark: '#262626',
+            grey: {
                 DEFAULT: '#B1B2B4',
                 100: '#F2F4F5',
                 200: '#E9EAEB',
@@ -48,91 +44,91 @@ const config = {
                 600: '#97999B',
                 700: '#7D7F82',
                 800: '#646668',
-                900: '#3C3D3E'
+                900: '#3C3D3E',
             },
-            'blue': {
+            blue: {
                 DEFAULT: '#0064FA',
-                100: '#EBF3FF'
+                100: '#EBF3FF',
             },
-            'red': {
-                400: '#D64657'
+            red: {
+                400: '#D64657',
             },
-            'green': "#00CC5E"
+            green: '#00CC5E',
         },
         container: {
             center: true,
-            padding: "2rem",
+            padding: '2rem',
             screens: {
-                "2xl": "1400px",
+                '2xl': '1400px',
             },
         },
         extend: {
             colors: {
-                border: "hsl(var(--border))",
-                input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
-                foreground: "hsl(var(--foreground))",
+                border: 'hsl(var(--border))',
+                input: 'hsl(var(--input))',
+                ring: 'hsl(var(--ring))',
+                background: 'hsl(var(--background))',
+                foreground: 'hsl(var(--foreground))',
                 primary: {
-                    DEFAULT: "hsl(var(--primary))",
-                    foreground: "hsl(var(--primary-foreground))",
+                    DEFAULT: 'hsl(var(--primary))',
+                    foreground: 'hsl(var(--primary-foreground))',
                 },
                 secondary: {
-                    DEFAULT: "hsl(var(--secondary))",
-                    foreground: "hsl(var(--secondary-foreground))",
+                    DEFAULT: 'hsl(var(--secondary))',
+                    foreground: 'hsl(var(--secondary-foreground))',
                 },
                 destructive: {
-                    DEFAULT: "hsl(var(--destructive))",
-                    foreground: "hsl(var(--destructive-foreground))",
+                    DEFAULT: 'hsl(var(--destructive))',
+                    foreground: 'hsl(var(--destructive-foreground))',
                 },
                 muted: {
-                    DEFAULT: "hsl(var(--muted))",
-                    foreground: "hsl(var(--muted-foreground))",
+                    DEFAULT: 'hsl(var(--muted))',
+                    foreground: 'hsl(var(--muted-foreground))',
                 },
                 accent: {
-                    DEFAULT: "hsl(var(--accent))",
-                    foreground: "hsl(var(--accent-foreground))",
+                    DEFAULT: 'hsl(var(--accent))',
+                    foreground: 'hsl(var(--accent-foreground))',
                 },
                 popover: {
-                    DEFAULT: "hsl(var(--popover))",
-                    foreground: "hsl(var(--popover-foreground))",
+                    DEFAULT: 'hsl(var(--popover))',
+                    foreground: 'hsl(var(--popover-foreground))',
                 },
                 card: {
-                    DEFAULT: "hsl(var(--card))",
-                    foreground: "hsl(var(--card-foreground))",
+                    DEFAULT: 'hsl(var(--card))',
+                    foreground: 'hsl(var(--card-foreground))',
                 },
             },
             borderRadius: {
-                lg: "var(--radius)",
-                md: "calc(var(--radius) - 2px)",
-                sm: "calc(var(--radius) - 4px)",
+                lg: 'var(--radius)',
+                md: 'calc(var(--radius) - 2px)',
+                sm: 'calc(var(--radius) - 4px)',
             },
             keyframes: {
-                "skeleton-loading": {
-                    '0%, 100%': { 'transform': '0.5' },
-                    '50%': { 'transform': '1' }
+                'skeleton-loading': {
+                    '0%, 100%': { transform: '0.5' },
+                    '50%': { transform: '1' },
                 },
-                "accordion-down": {
-                    from: { height: "0" },
-                    to: { height: "var(--radix-accordion-content-height)" },
+                'accordion-down': {
+                    from: { height: '0' },
+                    to: { height: 'var(--radix-accordion-content-height)' },
                 },
-                "accordion-up": {
-                    from: { height: "var(--radix-accordion-content-height)" },
-                    to: { height: "0" },
+                'accordion-up': {
+                    from: { height: 'var(--radix-accordion-content-height)' },
+                    to: { height: '0' },
                 },
-                "caret-blink": {
-                    "0%,70%,100%": { opacity: "1" },
-                    "20%,50%": { opacity: "0" },
+                'caret-blink': {
+                    '0%,70%,100%': { opacity: '1' },
+                    '20%,50%': { opacity: '0' },
                 },
             },
             animation: {
-                "accordion-down": "accordion-down 0.2s ease-out",
-                "accordion-up": "accordion-up 0.2s ease-out",
-                "caret-blink": "caret-blink 1.25s ease-out infinite",
+                'accordion-down': 'accordion-down 0.2s ease-out',
+                'accordion-up': 'accordion-up 0.2s ease-out',
+                'caret-blink': 'caret-blink 1.25s ease-out infinite',
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
-} satisfies Config
+    plugins: [require('tailwindcss-animate')],
+} satisfies Config;
 
-export default config
+export default config;

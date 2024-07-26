@@ -1,16 +1,8 @@
-import DoctorSwiper from "@/components/doctorSwiper";
-import MobileHeader from "@/components/layout/mobileHeader";
-import { FilterBtn } from "@/components/ui/filter-btn";
-import MainPosts from "@/features/MainPosts";
-import { getClient } from "@/lib/apollo-client";
-import { gql } from "@apollo/client";
-import { Suspense } from "react";
-
-interface Country {
-    __typename: string;
-    slug?: string;
-    title?: string;
-}
+import DoctorSwiper from '@/components/doctorSwiper';
+import MobileHeader from '@/components/layout/mobileHeader';
+import MainPosts from '@/features/MainPosts';
+import { getClient } from '@/lib/apollo-client';
+import { gql } from '@apollo/client';
 
 export default async function Home() {
     const NEWS_QUERY = gql(`
@@ -19,9 +11,22 @@ export default async function Home() {
             _id,
             text,
             title,
+            like{
+                _id
+                author{
+                    _id
+                }
+            }
+            saved{
+                _id
+                author{
+                    _id
+                }
+            }
+            
         }
     }
-    `)
+    `);
     const DOCTORS_QUERY = gql(`
         query getDoctors{
             doctors{
@@ -32,17 +37,16 @@ export default async function Home() {
             specialization
         }
     }
-    `)
-    const { data: doctorsData } = await getClient().query({ query: DOCTORS_QUERY })
-    const { data: newsData } = await getClient().query({ query: NEWS_QUERY })
+    `);
+    const { data: doctorsData } = await getClient().query({ query: DOCTORS_QUERY });
+    const { data: newsData } = await getClient().query({ query: NEWS_QUERY });
 
     return (
         <>
             <MobileHeader />
+
             <DoctorSwiper data={doctorsData.doctors} />
             <MainPosts data={newsData.newsAll} />
-
         </>
     );
 }
-

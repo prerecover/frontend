@@ -1,35 +1,38 @@
-"use client"
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react"
-import { useAuth } from "@/app/(auth)/auth-wrapper"
-import { useEffect, useRef, useState } from "react";
-import { SliderHeader } from "../sliderHeader";
-import DoctorCard from "@/entities/Doctor/DoctorSlideCard";
-import "swiper/css"
-import { IDoctor } from "@/shared/types/doctor.interface";
-export default function DoctorSwiper({ data }: {
-    data: IDoctor[]
-}) {
+'use client';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
+import { useEffect, useRef, useState } from 'react';
+import { SliderHeader } from '../sliderHeader';
+import DoctorCard from '@/entities/Doctor/DoctorSlideCard';
+import 'swiper/css';
+import { IDoctor } from '@/shared/types/doctor.interface';
+import DoctorCardSkeleton from '@/entities/Doctor/DoctorSlideCard/skeleton';
+export default function DoctorSwiper({ data }: { data: IDoctor[] }) {
     const { user } = useAuth();
     const swiperRef = useRef<SwiperRef>(null);
     const [isLoading, setIsLoaging] = useState(false);
-    useEffect(() => setIsLoaging(true), [])
-    if (!isLoading) return <>
-        <SliderHeader
-            swiperRef={swiperRef}
-            title={user && user?.country?.title ? `Все специалисты из ${user.country?.title}` : "Все врачи"}
-            withArrows={true}
-        />
-        <div className="h-[180px]"></div>
-    </>
+    useEffect(() => setIsLoaging(true), []);
+    if (!isLoading)
+        return (
+            <>
+                <SliderHeader
+                    swiperRef={swiperRef}
+                    title={user && user?.country?.title ? `Все специалисты из ${user.country?.title}` : 'Все врачи'}
+                    withArrows={true}
+                />
+                <DoctorCardSkeleton data={data} />
+            </>
+        );
+
     return (
         <>
-            <SliderHeader swiperRef={swiperRef}
-                title={user && user?.country?.title ? `Все специалисты из ${user.country?.title}` : "Все врачи"}
+            <SliderHeader
+                swiperRef={swiperRef}
+                title={user && user?.country?.title ? `Все специалисты из ${user.country?.title}` : 'Все врачи'}
                 withArrows={true}
             />
-            <div className="my-0 mx-[-16px] mb-4">
+            <div className='my-0 mx-[-16px] mb-4'>
                 <Swiper
-
                     ref={swiperRef}
                     spaceBetween={8}
                     slidesPerView={4.5}
@@ -58,8 +61,7 @@ export default function DoctorSwiper({ data }: {
                             slidesPerView: 10.3,
                             slidesPerGroup: 10,
                         },
-                    }}
-                >
+                    }}>
                     {data.map((e) => (
                         <SwiperSlide key={e._id}>
                             <DoctorCard
@@ -67,15 +69,14 @@ export default function DoctorSwiper({ data }: {
                                 key={e._id}
                                 avatar={e.avatar}
                                 rank={e.specialization}
-                                data={`${e.lastName} ${e.firstName?.slice(0, 1).toUpperCase() + "."
-                                    }${e.surname?.slice(0, 1).toUpperCase()}`}
+                                data={`${e.lastName} ${
+                                    e.firstName?.slice(0, 1).toUpperCase() + '.'
+                                }${e.surname?.slice(0, 1).toUpperCase()}`}
                             />
                         </SwiperSlide>
-
                     ))}
                 </Swiper>
             </div>
         </>
-
-    )
+    );
 }

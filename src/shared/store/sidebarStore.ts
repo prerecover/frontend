@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 interface InitialState {
     isOpenSidebar: boolean;
@@ -15,6 +15,5 @@ export const useSidebarStore = create<InitialState>()(
                 state.isOpenSidebar = value;
             });
         },
-    }))
+    })),
 );
-

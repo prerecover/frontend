@@ -1,12 +1,11 @@
-import { ICountry } from "./country.interface";
+import { ICommon } from './common.interface';
+import { ICountry } from './country.interface';
 
-export interface IDoctor {
-    _id: string;
+export interface IDoctor extends ICommon {
     address?: string;
     avatar?: string;
+
     birthday?: number;
-    createdAt: number;
-    updatedAt: number;
     email?: string;
     login?: string;
     number?: string;

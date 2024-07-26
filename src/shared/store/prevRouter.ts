@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 interface IRouteStore {
     route: string;
@@ -8,12 +8,11 @@ interface IRouteStore {
 
 export const useRouteStore = create<IRouteStore>()(
     immer((set) => ({
-        route: "",
+        route: '',
         setRoute: (route: string) => {
             set((state) => {
                 state.route = route;
             });
         },
-    }))
+    })),
 );
-

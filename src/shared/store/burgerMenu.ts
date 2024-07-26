@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 interface IBurgerMenuStore {
     isOpen: boolean;
@@ -14,5 +14,5 @@ export const useBurgerMenu = create<IBurgerMenuStore>()(
                 state.isOpen = bol;
             });
         },
-    }))
+    })),
 );

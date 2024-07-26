@@ -1,24 +1,22 @@
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import "./globals.css";
-import { ApolloWrapper } from "./apollo-wrapper";
-import { Toaster } from "@/components/ui/toaster";
+import type { Metadata } from 'next';
+import { Montserrat } from 'next/font/google';
+
+import './globals.css';
+import { ApolloWrapper } from './apollo-wrapper';
+import { Toaster } from '@/components/ui/toaster';
 
 const montserrat = Montserrat({
-    subsets: ["latin", "cyrillic"],
+    subsets: ['latin', 'cyrillic'],
     weight: ['400', '500', '600', '700'],
     style: ['normal'],
-    variable: '--font-montserrat'
+    variable: '--font-montserrat',
 });
-
 
 export const metadata: Metadata = {
     // manifest: "/manifest.json",
-    title: "Pre Recover",
-    description: "Aggregate medical services",
+    title: 'Pre Recover',
+    description: 'Aggregate medical services',
 };
-
-
 
 export default function RootLayout({
     children,
@@ -26,14 +24,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang='en'>
             <body className={montserrat.className}>
                 <ApolloWrapper>
                     {children}
                     <Toaster />
-                </ApolloWrapper >
+                </ApolloWrapper>
             </body>
         </html>
-
     );
 }
