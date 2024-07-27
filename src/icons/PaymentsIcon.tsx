@@ -9,8 +9,7 @@ export const PaymentsIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className,
             height={height}
             viewBox='0 0 20 20'
             fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-        >
+            xmlns='http://www.w3.org/2000/svg'>
             <circle cx='11.5' cy='8.5' r='5.875' stroke='#0064FA' strokeWidth='1.25' />
             <circle cx='8.5' cy='11.5' r='5.875' fill='white' stroke='#0064FA' strokeWidth='1.25' />
             <path

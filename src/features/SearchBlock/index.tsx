@@ -3,16 +3,26 @@ import { FilterBox } from '@/components/ui/filter-box';
 import { FilterBtn } from '@/components/ui/filter-btn';
 import { SearchInput } from '@/components/ui/search-input';
 import { ChangeEvent, useState } from 'react';
+import SearchList from './search-list';
+import { IClinic } from '@/shared/types/clinic.interface';
+import { IDoctor } from '@/shared/types/doctor.interface';
+import { IService } from '@/shared/types/service.interface';
 
-export default function SearchBlock(data) {
+export type Search = {
+    clinics: IClinic[];
+    doctors: IDoctor[];
+    services: IService[];
+};
+
+export default function SearchBlock({ data }: { data: Search }) {
     const [search, setSearch] = useState('');
-    const [filter, setFilter] = useState('Клиника');
+    const [filter, setFilter] = useState('Врачи');
 
-    const filters = ['Клиника', 'Врачи', 'Услуги'];
+    const filters = ['Услуги', 'Клиники', 'Врачи'];
     const filterObj = {
-        [filters[0]]: 'clinics',
-        [filters[1]]: 'doctors',
-        [filters[2]]: 'services',
+        [filters[1]]: 'clinics',
+        [filters[2]]: 'doctors',
+        [filters[0]]: 'services',
     };
     const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -24,7 +34,7 @@ export default function SearchBlock(data) {
                     <SearchInput
                         onChange={onChangeSearch}
                         value={search}
-                        placeholder={filter == 'Клиника' ? 'Поиск клиник' : 'Поиск врачей'}
+                        placeholder={filter == 'Клиники' ? 'Поиск клиник' : 'Поиск врачей'}
                     />
                     <FilterBtn onClick={() => console.log('click')} />
                 </div>
@@ -35,6 +45,7 @@ export default function SearchBlock(data) {
                     isSelect={filter}
                     setIsSelect={setFilter}
                 />
+                <SearchList filter={filterObj[filter]} search={search} data={data} />
             </div>
         </>
     );

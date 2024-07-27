@@ -35,8 +35,7 @@ export default function MobileFooter() {
                     key={idx}
                     className={item.path === pathname ? styles.active : ''}
                     onClick={() => router.push(item.path)}
-                    style={{ cursor: 'pointer' }}
-                >
+                    style={{ cursor: 'pointer' }}>
                     {item.svg}
                 </div>
             ))}

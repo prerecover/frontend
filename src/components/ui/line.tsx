@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { CSSProperties, FC } from 'react';
+import { CSSProperties } from 'react';
 
 export default function Line({
     color,
@@ -17,7 +17,6 @@ export default function Line({
     return (
         <div
             className={cn('h-[1px] w-full bg-blue-100', className)}
-            style={{ ...style, backgroundColor: color, width, height }}
-        ></div>
+            style={{ ...style, backgroundColor: color, width, height }}></div>
     );
 }

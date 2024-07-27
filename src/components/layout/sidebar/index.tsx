@@ -7,7 +7,7 @@ import Logo from '@/components/logo';
 import { useEffect } from 'react';
 import { UserMenu } from './menu';
 
-export default function Sidebar({ className }: { className: string }) {
+export default function Sidebar({ className }: { className?: string }) {
     const { isOpenSidebar, setOpenSidebar } = useSidebarStore();
     const pathname = usePathname();
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Sidebar({ className }: { className: string }) {
         <>
             <section
                 className={cn(
-                    'fixed left-0 top-0 bottom-0 h-dvh w-[258px] bg-white z-10 transition-all duration-300 ease-in border-[1px] border-solid border-blue-100 mobile:hidden ',
+                    'fixed left-0 top-0 bottom-0 h-dvh w-[258px] bg-white z-10 transition-all duration-300 ease-in border-[1px] border-solid border-blue-100 mobile:hidden',
                     !isOpenSidebar && 'w-[100px]',
                     className,
                 )}>

@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,7 +18,7 @@ mutation NewPassword($email: String!, $password: String!){
 }
 `);
 export const SetNewPasswordForm: FC = () => {
-    const { number, email } = useCredStore();
+    const { email } = useCredStore();
     const router = useRouter();
     const { toast } = useToast();
     const [mutate, { error }] = useMutation(SET_NEW_PASSWORD, {

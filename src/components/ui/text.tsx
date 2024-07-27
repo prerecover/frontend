@@ -25,7 +25,7 @@ export const Text: FC<TextProps> = ({
         case 'h1':
             return (
                 <h1
-                    className={`${className} font-semibold`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
@@ -33,98 +33,91 @@ export const Text: FC<TextProps> = ({
 
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </h1>
             );
         case 'h2':
             return (
                 <h2
-                    className={`${className} font-semibold`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
                         textAlign: position,
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </h2>
             );
         case 'h3':
             return (
                 <h3
-                    className={`${className} font-semibold`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
                         textAlign: position,
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </h3>
             );
         case 'h4':
             return (
                 <h4
-                    className={`${className} font-semibold`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
                         textAlign: position,
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </h4>
             );
         case 'h5':
             return (
                 <h5
-                    className={`${className} font-semibold`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
                         textAlign: position,
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </h5>
             );
         case 'h6':
             return (
                 <h6
-                    className={`${className} font-semibold`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
                         textAlign: position,
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </h6>
             );
         default:
             return (
                 <p
-                    className={`${className} font-medium`}
+                    className={`${className} `}
                     onClick={onClick}
                     style={{
                         ...style,
                         textAlign: position,
                         color: color,
                         fontWeight: fw,
-                    }}
-                >
+                    }}>
                     {children}
                 </p>
             );

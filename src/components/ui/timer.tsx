@@ -56,12 +56,13 @@ export const Timer: FC = () => {
                         prevRoute == '/registration'
                             ? registerMutate({ variables: { email: email } })
                             : mutate({
-                                  variables: { email: email.length > 0 && email, number: number.length > 0 && number },
+                                  variables: {
+                                      email: email.length > 0 && email,
+                                      number: number.length > 0 && number,
+                                  },
                               });
-
                         setSeconds(60);
-                    }}
-                >
+                    }}>
                     Выслать код повторно
                 </Text>
             ) : seconds === 60 ? (

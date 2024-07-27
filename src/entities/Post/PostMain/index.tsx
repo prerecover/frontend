@@ -5,6 +5,7 @@ import Link from 'next/link';
 import PostMainStats from './Stats/index';
 import { ILike } from '@/shared/types/like.interface';
 import { ISaved } from '@/shared/types/saved.interface';
+import Image from 'next/image';
 
 export default function PostMain({
     _id,
@@ -35,8 +36,10 @@ export default function PostMain({
                 <Swiper spaceBetween={10} autoplay={{ delay: 3000, disableOnInteraction: false }} modules={[Autoplay]}>
                     {imgs.map((el, idx) => (
                         <SwiperSlide key={idx}>
-                            <img
+                            <Image
                                 className='w-full object-cover rounded-[12px] max-h-[320px]'
+                                width={400}
+                                height={320}
                                 src={el}
                                 alt='post-img'
                                 key={idx}

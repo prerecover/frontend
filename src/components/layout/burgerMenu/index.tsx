@@ -46,8 +46,7 @@ export default function BurgerMenu() {
                             visible: { opacity: 1, x: 0 },
                         }}
                         animate={animateControll}
-                        transition={{ duration: 0.2, delay: 0.3 }}
-                    >
+                        transition={{ duration: 0.2, delay: 0.3 }}>
                         {menuData.default.map((item, idx) => (
                             <li
                                 key={idx}
@@ -59,8 +58,7 @@ export default function BurgerMenu() {
                                     'relative cursor-pointer flex items-center p-4 rounded-[12px] border-[1px] border-solid border-[#ebf3ff] mb-[10px] burger_first:py-[9px] burger_first:px-[10px]',
                                     `${item.path == pathname ? '' : ''}`,
                                 )}
-                                style={{ display: 'flex', justifyContent: 'space-between' }}
-                            >
+                                style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div className='flex gap-4 justify-between w-full'>
                                     <div className='flex gap-4 items-center burger_first:gap-[10px]'>
                                         {item.icon}
@@ -73,8 +71,7 @@ export default function BurgerMenu() {
                         <li
                             className='relative cursor-pointer flex items-center p-4 rounded-[12px] border-[1px] border-solid border-[#ebf3ff] mb-[10px] burger_first:py-[9px] burger_first:px-[10px]'
                             style={{ display: 'flex', justifyContent: 'space-between' }}
-                            onClick={() => logout()}
-                        >
+                            onClick={() => logout()}>
                             <div className='flex gap-4 justify-between w-full'>
                                 <div className='flex gap-4 items-center burger_first:gap-[10px]'>
                                     <svg width='20' height='20' viewBox='0 0 20 20' fill='none'>

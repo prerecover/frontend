@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function DoctorCard({
     _id,
@@ -12,12 +12,10 @@ export default function DoctorCard({
     rank: string;
     data: string;
 }) {
-    const router = useRouter();
     return (
-        <div
+        <Link
             className='w-full p-3 flex flex-col rounded-[16px] items-center bg-white text-center cursor-pointer extra_desktop:p-4 extra_desktop:border-[1px] extra_desktop:border-blue-100 extra_desktop:border-solid extra_desktop:gap-[10px] extra_desktop:rounded-[12px]'
-            onClick={() => router.push(`/doctor/${_id}`)}
-        >
+            href={`/doctor/${_id}`}>
             <Image
                 src={avatar ? avatar : '/assets/doctor.svg'}
                 alt='avatar'
@@ -31,6 +29,6 @@ export default function DoctorCard({
             <div className='text-[10px] font-medium text-grey-500 mt-[10px] extra_desktop:mt-[5px] extra_desktop:text-[12px]'>
                 {rank}
             </div>
-        </div>
+        </Link>
     );
 }

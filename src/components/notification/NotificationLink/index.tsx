@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import { useState } from 'react';
 import notifyImg from '/public/assets/notification.svg';
 
 export const NotificationsLink = () => {
-    const [isOpenNotifications, setOpenNotifications] = useState(false);
+    // const [isOpenNotifications, setOpenNotifications] = useState(false);
 
     return (
         <div className='relative '>
@@ -11,7 +10,7 @@ export const NotificationsLink = () => {
                 src={notifyImg}
                 alt='notifications'
                 style={{ cursor: 'pointer' }}
-                onClick={() => setOpenNotifications((prev) => !prev)}
+                // onClick={() => setOpenNotifications((prev) => !prev)}
                 width={20}
                 height={20}
                 priority

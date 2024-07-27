@@ -47,6 +47,14 @@ export const REVERSE_ROUTES = [
         path: '/some',
         label: 'Some',
     },
+    {
+        path: '/clinic/*',
+        label: 'Клиника',
+    },
+    {
+        path: '/doctor/:id',
+        label: 'Врач',
+    },
 ];
 export const ROUTES = {
     main: {

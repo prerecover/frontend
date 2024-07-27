@@ -4,12 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { PasswordInputField } from '@/components/ui/password-input';
-import { Text } from '@/components/ui/text';
 import { useToast } from '@/components/ui/use-toast';
-import { setCookie } from '@/shared/lib/hooks/useCookie';
 import { gql, useMutation } from '@apollo/client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -17,12 +14,6 @@ import { z } from 'zod';
 import { Policy } from './Policy';
 import { useCredStore } from '@/shared/store/credStore';
 import { useRouteStore } from '@/shared/store/prevRouter';
-
-const RECOVERY_BY_REGISTER = gql(`
-mutation sendRegistrationMessage($email: String!){
-    resendVerifyCode(email: $email)
-}
-`);
 
 const REGISTRATION_MUTATION = gql(`
     mutation RegistrationUser($email: String!, $password: String!){
@@ -36,12 +27,12 @@ const REGISTRATION_MUTATION = gql(`
 
 export const RegistrationForm: FC = () => {
     const [checked, setChecked] = useState<boolean>(false);
-    const { setEmail, email } = useCredStore();
+    const { setEmail } = useCredStore();
     const { setRoute } = useRouteStore();
     const path = usePathname();
     const router = useRouter();
     const [mutate, { error, loading }] = useMutation(REGISTRATION_MUTATION, {
-        onCompleted(data) {
+        onCompleted() {
             setRoute(path);
             router.replace('/confirmation');
         },

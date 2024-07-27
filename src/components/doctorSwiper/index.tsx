@@ -69,9 +69,7 @@ export default function DoctorSwiper({ data }: { data: IDoctor[] }) {
                                 key={e._id}
                                 avatar={e.avatar}
                                 rank={e.specialization}
-                                data={`${e.lastName} ${
-                                    e.firstName?.slice(0, 1).toUpperCase() + '.'
-                                }${e.surname?.slice(0, 1).toUpperCase()}`}
+                                data={`${e.lastName} ${e.firstName?.slice(0, 1).toUpperCase() + '.'}${e.surname?.slice(0, 1).toUpperCase()}`}
                             />
                         </SwiperSlide>
                     ))}

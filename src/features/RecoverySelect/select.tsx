@@ -13,21 +13,18 @@ export const SelectMethodOfRecovery: FC<ISelectMethodProps> = ({ isSelect, setIs
             <div
                 className='w-full border-solid border-b-[1px] border-b-grey pb-[15px]'
                 onClick={() => setIsSelect('tel')}
-                style={isSelect === 'tel' ? { borderBottomColor: '#262626' } : {}}
-            >
+                style={isSelect === 'tel' ? { borderBottomColor: '#262626' } : {}}>
                 <Text
                     type='p'
                     color='#414141'
-                    className='text-[20px] text-[#414141] w-max my-auto mx-auto cursor-pointer'
-                >
+                    className='text-[20px] text-[#414141] w-max my-auto mx-auto cursor-pointer'>
                     Тел. Номер
                 </Text>
             </div>
             <div
                 className='w-full border-solid border-b-[1px] border-b-grey pb-[15px]'
                 style={isSelect === 'email' ? { borderBottomColor: '#262626' } : {}}
-                onClick={() => setIsSelect('email')}
-            >
+                onClick={() => setIsSelect('email')}>
                 <Text type='p' color='#414141' className='text-[20px] text-[#414141] w-max my-0 mx-auto cursor-pointer'>
                     Эл. Почта
                 </Text>

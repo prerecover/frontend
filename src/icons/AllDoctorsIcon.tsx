@@ -9,8 +9,7 @@ export const AllDoctorsIcon: FC<PropsWithClassName<PropsWithSize>> = ({ classNam
             height={height}
             viewBox='0 0 20 20'
             fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-        >
+            xmlns='http://www.w3.org/2000/svg'>
             <path
                 d='M6.85331 15.2955V13.972M6.85331 12.6484V13.972M6.85331 13.972H8.17684M6.85331 13.972H5.52979'
                 stroke='#0064FA'

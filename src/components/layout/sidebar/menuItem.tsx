@@ -28,15 +28,13 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                 !isOpenSidebar && 'w-[52px] h-[52px]',
             )}
             href={href}
-            onClick={onClick}
-        >
+            onClick={onClick}>
             {icon}
             <span
                 className={cn(
                     'overflow-hidden whitespace-normal text-ellipsis',
                     !isOpenSidebar && 'w-0 overflow-hidden',
-                )}
-            >
+                )}>
                 {' '}
                 {title}
             </span>
