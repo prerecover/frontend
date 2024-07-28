@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { ChangeEventHandler, FC } from 'react';
 
 interface SearchInputProps {
-    placeholder: string;
+    placeholder?: string;
     value: string;
     onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const SearchInput: FC<SearchInputProps> = ({ placeholder, value, onChange }) => {
+export const SearchInput: FC<SearchInputProps> = ({ placeholder = 'Поиск', value, onChange }) => {
     return (
         <div className='bg-white w-full rounded-[12px] border-solid border-[1px] border-blue-100 flex-between relative p-[9px] pl-4'>
             <div className='flex items-center gap-3 w-full pr-4'>
@@ -18,7 +18,13 @@ export const SearchInput: FC<SearchInputProps> = ({ placeholder, value, onChange
                     height={16}
                     className='w-[20px] h-[20px] min-h-[20px]'
                 />
-                <input type='text' placeholder={placeholder} value={value} onChange={onChange} className='w-full' />
+                <input
+                    type='text'
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    className='w-full h-[40px]'
+                />
             </div>
         </div>
     );

@@ -1,5 +1,7 @@
+import { IClinic } from './clinic.interface';
 import { ICommon } from './common.interface';
 import { IDoctor } from './doctor.interface';
+import { INews } from './news.interface';
 
 export interface IService extends ICommon {
     title: string;
@@ -7,5 +9,8 @@ export interface IService extends ICommon {
     duration: number;
     online: boolean;
     price: number;
-    doctors: IDoctor[];
+    doctors?: IDoctor[];
+    clinic?: IClinic;
+    news?: INews[];
+    img?: string;
 }

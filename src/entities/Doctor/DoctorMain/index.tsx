@@ -33,7 +33,7 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                     isSelect={filter}
                     setIsSelect={setFilter}
                 />
-                <div className='gap-4 flex flex-col'>
+                <div className='gap-4 flex flex-col mt-4'>
                     {doctor.services
                         ?.filter((service) => (filter === 'Онлайн услуги' ? service.online : !service.online))
 

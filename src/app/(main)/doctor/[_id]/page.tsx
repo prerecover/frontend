@@ -40,7 +40,9 @@ export default async function Page({ params }: { params: { _id: string } }) {
     return (
         <>
             <MobileHeader title='Врач' />
-            <DoctorMain doctor={doctor} />
+            <div className='bg-white p-4'>
+                <DoctorMain doctor={doctor} />
+            </div>
         </>
     );
 }

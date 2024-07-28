@@ -8,7 +8,7 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full'>
+            <BoxWrapper color='white' className='w-full border-blue-100'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/doctor/${doctor._id}`)}>
                     <Image
                         src={doctor?.avatar || '/assets/doctor.svg'}
@@ -22,11 +22,11 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
 
                         <Characteristics
                             data={[
-                                { key: 'Страна', value: doctor?.country?.title || '-' },
-                                { key: 'Город', value: doctor.city || '-' },
-                                { key: 'Специальность', value: doctor.specialization || '-' },
+                                { key: 'Страна:', value: doctor?.country?.title || '-' },
+                                { key: 'Город:', value: doctor.city || '-' },
+                                { key: 'Специальность:', value: doctor.specialization || '-' },
                                 {
-                                    key: 'Опыт работы',
+                                    key: 'Опыт работы:',
                                     value:
                                         (doctor?.workExp?.toString().endsWith('0')
                                             ? doctor?.workExp?.toString().charAt(0)

@@ -60,7 +60,7 @@ export default function LikeBtn({ like, newsId }: { like?: ILike; newsId: string
     };
     return (
         <div
-            className='w-[38px] h-[38px] flex-center rounded-[12px] bg-grey-200 cursor-pointer slider:w-[40px] slider:h-[40px]'
+            className='w-[38px] h-[38px] flex-center rounded-[12px] bg-blue-100 cursor-pointer slider:w-[40px] slider:h-[40px]'
             onClick={handlePost}>
             <LikeIcon
                 className={cn({

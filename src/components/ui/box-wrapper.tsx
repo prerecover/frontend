@@ -20,7 +20,7 @@ const BoxWrapper: FC<PropsWithClassName<BoxWrapperProps>> = ({
     return (
         <div
             className={cn(
-                'p-4 rounded-[12px] border-[1px] border-solid border-blue-100 cursor-pointer',
+                'p-4 rounded-[12px] border-[1px] border-solid cursor-pointer',
                 className,
                 color === 'white' ? 'bg-white' : 'bg-blue',
             )}

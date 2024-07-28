@@ -1,7 +1,7 @@
 import { PropsWithClassName, PropsWithSize } from '@/shared/types';
 import { FC } from 'react';
 
-export const MessagesIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className, width = 20, height = 20 }) => {
+export const MessagesIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className, width = 24, height = 24 }) => {
     return (
         <svg className={className} width={width} height={height} viewBox='0 0 24 24' fill='none'>
             <g clipPath='url(#clip0_8094_103913)'>

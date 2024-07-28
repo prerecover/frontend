@@ -10,7 +10,15 @@ import Image from 'next/image';
 import { ROUTES } from '@/shared/utils/paths';
 import { Text } from '@/components/ui/text';
 
-export default function MobileHeader({ className, title }: { className?: string; title?: string }) {
+export default function MobileHeader({
+    className,
+    title,
+    end = true,
+}: {
+    className?: string;
+    title?: string;
+    end?: boolean;
+}) {
     const { isOpen, setIsOpen } = useBurgerMenu();
 
     const router = useRouter();
@@ -52,7 +60,7 @@ export default function MobileHeader({ className, title }: { className?: string;
                                 <Text type='p' className='ml-4 mt-[2px] text-[20px]' fw={600}>
                                     {title}
                                 </Text>
-                                {title !== 'Записи' ? (
+                                {title !== 'Записи' && end ? (
                                     <svg
                                         className='fixed right-2 top-4'
                                         width='28'
@@ -73,7 +81,7 @@ export default function MobileHeader({ className, title }: { className?: string;
                                             fill='#262626'
                                         />
                                     </svg>
-                                ) : (
+                                ) : end === true ? (
                                     <svg
                                         width='33'
                                         height='33'
@@ -93,6 +101,8 @@ export default function MobileHeader({ className, title }: { className?: string;
                                             fill='#0064FA'
                                         />
                                     </svg>
+                                ) : (
+                                    <></>
                                 )}
                             </div>
                         </div>

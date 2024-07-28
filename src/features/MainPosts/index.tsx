@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { INews } from '@/shared/types/news.interface';
 
 export default function MainPosts({ className, data }: { className?: string; data: INews[] }) {
-    console.log(data);
     return (
         <>
             <FilterBtn className='self-end' onClick={() => console.log(1)} />
@@ -20,6 +19,7 @@ export default function MainPosts({ className, data }: { className?: string; dat
                                 like={news.like}
                                 saved={news.saved}
                                 title={news.title}
+                                clinic={news.clinic}
                                 imgs={[
                                     'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp',
                                     'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp',

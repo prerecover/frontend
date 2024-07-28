@@ -1,7 +1,7 @@
 import { PropsWithClassName, PropsWithSize } from '@/shared/types';
 import { FC } from 'react';
 
-export const HomeIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className, width = 26, height = 26 }) => {
+export const HomeIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className, width = 24, height = 24 }) => {
     return (
         <svg
             className={className}

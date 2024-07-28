@@ -23,6 +23,10 @@ export default async function Home() {
                     _id
                 }
             }
+            clinic{
+                avatar,
+                title
+}
             
         }
     }
@@ -44,9 +48,12 @@ export default async function Home() {
     return (
         <>
             <MobileHeader />
-
-            <DoctorSwiper data={doctorsData.doctors} />
-            <MainPosts data={newsData.newsAll} />
+            <div className='p-4'>
+                <DoctorSwiper data={doctorsData.doctors} />
+            </div>
+            <div className='p-4 flex flex-col'>
+                <MainPosts data={newsData.newsAll} />
+            </div>
         </>
     );
 }

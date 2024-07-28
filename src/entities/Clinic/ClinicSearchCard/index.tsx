@@ -8,7 +8,7 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full'>
+            <BoxWrapper color='white' className='w-full border-blue-100'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/clinic/${clinic._id}`)}>
                     <Image
                         src={clinic?.avatar || '/assets/clinic.jpg'}
@@ -22,9 +22,9 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
 
                         <Characteristics
                             data={[
-                                { key: 'Страна', value: clinic?.country?.title || '-' },
-                                { key: 'Город', value: clinic.city || '-' },
-                                { key: 'Адрес', value: clinic.address || '-' },
+                                { key: 'Страна:', value: clinic?.country?.title || '-' },
+                                { key: 'Город:', value: clinic.city || '-' },
+                                { key: 'Адрес:', value: clinic.address || '-' },
                             ]}
                         />
                     </div>

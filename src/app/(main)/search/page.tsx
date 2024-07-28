@@ -13,6 +13,9 @@ query Search {
             avatar
             city
             title
+            country{
+                title
+}
         
         }
         doctors {
@@ -34,6 +37,14 @@ query Search {
             online
             price
             title
+            img
+            doctors{
+                firstName 
+                lastName
+            }
+            clinic{
+                title
+            }
         }
     }
 }
@@ -42,7 +53,9 @@ query Search {
     return (
         <>
             <MobileHeader />
-            <SearchBlock data={data.search} />
+            <div className='p-4'>
+                <SearchBlock data={data.search} />
+            </div>
         </>
     );
 }

@@ -49,6 +49,7 @@ const config = {
             blue: {
                 DEFAULT: '#0064FA',
                 100: '#EBF3FF',
+                200: '#C8DBF6',
             },
             red: {
                 400: '#D64657',

@@ -6,6 +6,8 @@ import PostMainStats from './Stats/index';
 import { ILike } from '@/shared/types/like.interface';
 import { ISaved } from '@/shared/types/saved.interface';
 import Image from 'next/image';
+import { IClinic } from '@/shared/types/clinic.interface';
+import ClinicInfo from './clinicInfo';
 
 export default function PostMain({
     _id,
@@ -15,6 +17,7 @@ export default function PostMain({
     videos,
     like,
     saved,
+    clinic,
 }: {
     _id: string;
     title: string;
@@ -23,11 +26,16 @@ export default function PostMain({
     videos: string[];
     like?: ILike;
     saved?: ISaved;
+    clinic?: IClinic;
 }) {
+    console.log(clinic);
     return (
         <div className='w-full flex flex-col gap-3 rounded-[20px] border-[1px] border-solid border-blue-100 p-4 bg-white mt-4'>
+            <ClinicInfo clinic={clinic} />
             <div className='flex items-center gap-3'>
-                <div className='flex flex-col gap-[2px]'>{title}</div>
+                <Text type='h2' className='font-semibold text-[16px]'>
+                    {title}
+                </Text>
             </div>
             <Text type='p' className='text-[14px] ' fz={500}>
                 {text}
