@@ -18,7 +18,7 @@ export default function ServiceInfo({ service }: { service: IService }) {
                         Врачи:
                     </Text>
                     <div className='flex gap-1'>
-                        {service.doctors.map((doctor) => (
+                        {service?.doctors?.map((doctor) => (
                             <Text
                                 key={doctor._id}
                                 type='h5'
