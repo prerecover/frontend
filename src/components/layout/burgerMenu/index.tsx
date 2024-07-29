@@ -9,10 +9,12 @@ import { Text } from '@/components/ui/text';
 import Image from 'next/image';
 import arrowRight from '/public/assets/arrow-right.svg';
 import { useLogout } from '@/shared/lib/hooks/useLogout';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
 
 export default function BurgerMenu() {
     const { isOpen, setIsOpen } = useBurgerMenu();
     const ref = useRef(null);
+    const { user } = useAuth();
     const isInView = useInView(ref, { once: true });
     const animateControll = useAnimation();
     const router = useRouter();
@@ -51,7 +53,7 @@ export default function BurgerMenu() {
                             <li
                                 key={idx}
                                 onClick={() => {
-                                    router.push(item.path);
+                                    router.push(user ? item.path : '/login');
                                     setIsOpen(false);
                                 }}
                                 className={cn(
@@ -71,7 +73,7 @@ export default function BurgerMenu() {
                         <li
                             className='relative cursor-pointer flex items-center p-4 rounded-[12px] border-[1px] border-solid border-[#ebf3ff] mb-[10px] burger_first:py-[9px] burger_first:px-[10px]'
                             style={{ display: 'flex', justifyContent: 'space-between' }}
-                            onClick={() => logout()}>
+                            onClick={user ? () => logout() : () => router.push('/login')}>
                             <div className='flex gap-4 justify-between w-full'>
                                 <div className='flex gap-4 items-center burger_first:gap-[10px]'>
                                     <svg width='20' height='20' viewBox='0 0 20 20' fill='none'>
@@ -95,7 +97,7 @@ export default function BurgerMenu() {
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    <Text type='p'>Выход</Text>
+                                    <Text type='p'>{user ? 'Выход' : 'Вход'}</Text>
                                 </div>
                                 <Image src={arrowRight} alt='go to' width={24} height={24} priority />
                             </div>

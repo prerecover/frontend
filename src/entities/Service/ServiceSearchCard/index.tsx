@@ -26,6 +26,7 @@ export default function ServiceSearchCard({ service }: { service: IService }) {
                     <div className='flex flex-col text-[16px] font-semibold gap-3 truncate'>
                         <h4>{service.title}</h4>
                         <Characteristics
+                            className='gap-2'
                             data={[
                                 {
                                     key: 'Врачи:',

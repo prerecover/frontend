@@ -3,7 +3,7 @@ import SearchBlock from '@/features/SearchBlock';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
-export default async function Search() {
+export default async function Page() {
     const SEARCH_QUERY = gql(`
 query Search {
     search {

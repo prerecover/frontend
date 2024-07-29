@@ -45,7 +45,7 @@ export default function SavedBtn({ saved, newsId }: { saved?: ISaved; newsId: st
     const [deleteSaved] = useMutation(DELETE_SAVED);
     const router = useRouter();
     const handlePost = () => {
-        if (!user._id) {
+        if (!user?._id) {
             router.push('/login');
         }
         if (isSaved) {
@@ -53,7 +53,7 @@ export default function SavedBtn({ saved, newsId }: { saved?: ISaved; newsId: st
             deleteSaved({ variables: { savedId: savedId } });
         } else {
             setIsSaved(true);
-            createSaved({ variables: { authorId: user._id, newsId: newsId } });
+            createSaved({ variables: { authorId: user?._id, newsId: newsId } });
         }
     };
     return (

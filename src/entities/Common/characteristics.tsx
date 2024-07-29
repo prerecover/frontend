@@ -8,12 +8,13 @@ type Characteristic = {
 };
 
 type Props = {
+    className?: string;
     data: Characteristic[];
 };
 
-export const Characteristics: FC<Props> = ({ data }) => {
+export const Characteristics: FC<Props> = ({ data, className }) => {
     return (
-        <div className='flex flex-col gap-2'>
+        <div className={cn(className, 'flex flex-col')}>
             {data.map((el, idx) => {
                 return (
                     <div

@@ -46,7 +46,7 @@ export default function LikeBtn({ like, newsId }: { like?: ILike; newsId: string
     const router = useRouter();
 
     const handlePost = () => {
-        if (!user._id) {
+        if (!user?._id) {
             router.push('/login');
             return;
         }

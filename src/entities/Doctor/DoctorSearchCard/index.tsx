@@ -21,6 +21,7 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
                         <h4>{`${doctor.firstName} ${doctor.lastName} ${doctor.surname?.charAt(0) + '.'}`}</h4>
 
                         <Characteristics
+                            className='gap-2'
                             data={[
                                 { key: 'Страна:', value: doctor?.country?.title || '-' },
                                 { key: 'Город:', value: doctor.city || '-' },

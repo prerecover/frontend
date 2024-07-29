@@ -1,7 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import Link from 'next/link';
 import PostMainStats from './Stats/index';
 import { ILike } from '@/shared/types/like.interface';
 import { ISaved } from '@/shared/types/saved.interface';
@@ -28,7 +27,6 @@ export default function PostMain({
     saved?: ISaved;
     clinic?: IClinic;
 }) {
-    console.log(clinic);
     return (
         <div className='w-full flex flex-col gap-3 rounded-[20px] border-[1px] border-solid border-blue-100 p-4 bg-white mt-4'>
             <ClinicInfo clinic={clinic} />
@@ -62,26 +60,8 @@ export default function PostMain({
                     ))}
                 </Swiper>
             )}
-            <div className='flex-between gap-4 flex-wrap'>
+            <div className='flex gap-4 flex-wrap'>
                 <PostMainStats like={like} saved={saved} newsId={_id} />
-                <Link href={`posts/${_id}`} className='flex'>
-                    <span className='text-blue'>Подробнее</span>
-                    <svg
-                        width='20'
-                        height='20'
-                        viewBox='0 0 20 20'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                        className='mt-[3px]'>
-                        <path
-                            d='M7.92893 2.92893L15 10L7.92893 17.0711'
-                            stroke='#0064FA'
-                            strokeWidth='1.25'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                    </svg>
-                </Link>
             </div>
         </div>
     );

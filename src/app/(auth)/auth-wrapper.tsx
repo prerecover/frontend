@@ -6,8 +6,8 @@ import { gql } from '@apollo/client';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 interface IContextType {
-    user: Partial<IUser>;
-    setUser: React.Dispatch<React.SetStateAction<Partial<IUser>>>;
+    user: IUser | null;
+    setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
     isAuth: boolean;
     setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -25,6 +25,9 @@ query GetMe {
         isStaff
         isVerfied
         lastName
+        country{
+            title
+        }
         login
         number
         online
@@ -36,12 +39,8 @@ query GetMe {
 }
 `);
 
-export const INITIAL_USER: Partial<IUser> = {
-    avatar: '',
-};
-
 const INITIAL_STATE = {
-    user: INITIAL_USER,
+    user: null,
     isAuth: false,
     setUser: () => {},
     setIsAuth: () => {},
@@ -50,7 +49,7 @@ const INITIAL_STATE = {
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<Partial<IUser>>(INITIAL_USER);
+    const [user, setUser] = useState<IUser | null>(null);
     const [isAuth, setIsAuth] = useState(false);
     useEffect(() => {
         const token = getCookie('access_token');

@@ -1,5 +1,6 @@
 import { IClinic } from './clinic.interface';
 import { ICommon } from './common.interface';
+import { IDoctor } from './doctor.interface';
 import { IUser } from './user.interface';
 
 export interface IAppointment extends ICommon {
@@ -13,4 +14,5 @@ export interface IAppointment extends ICommon {
     title: string;
     user: IUser;
     clinic: IClinic;
+    doctors?: IDoctor[];
 }

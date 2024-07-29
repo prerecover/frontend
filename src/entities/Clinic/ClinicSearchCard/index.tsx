@@ -21,6 +21,7 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
                         <h4>{clinic.title}</h4>
 
                         <Characteristics
+                            className='gap-2'
                             data={[
                                 { key: 'Страна:', value: clinic?.country?.title || '-' },
                                 { key: 'Город:', value: clinic.city || '-' },

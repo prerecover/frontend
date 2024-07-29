@@ -28,7 +28,7 @@ export const REVERSE_ROUTES = [
         label: 'Платежи',
     },
     {
-        path: '/notes',
+        path: '/appointments',
         label: 'Записи',
     },
     {
@@ -102,7 +102,7 @@ export const ROUTES = {
         label: 'Платежи',
     },
     notes: {
-        path: '/notes',
+        path: '/appointments',
         label: 'Записи',
     },
     notifications: {

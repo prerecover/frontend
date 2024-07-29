@@ -83,6 +83,7 @@ export default function MobileHeader({
                                     </svg>
                                 ) : end === true ? (
                                     <svg
+                                        className='fixed right-5 top-4'
                                         width='33'
                                         height='33'
                                         viewBox='0 0 33 33'

@@ -78,7 +78,7 @@ export const UserMenu = () => {
                     </svg>
                 }
                 title={ROUTES.messages.label}
-                href={user._id ? ROUTES.messages.path : ROUTES.login.path}
+                href={user?._id ? ROUTES.messages.path : ROUTES.login.path}
             />
             <MenuItem
                 icon={

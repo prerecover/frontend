@@ -24,8 +24,8 @@ export default function Header() {
                     <NotificationsLink />
                     <div
                         className='w-[40px] h-[40px] rounded-[50%] overflow-hidden'
-                        onClick={() => push(`${user._id ? '/account' : '/login'}`)}>
-                        <Image src={user.avatar ? user.avatar : userImg} alt='avatar' width={40} height={40} />
+                        onClick={() => push(`${user?._id ? '/account' : '/login'}`)}>
+                        <Image src={user?.avatar ? user?.avatar : userImg} alt='avatar' width={40} height={40} />
                     </div>
                 </div>
             </header>
