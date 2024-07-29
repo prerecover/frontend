@@ -1,34 +1,45 @@
 import MobileHeader from '@/components/layout/mobileHeader';
+import ClinicNews from '@/entities/Clinic/ClinicMain/ClinicNews';
 import { getClient } from '@/lib/apollo-client';
-import { IService } from '@/shared/types/service.interface';
 import { gql } from '@apollo/client';
 
 async function getServices(_id: string) {
-    const SERVICE_BY_CLINIC = gql(`
-query ServiceByClinic($clinicId: String!){
-    servicesByClinic(clinicId: $clinicId) {
-        _id
-        createdAt
-        description
-        duration
-        img
-        online
-        price
-        title
-        updatedAt
-    }
+    const NEWS_BY_CLINIC = gql(`
+        query getNews($clinicId: String!){
+            newsByClinic(clinicId: $clinicId){
+            _id,
+            text,
+            title,
+            like{
+                _id
+                author{
+                    _id
+                }
+            }
+            saved{
+                _id
+                author{
+                    _id
+                }
+            }
+            clinic{
+                avatar,
+                title
 }
-        `);
-    const { data } = await getClient().query({ query: SERVICE_BY_CLINIC, variables: { clinicId: _id } });
-    return data.servicesByClinic;
+            
+        }
+    }
+    `);
+    const { data } = await getClient().query({ query: NEWS_BY_CLINIC, variables: { clinicId: _id } });
+    return data.newsByClinic;
 }
 
 export default async function Page({ params }: { params: { _id: string } }) {
-    const service: IService = await getServices(params._id);
+    const news = await getServices(params._id);
     return (
         <>
             <MobileHeader title='Новости' />
-            <div className='bg-white p-4'>{service.price}</div>
+            <ClinicNews news={news} />
         </>
     );
 }
