@@ -31,6 +31,7 @@ export default function RootLayout({
                     <Toaster />
                 </ApolloWrapper>
             </body>
+            <script src='//code.jivo.ru/widget/PCxtgM4g4J' async></script>
         </html>
     );
 }

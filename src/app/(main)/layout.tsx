@@ -2,7 +2,6 @@ import Header from '@/components/layout/header';
 import AuthProvider from '../(auth)/auth-wrapper';
 import Sidebar from '@/components/layout/sidebar';
 import BurgerMenu from '@/components/layout/burgerMenu';
-import MobileFooter from '@/components/layout/mobileFooter';
 
 export default async function MainLayout({
     children,
@@ -19,7 +18,6 @@ export default async function MainLayout({
                     </div>
                     <Sidebar />
                     <BurgerMenu />
-                    <MobileFooter />
                 </section>
             </AuthProvider>
         </>

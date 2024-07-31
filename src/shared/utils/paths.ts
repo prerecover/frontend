@@ -59,11 +59,11 @@ export const REVERSE_ROUTES = [
 export const ROUTES = {
     main: {
         path: '/',
-        label: 'Главная',
+        label: 'Главная страница',
     },
     registration: {
         path: '/registration',
-        label: 'Главная',
+        label: 'Регистрация',
     },
     forgotPassword: {
         path: '/forgot-password',
@@ -91,7 +91,7 @@ export const ROUTES = {
     },
     account: {
         path: '/account',
-        label: 'Аккаунт',
+        label: 'Личный кабинет',
     },
     saved: {
         path: '/saved',
@@ -111,7 +111,7 @@ export const ROUTES = {
     },
     history: {
         path: '/history',
-        label: 'История',
+        label: 'История пациента',
     },
     statistic: {
         path: '/statistic',

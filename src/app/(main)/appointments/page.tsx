@@ -9,74 +9,10 @@ query Appointments {
     appointments {
         _id
         createdAt
-        file
         notify
-        online
-        specialCheck
-        status
         timeEnd
         timeStart
         title
-        updatedAt
-        clinic {
-            _id
-            address
-            adminFirstName
-            adminLastName
-            adminNumber
-            avatar
-            city
-            createdAt
-            description
-            country{
-                title
-            }
-            email
-            employees
-            endTime
-            isVerfied
-            number
-            rating
-            specialization
-            startTime
-            title
-            updatedAt
-            workDays
-        }
-        doctors {
-            _id
-            avatar
-            createdAt
-            email
-            firstName
-            lastName
-            mainStatus
-            number
-            online
-            specialization
-            surname
-            updatedAt
-            workExp
-        }
-        user {
-            _id
-            address
-            avatar
-            birthday
-            createdAt
-            email
-            firstName
-            isStaff
-            isVerfied
-            lastName
-            login
-            number
-            online
-            sex
-            surname
-            updatedAt
-            verificationCode
-        }
     }
 }
     `);

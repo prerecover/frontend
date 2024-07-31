@@ -32,7 +32,6 @@ query SavedAll {
     `);
     const { data: savedData } = await getClient().query({ query: SAVED_QUERY });
 
-    console.log(savedData.savedAll);
     return (
         <>
             <MobileHeader title='Сохраненное' end={false} />

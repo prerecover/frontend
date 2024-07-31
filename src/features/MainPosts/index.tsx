@@ -3,6 +3,7 @@ import { FilterBtn } from '@/components/ui/filter-btn';
 import PostMain from '@/entities/Post/PostMain';
 import { cn } from '@/lib/utils';
 import { INews } from '@/shared/types/news.interface';
+import 'swiper/css';
 
 export default function MainPosts({ className, data }: { className?: string; data: INews[] }) {
     return (

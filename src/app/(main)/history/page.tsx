@@ -2,7 +2,6 @@ import MobileHeader from '@/components/layout/mobileHeader';
 import MainHistory from '@/features/MainHistory';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
-import { Suspense } from 'react';
 
 export default async function Page() {
     const HISTORY_QUERY = gql(`
@@ -39,9 +38,7 @@ query History {
         <>
             <MobileHeader title='История пацеинта' end={false} />
             <div className='p-4'>
-                <Suspense fallback={<p>Loading...</p>}>
-                    <MainHistory data={data.history} />
-                </Suspense>
+                <MainHistory data={data.history} />
             </div>
         </>
     );

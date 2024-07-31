@@ -5,7 +5,7 @@ import { ApolloNextAppProvider, ApolloClient, InMemoryCache } from '@apollo/expe
 
 function makeClient() {
     const httpLink = new HttpLink({
-        uri: 'http://localhost:3000/graphql',
+        uri: `${process.env.NEXT_PUBLIC_BACKEND}/graphql`,
         fetchOptions: { cache: 'no-store' },
     });
 

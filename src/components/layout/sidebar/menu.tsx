@@ -1,11 +1,9 @@
-import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { MenuItem } from './menuItem';
 
 import { ROUTES } from '@/shared/utils/paths';
 import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 export const UserMenu = () => {
-    const { user } = useAuth();
     const { logout } = useLogout();
     return (
         <>
@@ -56,30 +54,6 @@ export const UserMenu = () => {
                 href={ROUTES.search.path}
             />
 
-            <MenuItem
-                icon={
-                    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                        <path
-                            d='M14.168 17.0827H5.83464C3.33464 17.0827 1.66797 15.8327 1.66797 12.916V7.08268C1.66797 4.16602 3.33464 2.91602 5.83464 2.91602L14.168 2.91602C16.668 2.91602 18.3346 4.16602 18.3346 7.08268V12.916C18.3346 15.8327 16.668 17.0827 14.168 17.0827Z'
-                            stroke='#B1B2B4'
-                            strokeWidth='1.25'
-                            strokeMiterlimit='10'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                        <path
-                            d='M14.1654 7.5L11.557 9.58333C10.6987 10.2667 9.29036 10.2667 8.43203 9.58333L5.83203 7.5'
-                            stroke='#B1B2B4'
-                            strokeWidth='1.25'
-                            strokeMiterlimit='10'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                    </svg>
-                }
-                title={ROUTES.messages.label}
-                href={user?._id ? ROUTES.messages.path : ROUTES.login.path}
-            />
             <MenuItem
                 icon={
                     <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>

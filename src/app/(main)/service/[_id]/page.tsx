@@ -3,7 +3,6 @@ import ServiceMain from '@/entities/Service/ServiceMain';
 import { getClient } from '@/lib/apollo-client';
 import { IService } from '@/shared/types/service.interface';
 import { gql } from '@apollo/client';
-import { Suspense } from 'react';
 
 async function getService(_id: string) {
     const SERVICE_QUERY = gql(`
@@ -43,9 +42,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
         <>
             <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} />
 
-            <Suspense fallback={<p>das</p>}>
-                <ServiceMain service={service} />
-            </Suspense>
+            <ServiceMain service={service} />
         </>
     );
 }

@@ -2,7 +2,6 @@ import MobileHeader from '@/components/layout/mobileHeader';
 import DoctorMain from '@/entities/Doctor/DoctorMain';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
-import { Suspense } from 'react';
 
 async function getDoctor(_id: string) {
     const DOCTOR_QUERY = gql(`
@@ -41,11 +40,8 @@ export default async function Page({ params }: { params: { _id: string } }) {
     return (
         <>
             <MobileHeader title='Врач' />
-
             <div className='bg-white p-4'>
-                <Suspense fallback={<p>load...</p>}>
-                    <DoctorMain doctor={doctor} />
-                </Suspense>
+                <DoctorMain doctor={doctor} />
             </div>
         </>
     );

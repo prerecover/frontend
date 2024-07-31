@@ -33,7 +33,7 @@ export default function ServiceOfDoctorCard({ service, num }: { service?: IServi
                         </div>
                         <div className='flex'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Кол-во новостей:</h3>
-                            <h3 className='font-medium text-[#262626] text-[16px] ml-2'>12</h3>
+                            <h3 className='font-medium text-[#262626] text-[16px] ml-2'>{service?.news?.length}</h3>
                         </div>
                         <div className='h-[1px] w-screen bg-[#C8DBF6] mt-3'></div>
                         <div className='flex mt-3 gap-1 items-center'>

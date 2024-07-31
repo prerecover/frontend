@@ -19,9 +19,12 @@ query ServiceByClinic($clinicId: String!){
         updatedAt
         doctors{
             firstName 
-            lastName
-            
-}
+            lastName    
+        }
+        news{
+            _id
+        }
+
     }
 }
         `);
