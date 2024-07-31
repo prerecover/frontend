@@ -1,5 +1,5 @@
 import MobileHeader from '@/components/layout/mobileHeader';
-import MainAppointments from '@/features/MainAppointments';
+import AppointmentMain from '@/entities/Appointment/AppointmentMain';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
@@ -13,6 +13,15 @@ query Appointments {
         timeEnd
         timeStart
         title
+        online
+        clinic{
+            title
+        }
+        doctor{
+            specialization 
+            firstName 
+            surname 
+        }
     }
 }
     `);
@@ -22,7 +31,7 @@ query Appointments {
         <>
             <MobileHeader title='Записи' />
             <div className='p-4'>
-                <MainAppointments data={data.appointments} />
+                <AppointmentMain data={data.appointments} />
             </div>
         </>
     );

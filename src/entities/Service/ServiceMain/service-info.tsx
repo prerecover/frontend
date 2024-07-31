@@ -1,5 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { IService } from '@/shared/types/service.interface';
+import durationParse from '@/shared/utils/durationParse';
 
 export default function ServiceInfo({ service }: { service: IService }) {
     return (
@@ -50,7 +51,7 @@ export default function ServiceInfo({ service }: { service: IService }) {
                             Длительность:
                         </Text>
                         <Text type='h5' className='text-[14px] font-medium'>
-                            {service.duration} минут
+                            {durationParse(service.duration)}
                         </Text>
                     </div>
                     <div className='flex-col flex'>

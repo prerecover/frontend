@@ -36,7 +36,7 @@ query History {
     console.log(new Date());
     return (
         <>
-            <MobileHeader title='История пацеинта' end={false} />
+            <MobileHeader />
             <div className='p-4'>
                 <MainHistory data={data.history} />
             </div>

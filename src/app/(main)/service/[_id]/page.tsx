@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
     const service: IService = await getService(params._id);
     return (
         <>
-            <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} />
+            <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} end={false} />
 
             <ServiceMain service={service} />
         </>

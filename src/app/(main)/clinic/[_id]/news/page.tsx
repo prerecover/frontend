@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
     const news = await getServices(params._id);
     return (
         <>
-            <MobileHeader title='Новости' />
+            <MobileHeader title='Новости' end={false} />
             <ClinicNews news={news} />
         </>
     );

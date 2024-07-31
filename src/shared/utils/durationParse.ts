@@ -1,9 +1,15 @@
 export default function durationParse(duration: number) {
     const minutes = duration % 60;
     const hours = duration / 60;
+    let result: string = '';
 
     if (hours >= 1) {
-        return `${hours} часов ${minutes} минут`;
+        result += `${hours} часов`;
+        if (minutes > 0) {
+            result += ` ${minutes} минут`;
+            return result;
+        }
+        return result;
     }
     return `${minutes} минут`;
 }

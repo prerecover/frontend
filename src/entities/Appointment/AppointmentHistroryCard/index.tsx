@@ -18,7 +18,7 @@ export default function AppointmentHistoryCard({ appointment }: { appointment: I
                         key: 'Длительность',
                         value: '11.12.2023 - 11.12.2024',
                     },
-                    { key: 'Все врачи:', value: appointment.doctors?.length.toString() || '12' },
+                    { key: 'Все врачи:', value: '12' },
                     { key: 'Мед.задания:', value: '17' },
                     {
                         key: 'Назначения:',

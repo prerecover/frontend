@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { IAppointment } from '@/shared/types/appointment.interface';
 import { useState } from 'react';
 
-export default function MainAppointments({ className, data }: { className?: string; data: IAppointment[] }) {
+export default function AppointmentMain({ className, data }: { className?: string; data: IAppointment[] }) {
     const [search, setSearch] = useState('');
 
     const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

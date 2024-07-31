@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
     const services = data.filter((service) => !service.online);
     return (
         <>
-            <MobileHeader title={`Офлайн услуги (${services.length})`} />
+            <MobileHeader title={`Офлайн услуги (${services.length})`} end={false} />
             <div className='p-4'>
                 <ClinicNotes services={services} />
             </div>

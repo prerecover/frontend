@@ -1,5 +1,5 @@
 import MobileHeader from '@/components/layout/mobileHeader';
-import MainPosts from '@/features/MainPosts';
+import PostMain from '@/entities/Post/PostMain';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
@@ -36,7 +36,7 @@ export default async function Home() {
         <>
             <MobileHeader />
             <div className='p-4 flex flex-col'>
-                <MainPosts data={newsData.newsAll} />
+                <PostMain data={newsData.newsAll} />
             </div>
         </>
     );

@@ -1,9 +1,13 @@
-import { FC } from 'react';
+import { FC, SetStateAction } from 'react';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import Image from 'next/image';
 import { Text } from '@/components/ui/text';
 
-export const UserInfo: FC = () => {
+interface UserInfoProps {
+    setPopup: React.Dispatch<SetStateAction<boolean>>;
+}
+
+export const UserInfo: FC<UserInfoProps> = ({ setPopup }) => {
     const { user } = useAuth();
     return (
         <div className='flex flex-col h-[212px] w-full items-center py-[22px]'>
@@ -23,7 +27,9 @@ export const UserInfo: FC = () => {
                 <Text type='p'>{user?.country?.title},</Text>
                 <Text type='p'>{user?.city}</Text>
                 <Image src={'/assets/warning.svg'} width={17} height={17} alt='location' className='ml-1' />
-                <Text type='p'>Подробнее</Text>
+                <Text type='p' className='cursor-pointer' onClick={() => setPopup(true)}>
+                    Подробнее
+                </Text>
             </div>
         </div>
     );
