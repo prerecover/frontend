@@ -7,10 +7,10 @@ import { useState } from 'react';
 import UnionParams from '@/entities/Common/UnionParams';
 import { DoughnutBlock } from './doughnut-block';
 import { Text } from '@/components/ui/text';
-import PostMain from '@/entities/Post/PostMain';
 import { cn } from '@/lib/utils';
 
 import 'swiper/css';
+import PostMainCard from '@/entities/Post/PostMainCard';
 export default function ServiceMain({ service }: { service: IService }) {
     const filters = ['Общие параметры', 'Польза услуги'];
     const [filter, setFilter] = useState('Общие параметры');
@@ -37,7 +37,7 @@ export default function ServiceMain({ service }: { service: IService }) {
                     <div className={cn('flex justify-center gap-2 w-full')}>
                         <div className='flex flex-col gap-2 max-w-[660px] w-full '>
                             {service.news?.map((news) => (
-                                <PostMain
+                                <PostMainCard
                                     key={news._id}
                                     _id={news._id}
                                     text={news.text}

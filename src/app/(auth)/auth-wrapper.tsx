@@ -29,6 +29,7 @@ query GetMe {
             title
         }
         login
+        city
         number
         online
         sex
@@ -42,8 +43,8 @@ query GetMe {
 const INITIAL_STATE = {
     user: null,
     isAuth: false,
-    setUser: () => {},
-    setIsAuth: () => {},
+    setUser: () => { },
+    setIsAuth: () => { },
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);

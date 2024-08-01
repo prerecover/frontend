@@ -65,7 +65,7 @@ export const AccountPopup: FC<Props> = ({ children, isOpen, closeHandler, title 
                 onClick={() => closeHandler()}></div>
             <div
                 className={cn(
-                    'fixed bottom-[-200vh] left-0 right-0 max-h-[91vh] h-full bg-white p-4 pt-2 rounded-t-[24px] z-40 select-none',
+                    'fixed bottom-[-200vh] left-0 right-0 max-h-[91vh] h-full bg-white pt-2 rounded-t-[24px] z-40 select-none',
                     isOpen && 'bottom-0',
                 )}
                 style={popupStyle}>
@@ -80,13 +80,11 @@ export const AccountPopup: FC<Props> = ({ children, isOpen, closeHandler, title 
                     <Text
                         type='h4'
                         position='center'
-                        className='tet-[24px] font-medium text-center flex justify-center text-[#000] pt-[26px] pb-[16px]'>
+                        className='text-[24px] font-medium text-center flex justify-center text-[#000] pt-[26px] pb-[16px]'>
                         {title}
                     </Text>
 
-                    <Text type='p' className='overflow-y-auto m-4 flex-grow'>
-                        {children}
-                    </Text>
+                    <div className='overflow-y-scroll m-4 flex-grow'>{children}</div>
                 </div>
             </div>
         </>

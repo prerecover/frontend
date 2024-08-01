@@ -24,6 +24,7 @@ query Appointments {
     }
 }
     `);
+
 export default async function Page() {
     const { data } = await getClient().query({ query: APPOINTMENTS_QUERY });
     return (

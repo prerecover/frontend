@@ -1,4 +1,4 @@
-import { FC, SetStateAction } from 'react';
+import { FC, SetStateAction, useEffect, useState } from 'react';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import Image from 'next/image';
 import { Text } from '@/components/ui/text';
@@ -9,6 +9,10 @@ interface UserInfoProps {
 
 export const UserInfo: FC<UserInfoProps> = ({ setPopup }) => {
     const { user } = useAuth();
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setLoading(false);
+    }, []);
     return (
         <div className='flex flex-col h-[212px] w-full items-center py-[22px]'>
             <Image
@@ -27,9 +31,11 @@ export const UserInfo: FC<UserInfoProps> = ({ setPopup }) => {
                 <Text type='p'>{user?.country?.title},</Text>
                 <Text type='p'>{user?.city}</Text>
                 <Image src={'/assets/warning.svg'} width={17} height={17} alt='location' className='ml-1' />
-                <Text type='p' className='cursor-pointer' onClick={() => setPopup(true)}>
-                    Подробнее
-                </Text>
+                {!loading && (
+                    <Text type='p' className='cursor-pointer' onClick={() => setPopup(true)}>
+                        Подробнее
+                    </Text>
+                )}
             </div>
         </div>
     );

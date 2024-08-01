@@ -1,8 +1,8 @@
 'use client';
 import { ISaved } from '@/shared/types/saved.interface';
-import PostMain from '@/entities/Post/PostMain';
 import { cn } from '@/lib/utils';
 import 'swiper/css';
+import PostMainCard from '@/entities/Post/PostMainCard';
 
 export default function SavedMain({ saved }: { saved: ISaved[] }) {
     return (
@@ -10,7 +10,7 @@ export default function SavedMain({ saved }: { saved: ISaved[] }) {
             <div className={cn('flex justify-center gap-2 w-full')}>
                 <div className='flex flex-col gap-2 max-w-[660px] w-full '>
                     {saved.map((saved) => (
-                        <PostMain
+                        <PostMainCard
                             key={saved.news._id}
                             _id={saved.news._id}
                             text={saved.news.text}

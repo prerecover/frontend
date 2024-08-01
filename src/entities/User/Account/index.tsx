@@ -2,11 +2,13 @@
 import MonthSwiper from '@/components/monthSwiper';
 import { UserInfo } from './userInfo';
 import { FilterBox } from '@/components/ui/filter-box';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { IAppointment } from '@/shared/types/appointment.interface';
 import AppointmentAccountCard from '@/entities/Appointment/AppointmentAccountCard';
 import { monthIndexes, monthTable } from '@/shared/utils/calendar';
 import { AccountPopup } from '@/components/ui/accountPopup';
+import AccountForm from '@/features/AccountForm';
+import Loader from '@/components/ui/loader';
 
 export default function AccountBlock({ data }: { data: IAppointment[] }) {
     const [filter, setFilter] = useState<string>('Текущие');
@@ -16,7 +18,9 @@ export default function AccountBlock({ data }: { data: IAppointment[] }) {
     const [activeMonth, setActiveMonth] = useState(monthIndexes[new Date().getMonth()]);
     return (
         <>
-            <UserInfo setPopup={setOpenPopup} />
+            <Suspense fallback={<Loader />}>
+                <UserInfo setPopup={setOpenPopup} />
+            </Suspense>
             <div className='bg-white p-4'>
                 <MonthSwiper activeMonth={activeMonth} setActiveMonth={setActiveMonth} />
                 <FilterBox data={filters} isSelect={filter} setIsSelect={setFilter} />
@@ -34,7 +38,7 @@ export default function AccountBlock({ data }: { data: IAppointment[] }) {
                 </div>
             </div>
             <AccountPopup isOpen={openPopup} title='Подробнее' closeHandler={() => setOpenPopup(false)}>
-                <h1>asd</h1>
+                <AccountForm />
             </AccountPopup>
         </>
     );
