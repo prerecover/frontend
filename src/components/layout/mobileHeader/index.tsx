@@ -46,6 +46,8 @@ export default function MobileHeader({
                                 priority
                                 className='mr-7'
                             />
+                        ) : pathname == '/add-appointment' ? (
+                            <div>asd</div>
                         ) : pathname == '/payments' ? (
                             <svg
                                 className='mr-7'

@@ -55,8 +55,8 @@ const INITIAL_USER: IUser = {
 const INITIAL_STATE = {
     user: INITIAL_USER,
     isAuth: false,
-    setUser: () => { },
-    setIsAuth: () => { },
+    setUser: () => {},
+    setIsAuth: () => {},
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);

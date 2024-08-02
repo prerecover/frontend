@@ -3,7 +3,7 @@ import { IService } from '@/shared/types/service.interface';
 import ServiceInfo from './service-info';
 import { Button } from '@/components/ui/button';
 import { FilterBox } from '@/components/ui/filter-box';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UnionParams from '@/entities/Common/UnionParams';
 import { DoughnutBlock } from './doughnut-block';
 import { Text } from '@/components/ui/text';
@@ -11,14 +11,21 @@ import { cn } from '@/lib/utils';
 
 import 'swiper/css';
 import PostMainCard from '@/entities/Post/PostMainCard';
+import { useCurrServiceStore } from '@/shared/store/currServiceStore';
+import { useRouter } from 'next/navigation';
 export default function ServiceMain({ service }: { service: IService }) {
     const filters = ['Общие параметры', 'Польза услуги'];
     const [filter, setFilter] = useState('Общие параметры');
+    const { setService } = useCurrServiceStore();
+    const router = useRouter();
+    useEffect(() => {
+        setService(service);
+    }, [service, setService]);
     return (
         <>
             <div className='bg-white p-4'>
                 <ServiceInfo service={service} />
-                <Button className='w-full' variant={'outline'}>
+                <Button className='w-full' variant={'outline'} onClick={() => router.push('/add-appointment')}>
                     Записаться
                 </Button>
                 <FilterBox

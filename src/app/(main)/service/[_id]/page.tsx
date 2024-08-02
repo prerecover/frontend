@@ -14,13 +14,16 @@ query Service($serviceId: String!){
         price
         title
         clinic {
-            _id
             title
+            country{
+                title
+            }
         }
         doctors {
             _id
             firstName
             lastName
+            surname
         }
         news {
             _id
