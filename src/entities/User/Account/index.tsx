@@ -9,6 +9,7 @@ import { monthIndexes, monthTable } from '@/shared/utils/calendar';
 import { AccountPopup } from '@/components/ui/accountPopup';
 import AccountForm from '@/features/AccountForm';
 import Loader from '@/components/ui/loader';
+import { Avatar } from '@/features/AccountForm/avatar';
 
 export default function AccountBlock({ data }: { data: IAppointment[] }) {
     const [filter, setFilter] = useState<string>('Текущие');
@@ -18,28 +19,12 @@ export default function AccountBlock({ data }: { data: IAppointment[] }) {
     const [activeMonth, setActiveMonth] = useState(monthIndexes[new Date().getMonth()]);
     return (
         <>
-            <Suspense fallback={<Loader />}>
-                <UserInfo setPopup={setOpenPopup} />
-            </Suspense>
-            <div className='bg-white p-4'>
-                <MonthSwiper activeMonth={activeMonth} setActiveMonth={setActiveMonth} />
-                <FilterBox data={filters} isSelect={filter} setIsSelect={setFilter} />
-                <div className='flex flex-col gap-4 w-full'>
-                    {data
-                        .filter((appointment) => new Date(appointment.timeStart).getMonth() === monthTable[activeMonth])
-                        .filter((appointment) =>
-                            filter == 'Текущие'
-                                ? new Date(appointment.timeStart) > new Date()
-                                : new Date(appointment.timeStart) < new Date(),
-                        )
-                        .map((appointment) => (
-                            <AppointmentAccountCard key={appointment._id} appointment={appointment} />
-                        ))}
-                </div>
+            <div className='h-[84px] w-full relative z-0 flex'>
+                <Avatar />
             </div>
-            <AccountPopup isOpen={openPopup} title='Подробнее' closeHandler={() => setOpenPopup(false)}>
+            <div className='bg-white'>
                 <AccountForm />
-            </AccountPopup>
+            </div>
         </>
     );
 }

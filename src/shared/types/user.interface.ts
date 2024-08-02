@@ -17,5 +17,5 @@ export interface IUser extends ICommon {
     online: boolean;
     sex: boolean;
     isVerified: boolean;
-    verificationCode: number;
+    verificationCode?: number;
 }
