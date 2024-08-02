@@ -7,6 +7,8 @@ import { ISaved } from '@/shared/types/saved.interface';
 import Image from 'next/image';
 import { IClinic } from '@/shared/types/clinic.interface';
 import ClinicInfo from './clinicInfo';
+import { INewsImage } from '@/shared/types/newsImage.interface';
+import { INewsVideo } from '@/shared/types/newsVideo.interface';
 
 export default function PostMainCard({
     _id,
@@ -21,8 +23,8 @@ export default function PostMainCard({
     _id: string;
     title: string;
     text: string;
-    imgs: string[];
-    videos: string[];
+    imgs: INewsImage[];
+    videos: INewsVideo[];
     like?: ILike;
     saved?: ISaved;
     clinic?: IClinic;
@@ -46,7 +48,7 @@ export default function PostMainCard({
                                 className='w-full object-cover rounded-[12px] max-h-[320px]'
                                 width={400}
                                 height={320}
-                                src={el}
+                                src={el.image}
                                 alt='post-img'
                                 key={idx}
                             />
@@ -55,7 +57,7 @@ export default function PostMainCard({
 
                     {videos.map((el, idx) => (
                         <SwiperSlide key={idx}>
-                            <video className='' src={el} key={idx} />
+                            <video className='' src={el.video} key={idx} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

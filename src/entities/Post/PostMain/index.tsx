@@ -21,11 +21,8 @@ export default function PostMain({ className, data }: { className?: string; data
                                 saved={news.saved}
                                 title={news.title}
                                 clinic={news.clinic}
-                                imgs={[
-                                    'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp',
-                                    'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp',
-                                ]}
-                                videos={[]}
+                                imgs={news.newsImages}
+                                videos={news.newsVideos}
                             />
                         ))}
                     </div>

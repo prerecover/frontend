@@ -25,7 +25,15 @@ async function getServices(_id: string) {
             clinic{
                 avatar,
                 title
-}
+            }
+            newsVideos {
+                _id
+                video
+            }
+            newsImages {
+                _id
+                image
+            }
             
         }
     }

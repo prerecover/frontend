@@ -44,11 +44,8 @@ export default function ServiceMain({ service }: { service: IService }) {
                                     like={news.like}
                                     saved={news.saved}
                                     title={news.title}
-                                    imgs={[
-                                        'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp',
-                                        'https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp',
-                                    ]}
-                                    videos={[]}
+                                    imgs={news.newsImages}
+                                    videos={news.newsVideos}
                                 />
                             ))}
                         </div>

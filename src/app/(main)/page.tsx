@@ -25,7 +25,16 @@ export default async function Home() {
             clinic{
                 avatar,
                 title
-}
+            }
+            newsVideos {
+                _id
+                video
+            }
+            newsImages {
+                _id
+                image
+            }
+
             
         }
     }

@@ -28,6 +28,12 @@ query Service($serviceId: String!){
             text
             title
             updatedAt
+            newsImages{
+                image
+            }
+            newsVideos{
+                video
+            }
         }
     }
 }
