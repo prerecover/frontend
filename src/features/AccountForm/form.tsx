@@ -88,7 +88,7 @@ export const FormBlock: FC = () => {
     const [login, setLogin] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [city, setCity] = useState<string>('');
-    const [date, setDate] = useState<string>('');
+    const [date, setDate] = useState<Date>(new Date());
     const [sex, setSex] = useState<boolean>(true);
     const formSchema = z.object({
         countryTitle: z.string(),
@@ -112,7 +112,7 @@ export const FormBlock: FC = () => {
         form.setValue('countryTitle', user.country?.title || '');
         setFirstName(user.firstName || '');
         setLastName(user.lastName || '');
-        setDate(formatDate(new Date(user.birthday || 10)));
+        setDate(new Date(user.birthday || 0));
         setLogin(user.login || '');
         setSex(user.sex || false);
         setAddress(user.address || '');
@@ -163,7 +163,7 @@ export const FormBlock: FC = () => {
                         <Button
                             variant={'outline'}
                             className={cn('w-full pl-7 py-7 text-left font-normal', date && 'text-muted-foreground')}>
-                            {date ? date : <span>Pick a date</span>}
+                            {date ? formatDate(date) : <span>Pick a date</span>}
                             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                         </Button>
                     </PopoverTrigger>

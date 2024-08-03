@@ -60,7 +60,7 @@ export default function AddAppointmentBlock() {
     const [token, setToken] = useState<string | undefined>();
     const [doctorId, setDoctorId] = useState<string>('');
     const { toast } = useToast();
-    const [date, setDate] = useState<string>('');
+    const [date, setDate] = useState<Date>(new Date());
     const [time, setTime] = useState<string>('10:30');
     const [mutate] = useMutation(CREATE_APPOINTMENT, {
         context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
@@ -71,25 +71,27 @@ export default function AddAppointmentBlock() {
 
     useEffect(() => {
         setToken(getCookie('access_token'));
-        Date.parse(date);
         if (!service) {
             router.back();
         }
     }, [router, service, date]);
 
+    const parseTime = (time: string) => {
+        const hours = parseInt(time.slice(0, 2));
+        const minutes = parseInt(time.slice(3, 5));
+        return { hours, minutes };
+    };
+
     const handleAppointment = () => {
-        const dateAppointment = `${date}T${time}:00Z`;
-        console.log(dateAppointment);
-        const dateParse = new Date(dateAppointment);
-        dateParse.setHours(dateParse.getHours() - 3);
-        console.log(dateParse);
+        const { hours, minutes } = parseTime(time);
+        date.setHours(hours, minutes);
         mutate({
             variables: {
                 clinicId: service?.clinic?._id,
                 doctorId,
                 online: filter == 'Онлайн',
                 serviceId: service?._id,
-                timeStart: new Date(dateParse).getTime(),
+                timeStart: date.getTime(),
             },
         });
     };

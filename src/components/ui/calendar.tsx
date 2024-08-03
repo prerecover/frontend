@@ -40,10 +40,10 @@ interface ICalendare {
     width?: string;
     height?: string;
     isAccount?: boolean;
-    setDate: React.Dispatch<React.SetStateAction<string>>;
+    setDate: React.Dispatch<React.SetStateAction<Date>>;
     borderColor?: string;
 }
-export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, isAccount }) => {
+export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, isAccount = false }) => {
     const { user } = useAuth();
     const currentDate: Date = !isAccount
         ? new Date()
@@ -60,12 +60,16 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
             setCurrentMonth(11);
             setCurrentYear(currentYear - 1);
             setDate(
-                `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                new Date(
+                    `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                ),
             );
         } else {
             setCurrentMonth(currentMonth - 1);
             setDate(
-                `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                new Date(
+                    `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                ),
             );
         }
     };
@@ -76,12 +80,16 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
             setCurrentYear(currentYear + 1);
             console.log(currentMonth);
             setDate(
-                `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                new Date(
+                    `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                ),
             );
         } else {
             setCurrentMonth(currentMonth + 1);
             setDate(
-                `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                new Date(
+                    `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+                ),
             );
         }
     };
@@ -93,14 +101,18 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
         setCurrentDay(day);
         console.log(day);
         setDate(
-            `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(day) ? '0' : ''}${day}`,
+            new Date(
+                `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(day) ? '0' : ''}${day}`,
+            ),
         );
         console.log();
     };
     useEffect(() => {
         console.log('rerender');
         setDate(
-            `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+            new Date(
+                `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
+            ),
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
