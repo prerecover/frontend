@@ -7,9 +7,7 @@ import { Info } from './info';
 export default function AppointmentMainCard({ appointment }: { appointment: IAppointment }) {
     const dateAppointment = decodeDate(new Date(appointment.timeStart));
     const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${new Date(appointment.timeStart).getMinutes()}`;
-    const timeStart = new Date(appointment.timeStart).getTime();
-    const timeEnd = new Date(appointment.timeEnd).getTime();
-    const duration = new Date(timeEnd - timeStart).getMinutes();
+    const duration = appointment.service.duration;
     const doctorSpecialization = `${appointment.doctor?.specialization.charAt(0).toUpperCase() + appointment.doctor?.specialization.slice(1)}`;
     const doctorName = `${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
 

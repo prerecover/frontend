@@ -1,6 +1,6 @@
 export default function durationParse(duration: number) {
     const minutes = duration % 60;
-    const hours = duration / 60;
+    const hours = Math.floor(duration / 60);
     let result: string = '';
 
     if (hours >= 1) {

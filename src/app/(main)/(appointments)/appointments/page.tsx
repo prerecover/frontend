@@ -10,7 +10,6 @@ query Appointments {
         _id
         createdAt
         notify
-        timeEnd
         timeStart
         title
         online
@@ -21,6 +20,9 @@ query Appointments {
             specialization 
             firstName 
             surname 
+        }
+        service{
+            duration
         }
     }
 }

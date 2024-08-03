@@ -1,6 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { Characteristics } from '@/entities/Common/characteristics';
 import { IAppointment } from '@/shared/types/appointment.interface';
+import durationParse from '@/shared/utils/durationParse';
 
 export default function AppointmentHistoryCard({ appointment }: { appointment: IAppointment }) {
     return (
@@ -16,7 +17,7 @@ export default function AppointmentHistoryCard({ appointment }: { appointment: I
                 data={[
                     {
                         key: 'Длительность',
-                        value: '11.12.2023 - 11.12.2024',
+                        value: durationParse(appointment.service.duration),
                     },
                     { key: 'Все врачи:', value: '12' },
                     { key: 'Мед.задания:', value: '17' },

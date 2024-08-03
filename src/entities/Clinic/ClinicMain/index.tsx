@@ -11,8 +11,8 @@ import UnionParams from '@/entities/Common/UnionParams/index';
 import { DoughnutBlock } from './doughnut-block';
 
 export default function ClinicMain({ clinic }: { clinic: IClinic }) {
-    const onlineServices = clinic.services?.filter((apmnt) => apmnt.online).length;
-    const offlineServices = clinic.services?.filter((apmnt) => !apmnt.online).length;
+    const onlineServices = clinic.services?.filter((service) => service.online).length;
+    const offlineServices = clinic.services?.filter((service) => service.offline).length;
     const news = clinic.news?.length;
     const doctors = clinic.doctors?.length;
     return (

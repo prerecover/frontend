@@ -15,4 +15,5 @@ export interface IAppointment extends ICommon {
     user: IUser;
     clinic: IClinic;
     doctor: IDoctor;
+    service?: IService;
 }

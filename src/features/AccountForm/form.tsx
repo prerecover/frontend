@@ -12,9 +12,9 @@ import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
 import { ICountry } from '@/shared/types/country.interface';
+import { formatDate } from '@/shared/utils/formatDate';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -88,9 +88,9 @@ export const FormBlock: FC = () => {
     const [login, setLogin] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [city, setCity] = useState<string>('');
+    const [date, setDate] = useState<string>('');
     const [sex, setSex] = useState<boolean>(true);
     const formSchema = z.object({
-        birthday: z.date(),
         countryTitle: z.string(),
     });
     const form = useForm<z.infer<typeof formSchema>>({
@@ -109,10 +109,10 @@ export const FormBlock: FC = () => {
         },
     });
     useEffect(() => {
-        form.setValue('birthday', new Date(user.birthday || 0));
         form.setValue('countryTitle', user.country?.title || '');
         setFirstName(user.firstName || '');
         setLastName(user.lastName || '');
+        setDate(formatDate(new Date(user.birthday || 10)));
         setLogin(user.login || '');
         setSex(user.sex || false);
         setAddress(user.address || '');
@@ -125,13 +125,13 @@ export const FormBlock: FC = () => {
     }, [error, toast, user, form]);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        const { birthday, countryTitle } = values;
+        const { countryTitle } = values;
         console.log(values);
         mutate({
             variables: {
                 firstName,
                 lastName,
-                birthday: birthday.getTime(),
+                birthday: date,
                 sex,
                 login,
                 countryTitle,
@@ -140,8 +140,6 @@ export const FormBlock: FC = () => {
             },
         });
     }
-    const today = new Date();
-    const now_18 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
     if (load)
         return (
             <div className='flex-center h-screen bg-white'>
@@ -160,46 +158,21 @@ export const FormBlock: FC = () => {
                     className='border-blue'
                 />
                 <Input value={lastName} onChange={(e) => setLastName(e.currentTarget.value)} className='border-blue' />
-                <FormField
-                    control={form.control}
-                    name='birthday'
-                    render={({ field }) => (
-                        <FormItem className=''>
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                    <FormControl>
-                                        <Button
-                                            variant={'outline'}
-                                            className={cn(
-                                                'w-full pl-7 py-7 text-left font-normal',
-                                                !field.value && 'text-muted-foreground',
-                                            )}>
-                                            {field.value ? (
-                                                format(new Date(field.value), 'PPP')
-                                            ) : (
-                                                <span>Pick a date</span>
-                                            )}
-                                            <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
-                                        </Button>
-                                    </FormControl>
-                                </PopoverTrigger>
-                                <PopoverContent className='w-auto p-0' align='start'>
-                                    <Calendar
-                                        mode='single'
-                                        className='bg-white'
-                                        selected={new Date(field.value)}
-                                        onSelect={field.onChange}
-                                        fromDate={new Date(field.value)}
-                                        defaultMonth={new Date(user?.birthday || now_18)}
-                                        disabled={(date) => date < new Date(new Date().getFullYear() - 18)}
-                                        initialFocus
-                                    />
-                                </PopoverContent>
-                            </Popover>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button
+                            variant={'outline'}
+                            className={cn('w-full pl-7 py-7 text-left font-normal', date && 'text-muted-foreground')}>
+                            {date ? date : <span>Pick a date</span>}
+                            <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                        className='w-full  bg-white border border-solid border-blue rounded-[12px]'
+                        align='start'>
+                        <Calendar setDate={setDate} isAccount={true} />
+                    </PopoverContent>
+                </Popover>
                 <Select onValueChange={(e) => setSex(e == 'Мужчина')} value={sex ? 'Мужчина' : 'Женщина'}>
                     <FormControl>
                         <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue rounded-[8px] bg-[#fff]'>

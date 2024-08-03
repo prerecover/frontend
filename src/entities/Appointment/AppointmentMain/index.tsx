@@ -20,6 +20,7 @@ export default function AppointmentMain({ className, data }: { className?: strin
                 <div className={cn('flex justify-center gap-2 w-full', className)}>
                     <div className='flex flex-col gap-4 w-full'>
                         {data
+                            .filter((appointment) => new Date(appointment.timeStart) > new Date())
                             .filter((appointment) =>
                                 Object.values(appointment).some((value) => {
                                     if (typeof value === 'string') {
@@ -27,6 +28,7 @@ export default function AppointmentMain({ className, data }: { className?: strin
                                     }
                                 }),
                             )
+
                             .map((appointment) => (
                                 <AppointmentMainCard key={appointment._id} appointment={appointment} />
                             ))}

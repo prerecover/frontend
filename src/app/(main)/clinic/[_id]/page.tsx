@@ -15,6 +15,7 @@ query Clinic($clinicId: String!){
         services {
             _id
             online
+            offline
         }
         country {
             _id

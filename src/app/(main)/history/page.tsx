@@ -9,9 +9,12 @@ query History {
     history {
         appointments {
             _id
-            timeEnd
             timeStart
             title
+            service{
+                duration
+            }
+            
         }
         clinics {
             _id

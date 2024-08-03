@@ -1,4 +1,5 @@
 import { Text } from '@/components/ui/text';
+import durationParse from '@/shared/utils/durationParse';
 import Image from 'next/image';
 import { FC } from 'react';
 
@@ -26,7 +27,7 @@ export const Info: FC<InfoProps> = ({ dateAppointment, timeAppointment, duration
             <div className='flex gap-2 items-center'>
                 <Image src={'/assets/clock-fast-forward.svg'} width={20} height={20} alt='calendar' />
                 <Text type='h4' className='text-[12px] font-medium'>
-                    {duration} минут
+                    {durationParse(duration)}
                 </Text>
             </div>
         </div>

@@ -8,12 +8,14 @@ async function getService(_id: string) {
     const SERVICE_QUERY = gql(`
 query Service($serviceId: String!){
     service(_id: $serviceId) {
+        _id
         description
         duration
         online
         price
         title
         clinic {
+            _id
             title
             country{
                 title
