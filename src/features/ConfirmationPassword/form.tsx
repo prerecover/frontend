@@ -13,6 +13,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useCredStore } from '@/shared/store/credStore';
 import { useRouteStore } from '@/shared/store/prevRouter';
 import { Text } from '@/components/ui/text';
+import { REGEXP_ONLY_DIGITS } from 'input-otp';
 interface ConfirmationProps {
     type: 'registration' | 'reset';
 }
@@ -69,7 +70,7 @@ export const ConfirmationForm: FC<ConfirmationProps> = () => {
                         render={({ field }) => (
                             <FormItem className='m-auto mb-[30px]'>
                                 <FormControl>
-                                    <InputOTP maxLength={4} {...field}>
+                                    <InputOTP maxLength={4} {...field} pattern={REGEXP_ONLY_DIGITS}>
                                         <InputOTPGroup className='gap-8'>
                                             <InputOTPSlot
                                                 index={0}

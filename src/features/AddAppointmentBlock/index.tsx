@@ -26,6 +26,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/components/ui/use-toast';
+import { formatDate } from '@/shared/utils/formatDate';
 
 const CREATE_APPOINTMENT = gql(`
 mutation CreateAppointment ($clinicId: String!, $doctorId: String!, $online: Boolean, $serviceId: String!, $timeStart: Date!, $duration: Int!){
@@ -85,6 +86,7 @@ export default function AddAppointmentBlock() {
 
     const handleAppointment = () => {
         const { hours, minutes } = parseTime(time);
+        const doctor = service?.doctors?.filter((doctor) => doctor._id === doctorId)[0];
         date.setHours(hours, minutes);
         date.setHours(date.getHours() - 3);
         mutate({
@@ -96,6 +98,11 @@ export default function AddAppointmentBlock() {
                 timeStart: date.getTime(),
                 duration: service?.duration,
             },
+        });
+        toast({
+            variant: 'positive',
+            title: 'Запись успешно создана!',
+            description: `Дата: ${formatDate(date)}. Врач: ${doctor?.lastName} ${doctor?.firstName?.charAt(0) + '.'} ${doctor?.surname?.charAt(0) + '.'}`,
         });
     };
     return (

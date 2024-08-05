@@ -31,19 +31,19 @@ export default function BurgerMenu() {
     }, [isInView]);
     return (
         <div
-            className={cn(`${!isOpen && 'hidden'}`, 'desktop:hidden')}
+            className={cn(`${!isOpen && 'hidden transition-all'}`, 'desktop:hidden transition-all')}
             onClick={() => !user._id && router.push('/login')}>
             <AnimatePresence>
                 <>
                     <motion.div
-                        className='w-full h-full bg-dark opacity-50 top-[65px] fixed z-10 left-0'
+                        className='w-full h-full bg-dark opacity-50 top-[65px] fixed z-10 left-0 transition-all'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.5 }}
-                        transition={{ duration: 0.2, delay: 0.1 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
                         onClick={() => setIsOpen(false)}
                     />
                     <motion.ul
-                        className='bg-white w-[80%]  h-screen fixed z-10 p-4 overflow-y-auto top-[65px] left-0 burger_first:p-[10px] burger_second:w-[80%]'
+                        className='bg-white w-full  h-screen fixed z-10 p-4 overflow-y-auto top-[65px] left-0 burger_first:p-[10px] burger_second:w-[80%]'
                         initial='hidden'
                         variants={{
                             hidden: { opacity: 0, x: -100 },

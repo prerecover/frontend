@@ -118,17 +118,12 @@ export const FormBlock: FC = () => {
         setAddress(user.address || '');
         setCity(user.city || '');
         setToken(getCookie('access_token'));
-        if (error) {
-            toast({ title: error.message, description: error.extraInfo, variant: 'destructive' });
-        }
         setLoad(false);
     }, [error, toast, user, form]);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const { countryTitle } = values;
-        console.log(date.getUTCDate(), new Date().getUTCDate());
         const age = Math.abs(new Date().getUTCDate() - date.getUTCFullYear());
-        console.log(age);
         if (age < 18) {
             toast({ title: 'Ваш возраст меньше 18 лет!', variant: 'destructive' });
             return;
@@ -174,7 +169,7 @@ export const FormBlock: FC = () => {
                         <Button
                             variant={'outline'}
                             className={cn('w-full pl-7 py-7 text-left font-normal', date && 'text-muted-foreground')}>
-                            {date ? formatDate(date) : <span>Pick a date</span>}
+                            {date == new Date(10) ? formatDate(date) : <span>Выберите дату</span>}
                             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                         </Button>
                     </PopoverTrigger>

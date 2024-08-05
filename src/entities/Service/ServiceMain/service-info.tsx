@@ -1,6 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { IService } from '@/shared/types/service.interface';
 import durationParse from '@/shared/utils/durationParse';
+import Link from 'next/link';
 
 export default function ServiceInfo({ service }: { service: IService }) {
     return (
@@ -10,9 +11,12 @@ export default function ServiceInfo({ service }: { service: IService }) {
                     <Text type='h5' className='text-grey-700 text-[12px]'>
                         Клиника:
                     </Text>
-                    <Text type='h5' className='text-[17px] underline underline-offset-4 font-semibold'>
+                    <Link
+                        type='h5'
+                        className='text-[17px] underline underline-offset-4 font-semibold'
+                        href={`/clinic/${service.clinic?._id}`}>
                         {service.clinic?.title}
-                    </Text>
+                    </Link>
                 </div>
                 <div className='flex flex-col text-[14px] gap-1 font-normal'>
                     <Text type='h5' className='text-grey-700 text-[12px]'>
@@ -20,12 +24,13 @@ export default function ServiceInfo({ service }: { service: IService }) {
                     </Text>
                     <div className='flex gap-1'>
                         {service?.doctors?.map((doctor) => (
-                            <Text
+                            <Link
                                 key={doctor._id}
+                                href={`/doctor/${doctor._id}`}
                                 type='h5'
                                 className='underline underline-offset-4 font-semibold text-[14px]'>
                                 {`${doctor.lastName} ${doctor.firstName?.charAt(0) + '.'}`}
-                            </Text>
+                            </Link>
                         ))}
                     </div>
                 </div>
