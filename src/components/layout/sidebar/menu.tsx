@@ -2,8 +2,10 @@ import { MenuItem } from './menuItem';
 
 import { ROUTES } from '@/shared/utils/paths';
 import { HomeIcon, PaymentsIcon, SearchIcon } from '@/icons';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
 
 export const UserMenu = () => {
+    const { user } = useAuth();
     return (
         <>
             <MenuItem icon={<HomeIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />
@@ -32,12 +34,12 @@ export const UserMenu = () => {
                     </svg>
                 }
                 title={ROUTES.notes.label}
-                href={ROUTES.notes.path}
+                href={user._id ? ROUTES.notes.path : '/login'}
             />
             <MenuItem
                 icon={<PaymentsIcon width={20} height={20} />}
                 title={ROUTES.payments.label}
-                href={ROUTES.payments.path}
+                href={user._id ? ROUTES.payments.path : '/login'}
             />
 
             {/* <MenuItem */}

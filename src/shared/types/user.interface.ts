@@ -1,3 +1,4 @@
+import { IAppointment } from './appointment.interface';
 import { ICommon } from './common.interface';
 import { ICountry } from './country.interface';
 
@@ -17,5 +18,6 @@ export interface IUser extends ICommon {
     online: boolean;
     sex: boolean;
     isVerified: boolean;
+    appointments: IAppointment[];
     verificationCode?: number;
 }

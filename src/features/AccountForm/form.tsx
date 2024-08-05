@@ -126,7 +126,18 @@ export const FormBlock: FC = () => {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const { countryTitle } = values;
-        console.log(values);
+        console.log(date.getUTCDate(), new Date().getUTCDate());
+        const age = Math.abs(new Date().getUTCDate() - date.getUTCFullYear());
+        console.log(age);
+        if (age < 18) {
+            toast({ title: 'Ваш возраст меньше 18 лет!', variant: 'destructive' });
+            return;
+        }
+        [lastName, firstName, login, sex, city].forEach((val) => {
+            if (val == '') {
+                toast({ title: `Указаны не все поля`, variant: 'destructive' });
+            }
+        });
         mutate({
             variables: {
                 firstName,

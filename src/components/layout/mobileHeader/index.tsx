@@ -9,6 +9,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ROUTES } from '@/shared/utils/paths';
 import { Text } from '@/components/ui/text';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
 
 export default function MobileHeader({
     className,
@@ -22,6 +23,7 @@ export default function MobileHeader({
     const { isOpen, setIsOpen } = useBurgerMenu();
 
     const router = useRouter();
+    const { user } = useAuth();
     const blockLocation = ['/', '/search', '/messages', '/account', '/history', '/payments', '/appointments', '/saved'];
     const pathname = usePathname();
     return (
@@ -33,7 +35,9 @@ export default function MobileHeader({
 
                         className,
                     )}>
-                    <div onClick={() => setIsOpen(!isOpen)}>
+                    <div
+                        onClick={() => (!user._id ? router.push('/login') : setIsOpen(!isOpen))}
+                        className='cursor-pointer'>
                         <Image src={isOpen ? burgerClose : burger} alt='burger' width={24} height={24} />
                     </div>
                     <div className='flex items-center'>
@@ -44,13 +48,14 @@ export default function MobileHeader({
                                 width={28}
                                 height={28}
                                 priority
-                                className='mr-7'
+                                className='mr-7 cursor-pointer'
+                                onClick={() => router.push('/create-appointment')}
                             />
                         ) : pathname == '/add-appointment' ? (
-                            <div>asd</div>
+                            <div>asdkkkkkkk</div>
                         ) : pathname == '/payments' ? (
                             <svg
-                                className='mr-7'
+                                className='mr-7 cursor-pointer'
                                 width='28'
                                 height='28'
                                 viewBox='0 0 28 28'
@@ -75,7 +80,7 @@ export default function MobileHeader({
                         <div
                             className='relative'
                             onClick={() => {
-                                router.push(ROUTES.notifications.path);
+                                router.push(!user._id ? '/login' : ROUTES.notifications.path);
                             }}>
                             <Image src={notifi} alt='notifications' width={24} height={24} />
                         </div>

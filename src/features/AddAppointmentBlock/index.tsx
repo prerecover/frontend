@@ -28,7 +28,7 @@ import {
 import { useToast } from '@/components/ui/use-toast';
 
 const CREATE_APPOINTMENT = gql(`
-mutation CreateAppointment ($clinicId: String!, $doctorId: String!, $online: Boolean, $serviceId: String!, $timeStart: Date!){
+mutation CreateAppointment ($clinicId: String!, $doctorId: String!, $online: Boolean, $serviceId: String!, $timeStart: Date!, $duration: Int!){
     createAppointment(
         createAppointmentInput: {
             clinicId: $clinicId,
@@ -36,6 +36,7 @@ mutation CreateAppointment ($clinicId: String!, $doctorId: String!, $online: Boo
             online: $online, 
             serviceId: $serviceId,
             timeStart: $timeStart
+            duration: $duration
         }
     ) {
         _id
@@ -85,6 +86,7 @@ export default function AddAppointmentBlock() {
     const handleAppointment = () => {
         const { hours, minutes } = parseTime(time);
         date.setHours(hours, minutes);
+        date.setHours(date.getHours() - 3);
         mutate({
             variables: {
                 clinicId: service?.clinic?._id,
@@ -92,6 +94,7 @@ export default function AddAppointmentBlock() {
                 online: filter == 'Онлайн',
                 serviceId: service?._id,
                 timeStart: date.getTime(),
+                duration: service?.duration,
             },
         });
     };

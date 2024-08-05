@@ -43,14 +43,13 @@ export default function LoginForm() {
             .max(50, {
                 message: 'Email or number must be at less 50 characters.',
             }),
-        password: z
-            .string()
-            .min(8, {
-                message: 'No valid password',
-            })
-            .max(50, {
-                message: 'No valid password',
-            }),
+        password: z.string(),
+        // .min(8, {
+        //     message: 'No valid password',
+        // })
+        // .max(50, {
+        //     message: 'No valid password',
+        // }),
     });
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),

@@ -28,6 +28,14 @@ query GetMe {
         country{
             title
         }
+        appointments{
+            title,
+            timeStart
+            duration
+            clinic{
+                title
+            }
+        }
         login
         city
         number
@@ -50,6 +58,7 @@ const INITIAL_USER: IUser = {
     online: false,
     isVerified: false,
     sex: true,
+    appointments: [],
 };
 
 const INITIAL_STATE = {

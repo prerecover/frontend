@@ -37,3 +37,20 @@ export const formatDate = (date: Date) => {
 
     return date.toLocaleDateString('ru-RU', options);
 };
+
+export const fullTime = (date: Date) => {
+    const day = date.getDate();
+    let month = (date.getUTCMonth() + 1).toString();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    let minutes = date.getMinutes().toString();
+    if (parseInt(minutes) == 0) {
+        minutes = '00';
+    }
+    if (parseInt(month) < 10) {
+        month = `0${month}`;
+    }
+    const wordMonth: Intl.DateTimeFormatOptions = { month: 'long' };
+    const textMonth = date.toLocaleDateString('ru-RU', wordMonth);
+    return { day, month, year, hours, minutes, textMonth };
+};

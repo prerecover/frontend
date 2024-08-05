@@ -1,6 +1,7 @@
 import { IClinic } from './clinic.interface';
 import { ICommon } from './common.interface';
 import { IDoctor } from './doctor.interface';
+import { IService } from './service.interface';
 import { IUser } from './user.interface';
 
 export interface IAppointment extends ICommon {
@@ -15,5 +16,7 @@ export interface IAppointment extends ICommon {
     user: IUser;
     clinic: IClinic;
     doctor: IDoctor;
+    duration: number;
+
     service?: IService;
 }

@@ -25,7 +25,7 @@ export default function ServiceMain({ service }: { service: IService }) {
         <>
             <div className='bg-white p-4'>
                 <ServiceInfo service={service} />
-                <Button className='w-full' variant={'outline'} onClick={() => router.push('/add-appointment')}>
+                <Button className='w-full' variant={'default'} onClick={() => router.push('/add-appointment')}>
                     Записаться
                 </Button>
                 <FilterBox

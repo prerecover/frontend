@@ -1,4 +1,5 @@
 import MobileHeader from '@/components/layout/mobileHeader';
+import AppointmentWarnList from '@/entities/Appointment/AppointmentWarnList';
 import PostMain from '@/entities/Post/PostMain';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
@@ -44,6 +45,7 @@ export default async function Home() {
     return (
         <>
             <MobileHeader />
+            <AppointmentWarnList />
             <div className='p-4 flex flex-col'>
                 <PostMain data={newsData.newsAll} />
             </div>
