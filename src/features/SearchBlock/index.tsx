@@ -30,7 +30,7 @@ export default function SearchBlock({ data }: { data: Search }) {
     return (
         <>
             <div className='flex flex-col gap-4 flex-grow'>
-                <div className='flex gap-3 items-center'>
+                <div className='flex gap-3 items-center '>
                     <SearchInput
                         onChange={onChangeSearch}
                         value={search}
@@ -39,7 +39,7 @@ export default function SearchBlock({ data }: { data: Search }) {
                     <FilterBtn onClick={() => console.log('click')} />
                 </div>
                 <FilterBox
-                    className='max-w-[700px] my-0 mx-auto desktop:justify-center desktop:my-0 desktop:m-auto'
+                    className='max-w-[700px] my-0 mx-auto desktop:mx-0'
                     style={{ margin: '0 auto' }}
                     data={filters}
                     isSelect={filter}

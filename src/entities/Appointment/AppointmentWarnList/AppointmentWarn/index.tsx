@@ -13,9 +13,13 @@ export default function AppointmentsWarn({ appointment }: { appointment: IAppoin
     const { hours, minutes, day, year, month } = fullTime(new Date(appointment.timeStart));
     const title = `${day}.${month}.${year.toString().slice(2, 4)} / ${hours}:${minutes}`;
     return (
-        <div className={cn('bg-blue flex flex-col transition-all rounded-[10px]', open ? 'h-[195px]' : 'h-[32px]')}>
+        <div
+            className={cn(
+                'bg-blue flex flex-col desktop:max-w-[660px] desktop:mt-4 w-full m-auto  transition-all rounded-[10px]',
+                open ? 'h-[195px]' : 'h-[32px]',
+            )}>
             <div
-                className={cn('bg-blue w-full transition-all flex justify-between rounded-[10px]')}
+                className={cn('bg-blue transition-all flex justify-between rounded-[10px]')}
                 onClick={() => setOpen(!open)}>
                 {!open ? (
                     <Text

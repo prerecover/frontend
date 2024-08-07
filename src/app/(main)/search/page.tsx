@@ -13,6 +13,7 @@ query Search {
             avatar
             city
             title
+            rating
             country{
                 title
 }
