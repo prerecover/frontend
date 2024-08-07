@@ -1,10 +1,11 @@
 import { Text } from '@/components/ui/text';
+import { cn } from '@/lib/utils';
 import { IDoctor } from '@/shared/types/doctor.interface';
 
-export default function DoctorInfo({ doctor }: { doctor: IDoctor }) {
+export default function DoctorInfo({ doctor, className }: { doctor: IDoctor; className?: string }) {
     return (
         <>
-            <div className='flex gap-5'>
+            <div className={cn('flex gap-5', className)}>
                 <div className='flex-col flex gap-2'>
                     <div className='flex items-center text-[14px] gap-1 font-normal'>
                         <Text type='h5' className='text-grey-700'>

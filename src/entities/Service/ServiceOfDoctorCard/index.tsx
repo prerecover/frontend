@@ -1,12 +1,21 @@
 import BoxWrapper from '@/components/ui/box-wrapper';
+import { cn } from '@/lib/utils';
 import { IService } from '@/shared/types/service.interface';
 import { useRouter } from 'next/navigation';
 
-export default function ServiceOfDoctorCard({ service, num }: { service?: IService; num: number }) {
+export default function ServiceOfDoctorCard({
+    service,
+    num,
+    className,
+}: {
+    service?: IService;
+    num: number;
+    className?: string;
+}) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='border-blue-100'>
+            <BoxWrapper color='white' className={cn('border-blue-100', className)}>
                 <div
                     className='flex gap-3 truncate cursor-pointer'
                     onClick={() => router.push(`/service/${service?._id}`)}>
@@ -31,7 +40,7 @@ export default function ServiceOfDoctorCard({ service, num }: { service?: IServi
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Лечилось:</h3>
                             <h3 className='font-medium text-[#262626] text-[16px] ml-2'>120 ебальничков</h3>
                         </div>
-                        <div className='flex'>
+                        <div className='flex desktop:hidden'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Кол-во новостей:</h3>
                             <h3 className='font-medium text-[#262626] text-[16px] ml-2'>{service?.news?.length}</h3>
                         </div>

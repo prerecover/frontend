@@ -8,20 +8,20 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100'>
+            <BoxWrapper color='white' className='w-full border-blue-100 desktop:h-[140px] h-full'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/doctor/${doctor._id}`)}>
                     <Image
                         src={doctor?.avatar || '/assets/doctor.svg'}
-                        width={60}
-                        height={60}
-                        className='rounded-[50%] h-[60px]'
+                        width={100}
+                        height={100}
+                        className='rounded-[50%] desktop:h-[100px] desktop:w-[100px] h-[60px] w-[60px]'
                         alt='doctor'
                     />
                     <div className='flex flex-col text-[16px] font-semibold gap-3  '>
                         <h4>{`${doctor.firstName} ${doctor.lastName} ${doctor.surname?.charAt(0) + '.'}`}</h4>
 
                         <Characteristics
-                            className='gap-2'
+                            className='desktop:grid desktop:grid-cols-2 gap-2'
                             data={[
                                 { key: 'Страна:', value: doctor?.country?.title || '-' },
                                 { key: 'Город:', value: doctor.city || '-' },

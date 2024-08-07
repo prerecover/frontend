@@ -1,11 +1,12 @@
 import { GraphCol } from '@/components/ui/graph-col';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
+import { cn } from '@/lib/utils';
 
-export default function DoctorStats() {
+export default function DoctorStats({ className }: { className?: string }) {
     return (
         <>
-            <div className='flex flex-col'>
+            <div className={cn('flex flex-col max-w-[421px]', className)}>
                 <Text className='font-semibold text-[16px] mt-[20px]' type='h2'>
                     Лечилось всего:
                 </Text>

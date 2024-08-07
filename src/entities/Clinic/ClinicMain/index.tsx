@@ -48,7 +48,7 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                 <Button variant={'default'} className='px-10 h-[46px] w-auto'>
                     Записаться
                 </Button>
-                <Button variant={'outline'} className='px-10 h-[46px] w-auto'>
+                <Button variant={'outline'} className='px-10 h-[46px] w-auto text-blue border-blue'>
                     Написать
                 </Button>
             </div>

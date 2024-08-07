@@ -21,9 +21,9 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/clinic/${clinic._id}`)}>
                     <Image
                         src={clinic?.avatar || '/assets/clinic.jpg'}
-                        width={60}
-                        height={60}
-                        className='rounded-[12px] w-[120px] h-[120px]'
+                        width={200}
+                        height={143}
+                        className='rounded-[12px] mobile:w-[120px] mobile:h-[120px] w-[200px] h-[143px]'
                         alt='doctor'
                     />
                     <div className='flex flex-col text-[16px] font-semibold gap-3  truncate'>

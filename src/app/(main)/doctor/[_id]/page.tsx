@@ -28,6 +28,15 @@ query Doctor ($doctorId: String!){
                 surname
             }
         }
+        clinic{
+            avatar 
+            title
+            country{
+                title
+            }
+            city
+            address
+        }
     }
 }
         `);
@@ -40,7 +49,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
     return (
         <>
             <MobileHeader title='Врач' />
-            <div className='bg-white p-4'>
+            <div className='bg-white'>
                 <DoctorMain doctor={doctor} />
             </div>
         </>

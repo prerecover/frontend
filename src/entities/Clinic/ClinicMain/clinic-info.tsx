@@ -6,8 +6,8 @@ export default function ClinicInfo({ clinic }: { clinic: IClinic }) {
         <>
             <div className='flex mt-[-10px]'>
                 <div className='flex-col flex gap-2'>
-                    <Text className='font-normal text-[16px] mt-[20px]' type='h2'>
-                        Запись через сайт PreRecover
+                    <Text className='text-[24px] mt-[20px] font-semibold' type='h2'>
+                        {clinic.title}
                     </Text>
                     <div className='flex items-center text-[14px] gap-1 font-normal'>
                         <Text type='h5' className='text-grey-700'>

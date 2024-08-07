@@ -18,7 +18,7 @@ export default function UnionParams({ title = 'default' }: { title?: string }) {
                     <p className='font-medium text-[12px] text-grey-700'>Лечилось всего</p>
                 </BoxWrapper>
             </div>
-            <div className={cn('grid grid-cols-2 gap-2 gap-y-[24px] mt-4 py-4 px-0 slider:grid-cols-4')}>
+            <div className={cn('grid grid-cols-2 gap-2 gap-y-[24px] mt-4 py-4 px-0 desktop::grid-cols-4')}>
                 <Param title='64%' text='Помощь в лечении' />
                 <Param title='64%' text='Ответственность' />
                 <Param title='64%' text='Точность в расчетах' />
