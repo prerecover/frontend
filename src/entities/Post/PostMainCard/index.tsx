@@ -9,9 +9,11 @@ import { IClinic } from '@/shared/types/clinic.interface';
 import ClinicInfo from './clinicInfo';
 import { INewsImage } from '@/shared/types/newsImage.interface';
 import { INewsVideo } from '@/shared/types/newsVideo.interface';
+import { cn } from '@/lib/utils';
 
 export default function PostMainCard({
     _id,
+    small = false,
     title,
     text,
     imgs,
@@ -21,6 +23,7 @@ export default function PostMainCard({
     clinic,
 }: {
     _id: string;
+    small?: boolean;
     title: string;
     text: string;
     imgs: INewsImage[];
@@ -30,7 +33,7 @@ export default function PostMainCard({
     clinic?: IClinic;
 }) {
     return (
-        <div className='w-full flex flex-col gap-3 rounded-[20px] border-[1px] border-solid border-blue-100 p-4 bg-white mt-4'>
+        <div className='flex flex-col gap-3 rounded-[20px] border-[1px] border-solid border-blue-100 p-4 bg-white mt-4'>
             <ClinicInfo clinic={clinic} />
             <div className='flex items-center gap-3'>
                 <Text type='h2' className='font-semibold text-[16px]'>
@@ -45,9 +48,12 @@ export default function PostMainCard({
                     {imgs.map((el, idx) => (
                         <SwiperSlide key={idx}>
                             <Image
-                                className='w-full object-cover rounded-[12px] max-h-[320px]'
-                                width={400}
-                                height={320}
+                                className={cn(
+                                    'w-full object-cover rounded-[12px] max-h-[320px]',
+                                    small && 'h-[150px] w-[374px]',
+                                )}
+                                width={small ? 370 : 400}
+                                height={small ? 150 : 320}
                                 src={el.image}
                                 alt='post-img'
                                 key={idx}

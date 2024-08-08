@@ -16,6 +16,7 @@ const config = {
             small_laptop: { min: '1024px', max: '1439px' },
             laptop: { min: '1440px', max: '1919px' },
             pc: { min: '1920px' },
+            reverse_pc: { max: '1919px' },
             slider: { min: '768px' },
             reverse_slider: { max: '768px' },
             logo: { max: '1280px' },

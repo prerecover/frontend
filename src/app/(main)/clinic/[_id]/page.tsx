@@ -16,6 +16,13 @@ query Clinic($clinicId: String!){
             _id
             online
             offline
+            title
+            price
+            doctors{
+                firstName
+                lastName
+                surname
+            }
         }
         country {
             _id
@@ -24,9 +31,41 @@ query Clinic($clinicId: String!){
         }
         news {
             _id
+            text,
+            title,
+            like{
+                _id
+                author{
+                    _id
+                }
+            }
+            saved{
+                _id
+                author{
+                    _id
+                }
+            }
+            clinic{
+                avatar,
+                title
+            }
+            newsVideos {
+                _id
+                video
+            }
+            newsImages {
+                _id
+                image
+            }
+            
         }
         doctors {
             _id
+            avatar 
+            firstName 
+            lastName 
+            surname
+            specialization
         }
     }
 }
@@ -37,10 +76,12 @@ query Clinic($clinicId: String!){
 
 export default async function Page({ params }: { params: { _id: string } }) {
     const clinic = await getClinic(params._id);
+    console.log(clinic.news);
     return (
         <>
             <MobileHeader title='Клиника' />
-            <div className='bg-white p-4'>
+
+            <div className='bg-white'>
                 <ClinicMain clinic={clinic} />
             </div>
         </>

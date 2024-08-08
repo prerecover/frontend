@@ -16,8 +16,7 @@ query Search {
             rating
             country{
                 title
-}
-        
+            }
         }
         doctors {
             _id

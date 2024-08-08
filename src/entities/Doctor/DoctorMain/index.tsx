@@ -9,20 +9,20 @@ import { useState } from 'react';
 import ServiceOfDoctorCard from '@/entities/Service/ServiceOfDoctorCard';
 import { Progress } from '@/components/ui/progress';
 import { GraphCol } from '@/components/ui/graph-col';
-import DoctorClinicDesktop from './clinic-desktop';
-import DoctorServicesDesktop from './services-desktop';
+import ClinicDesktop from '@/entities/Common/clinic-desktop';
+import ServicesDesktop from '@/entities/Common/services-desktop';
 
 export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
     const filters = ['Онлайн услуги', 'Офлайн услуги'];
     const [filter, setFilter] = useState('Офлайн услуги');
     return (
         <>
-            <div className='flex flex-col gap-1'>
-                <div className='flex gap-20 justify-between'>
+            <div className='flex flex-col '>
+                <div className='flex justify-between'>
                     <div className='flex flex-col'>
-                        <div className='flex gap-28 mobile:hidden'>
+                        <div className='flex mobile:hidden'>
                             <div className='flex flex-col p-[30px] '>
-                                <div className='flex mobile:hidden'>
+                                <div className='flex mobile:hidden w-[490px]'>
                                     <Image
                                         src={doctor.avatar || '/assets/doctor.svg'}
                                         alt='doctor'
@@ -47,7 +47,7 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                                     <Progress value={60} className=' h-[6px] mt-4 w-full' color='#FFFFFF' />
                                 </div>
                             </div>
-                            <div className='flex flex-col mobile:hidden p-[30px] h-fit'>
+                            <div className='flex flex-col mobile:hidden p-[30px] h-fit w-[540px]'>
                                 <Text className='font-semibold text-[16px] ' type='h2'>
                                     Помогло на:
                                 </Text>
@@ -59,9 +59,17 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                                 </div>
                             </div>
                         </div>
-                        <DoctorServicesDesktop services={doctor.services} />
+                        <div className='flex w-full p-[30px]'>
+                            <ServicesDesktop online services={doctor.services} border_r rounded_r={false} />
+                            <ServicesDesktop
+                                online={false}
+                                services={doctor.services}
+                                className='rounded-tl-[0px] rounded-tr-[10px]'
+                                rounded_l={false}
+                            />
+                        </div>
                     </div>
-                    <DoctorClinicDesktop clinic={doctor.clinic} className='p-0 mobile:hidden' />
+                    <ClinicDesktop clinic={doctor.clinic} className='p-0 mobile:hidden' />
                 </div>
             </div>
             <div className='p-4 desktop:hidden'>

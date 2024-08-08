@@ -1,3 +1,4 @@
+'use client';
 import { cn } from '@/lib/utils';
 import { IClinic } from '@/shared/types/clinic.interface';
 import Image from 'next/image';
@@ -5,11 +6,17 @@ import ClinicInfo from '@/entities/Clinic/ClinicMain/clinic-info';
 import { Button } from '@/components/ui/button';
 import UnionParams from '@/entities/Common/UnionParams';
 import { DoughnutBlock } from '@/entities/Clinic/ClinicMain/doughnut-block';
+import { usePathname } from 'next/navigation';
 
-export default function DoctorClinicDesktop({ clinic, className }: { clinic: IClinic; className?: string }) {
+export default function ClinicDesktop({ clinic, className }: { clinic: IClinic; className?: string }) {
+    const path = usePathname();
     return (
         <>
-            <div className={cn('border-solid border border-blue-100 m-0 rounded-[10px] relative', className)}>
+            <div
+                className={cn(
+                    'border-solid border border-blue-100 m-0 rounded-[10px] relative min-w-[554px]',
+                    className,
+                )}>
                 <Image
                     src={clinic.avatar || '/assets/clinic.jpg'}
                     width={554}
@@ -20,9 +27,11 @@ export default function DoctorClinicDesktop({ clinic, className }: { clinic: ICl
                 <div className='p-4'>
                     <ClinicInfo clinic={clinic} />
                     <div className='flex items-center gap-2 mt-4 py-[16px] px-0'>
-                        <Button variant={'default'} className='px-10 h-[46px] w-auto'>
-                            Записаться
-                        </Button>
+                        {path.includes('doctor') && (
+                            <Button variant={'default'} className='px-10 h-[46px] w-auto'>
+                                Записаться
+                            </Button>
+                        )}
                         <Button variant={'outline'} className='px-10 h-[46px] w-auto'>
                             Написать
                         </Button>
