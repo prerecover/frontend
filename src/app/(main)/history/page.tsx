@@ -13,8 +13,7 @@ query History {
             title
             service{
                 duration
-            }
-            
+            }            
         }
         clinics {
             _id

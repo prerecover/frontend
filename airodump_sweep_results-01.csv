@@ -1,0 +1,7 @@
+
+BSSID, First time seen, Last time seen, channel, Speed, Privacy, Cipher, Authentication, Power, # beacons, # IV, LAN IP, ID-length, ESSID, Key
+90:F6:52:A9:5F:26, 2024-08-08 00:49:51, 2024-08-08 00:50:02,  1, 135, WPA2 WPA, CCMP, PSK, -28,       19,        0,   0.  0.  0.  0,   5, RT-21, 
+04:B0:E7:20:8F:EC, 2024-08-08 00:49:53, 2024-08-08 00:50:01, 11, 130, WPA2 WPA, CCMP TKIP, PSK, -18,       11,        0,   0.  0.  0.  0,  13, Rostelecom_21, 
+
+Station MAC, First time seen, Last time seen, Power, # packets, BSSID, Probed ESSIDs
+
