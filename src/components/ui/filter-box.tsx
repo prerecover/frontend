@@ -17,7 +17,7 @@ export const FilterBox: FC<PropsWithClassName<FilterProps>> = ({ className, data
     return (
         <div
             className={cn(
-                ' w-full h-full bg-white p-[5px] flex-between gap-2 rounded-[10px] border-solid border-[1px] border-blue-100 font-normal overflow-x-auto reverse_slider:w-full small_laptop:gap-[5px]',
+                ' w-full bg-white p-[5px] flex-between gap-2 rounded-[10px] border-solid border-[1px] border-blue-100 font-normal overflow-x-auto reverse_slider:w-full small_laptop:gap-[5px]',
                 className,
             )}>
             {data.map((item, i) => (

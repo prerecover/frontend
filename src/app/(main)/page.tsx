@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import AppointmentWarnList from '@/entities/Appointment/AppointmentWarnList';
 import PostMain from '@/entities/Post/PostMain';
@@ -44,6 +45,7 @@ export default async function Home() {
 
     return (
         <>
+            <Header title={['Главная']} />
             <MobileHeader />
             <AppointmentWarnList />
             <div className='p-4 flex flex-col'>

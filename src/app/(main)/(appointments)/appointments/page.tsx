@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import AppointmentMain from '@/entities/Appointment/AppointmentMain';
 import { getClient } from '@/lib/apollo-client';
@@ -32,6 +33,7 @@ query Appointments {
     return (
         <>
             <MobileHeader title='Записи' />
+            <Header title={['Записи']} />
             <div className='p-4'>
                 <AppointmentMain data={data.appointments} />
             </div>

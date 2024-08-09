@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import SearchBlock from '@/features/SearchBlock';
 import { getClient } from '@/lib/apollo-client';
@@ -53,6 +54,7 @@ query Search {
     return (
         <>
             <MobileHeader />
+            <Header title={['Поиск']} />
             <div className='p-4'>
                 <SearchBlock data={data.search} />
             </div>

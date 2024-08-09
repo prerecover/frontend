@@ -13,6 +13,9 @@ import 'swiper/css';
 import PostMainCard from '@/entities/Post/PostMainCard';
 import { useCurrServiceStore } from '@/shared/store/currServiceStore';
 import { useRouter } from 'next/navigation';
+import ClinicDesktop from '@/entities/Common/clinic-desktop';
+import NewsListDesktop from '@/entities/Common/news-desktop';
+import Image from 'next/image';
 export default function ServiceMain({ service }: { service: IService }) {
     const filters = ['Общие параметры', 'Польза услуги'];
     const [filter, setFilter] = useState('Общие параметры');
@@ -23,7 +26,7 @@ export default function ServiceMain({ service }: { service: IService }) {
     }, [service, setService]);
     return (
         <>
-            <div className='bg-white p-4'>
+            <div className='bg-white p-4 pc:hidden'>
                 <ServiceInfo service={service} />
                 <Button className='w-full' variant={'default'} onClick={() => router.push('/add-appointment')}>
                     Записаться
@@ -32,11 +35,60 @@ export default function ServiceMain({ service }: { service: IService }) {
                     data={filters}
                     isSelect={filter}
                     setIsSelect={setFilter}
-                    className='border-[1px] border-blue-200 mt-4'
+                    className='border-[1px] border-blue-200 mt-4 max-h-[45px]'
                 />
                 {filter == 'Общие параметры' ? <UnionParams title='Появление услуги: 3 года' /> : <DoughnutBlock />}
+            </div>{' '}
+            <div className='flex reverse_pc:hidden transition-all '>
+                <ClinicDesktop clinic={service.clinic} />
+                <div className='flex flex-col'>
+                    <div className='bg-blue-200 h-[60px] w-dvw flex-between pl-[30px]'>
+                        <div className='flex-center gap-[18px] cursor-pointer' onClick={() => router.back()}>
+                            <Image
+                                src={'/assets/arrow-left.svg'}
+                                width={28}
+                                height={28}
+                                className='w-[28px] h-[28px]'
+                                alt='back'
+                            />
+                            <Text type='p' className='text-[16px] font-medium'>
+                                Назад
+                            </Text>
+                        </div>
+                    </div>
+                    <div className='flex pl-[30px] pt-[18px] gap-[30px]'>
+                        <div className='bg-white p-4 rounded-[12px] min-w-[530px]'>
+                            <ServiceInfo service={service} />
+                            <Button
+                                className='w-full'
+                                variant={'default'}
+                                onClick={() => router.push('/add-appointment')}>
+                                Записаться
+                            </Button>
+                            <FilterBox
+                                data={filters}
+                                isSelect={filter}
+                                setIsSelect={setFilter}
+                                className='border-[1px] border-blue-200 mt-4'
+                            />
+                            {filter == 'Общие параметры' ? (
+                                <UnionParams title='Появление услуги: 3 года' />
+                            ) : (
+                                <DoughnutBlock />
+                            )}
+                        </div>{' '}
+                        <NewsListDesktop
+                            rounded_content
+                            news={service.news}
+                            withTitle={false}
+                            bgWhite
+                            withFilter
+                            className='rounded-[10px]'
+                        />
+                    </div>
+                </div>
             </div>
-            <div className='mt-[25px] p-4'>
+            <div className='mt-[25px] p-4 pc:hidden'>
                 <Text className='font-semibold text-[16px]' type='h1'>
                     Новости
                 </Text>

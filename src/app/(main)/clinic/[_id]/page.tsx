@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import ClinicMain from '@/entities/Clinic/ClinicMain';
 import { getClient } from '@/lib/apollo-client';
@@ -81,6 +82,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
         <>
             <MobileHeader title='Клиника' />
 
+            <Header title={['Поиск', 'Профиль клиники']} />
             <div className='bg-white'>
                 <ClinicMain clinic={clinic} />
             </div>

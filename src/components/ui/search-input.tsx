@@ -9,7 +9,7 @@ interface SearchInputProps {
 
 export const SearchInput: FC<SearchInputProps> = ({ placeholder = 'Поиск', value, onChange }) => {
     return (
-        <div className='bg-white w-full rounded-[12px] border-solid border-[1px] border-blue-100 flex-between relative p-[9px] pl-4'>
+        <div className='bg-white w-full rounded-[12px] border-solid border-[1px] border-blue-100 flex-between relative pl-4'>
             <div className='flex items-center gap-3 w-full pr-4'>
                 <Image
                     src={'/assets/search.svg'}
@@ -23,7 +23,7 @@ export const SearchInput: FC<SearchInputProps> = ({ placeholder = 'Поиск', 
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
-                    className='w-full h-[40px]'
+                    className='w-full h-[48px]'
                 />
             </div>
         </div>

@@ -35,7 +35,7 @@ export default function DoctorsListDesktop({
                 )}>
                 <div
                     className={cn(
-                        'flex-between bg-blue-100 gap-2 h-[64px] rounded-tl-[10px] px-4 ',
+                        'flex-between bg-blue-200 gap-2 h-[64px] rounded-tl-[10px] px-4 ',
                         className,
                         rounded_l && 'rounded-tl-[10px]',
                         rounded_r && 'rounded-tr-[10px]',
@@ -48,10 +48,10 @@ export default function DoctorsListDesktop({
                         {doctors?.length}
                     </Text>
                 </div>
-                <div className='w-full flex flex-col gap-4 bg-grey-100 pt-4 h-screen pb-4 px-[18px]'>
+                <div className='w-full flex flex-col gap-4 bg-white-background pt-4 h-screen pb-4 px-[18px]'>
                     {withFilter && doctors && doctors?.length > 0 && (
                         <div className='flex gap-3 items-center'>
-                            <SearchInput onChange={(e) => setSearch(e.currentTarget.value)} value={search} />
+                            <SearchInput onChange={(e) => setSearch(e.currentTarget.value)} value={search}/>
                             <FilterBtn onClick={() => console.log('click')} />
                         </div>
                     )}

@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import ServiceMain from '@/entities/Service/ServiceMain';
 import { getClient } from '@/lib/apollo-client';
@@ -17,6 +18,9 @@ query Service($serviceId: String!){
         clinic {
             _id
             title
+            avatar
+            address
+            city
             country{
                 title
             }
@@ -51,6 +55,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
     const service: IService = await getService(params._id);
     return (
         <>
+            <Header title={['Поиск', 'Профиль клиники']} />
             <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} end={false} />
 
             <ServiceMain service={service} />

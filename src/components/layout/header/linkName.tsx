@@ -1,18 +1,31 @@
 import { Text } from '@/components/ui/text';
-import { ROUTES } from '@/shared/utils/paths';
-import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 
-const linkTitles: { [key: string]: string } = {
-    '/': ROUTES.main.label,
-    '/search': ROUTES.search.label,
-};
+interface HeaderLinkProps {
+    paths: string[];
+}
 
-export const HeaderLink: FC = () => {
-    const path = usePathname();
+export const HeaderLink: FC<HeaderLinkProps> = ({ paths }) => {
     return (
-        <Text type='p' className='text-[14px] text-blue' fz={500}>
-            {linkTitles[path]}
-        </Text>
+        <div className='flex gap-3'>
+            {paths.map((path, i) =>
+                paths[paths.length - 1] == path ? (
+                    <>
+                        {paths.length > 1 && (
+                            <Text key={i} type='p' className='text-[14px] text-grey' fz={500}>
+                                /
+                            </Text>
+                        )}
+                        <Text key={i} type='p' className='text-[14px] text-blue' fz={500}>
+                            {path}
+                        </Text>
+                    </>
+                ) : (
+                    <Text key={i} type='p' className='text-[14px] text-grey' fz={500}>
+                        {path}
+                    </Text>
+                ),
+            )}
+        </div>
     );
 };
