@@ -3,7 +3,7 @@ import { IService } from '@/shared/types/service.interface';
 import durationParse from '@/shared/utils/durationParse';
 import Link from 'next/link';
 
-export default function ServiceInfo({ service }: { service: IService }) {
+export default function ServiceInfo({ service }: { service?: IService }) {
     return (
         <>
             <div className='flex-col flex gap-3'>
@@ -14,8 +14,8 @@ export default function ServiceInfo({ service }: { service: IService }) {
                     <Link
                         type='h5'
                         className='text-[17px] underline underline-offset-4 font-semibold'
-                        href={`/clinic/${service.clinic?._id}`}>
-                        {service.clinic?.title}
+                        href={`/clinic/${service?.clinic?._id}`}>
+                        {service?.clinic?.title}
                     </Link>
                 </div>
                 <div className='flex flex-col text-[14px] gap-1 font-normal'>
@@ -39,7 +39,7 @@ export default function ServiceInfo({ service }: { service: IService }) {
                         Название:
                     </Text>
                     <Text type='h5' className='text-[14px] underline underline-offset-4 font-semibold'>
-                        {service.title}
+                        {service?.title}
                     </Text>
                 </div>
                 <div className='flex flex-col 14px gap-1 font-normal'>
@@ -47,7 +47,7 @@ export default function ServiceInfo({ service }: { service: IService }) {
                         Описание:
                     </Text>
                     <Text type='h5' className='text-[14px] font-medium'>
-                        {service.description}
+                        {service?.description}
                     </Text>
                 </div>
                 <div className='flex justify-between'>
@@ -56,7 +56,7 @@ export default function ServiceInfo({ service }: { service: IService }) {
                             Длительность:
                         </Text>
                         <Text type='h5' className='text-[14px] font-medium'>
-                            {durationParse(service.duration)}
+                            {durationParse(service?.duration || 100)}
                         </Text>
                     </div>
                     <div className='flex-col flex'>
@@ -64,7 +64,7 @@ export default function ServiceInfo({ service }: { service: IService }) {
                             Описание:
                         </Text>
                         <Text className='font-semibold text-[19px] mb-2' type='h1'>
-                            {service.price} UZS
+                            {service?.price} UZS
                         </Text>
                     </div>
                 </div>

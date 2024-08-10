@@ -51,7 +51,7 @@ export default function DoctorsListDesktop({
                 <div className='w-full flex flex-col gap-4 bg-white-background pt-4 h-screen pb-4 px-[18px]'>
                     {withFilter && doctors && doctors?.length > 0 && (
                         <div className='flex gap-3 items-center'>
-                            <SearchInput onChange={(e) => setSearch(e.currentTarget.value)} value={search}/>
+                            <SearchInput onChange={(e) => setSearch(e.currentTarget.value)} value={search} />
                             <FilterBtn onClick={() => console.log('click')} />
                         </div>
                     )}
@@ -73,8 +73,8 @@ export default function DoctorsListDesktop({
                                         </Text>
                                         <Image
                                             src={doctor.avatar || '/assets/doctor.svg'}
-                                            width={30}
-                                            height={30}
+                                            width={40}
+                                            height={40}
                                             className='w-[40px] h-[40px] rounded-full'
                                             alt='doctor'
                                         />

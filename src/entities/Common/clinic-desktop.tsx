@@ -8,7 +8,7 @@ import UnionParams from '@/entities/Common/UnionParams';
 import { DoughnutBlock } from '@/entities/Clinic/ClinicMain/doughnut-block';
 import { usePathname } from 'next/navigation';
 
-export default function ClinicDesktop({ clinic, className }: { clinic: IClinic; className?: string }) {
+export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic; className?: string }) {
     const path = usePathname();
     return (
         <>
@@ -18,7 +18,7 @@ export default function ClinicDesktop({ clinic, className }: { clinic: IClinic; 
                     className,
                 )}>
                 <Image
-                    src={clinic.avatar || '/assets/clinic.jpg'}
+                    src={clinic?.avatar || '/assets/clinic.jpg'}
                     width={554}
                     className={cn('h-[200px] w-[554px] object-cover transition-all duration-200 ease-in')}
                     alt='clinic'

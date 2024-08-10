@@ -30,6 +30,7 @@ query Service($serviceId: String!){
             firstName
             lastName
             surname
+            avatar
         }
         news {
             _id

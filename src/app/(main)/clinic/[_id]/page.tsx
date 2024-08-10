@@ -23,6 +23,7 @@ query Clinic($clinicId: String!){
                 firstName
                 lastName
                 surname
+                avatar
             }
         }
         country {

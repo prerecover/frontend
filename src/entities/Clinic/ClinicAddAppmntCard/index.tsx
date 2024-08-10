@@ -8,23 +8,23 @@ export default function ClinicAddAppmntCard({ clinic }: { clinic: IClinic }) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100'>
+            <BoxWrapper color='white' className='w-full border-blue-100 pc:min-h-[180px]'>
                 <div
-                    className='flex gap-3 cursor-pointer h-full items-center'
+                    className='flex gap-3 cursor-pointer items-center'
                     onClick={() => router.push(`/clinic/${clinic._id}`)}>
                     <Image
                         src={clinic?.avatar || '/assets/clinic.jpg'}
-                        width={30}
-                        height={30}
-                        className='rounded-[10px] w-[42px] h-full'
+                        width={100}
+                        height={70}
+                        className='rounded-[10px] w-[100px] h-[70px]'
                         alt='doctor'
                     />
-                    <div className='flex flex-col text-[16px] font-semibold gap-3  truncate'>
+                    <div className='flex flex-col text-[16px] font-semibold gap-3  truncate '>
                         <h4>{clinic.title}</h4>
                     </div>
                 </div>
                 <Characteristics
-                    className='gap-2 mt-4'
+                    className='gap-2 mt-2'
                     data={[
                         { key: 'Страна:', value: clinic?.country?.title || '-' },
                         { key: 'Город:', value: clinic.city || '-' },

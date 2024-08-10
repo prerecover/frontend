@@ -12,10 +12,10 @@ export default function DoctorAddAppmntCard({ doctor, active }: { doctor: IDocto
                 className={cn('w-full border-blue-100', active && 'border-blue border-solid border-[1px]')}>
                 <div className='flex gap-3 cursor-pointer h-full items-center'>
                     <Image
-                        src={doctor?.avatar || '/assets/doctor.svg'}
+                        src={doctor.avatar || '/assets/doctor.svg'}
                         width={30}
                         height={30}
-                        className='rounded-[10px] w-[42px] h-full'
+                        className='rounded-full w-[42px] h-[42px] object-cover'
                         alt='doctor'
                     />
                     <div className='flex flex-col'>

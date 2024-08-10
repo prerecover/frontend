@@ -17,10 +17,10 @@ export default function SelectDoctor({
             <div className='flex flex-col gap-3'>
                 {doctors.length > 1 && (
                     <div
-                        onClick={() => setCurrentDoctor('')}
+                        onClick={() => setCurrentDoctor('empty')}
                         className={cn(
                             'rounded-[12px] p-4 bg-white w-full h-[50px] flex items-center cursor-pointer',
-                            currentDoctor == '' && 'border-blue border-solid border-[1px] ',
+                            currentDoctor == 'empty' && 'border-blue border-solid border-[1px] ',
                         )}>
                         <Text type='p' className='font-semibold text-[15px]'>
                             Любой врач

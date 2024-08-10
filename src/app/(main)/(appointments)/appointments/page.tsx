@@ -21,6 +21,7 @@ query Appointments {
             specialization 
             firstName 
             surname 
+            avatar
         }
         service{
             duration

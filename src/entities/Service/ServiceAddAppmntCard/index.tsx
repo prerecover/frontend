@@ -6,7 +6,7 @@ export default function ServiceAddAppmntCard({ service }: { service?: IService }
     return (
         <>
             <BoxWrapper color='white' className='w-full border-blue-100'>
-                <div className='flex gap-3 cursor-pointer h-full items-center'>
+                <div className='flex gap-3 cursor-pointer '>
                     <div className='flex flex-col text-[16px] font-semibold gap-3  truncate'>
                         <h4>{service?.title}</h4>
                     </div>
@@ -15,7 +15,7 @@ export default function ServiceAddAppmntCard({ service }: { service?: IService }
                     className='gap-2 mt-4'
                     data={[
                         { key: 'Длительность:', value: service?.duration.toString() || '0' },
-                        { key: 'Лечилось:', value: '120 человек' },
+                        { key: 'Лечилось:', value: '120' },
                     ]}
                 />
             </BoxWrapper>

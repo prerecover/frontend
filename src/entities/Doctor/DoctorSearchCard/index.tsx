@@ -14,7 +14,7 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
                         src={doctor?.avatar || '/assets/doctor.svg'}
                         width={100}
                         height={100}
-                        className='rounded-[50%] desktop:h-[100px] desktop:w-[100px] h-[60px] w-[60px]'
+                        className='rounded-[50%] desktop:h-[100px] desktop:w-[100px] h-[60px] w-[60px] object-cover'
                         alt='doctor'
                     />
                     <div className='flex flex-col text-[16px] font-semibold gap-3  '>
