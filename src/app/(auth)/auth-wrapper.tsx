@@ -34,6 +34,8 @@ query GetMe {
             duration
             clinic{
                 title
+                _id
+                avatar
             }
         }
         login

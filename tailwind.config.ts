@@ -56,6 +56,9 @@ const config = {
                 400: '#D64657',
             },
             green: '#00CC5E',
+            yellow: {
+                400: '#FFC555',
+            },
         },
         container: {
             center: true,

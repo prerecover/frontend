@@ -48,8 +48,8 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
     const currentDate: Date = !isAccount
         ? new Date()
         : user.birthday
-          ? new Date(user.birthday)
-          : new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
+            ? new Date(user.birthday)
+            : new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
     const [currentMonth, setCurrentMonth] = useState<number>(currentDate.getMonth());
     const [currentYear, setCurrentYear] = useState<number>(currentDate.getFullYear());
     const [currentDay, setCurrentDay] = useState<string>(currentDate.getDate().toString());
@@ -189,8 +189,8 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
                             style={day === undefined ? { cursor: '' } : { cursor: 'pointer' }}
                             className={cn(
                                 today == day &&
-                                    currentMonth == new Date().getMonth() &&
-                                    'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
+                                currentMonth == new Date().getMonth() &&
+                                'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
                                 'w-[40px] h-[40px] flex-center m-auto',
                                 currentDay == day && 'bg-blue rounded-[12px] text-white',
                             )}

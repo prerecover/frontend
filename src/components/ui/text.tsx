@@ -25,7 +25,7 @@ export const Text: FC<TextProps> = ({
         case 'h1':
             return (
                 <h1
-                    className={`${className} `}
+                    className={`${className}`}
                     onClick={onClick}
                     style={{
                         ...style,

@@ -6,10 +6,25 @@ import Logo from '@/components/logo';
 
 import { useEffect } from 'react';
 import { UserMenu } from './menu';
+import { Text } from '@/components/ui/text';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
+import { LastVisitClinic } from './lastVisitClinic';
+import { IClinic } from '@/shared/types/clinic.interface';
 
 export default function Sidebar({ className }: { className?: string }) {
     const { isOpenSidebar, setOpenSidebar } = useSidebarStore();
+    const { user } = useAuth();
+    const clinics: IClinic[] = [];
+
+    console.log(clinics.values());
     const pathname = usePathname();
+    user.appointments.forEach((appmnt) => {
+        if (!clinics.includes(appmnt.clinic)) {
+            clinics.push(appmnt.clinic);
+        }
+    });
+    console.log(clinics);
+
     useEffect(() => {
         const resizeWindow = () => {
             if (window.innerWidth >= 1024 && window.innerWidth < 1280 && isOpenSidebar) {
@@ -43,6 +58,14 @@ export default function Sidebar({ className }: { className?: string }) {
                     <UserMenu />
                 </div>
                 <div className='border-solid border-[0.01ex] border-[#EBF3FF]'></div>
+                <Text type='p' className='mt-8 text-grey-700 text-[14px] px-[28px]' position='start'>
+                    Последние посещения
+                </Text>
+                <div className='flex flex-col h-full px-[28px] mt-[29px] gap-6'>
+                    {clinics.slice(0, 5).map((clinic) => (
+                        <LastVisitClinic key={clinic._id} clinic={clinic} />
+                    ))}
+                </div>
             </section>
         </>
     );

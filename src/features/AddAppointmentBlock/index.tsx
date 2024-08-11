@@ -7,25 +7,11 @@ import ServiceAddAppmntCard from '@/entities/Service/ServiceAddAppmntCard';
 import { useCurrServiceStore } from '@/shared/store/currServiceStore';
 import { useEffect, useState } from 'react';
 import SelectDoctor from './select-doctor';
-import { Calendar } from '@/components/ui/calendar';
 import { useRouter } from 'next/navigation';
-import { TimeCiel } from '@/components/ui/time-ceil';
-import { Switch } from '@/components/ui/switch/switch';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { gql, useMutation } from '@apollo/client';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { formatDate } from '@/shared/utils/formatDate';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
@@ -83,12 +69,12 @@ export default function AddAppointmentBlock() {
         onError(error) {
             toast({ title: error.message, variant: 'destructive' });
         },
-        onCompleted(data, clientOptions) {
+        onCompleted(data) {
             const doctor = data.createAppointment.doctor;
             router.replace('/appointments');
             toast({
-                variant: 'positive',
-                title: 'Запись успешно создана!',
+                variant: 'warning',
+                title: 'Ваша запись добавлена на рассмотрение',
                 description: `Дата: ${formatDate(date)}. Врач: ${doctor?.lastName} ${doctor?.firstName?.charAt(0) + '.'} ${doctor?.surname?.charAt(0) + '.'}`,
             });
         },
@@ -109,7 +95,6 @@ export default function AddAppointmentBlock() {
 
     const handleAppointment = () => {
         const { hours, minutes } = parseTime(time);
-        const doctor = service?.doctors?.filter((doctor) => doctor._id === doctorId)[0];
         date.setHours(hours, minutes);
 
         date.setHours(date.getHours() - 3);
@@ -131,7 +116,7 @@ export default function AddAppointmentBlock() {
             <motion.div className='flex reverse_pc:hidden transition-all opacity-15'>
                 <ClinicDesktop clinic={service?.clinic} />
                 <div className='flex flex-col'>
-                    <div className='bg-blue-200 h-[60px] w-dvw flex-between pl-[30px]'>
+                    <div className='bg-blue-200 h-[60px] w-dvw flex-between pl-[30px] '>
                         <div className='flex-center gap-[18px] cursor-pointer' onClick={() => router.back()}>
                             <Image
                                 src={'/assets/arrow-left.svg'}

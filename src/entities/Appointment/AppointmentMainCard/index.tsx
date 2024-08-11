@@ -6,8 +6,12 @@ import { Info } from './info';
 
 export default function AppointmentMainCard({ appointment }: { appointment: IAppointment }) {
     const dateAppointment = decodeDate(new Date(appointment.timeStart));
-    const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${new Date(appointment.timeStart).getMinutes()}`;
-    const duration = appointment.service.duration;
+    const minutes =
+        new Date(appointment.timeStart).getMinutes() < 10
+            ? `0${new Date(appointment.timeStart).getMinutes()}`
+            : new Date(appointment.timeStart).getMinutes();
+    const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${minutes}`;
+    const duration = appointment.service?.duration;
     const doctorSpecialization = `${appointment.doctor?.specialization.charAt(0).toUpperCase() + appointment.doctor?.specialization.slice(1)}`;
     const doctorName = `${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
 
@@ -36,7 +40,7 @@ export default function AppointmentMainCard({ appointment }: { appointment: IApp
                 ]}
             />
             <div className='w-full h-[1px] bg-blue-100 px-5 mt-4 mb-4'></div>
-            <Info dateAppointment={dateAppointment} timeAppointment={timeAppointment} duration={duration} />
+            <Info dateAppointment={dateAppointment} timeAppointment={timeAppointment} duration={duration || 0} />
         </div>
     );
 }

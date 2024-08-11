@@ -10,16 +10,16 @@ export const HeaderLink: FC<HeaderLinkProps> = ({ paths }) => {
         <div className='flex gap-3'>
             {paths.map((path, i) =>
                 paths[paths.length - 1] == path ? (
-                    <>
+                    <div key={i}>
                         {paths.length > 1 && (
-                            <Text key={i} type='p' className='text-[14px] text-grey' fz={500}>
+                            <Text type='p' className='text-[14px] text-grey' fz={500}>
                                 /
                             </Text>
                         )}
                         <Text key={i} type='p' className='text-[14px] text-blue' fz={500}>
                             {path}
                         </Text>
-                    </>
+                    </div>
                 ) : (
                     <Text key={i} type='p' className='text-[14px] text-grey' fz={500}>
                         {path}

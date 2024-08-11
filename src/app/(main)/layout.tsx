@@ -1,4 +1,3 @@
-import Header from '@/components/layout/header';
 import AuthProvider from '../(auth)/auth-wrapper';
 import Sidebar from '@/components/layout/sidebar';
 import BurgerMenu from '@/components/layout/burgerMenu';
@@ -12,7 +11,7 @@ export default async function MainLayout({
         <>
             <AuthProvider>
                 <section>
-                    <div className='w-full  overflow-y-auto flex flex-col flex-grow pt-[64px] overflow-x-hidden mobile:pb-[70px] layout-1024:pl-[100px] closed_sidebar:pl-[258px]'>
+                    <div className='w-full overflow-y-auto flex flex-col flex-grow pt-[64px] overflow-x-hidden mobile:pb-[70px] layout-1024:pl-[100px] closed_sidebar:pl-[258px]'>
                         {children}
                     </div>
                     <Sidebar />

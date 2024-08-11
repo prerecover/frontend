@@ -26,7 +26,7 @@ export default function NewsListDesktop({
     border_r?: boolean;
     rounded_l?: boolean;
     rounded_r?: boolean;
-    rounded_content: boolean;
+    rounded_content?: boolean;
     withFilter?: boolean;
 }) {
     const [search, setSearch] = useState<string>('');
