@@ -7,10 +7,10 @@ interface HeaderLinkProps {
 
 export const HeaderLink: FC<HeaderLinkProps> = ({ paths }) => {
     return (
-        <div className='flex gap-3'>
+        <div className='flex-center gap-3'>
             {paths.map((path, i) =>
                 paths[paths.length - 1] == path ? (
-                    <div key={i}>
+                    <div key={i} className='flex-center gap-3'>
                         {paths.length > 1 && (
                             <Text type='p' className='text-[14px] text-grey' fz={500}>
                                 /

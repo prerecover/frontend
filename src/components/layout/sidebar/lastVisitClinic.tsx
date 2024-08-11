@@ -1,4 +1,6 @@
 import { Text } from '@/components/ui/text';
+import { cn } from '@/lib/utils';
+import { useSidebarStore } from '@/shared/store/sidebarStore';
 import { IClinic } from '@/shared/types/clinic.interface';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +10,7 @@ interface LastVisitClinicProps {
     clinic: IClinic;
 }
 export const LastVisitClinic: FC<LastVisitClinicProps> = ({ clinic }) => {
+    const { isOpenSidebar } = useSidebarStore();
     return (
         <Link className='flex gap-4  transition-transform hover:scale-110' href={`/clinic/${clinic._id}`}>
             <Image
@@ -17,7 +20,7 @@ export const LastVisitClinic: FC<LastVisitClinicProps> = ({ clinic }) => {
                 className='w-6 h-6 object-cover rounded-full'
                 alt='clinic'
             />
-            <Text className='text-[14px] font-medium text-grey-700' type='p'>
+            <Text className={cn('text-[14px] font-medium text-grey-700', !isOpenSidebar && 'hidden')} type='p'>
                 {clinic.title}
             </Text>
         </Link>

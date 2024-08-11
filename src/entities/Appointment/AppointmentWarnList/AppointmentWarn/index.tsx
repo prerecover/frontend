@@ -15,7 +15,8 @@ export default function AppointmentsWarn({ appointment }: { appointment: IAppoin
     return (
         <div
             className={cn(
-                'bg-blue flex flex-col desktop:max-w-[660px] desktop:mt-4 w-full m-auto  transition-all rounded-[10px]',
+                'bg-blue flex flex-col desktop:max-w-[660px] desktop:mt-4 w-full m-auto  transition-all rounded-[10px] cursor-default pc:hidden',
+
                 open ? 'h-[195px]' : 'h-[32px]',
             )}>
             <div

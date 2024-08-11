@@ -104,7 +104,7 @@ export const FormBlock: FC = () => {
         context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
         onCompleted(data) {
             console.log(data);
-            setUser(data.changeMe);
+            setUser({ appointments: user.appointments, ...data.changeMe });
             console.log(user);
         },
     });
@@ -169,7 +169,7 @@ export const FormBlock: FC = () => {
                         <Button
                             variant={'outline'}
                             className={cn('w-full pl-7 py-7 text-left font-normal', date && 'text-muted-foreground')}>
-                            {date == new Date(10) ? formatDate(date) : <span>Выберите дату</span>}
+                            {date != new Date(10) ? formatDate(date) : <span>Выберите дату</span>}
                             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                         </Button>
                     </PopoverTrigger>

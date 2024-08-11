@@ -9,7 +9,7 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
         <>
             {filter == 'doctors' ? (
                 <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.doctors.length || 0}>
-                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3'>
+                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
                         {data.doctors
                             .filter((doctor) =>
                                 Object.values(doctor).some((value) => {
@@ -25,7 +25,7 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
                 </SearchDataWrapper>
             ) : filter == 'clinics' ? (
                 <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.clinics.length || 0}>
-                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3'>
+                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
                         {data.clinics
                             .filter((clinic) =>
                                 Object.values(clinic).some((value) => {
@@ -42,7 +42,7 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
             ) : filter == 'appointments' ? (
                 <>
                     <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.appointments.length || 0}>
-                        <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3'>
+                        <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
                             {data.appointments
                                 .filter((appointment) =>
                                     Object.values(appointment).some((value) => {
