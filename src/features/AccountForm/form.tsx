@@ -19,6 +19,8 @@ import { CalendarIcon } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import AccountFormNameField from './fields/name';
+import Image from 'next/image';
 
 const GET_COUNTRIES = gql(`
 query Countries {
@@ -87,6 +89,8 @@ export const FormBlock: FC = () => {
     const [lastName, setLastName] = useState<string>('');
     const [login, setLogin] = useState<string>('');
     const [address, setAddress] = useState<string>('');
+    const [number, setNumber] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
     const [city, setCity] = useState<string>('');
     const [date, setDate] = useState<Date>(new Date());
     const [sex, setSex] = useState<boolean>(true);
@@ -104,6 +108,7 @@ export const FormBlock: FC = () => {
         context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
         onCompleted(data) {
             console.log(data);
+            toast({ title: 'Данные о профиле успешно изменены!', variant: 'positive' });
             setUser({ appointments: user.appointments, ...data.changeMe });
             console.log(user);
         },
@@ -114,6 +119,8 @@ export const FormBlock: FC = () => {
         setLastName(user.lastName || '');
         setDate(new Date(user.birthday || 0));
         setLogin(user.login || '');
+        setNumber(user.number || '');
+        setEmail(user.email || '');
         setSex(user.sex || false);
         setAddress(user.address || '');
         setCity(user.city || '');
@@ -123,12 +130,13 @@ export const FormBlock: FC = () => {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const { countryTitle } = values;
-        const age = Math.abs(new Date().getUTCDate() - date.getUTCFullYear());
+        const age = Math.abs(new Date().getUTCFullYear() - date.getUTCFullYear());
+        console.log(age);
         if (age < 18) {
             toast({ title: 'Ваш возраст меньше 18 лет!', variant: 'destructive' });
             return;
         }
-        [lastName, firstName, login, sex, city].forEach((val) => {
+        [lastName, firstName, login, sex, city, email, number].forEach((val) => {
             if (val == '') {
                 toast({ title: `Указаны не все поля`, variant: 'destructive' });
             }
@@ -139,6 +147,8 @@ export const FormBlock: FC = () => {
                 lastName,
                 birthday: date,
                 sex,
+                number,
+                email,
                 login,
                 countryTitle,
                 city,
@@ -154,22 +164,21 @@ export const FormBlock: FC = () => {
         );
     return (
         <Form {...form}>
-            <form action='' onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-[10px]'>
-                <Text type='p' className='text-grey-700 text-[14px] font-medium mt-7'>
-                    Основная информация
-                </Text>
-                <Input
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.currentTarget.value)}
-                    className='border-blue'
-                />
-                <Input value={lastName} onChange={(e) => setLastName(e.currentTarget.value)} className='border-blue' />
+            <Text type='p' className='text-grey-700 text-[14px] font-medium reverse_pc:mt-7'>
+                Основная информация
+            </Text>
+            <form
+                action=''
+                onSubmit={form.handleSubmit(onSubmit)}
+                className='flex flex-col gap-[10px] pc:grid pc:grid-cols-2 mt-3 relative'>
+                <AccountFormNameField field={firstName} setField={setFirstName} />
+                <AccountFormNameField field={lastName} setField={setLastName} />
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button
                             variant={'outline'}
                             className={cn('w-full pl-7 py-7 text-left font-normal', date && 'text-muted-foreground')}>
-                            {date != new Date(10) ? formatDate(date) : <span>Выберите дату</span>}
+                            {date != new Date(0) ? formatDate(date) : <span>Выберите дату</span>}
                             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                         </Button>
                     </PopoverTrigger>
@@ -238,9 +247,56 @@ export const FormBlock: FC = () => {
                     className='border-blue'
                     placeholder='Адрес'
                 />
-                <Button className='mb-20' type='submit'>
+
+                <Text type='p' className='text-grey-700 text-[14px] font-medium reverse_pc:mt-7 pc:col-span-2'>
+                    Защита профиля
+                </Text>
+                <div
+                    className={cn(
+                        'bg-white rounded-[12px] border-solid border-[1px] border-blue flex justify-between relative',
+                        number && 'border-green',
+                    )}>
+                    <div className='flex flex-col w-full p-4'>
+                        <Text type='p' className='text-[14px] font-medium text-grey-700'>
+                            Номер
+                        </Text>
+                        <input type='text' value={number} onChange={(e) => setNumber(e.currentTarget.value)} />
+                    </div>
+                    <Image
+                        src={'/assets/tick-circle.svg'}
+                        width={20}
+                        height={20}
+                        alt='success'
+                        className={cn('mx-4', !number && 'hidden')}
+                    />
+                </div>
+                <div
+                    className={cn(
+                        'bg-white rounded-[12px] border-solid border-[1px] border-blue flex justify-between relative',
+                        email && 'border-green',
+                    )}>
+                    <div className='flex flex-col w-full p-4'>
+                        <Text type='p' className='text-[14px] font-medium text-grey-700'>
+                            Эл.почта
+                        </Text>
+                        <input type='email' value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+                    </div>
+                    <Image
+                        src={'/assets/tick-circle.svg'}
+                        width={20}
+                        height={20}
+                        alt='success'
+                        className={cn('mx-4', !email && 'hidden')}
+                    />
+                </div>
+                <Button className='pc:hidden' type='submit'>
                     {loading ? 'Сохранение...' : 'Сохранить'}
                 </Button>
+                <button
+                    type='submit'
+                    className='col-span-2 flex justify-end text-[18px] text-blue font-medium mt-3 reverse_pc:hidden'>
+                    Сохранить
+                </button>
             </form>
         </Form>
     );

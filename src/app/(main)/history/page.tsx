@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import MainHistory from '@/features/MainHistory';
 import { getClient } from '@/lib/apollo-client';
@@ -39,6 +40,7 @@ query History {
     return (
         <>
             <MobileHeader />
+            <Header title={['История пациента']} />
             <div className='p-4'>
                 <MainHistory data={data.history} />
             </div>
