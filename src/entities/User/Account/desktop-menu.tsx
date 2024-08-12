@@ -5,7 +5,6 @@ export default function AccountDesktopMenu() {
     return (
         <div className='flex gap-4 flex-col reverse_pc:hidden'>
             <AccountDesktopMenuItem icon={<HistoryIcon />} text='История пациента' href='/history' />
-            <AccountDesktopMenuItem icon={<SavedIcon />} text='Сохраненное' href='/saved' />
             <AccountDesktopMenuItem
                 icon={
                     <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>

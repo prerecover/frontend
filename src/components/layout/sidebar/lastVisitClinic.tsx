@@ -20,7 +20,7 @@ export const LastVisitClinic: FC<LastVisitClinicProps> = ({ clinic }) => {
                 className='w-6 h-6 object-cover rounded-full'
                 alt='clinic'
             />
-            <Text className={cn('text-[14px] font-medium text-grey-700', !isOpenSidebar && 'hidden')} type='p'>
+            <Text className={cn('text-[14px] font-medium text-grey-700')} type='p'>
                 {clinic.title}
             </Text>
         </Link>
