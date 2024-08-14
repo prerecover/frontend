@@ -25,7 +25,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                             {clinic?.city}
                         </Text>
                     </div>
-                    <div className='flex items-center text-[14px] gap-1 font-normal w-[200px]'>
+                    <div className='flex items-center text-[14px] gap-1 font-normal mobile:w-[200px]'>
                         <Text type='h5' className='text-grey-700'>
                             Адрес:
                         </Text>

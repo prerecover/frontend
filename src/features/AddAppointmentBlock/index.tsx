@@ -167,7 +167,7 @@ export default function AddAppointmentBlock() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 300, opacity: 1 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 50 }}
-                className='flex reverse_pc:hidden max-w-[1015px] absolute w-full h-fit self-center bg-blue-100 z-[50] rounded-[10px] my-[65px]'>
+                className='flex mobile:hidden max-w-[1015px] absolute w-full h-fit self-center bg-blue-100 z-[50] rounded-[10px]'>
                 <Image
                     src={'/assets/close-i.svg'}
                     width={20}
@@ -186,7 +186,7 @@ export default function AddAppointmentBlock() {
                         service={service}
                     />
                 )}
-                <div className='w-[1px] h-full max-h-[750px] bg-blue-200 mt-[40px] mx-auto'></div>
+                <div className='w-[1px] h-screen max-h-[750px] bg-blue-200 mt-[40px] mx-auto z-50'></div>
                 <div className='flex flex-col py-[30px]  gap-3 mx-auto'>
                     <CalendarBlock
                         handleAppointment={handleAppointment}
@@ -196,7 +196,7 @@ export default function AddAppointmentBlock() {
                     />
                 </div>
             </motion.div>
-            <div className='flex flex-col gap-3 p-4 pc:hidden transition-all'>
+            <div className='flex flex-col gap-3 p-4 desktop:hidden transition-all'>
                 <Text type='h2' className='text-[14px] font-semibold'>
                     Клиника
                 </Text>

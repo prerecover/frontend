@@ -40,7 +40,7 @@ export const Avatar: FC = () => {
                 width={100}
                 onClick={() => imageRef.current?.click()}
                 height={100}
-                className='w-[100px] h-[100px] rounded-full cursor-pointer '
+                className='w-[100px] h-[100px] rounded-full cursor-pointer object-cover'
                 alt='avatar'
             />
             <div className='flex flex-col reverse_pc:hidden justify-center gap-2'>

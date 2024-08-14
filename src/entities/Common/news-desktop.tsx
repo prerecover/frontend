@@ -35,7 +35,7 @@ export default function NewsListDesktop({
             <div
                 className={cn(
                     'flex flex-col h-dvh',
-                    withFilter ? 'w-[442px] px-[18px]' : 'min-w-[520px] w-full',
+                    withFilter ? 'w-[500px] px-[18px]' : 'min-w-[520px] w-full',
                     border_r && 'border-r-[1px] border-r-grey border-solid',
                 )}>
                 {withTitle && (

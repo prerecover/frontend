@@ -170,14 +170,14 @@ export const FormBlock: FC = () => {
             <form
                 action=''
                 onSubmit={form.handleSubmit(onSubmit)}
-                className='flex flex-col gap-[10px] pc:grid pc:grid-cols-2 mt-3 relative'>
+                className='flex flex-col gap-[10px] desktop:grid desktop:grid-cols-2 mt-3 relative'>
                 <AccountFormNameField field={firstName} setField={setFirstName} />
                 <AccountFormNameField field={lastName} setField={setLastName} />
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button
                             variant={'outline'}
-                            className={cn('w-full pl-7 py-7 text-left font-normal', date && 'text-muted-foreground')}>
+                            className={cn('w-full pl-7 py-7 text-left font-normal h-full max-h-[58px]', date && 'text-muted-foreground')}>
                             {date != new Date(0) ? formatDate(date) : <span>Выберите дату</span>}
                             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                         </Button>
@@ -248,7 +248,7 @@ export const FormBlock: FC = () => {
                     placeholder='Адрес'
                 />
 
-                <Text type='p' className='text-grey-700 text-[14px] font-medium reverse_pc:mt-7 pc:col-span-2'>
+                <Text type='p' className='text-grey-700 text-[14px] font-medium mobile:mt-7 desktop:col-span-2'>
                     Защита профиля
                 </Text>
                 <div
@@ -289,12 +289,12 @@ export const FormBlock: FC = () => {
                         className={cn('mx-4', !email && 'hidden')}
                     />
                 </div>
-                <Button className='pc:hidden' type='submit'>
+                <Button className='desktop:hidden' type='submit'>
                     {loading ? 'Сохранение...' : 'Сохранить'}
                 </Button>
                 <button
                     type='submit'
-                    className='col-span-2 flex justify-end text-[18px] text-blue font-medium mt-3 reverse_pc:hidden'>
+                    className='col-span-2 flex justify-end text-[18px] text-blue font-medium mt-3 mobile:hidden'>
                     Сохранить
                 </button>
             </form>

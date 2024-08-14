@@ -11,11 +11,10 @@ export default function AccountBlock() {
             <div className='h-[84px] pc:h-[122px] pc:flex pc:px-4 pc:gap-4 bg-white  relative z-0 reverse_pc:flex-center pc:rounded-[12px] pc:m-4'>
                 <Avatar />
             </div>
-            <div className='bg-white pc:m-4 pc:rounded-[12px] reverse_pc:hidden'>
-                <div className='reverse_pc:hidden'>
+            <div className='bg-white pc:m-4 pc:rounded-[12px] mobile:hidden'>
+                <div className='mobile:hidden'>
                     <div className='flex gap-4 p-4'>
-                        {' '}
-                        <Image src={'/assets/user.svg'} width={20} height={20} alt='user' />
+                        <Image src={'/assets/user.svg'} width={20} height={20} alt='user' className='object-cover' />
                         <Text type='p' className='text-[14px]'>
                             Аккаунт
                         </Text>
@@ -24,7 +23,7 @@ export default function AccountBlock() {
                 <AccountForm />
             </div>
             <AccountDesktopMenu />
-            <div className='pc:hidden'>
+            <div className='desktop:hidden'>
                 <AccountForm />
             </div>
         </>

@@ -20,6 +20,7 @@ query Doctor ($doctorId: String!){
             description
             duration
             online
+            offline
             price
             title
             doctors {
@@ -47,6 +48,7 @@ query Doctor ($doctorId: String!){
 
 export default async function Page({ params }: { params: { _id: string } }) {
     const doctor = await getDoctor(params._id);
+    console.log(doctor)
     return (
         <>
             <MobileHeader title='Врач' />

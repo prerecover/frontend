@@ -39,7 +39,7 @@ export default function ServiceMain({ service }: { service: IService }) {
                 />
                 {filter == 'Общие параметры' ? <UnionParams title='Появление услуги: 3 года' /> : <DoughnutBlock />}
             </div>{' '}
-            <div className='flex reverse_pc:hidden transition-all '>
+            <div className='flex mobile:hidden transition-all '>
                 <ClinicDesktop clinic={service.clinic} />
                 <div className='flex flex-col'>
                     <div className='bg-blue-200 h-[60px] w-dvw flex-between pl-[30px]'>
