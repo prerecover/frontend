@@ -131,7 +131,7 @@ export default function SelectClinic({ countries }: { countries: ICountry[] }) {
                     <Text type='h2'>Включить врача</Text>
                     <Checkbox className='w-6 h-6 rounded-[5px]' defaultChecked={true} />
                 </div>
-                { }
+                {}
                 <Button onClick={handleClick}>
                     {loading ? 'Загрузка...' : data ? `Найти(${data.selectClinics.length})` : 'Найти'}{' '}
                 </Button>

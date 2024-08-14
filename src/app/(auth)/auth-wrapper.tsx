@@ -3,7 +3,6 @@ import { client } from '@/lib/apollo';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
 import { IUser } from '@/shared/types';
 import { gql } from '@apollo/client';
-import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 interface IContextType {
@@ -67,15 +66,14 @@ const INITIAL_USER: IUser = {
 const INITIAL_STATE = {
     user: INITIAL_USER,
     isAuth: false,
-    setUser: () => { },
-    setIsAuth: () => { },
+    setUser: () => {},
+    setIsAuth: () => {},
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<IUser>(INITIAL_USER);
-    const router = useRouter();
     const [isAuth, setIsAuth] = useState(false);
     useEffect(() => {
         const token = getCookie('access_token');
@@ -88,8 +86,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     },
                 },
             })
-            .then((data) => setUser(data.data.getMe))
-            .catch((reason) => router.replace('/login'));
+            .then((data) => setUser(data.data.getMe));
     }, []);
     const value = {
         user,

@@ -18,5 +18,5 @@ export interface IAppointment extends ICommon {
     doctor: IDoctor;
     duration: number;
 
-    service?: IService;
+    service: IService;
 }

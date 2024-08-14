@@ -66,7 +66,7 @@ export default function Sidebar({ className }: { className?: string }) {
                     Последние посещения
                 </Text>
                 <div className={cn('flex flex-col h-full px-[28px] mt-[29px] gap-6', !isOpenSidebar && 'items-center')}>
-                    {clinics.slice(0, 5).map((clinic, i) => (
+                    {clinics.slice(0, 5).map((clinic) => (
                         <LastVisitClinic key={clinic._id} clinic={clinic} />
                     ))}
                 </div>

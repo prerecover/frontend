@@ -33,7 +33,7 @@ export const Timer: FC = () => {
         if (error) {
             toast({ title: error.message, description: error.extraInfo, variant: 'destructive' });
         }
-        let interval: NodeJS.Timeout;
+        let interval: any;
 
         if (seconds > 0) {
             interval = setInterval(() => {

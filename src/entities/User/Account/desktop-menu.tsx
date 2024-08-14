@@ -1,4 +1,4 @@
-import { HistoryIcon, SavedIcon } from '@/icons';
+import { HistoryIcon } from '@/icons';
 import AccountDesktopMenuItem from './desktop-menu-item';
 
 export default function AccountDesktopMenu() {

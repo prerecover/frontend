@@ -59,7 +59,7 @@ export const REVERSE_ROUTES = [
 export const ROUTES = {
     main: {
         path: '/',
-        label: 'Главная страница',
+        label: 'О здоровье',
     },
     registration: {
         path: '/registration',
