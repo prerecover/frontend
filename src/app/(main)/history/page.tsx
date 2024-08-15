@@ -36,7 +36,6 @@ query History {
 }
     `);
     const { data } = await getClient().query({ query: HISTORY_QUERY });
-    console.log(new Date());
     return (
         <>
             <MobileHeader />

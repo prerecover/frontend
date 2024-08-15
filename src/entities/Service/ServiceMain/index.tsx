@@ -26,7 +26,7 @@ export default function ServiceMain({ service }: { service: IService }) {
     }, [service, setService]);
     return (
         <>
-            <div className='bg-white p-4 pc:hidden'>
+            <div className='bg-white p-4 desktop:hidden'>
                 <ServiceInfo service={service} />
                 <Button className='w-full' variant={'default'} onClick={() => router.push('/add-appointment')}>
                     Записаться

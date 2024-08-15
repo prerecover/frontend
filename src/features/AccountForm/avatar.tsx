@@ -32,7 +32,7 @@ export const Avatar: FC = () => {
         mutate({ variables: { avatar: file } });
     };
     return (
-        <div className='flex mt-7  z-20 pc:my-auto pc:gap-4'>
+        <div className='flex mt-7  z-20 desktop:my-auto desktop:gap-4'>
             <input type='file' onChange={(e) => handleImg(e)} className='hidden' ref={imageRef} />
             <Image
                 src={user?.avatar || '/assets/avatar-load.svg'}
@@ -43,7 +43,7 @@ export const Avatar: FC = () => {
                 className='w-[100px] h-[100px] rounded-full cursor-pointer object-cover'
                 alt='avatar'
             />
-            <div className='flex flex-col reverse_pc:hidden justify-center gap-2'>
+            <div className='flex flex-col mobile:hidden justify-center gap-2'>
                 <Text
                     type='p'
                     className='font-semibold text-[24px]'>{`${user.lastName} ${user.firstName?.charAt(0) + '.'} ${user.surname?.charAt(0) + '.'}  `}</Text>

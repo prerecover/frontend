@@ -20,6 +20,7 @@ query Appointments {
         doctor{
             specialization 
             firstName 
+lastName
             surname 
             avatar
         }

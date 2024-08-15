@@ -13,7 +13,7 @@ export default function AppointmentMainCard({ appointment }: { appointment: IApp
     const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${minutes}`;
     const duration = appointment.service?.duration;
     const doctorSpecialization = `${appointment.doctor?.specialization.charAt(0).toUpperCase() + appointment.doctor?.specialization.slice(1)}`;
-    const doctorName = `${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
+    const doctorName = `${appointment.doctor.lastName} ${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
 
     return (
         <div className='flex flex-col p-[20px] bg-white rounded-[12px]'>

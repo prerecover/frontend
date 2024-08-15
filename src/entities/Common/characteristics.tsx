@@ -14,7 +14,7 @@ type Props = {
 
 export const Characteristics: FC<Props> = ({ data, className }) => {
     return (
-        <div className={cn(className, 'flex flex-col reverse_pc:h-full reverse_pc:justify-around gap-3')}>
+        <div className={cn(className, 'flex flex-col mobile:h-full mobile:justify-around gap-3')}>
             {data.map((el, idx) => {
                 return (
                     <div

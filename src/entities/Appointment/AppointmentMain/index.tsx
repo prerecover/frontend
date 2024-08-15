@@ -22,9 +22,9 @@ export default function AppointmentMain({ className, data }: { className?: strin
             </div>
             <div className='flex flex-col mt-4'>
                 <div className={cn('flex justify-center gap-2 w-full', className)}>
-                    <div className='flex flex-col gap-4 w-full pc:grid pc:grid-cols-3 min-h-[359px]'>
+                    <div className='flex flex-col gap-4 w-full desktop:grid desktop:grid-cols-3 min-h-[228px]'>
                         <div
-                            className='w-full h-full bg-blue-100 border border-solid border-blue rounded-[12px] flex flex-col items-center justify-center gap-4 cursor-pointer hover:opacity-80 reverse_pc:hidden'
+                            className='w-full h-full bg-blue-100 border border-solid border-blue rounded-[12px] flex flex-col items-center justify-center gap-4 cursor-pointer hover:opacity-80 mobile:hidden'
                             onClick={() => router.push('/create-appointment')}>
                             <Image
                                 src={'/assets/blue-plus.svg'}
