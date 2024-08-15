@@ -14,6 +14,7 @@ query ServiceByClinic($clinicId: String!){
         duration
         img
         online
+        offline
         price
         title
         updatedAt
@@ -35,6 +36,7 @@ query ServiceByClinic($clinicId: String!){
 export default async function Page({ params }: { params: { _id: string } }) {
     const data: IService[] = await getServices(params._id);
     const services = data.filter((service) => service.offline);
+    console.log(services)
     return (
         <>
             <MobileHeader title={`Офлайн услуги (${services.length})`} end={false} />
