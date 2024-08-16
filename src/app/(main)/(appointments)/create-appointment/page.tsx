@@ -1,6 +1,5 @@
 import SelectEntity from '@/components/common/select/SelectEntity';
 import HeaderCenter from '@/components/layout/headerCenter';
-import SelectClinic from '@/features/SelectEntity/Clinic';
 
 import { getClient } from '@/lib/apollo-client';
 import { ICountry } from '@/shared/types/country.interface';
@@ -16,7 +15,7 @@ query Countries {
 `);
 export default async function Page() {
     const { data } = await getClient().query({ query: GET_COUNTRIES });
-    const countries: ICountry[] = data.countries
+    const countries: ICountry[] = data.countries;
     return (
         <>
             <HeaderCenter title='Создание записи' />

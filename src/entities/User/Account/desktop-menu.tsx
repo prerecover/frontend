@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { HistoryIcon } from '@/icons';
 import AccountDesktopMenuItem from './desktop-menu-item';
 import { useLogout } from '@/shared/lib/hooks/useLogout';
@@ -10,7 +10,6 @@ export default function AccountDesktopMenu() {
             <AccountDesktopMenuItem icon={<HistoryIcon />} text='История пациента' href='/history' />
             <AccountDesktopMenuItem
                 onClick={() => logout}
-
                 icon={
                     <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <path

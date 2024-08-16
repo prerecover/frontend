@@ -1,48 +1,45 @@
 .wrapper {
-  &:hover {
-    color: #262626
-  }
-
-  &:hover svg path {
-    stroke: #262626
-  }
-
-  &:first-child:hover svg path {
-    stroke: #262626
-  }
-
-
-  svg,
-  img {
-    min-width: 22px;
-    width: 22px;
-    height: 22px;
-  }
-
-  // &:first-child svg path {
-  //   stroke: #B1B2B4;
-  // }
-
-  &.active {
-    background-color: #0064FA;
-    color: white;
-
-    svg path {
-      stroke: white
+    &:hover {
+        color: #262626;
     }
-
-    // svg g path {
-    //   fill: white
-    // }
 
     &:hover svg path {
-      stroke: white;
+        stroke: #262626;
     }
 
-    &:hover svg g path {
-      fill: white;
+    &:first-child:hover svg path {
+        stroke: #262626;
     }
 
-  }
+    svg,
+    img {
+        min-width: 22px;
+        width: 22px;
+        height: 22px;
+    }
 
+    // &:first-child svg path {
+    //   stroke: #B1B2B4;
+    // }
+
+    &.active {
+        background-color: #0064fa;
+        color: white;
+
+        svg path {
+            stroke: white;
+        }
+
+        // svg g path {
+        //   fill: white
+        // }
+
+        &:hover svg path {
+            stroke: white;
+        }
+
+        &:hover svg g path {
+            fill: white;
+        }
+    }
 }

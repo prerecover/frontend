@@ -1,8 +1,6 @@
 'use client';
-import { Text } from '@/components/ui/text';
 import AccountForm from '@/features/AccountForm';
 import { Avatar } from '@/features/AccountForm/avatar';
-import Image from 'next/image';
 import AccountDesktopMenu from './desktop-menu';
 
 export default function AccountBlock() {

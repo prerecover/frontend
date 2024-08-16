@@ -25,7 +25,13 @@ export default function Header({ title }: { title: string[] }) {
                     <div
                         className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer'
                         onClick={() => push(`${user?._id ? '/account' : '/login'}`)}>
-                        <Image src={user?.avatar ? user?.avatar : userImg} alt='avatar' width={40} height={40} className='object-cover h-[40px]' />
+                        <Image
+                            src={user?.avatar ? user?.avatar : userImg}
+                            alt='avatar'
+                            width={40}
+                            height={40}
+                            className='object-cover h-[40px]'
+                        />
                     </div>
                 </div>
             </header>

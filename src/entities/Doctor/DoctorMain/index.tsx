@@ -24,7 +24,6 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                         <div className='flex mobile:hidden flex-col pc:flex-row'>
                             <div className='flex flex-col p-[30px] '>
                                 <div className='flex mobile:hidden w-[490px]'>
-
                                     <Image
                                         src={doctor.avatar || '/assets/doctor.svg'}
                                         alt='doctor'
@@ -60,9 +59,7 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                                     <GraphCol />
                                 </div>
                             </div>
-                            <div className="p-[30px] flex flex-col mobile:hidden h-fit w-[540px] m-auto pc:hidden">
-
-
+                            <div className='p-[30px] flex flex-col mobile:hidden h-fit w-[540px] m-auto pc:hidden'>
                                 <FilterBox
                                     className='m-auto border-[2px] mt-5'
                                     style={{ margin: '0 auto' }}
@@ -72,9 +69,13 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                                 />
                                 <div className='gap-4 flex flex-col mt-4'>
                                     {doctor.services
-                                        ?.filter((service) => (filter === 'Онлайн услуги' ? service.online : !service.online))
+                                        ?.filter((service) =>
+                                            filter === 'Онлайн услуги' ? service.online : !service.online,
+                                        )
 
-                                        .map((service, i) => <ServiceOfDoctorCard service={service} key={i} num={i + 1} />)}
+                                        .map((service, i) => (
+                                            <ServiceOfDoctorCard service={service} key={i} num={i + 1} />
+                                        ))}
                                 </div>
                             </div>
                         </div>

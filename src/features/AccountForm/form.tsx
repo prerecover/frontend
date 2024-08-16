@@ -177,7 +177,10 @@ export const FormBlock: FC = () => {
                     <PopoverTrigger asChild>
                         <Button
                             variant={'outline'}
-                            className={cn('w-full pl-7 py-7 text-left font-normal h-full max-h-[58px]', date && 'text-muted-foreground')}>
+                            className={cn(
+                                'w-full pl-7 py-7 text-left font-normal h-full max-h-[58px]',
+                                date && 'text-muted-foreground',
+                            )}>
                             {date != new Date(0) ? formatDate(date) : <span>Выберите дату</span>}
                             <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                         </Button>

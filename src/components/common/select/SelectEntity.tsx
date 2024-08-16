@@ -49,7 +49,7 @@ mutation SelectClinics($countryTitle: String!, $online: Boolean!, $offline: Bool
 `);
 
 export default function SelectEntity({ countries }: { countries: ICountry[] }) {
-    const [type, setType] = useState<"clinic" | "service">('clinic');
+    const [type, setType] = useState<'clinic' | 'service'>('clinic');
     const { setClinics } = useSelectedClinicsStore();
     const { setServices } = useSelectedServicesStore();
     const router = useRouter();
@@ -85,7 +85,7 @@ export default function SelectEntity({ countries }: { countries: ICountry[] }) {
             });
         }
         console.log('mutate');
-    }, [country, online, offline, startPrice, endPrice, type]);
+    }, [country, online, offline, startPrice, endPrice, type, clinicMutate, serviceMutate]);
 
     const handleClick = () => {
         if (type == 'clinic') {
@@ -168,7 +168,7 @@ export default function SelectEntity({ countries }: { countries: ICountry[] }) {
                         />
                     </div>
                 </div>
-                <div className={cn('flex-between', type == "service" && 'hidden')}>
+                <div className={cn('flex-between', type == 'service' && 'hidden')}>
                     <Text type='h2'>Опыт лечения</Text>
                     <div className='flex gap-3 items-center'>
                         <Text type='p'>от</Text>
@@ -198,32 +198,28 @@ export default function SelectEntity({ countries }: { countries: ICountry[] }) {
                         </InputOTP>
                     </div>
                 </div>
-                <div className={cn('flex-between py-4', type == "service" && 'hidden')}>
+                <div className={cn('flex-between py-4', type == 'service' && 'hidden')}>
                     <Text type='h2'>Включить врача</Text>
                     <Checkbox className='w-6 h-6 rounded-[5px]' defaultChecked={true} />
                 </div>
-                { }
-                {
-                    type == "clinic" ? (
-
-                        <Button onClick={handleClick}>
-                            {clinicLoading
-                                ? 'Загрузка...'
-                                : clinicData
-                                    ? `Найти(${clinicData.selectClinics.length})`
-                                    : 'Найти'}{' '}
-                        </Button>
-                    ) : (
-                        <Button onClick={handleClick}>
-                            {serviceLoading
-                                ? 'Загрузка...'
-                                : serviceData
-                                    ? `Найти(${serviceData.selectServices.length})`
-                                    : 'Найти'}{' '}
-                        </Button>
-
-                    )
-                }
+                {}
+                {type == 'clinic' ? (
+                    <Button onClick={handleClick}>
+                        {clinicLoading
+                            ? 'Загрузка...'
+                            : clinicData
+                              ? `Найти(${clinicData.selectClinics.length})`
+                              : 'Найти'}{' '}
+                    </Button>
+                ) : (
+                    <Button onClick={handleClick}>
+                        {serviceLoading
+                            ? 'Загрузка...'
+                            : serviceData
+                              ? `Найти(${serviceData.selectServices.length})`
+                              : 'Найти'}{' '}
+                    </Button>
+                )}
             </div>
         </div>
     );

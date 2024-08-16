@@ -1,7 +1,7 @@
 import { MenuItem } from './menuItem';
 
 import { ROUTES } from '@/shared/utils/paths';
-import { HomeIcon, PaymentsIcon, SearchIcon } from '@/icons';
+import { PaymentsIcon, SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { HeartIcon } from '@/icons/HeartIcon';
 
@@ -42,13 +42,6 @@ export const UserMenu = () => {
                 title={ROUTES.payments.label}
                 href={user._id ? ROUTES.payments.path : '/login'}
             />
-
-            {/* <MenuItem */}
-            {/*     icon={ */}
-            {/*     title='Выход' */}
-            {/*     href={ROUTES.login.path} */}
-            {/*     onClick={() => logout()} */}
-            {/* /> */}
         </>
     );
 };

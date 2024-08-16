@@ -165,11 +165,9 @@ export default function AddAppointmentBlock() {
             <motion.div
                 initial={{ y: -300, opacity: 1 }}
                 animate={{ y: 0, opacity: 1 }}
-                
                 exit={{ y: 300, opacity: 1 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 50 }}
                 className='flex mobile:hidden pc:max-w-[1015px] pc:absolute w-full pc:h-fit self-center pc:bg-blue-100 z-[50] rounded-[10px]'>
-
                 <Image
                     src={'/assets/close-i.svg'}
                     width={20}

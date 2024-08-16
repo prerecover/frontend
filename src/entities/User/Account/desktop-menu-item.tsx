@@ -11,7 +11,7 @@ export default function AccountDesktopMenuItem({
     text: string;
     icon: JSX.Element;
     href: string;
-    onClick?: () => void
+    onClick?: () => void;
 }) {
     return (
         <Link className='flex-between mx-4 h-[56px] bg-white rounded-[12px] p-4' href={href} onClick={onClick}>

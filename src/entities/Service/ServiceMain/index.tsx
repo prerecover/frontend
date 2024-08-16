@@ -7,10 +7,7 @@ import { useEffect, useState } from 'react';
 import UnionParams from '@/entities/Common/UnionParams';
 import { DoughnutBlock } from './doughnut-block';
 import { Text } from '@/components/ui/text';
-import { cn } from '@/lib/utils';
-
 import 'swiper/css';
-import PostMainCard from '@/entities/Post/PostMainCard';
 import { useCurrServiceStore } from '@/shared/store/currServiceStore';
 import { useRouter } from 'next/navigation';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
