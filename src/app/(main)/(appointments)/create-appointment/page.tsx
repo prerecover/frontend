@@ -1,27 +1,26 @@
+import SelectEntity from '@/components/common/select/SelectEntity';
 import HeaderCenter from '@/components/layout/headerCenter';
-import { Text } from '@/components/ui/text';
-import Link from 'next/link';
+import SelectClinic from '@/features/SelectEntity/Clinic';
 
+import { getClient } from '@/lib/apollo-client';
+import { ICountry } from '@/shared/types/country.interface';
+import { gql } from '@apollo/client';
+const GET_COUNTRIES = gql(`
+query Countries {
+    countries {
+        _id
+        slug
+        title
+    }
+}
+`);
 export default async function Page() {
+    const { data } = await getClient().query({ query: GET_COUNTRIES });
+    const countries: ICountry[] = data.countries
     return (
         <>
             <HeaderCenter title='Создание записи' />
-            <div className='flex flex-col gap-3 justify-center px-4 h-screen items-center pb-[70px]'>
-                <Link
-                    className='w-full bg-white h-[82px] flex items-center rounded-[10px] justify-center'
-                    href={'/clinic/select'}>
-                    <Text type='p' className='text-[16px] font-semibold'>
-                        Выбрать клинику
-                    </Text>
-                </Link>
-                <Link
-                    className='w-full bg-white h-[82px] flex items-center rounded-[10px] justify-center'
-                    href={'/service/select'}>
-                    <Text type='p' className='text-[16px] font-semibold'>
-                        Выбрать услугу
-                    </Text>
-                </Link>
-            </div>
+            <SelectEntity countries={countries} />
         </>
     );
 }

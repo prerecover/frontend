@@ -23,7 +23,7 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
                         <Characteristics
                             className='desktop:grid desktop:grid-cols-2 gap-2'
                             data={[
-                                { key: 'Страна:', value: doctor?.country?.title || '-' },
+                                { key: 'Страна:', value: doctor.country?.title || '-' },
                                 { key: 'Город:', value: doctor.city || '-' },
                                 { key: 'Специальность:', value: doctor.specialization || '-' },
                                 {

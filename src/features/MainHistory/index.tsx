@@ -18,10 +18,11 @@ export default function MainHistory({ data }: { className?: string; data: Histor
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('Записи');
 
-    const filters = ['Записи', 'Опрос', 'Клиники', 'Врачи'];
+    const filters = ['Записи', 'Опрос', 'Клиники', 'Врачи', 'Файлы'];
     const filterObj = {
         [filters[2]]: 'clinics',
         [filters[3]]: 'doctors',
+        [filters[4]]: 'files',
         [filters[0]]: 'appointments',
         [filters[1]]: 'surveys',
     };

@@ -9,7 +9,7 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
         <>
             {filter == 'doctors' ? (
                 <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.doctors.length || 0}>
-                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
+                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 '>
                         {data.doctors
                             .filter((doctor) =>
                                 Object.values(doctor).some((value) => {
@@ -44,6 +44,7 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
                     <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.appointments.length || 0}>
                         <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
                             {data.appointments
+                                .filter((appointment) => appointment.timeStart < new Date().getTime())
                                 .filter((appointment) =>
                                     Object.values(appointment).some((value) => {
                                         if (typeof value === 'string') {

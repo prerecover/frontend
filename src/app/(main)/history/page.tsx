@@ -31,6 +31,9 @@ query History {
             specialization
             surname
             workExp
+            country{
+                title
+            }
         }
     }
 }

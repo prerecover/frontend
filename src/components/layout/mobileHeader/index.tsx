@@ -34,7 +34,10 @@ export default function MobileHeader({
                         'bg-white p-4 flex-between border-solid fixed border-[1px] border-blue-100 top-0 right-0 left-0 w-full h-[65px] z-30 desktop:hidden',
 
                         className,
-                    )}>
+
+                    )}
+
+                >
                     <div
                         onClick={() => (!user._id ? router.push('/login') : setIsOpen(!isOpen))}
                         className='cursor-pointer'>
@@ -49,7 +52,10 @@ export default function MobileHeader({
                                 height={28}
                                 priority
                                 className='mr-7 cursor-pointer'
-                                onClick={() => router.push('/create-appointment')}
+                                onClick={() => {
+                                    router.push('/create-appointment')
+                                    setIsOpen(false)
+                                }}
                             />
 
                         ) : pathname == '/payments' ? (
