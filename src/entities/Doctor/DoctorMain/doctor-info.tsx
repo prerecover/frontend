@@ -12,7 +12,7 @@ export default function DoctorInfo({ doctor, className }: { doctor: IDoctor; cla
                             Страна:
                         </Text>
                         <Text type='h5' fz={500}>
-                            {doctor.city}
+                            {doctor.country?.title}
                         </Text>
                     </div>
                     <div className='flex items-center text-[14px] gap-1 font-normal'>

@@ -21,7 +21,7 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
     const doctors = clinic.doctors?.length;
     return (
         <>
-            <div className='pc:hidden p-4 '>
+            <div className='desktop:hidden p-4 '>
                 <div className={cn('max-w-none w-full mt-[-16px] mx-[-16px] relative', styles.clinic_image)}>
                     <Image
                         src={clinic.avatar || '/assets/clinic.jpg'}
@@ -68,7 +68,7 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                 <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1>
                 <DoughnutBlock />
             </div>
-            <div className='flex reverse_pc:hidden '>
+            <div className='flex mobile:hidden '>
                 <ClinicDesktop clinic={clinic} />
                 <div className='flex pl-[30px] gap-[30px] overflow-x-scroll py-[18px]'>
                     <ServicesDesktop online services={clinic.services} withFilter />

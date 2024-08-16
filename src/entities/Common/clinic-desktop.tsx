@@ -14,7 +14,7 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
         <>
             <div
                 className={cn(
-                    'border-solid border border-blue-100 m-0 rounded-[10px] relative min-w-[554px] bg-white',
+                    'border-solid border border-blue-100 m-0 relative rounded-[10px] min-w-[554px] bg-white',
                     className,
                 )}>
                 <Image

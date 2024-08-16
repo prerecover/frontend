@@ -3,12 +3,13 @@ import { MenuItem } from './menuItem';
 import { ROUTES } from '@/shared/utils/paths';
 import { HomeIcon, PaymentsIcon, SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
+import { HeartIcon } from '@/icons/HeartIcon';
 
 export const UserMenu = () => {
     const { user } = useAuth();
     return (
         <>
-            <MenuItem icon={<HomeIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />
+            <MenuItem icon={<HeartIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />
 
             <MenuItem
                 icon={<SearchIcon width={20} height={20} />}

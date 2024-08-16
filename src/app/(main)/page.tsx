@@ -45,7 +45,7 @@ export default async function Home() {
 
     return (
         <>
-            <Header title={['Главная']} />
+            <Header title={['О здоровье']} />
             <MobileHeader />
             <AppointmentWarnList />
             <div className='p-4 flex flex-col'>

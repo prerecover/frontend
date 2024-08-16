@@ -88,29 +88,6 @@ export default function ServiceMain({ service }: { service: IService }) {
                     </div>
                 </div>
             </div>
-            <div className='mt-[25px] p-4 pc:hidden'>
-                <Text className='font-semibold text-[16px]' type='h1'>
-                    Новости
-                </Text>
-                <div className='flex flex-col gap-4'>
-                    <div className={cn('flex justify-center gap-2 w-full')}>
-                        <div className='flex flex-col gap-2 max-w-[660px] w-full '>
-                            {service.news?.map((news) => (
-                                <PostMainCard
-                                    key={news._id}
-                                    _id={news._id}
-                                    text={news.text}
-                                    like={news.like}
-                                    saved={news.saved}
-                                    title={news.title}
-                                    imgs={news.newsImages}
-                                    videos={news.newsVideos}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
         </>
     );
 }

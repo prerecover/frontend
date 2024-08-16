@@ -51,8 +51,7 @@ export default function MobileHeader({
                                 className='mr-7 cursor-pointer'
                                 onClick={() => router.push('/create-appointment')}
                             />
-                        ) : pathname == '/add-appointment' ? (
-                            <div>asdkkkkkkk</div>
+
                         ) : pathname == '/payments' ? (
                             <svg
                                 className='mr-7 cursor-pointer'

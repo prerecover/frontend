@@ -15,6 +15,9 @@ query Doctor ($doctorId: String!){
         specialization
         surname
         workExp
+        country{
+            title
+        }
         services {
             _id
             description
@@ -48,7 +51,6 @@ query Doctor ($doctorId: String!){
 
 export default async function Page({ params }: { params: { _id: string } }) {
     const doctor = await getDoctor(params._id);
-    console.log(doctor)
     return (
         <>
             <MobileHeader title='Врач' />

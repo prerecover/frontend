@@ -1,6 +1,5 @@
 'use client';
 import { Text } from '@/components/ui/text';
-import { IDoctor } from '@/shared/types/doctor.interface';
 import Image from 'next/image';
 import DoctorInfo from './doctor-info';
 import DoctorStats from './doctor-stats';
@@ -10,7 +9,9 @@ import ServiceOfDoctorCard from '@/entities/Service/ServiceOfDoctorCard';
 import { Progress } from '@/components/ui/progress';
 import { GraphCol } from '@/components/ui/graph-col';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
+
 import ServicesDesktop from '@/entities/Common/services-desktop';
+import { IDoctor } from '@/shared/types/doctor.interface';
 
 export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
     const filters = ['Онлайн услуги', 'Офлайн услуги'];
@@ -19,16 +20,17 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
         <>
             <div className='flex flex-col '>
                 <div className='flex justify-between'>
-                    <div className='flex flex-col'>
-                        <div className='flex mobile:hidden'>
+                    <div className='flex flex-col w-full'>
+                        <div className='flex mobile:hidden flex-col pc:flex-row'>
                             <div className='flex flex-col p-[30px] '>
                                 <div className='flex mobile:hidden w-[490px]'>
+
                                     <Image
                                         src={doctor.avatar || '/assets/doctor.svg'}
                                         alt='doctor'
                                         width={120}
                                         height={120}
-                                        className='desktop:w-[120px] desktop:h-[120px] w-14 h-14'
+                                        className='desktop:w-[120px] desktop:h-[120px] w-14 h-14 rounded-full'
                                     />
                                     <div className='flex flex-col gap-2'>
                                         <Text
@@ -47,7 +49,7 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                                     <Progress value={60} className=' h-[6px] mt-4 w-full' color='#FFFFFF' />
                                 </div>
                             </div>
-                            <div className='flex flex-col mobile:hidden p-[30px] h-fit w-[540px]'>
+                            <div className='flex flex-col mobile:hidden p-[30px] h-fit w-[540px] m-auto'>
                                 <Text className='font-semibold text-[16px] ' type='h2'>
                                     Помогло на:
                                 </Text>
@@ -58,8 +60,25 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                                     <GraphCol />
                                 </div>
                             </div>
+                            <div className="p-[30px] flex flex-col mobile:hidden h-fit w-[540px] m-auto pc:hidden">
+
+
+                                <FilterBox
+                                    className='m-auto border-[2px] mt-5'
+                                    style={{ margin: '0 auto' }}
+                                    data={filters}
+                                    isSelect={filter}
+                                    setIsSelect={setFilter}
+                                />
+                                <div className='gap-4 flex flex-col mt-4'>
+                                    {doctor.services
+                                        ?.filter((service) => (filter === 'Онлайн услуги' ? service.online : !service.online))
+
+                                        .map((service, i) => <ServiceOfDoctorCard service={service} key={i} num={i + 1} />)}
+                                </div>
+                            </div>
                         </div>
-                        <div className='flex w-full p-[30px]'>
+                        <div className='flex w-full p-[30px] reverse_pc:hidden'>
                             <ServicesDesktop online services={doctor.services} border_r rounded_r={false} />
                             <ServicesDesktop
                                 online={false}
@@ -79,7 +98,7 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                         alt='doctor'
                         width={120}
                         height={120}
-                        className='desktop:w-[120px] desktop:h-[120px] w-14 h-14'
+                        className='desktop:w-[120px] desktop:h-[120px] w-14 h-14 rounded-full'
                     />
                     <div className='flex flex-col gap-2'>
                         <Text
