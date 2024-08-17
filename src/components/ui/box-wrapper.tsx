@@ -22,7 +22,7 @@ const BoxWrapper: FC<PropsWithClassName<BoxWrapperProps>> = ({
             className={cn(
                 'p-4 rounded-[12px] border-[1px] border-solid cursor-pointer',
                 className,
-                color === 'white' ? 'bg-white' : 'bg-blue',
+                color === 'white' ? 'bg-white' : 'bg-blue-100',
             )}
             onClick={onClick}>
             {title && (

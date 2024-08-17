@@ -17,22 +17,20 @@ export const FilterBtn: FC<PropsWithClassName<FilterBtnProps>> = ({ className, o
         <>
             {small == true ? (
                 <Button
-                    className={cn(className, 'h-[48px] p-3 rounded-[12px] ', small != true && 'slider:hidden')}
+                    className={cn(className, 'h-[48px] p-3 rounded-[12px] w-[48px]', small != true && 'slider:hidden')}
                     color='#0064FA'
-                    width='48px'
                     onClick={onClick}>
                     <div className='justify-center gap-[10px]'>
-                        <Image src={isActive ? close : controller} alt='controller' width={25} height={25} />
+                        <Image src={isActive ? close : controller} alt='controller' width={20} height={20} />
                     </div>
                 </Button>
             ) : (
                 <Button
                     className={cn(
                         className,
-                        'py-[14px] px-[18px] rounded-[12px] ',
+                        'py-[14px] px-[18px] rounded-[12px] w-[150px]',
                         small != false && 'reverse_slider:hidden',
                     )}
-                    width='150px'
                     color='#0064FA'
                     onClick={onClick}>
                     <div className='flex gap-[5px]'>

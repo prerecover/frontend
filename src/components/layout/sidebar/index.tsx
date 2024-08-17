@@ -16,12 +16,9 @@ export default function Sidebar({ className }: { className?: string }) {
     const { user } = useAuth();
     const clinics: IClinic[] = [];
 
-    console.log(clinics.values());
     const pathname = usePathname();
-    console.log(clinics);
 
     user?.appointments?.forEach((appmnt) => {
-        console.log(clinics);
         if (!clinics.includes(appmnt.clinic)) {
             clinics.push(appmnt.clinic);
         }

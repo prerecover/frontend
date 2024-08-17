@@ -28,11 +28,11 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
                     <ClinicInfo clinic={clinic} />
                     <div className='flex items-center gap-2 mt-4 py-[16px] px-0'>
                         {path.includes('doctor') && (
-                            <Button variant={'default'} className='px-10 h-[46px] w-auto'>
+                            <Button variant={'default'} className='px-10 h-[46px] w-full'>
                                 Записаться
                             </Button>
                         )}
-                        <Button variant={'outline'} className='px-10 h-[46px] w-auto'>
+                        <Button variant={'outline'} className='px-10 h-[46px] w-full'>
                             Написать
                         </Button>
                     </div>
