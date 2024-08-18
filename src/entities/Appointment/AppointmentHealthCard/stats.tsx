@@ -1,5 +1,5 @@
-import { Progress } from "@/components/ui/progress";
-import { Text } from "@/components/ui/text";
+import { Progress } from '@/components/ui/progress';
+import { Text } from '@/components/ui/text';
 
 export default function Stats() {
     return (
@@ -33,5 +33,5 @@ export default function Stats() {
                 <Progress value={80} className='rounded-[5px]' />
             </div>
         </div>
-    )
+    );
 }

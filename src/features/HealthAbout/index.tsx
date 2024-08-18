@@ -29,20 +29,16 @@ export default function HealthAbout() {
                 </div>
             </div>
 
-            <div className="flex flex-col p-4">
-                <div className="flex-between">
+            <div className='flex flex-col p-4'>
+                <div className='flex-between'>
                     <Text className='text-[14px] font-medium'>Записи пациентов</Text>
                     <FilterBtn small onClick={() => console.log('click')} className='w-[10px] h-[10px]' />
                 </div>
-                <div className="flex flex-col gap-4">
-
-
+                <div className='flex flex-col gap-4'>
                     <AppointmentHealthCard />
                     <AppointmentHealthCard />
                 </div>
-
             </div>
-
         </>
     );
 }
