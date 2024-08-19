@@ -1,6 +1,9 @@
 import { withSentryConfig } from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactStrictMode: true,
+    images: { domains: ['localhost', "img-cdn.pixlr.com", "encrypted-tbn0.gstatic.com", "static.vecteezy.com", "www.fotor.com"] },
+
     env: {
         BASE_URL: process.env.BACKEND
     }
@@ -40,3 +43,4 @@ export default withSentryConfig(nextConfig, {
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
 });
+
