@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const publicRoutes = ['/login', '/registration', '/forgot-password', '/new-password', '/confirmation', '/moy-sladkiy'];
+const publicRoutes = ['/login', '/registration', '/forgot-password', '/new-password', '/confirmation'];
 
 // 1. Specify protected and public routes
 

@@ -1,36 +1,21 @@
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Text } from "@/components/ui/text";
-import { ICountry } from "@/shared/types/country.interface";
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Text } from '@/components/ui/text';
+import { useClinicRegStore } from '@/shared/store/clinicRegistration';
+import { ICountry } from '@/shared/types/country.interface';
 
-export default function RightParams({
-    country,
-    setCountry,
-    city,
-    setCity,
-    address,
-    setAddress,
-    countries
-}: {
-    country: string;
-    setCountry: React.Dispatch<React.SetStateAction<string>>;
-    city: string;
-    setCity: React.Dispatch<React.SetStateAction<string>>;
-    address?: string;
-    setAddress: React.Dispatch<React.SetStateAction<string>>;
-    countries: ICountry[];
-}) {
-
+export default function RightParams({ countries }: { countries: ICountry[] }) {
+    const { country, setCountry, city, setCity, address, setAddress } = useClinicRegStore();
     return (
         <div className='flex flex-col w-full'>
-            <div className="flex flex-col gap-4">
+            <div className='flex flex-col gap-4'>
                 <Text className='text-[18px] font-medium'>Местоположение</Text>
 
                 <Select onValueChange={(e) => setCountry(e)} defaultValue={country}>
                     <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>
-                        {country === "" && <Text className="text-grey">Страна*</Text>}
+                        {country === '' && <Text className='text-grey'>Страна*</Text>}
 
-                        <SelectValue className="text-[20px]" />
+                        <SelectValue className='text-[20px]' />
                     </SelectTrigger>
                     <SelectContent className='bg-white rounded-[12px] flex flex-col gap-10 '>
                         {countries.map((country: ICountry) => (
@@ -53,6 +38,6 @@ export default function RightParams({
                     onChange={(e) => setAddress(e.currentTarget.value)}
                 />
             </div>
-        </div >
+        </div>
     );
 }

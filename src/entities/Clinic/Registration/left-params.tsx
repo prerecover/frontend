@@ -1,24 +1,12 @@
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
+import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 
-export default function LeftParams({
-    name,
-    setName,
-    adminNumber,
-    setAdminNumber,
-    site,
-    setSite,
-}: {
-    name: string;
-    setName: React.Dispatch<React.SetStateAction<string>>;
-    adminNumber: string;
-    setAdminNumber: React.Dispatch<React.SetStateAction<string>>;
-    site: string;
-    setSite: React.Dispatch<React.SetStateAction<string>>;
-}) {
+export default function LeftParams() {
+    const { name, setName, adminNumber, setAdminNumber, site, setSite } = useClinicRegStore();
     return (
         <div className='flex flex-col w-full'>
-            <div className="flex flex-col gap-4">
+            <div className='flex flex-col gap-4'>
                 <Text className='text-[18px] font-medium'>Общие</Text>
                 <Input
                     placeholder='Название*'
