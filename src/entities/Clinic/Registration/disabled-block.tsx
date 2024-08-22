@@ -2,8 +2,8 @@ import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 
-export default function DisabledBlock() {
-    const { email, number } = useClinicRegStore();
+export default function DisabledBlock({ email }: { email: string }) {
+    const { number } = useClinicRegStore();
     return (
         <div className='flex flex-col gap-[20px] w-full max-w-[502px]'>
             <Text className='text-[16px] font-medium'>Почта вашей клиники</Text>

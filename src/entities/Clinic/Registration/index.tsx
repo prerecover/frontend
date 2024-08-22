@@ -26,7 +26,7 @@ mutation CreateService($registerData: RegisterClinicInput!){
     }
 `);
 
-export default function RegistrationClinic({ countries }: { countries: ICountry[] }) {
+export default function RegistrationClinic({ countries, email }: { countries: ICountry[], email: string }) {
     const {
         workdays,
         startTime,
@@ -86,6 +86,7 @@ export default function RegistrationClinic({ countries }: { countries: ICountry[
                             endTime: parseInt(endTime),
                             avatar,
                             startTime: parseInt(startTime),
+                            email,
                             title: name,
                             workdays: workdays.join(','),
                             services: serviceArray,
@@ -183,7 +184,7 @@ export default function RegistrationClinic({ countries }: { countries: ICountry[
                     </div>
                     <Button onClick={handleReg}>Зарегистрироваться</Button>
                 </div>
-                <DisabledBlock />
+                <DisabledBlock email={email} />
             </div>
             <div className='flex mt-[400px]'></div>
         </>

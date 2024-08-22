@@ -1,6 +1,7 @@
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { cn } from '@/lib/utils';
 import { IService } from '@/shared/types/service.interface';
+import durationParse from '@/shared/utils/durationParse';
 import { useRouter } from 'next/navigation';
 
 export default function ServiceOfDoctorCard({
@@ -34,7 +35,7 @@ export default function ServiceOfDoctorCard({
                         </div>
                         <div className='flex truncate'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Длительность:</h3>
-                            <h3 className='font-medium text-[#262626] text-[16px] ml-2'>{service?.duration} минут</h3>
+                            <h3 className='font-medium text-[#262626] text-[16px] ml-2'>{durationParse(service?.duration!)}</h3>
                         </div>
                         <div className='flex'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Лечилось:</h3>

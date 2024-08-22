@@ -19,6 +19,7 @@ query Clinic($clinicId: String!){
             offline
             title
             price
+            duration
             doctors{
                 firstName
                 lastName

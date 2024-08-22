@@ -11,17 +11,18 @@ export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
 
     // 5. Redirect to /login if the user is not authenticated
+    if (path.includes('clinicRegistration')) {
+        return NextResponse.next()
+    }
     if (!publicRoutes.includes(path) && !userToken) {
-        //@ts-expect-error url next err
         return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
 
-    // 6. Redirect to /dashboard if the user is authenticated
 
     return NextResponse.next();
 }
 
 // Routes Middleware should not run on
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)', '/clinicRegistration/'],
 };
