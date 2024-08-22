@@ -26,7 +26,7 @@ mutation CreateService($registerData: RegisterClinicInput!){
     }
 `);
 
-export default function RegistrationClinic({ countries, email }: { countries: ICountry[], email: string }) {
+export default function RegistrationClinic({ countries, email }: { countries: ICountry[]; email: string }) {
     const {
         workdays,
         startTime,
@@ -182,11 +182,12 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                             <div className='w-full h-[2px] bg-blue-100 my-[10px]'></div>
                         </div>
                     </div>
-                    <Button onClick={handleReg}>Зарегистрироваться</Button>
+                    <Button onClick={handleReg} className='w-full'>
+                        Зарегистрироваться
+                    </Button>
                 </div>
                 <DisabledBlock email={email} />
             </div>
-            <div className='flex mt-[400px]'></div>
         </>
     );
 }

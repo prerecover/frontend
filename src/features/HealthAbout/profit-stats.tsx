@@ -10,17 +10,17 @@ export default function ProfitStats() {
             <Text className='text-[14px] '>Польза</Text>
             <div className='flex flex-col gap-2'>
                 <div className='flex-between'>
-                    <Text className='text-[12px]'>Полученная</Text>
-                    <Text className='text-[14px]'>20%</Text>
-                </div>
-                <Progress value={20} className='h-[6px]' />
-            </div>
-            <div className='flex flex-col gap-2'>
-                <div className='flex-between'>
                     <Text className='text-[12px]'>Расчитанная</Text>
                     <Text className='text-[14px]'>50%</Text>
                 </div>
-                <Progress value={50} className='h-[6px]' />
+                <Progress value={20} className='h-[6px]' color='bg-[#75ABFC]' />
+            </div>
+            <div className='flex flex-col gap-2'>
+                <div className='flex-between'>
+                    <Text className='text-[12px]'>Полученная</Text>
+                    <Text className='text-[14px]'>20%</Text>
+                </div>
+                <Progress value={50} className='h-[6px]' color='bg-[#00CC5E]' />
             </div>
         </BoxWrapper>
     );
