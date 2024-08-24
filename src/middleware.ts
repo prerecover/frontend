@@ -12,12 +12,11 @@ export default async function middleware(req: NextRequest) {
 
     // 5. Redirect to /login if the user is not authenticated
     if (path.includes('clinicRegistration')) {
-        return NextResponse.next()
+        return NextResponse.next();
     }
     if (!publicRoutes.includes(path) && !userToken) {
         return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
-
 
     return NextResponse.next();
 }

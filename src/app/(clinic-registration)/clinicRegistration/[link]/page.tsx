@@ -11,7 +11,7 @@ query ValidateLink ($_id: String!){
     }
 }
 
-`)
+`);
 
 const GET_COUNTRIES = gql(`
 query Countries {
@@ -22,7 +22,6 @@ query Countries {
     }
 }
 `);
-
 
 export default async function Page({ params: { link } }: { params: { link: string } }) {
     const { data } = await getClient().query({ query: GET_COUNTRIES });

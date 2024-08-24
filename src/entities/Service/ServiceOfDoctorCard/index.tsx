@@ -35,7 +35,9 @@ export default function ServiceOfDoctorCard({
                         </div>
                         <div className='flex truncate'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Длительность:</h3>
-                            <h3 className='font-medium text-[#262626] text-[16px] ml-2'>{durationParse(service?.duration!)}</h3>
+                            <h3 className='font-medium text-[#262626] text-[16px] ml-2'>
+                                {durationParse(service?.duration || 0)}
+                            </h3>
                         </div>
                         <div className='flex'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Лечилось:</h3>

@@ -13,7 +13,6 @@ export default function Error() {
                 <Button width='436px' onClick={() => router.push('/home')}>
                     Вернуться
                 </Button>
-                
             </div>
         </div>
     );

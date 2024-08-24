@@ -31,8 +31,8 @@ export default function Stats() {
     return (
         <>
             <div className='flex flex-col'>
-                <div className='max-w-[140px]'>
-                    <Doughnut data={data} className='w-[146px]' options={options} />
+                <div className='max-w-[180px]'>
+                    <Doughnut data={data} options={options} />
                 </div>
             </div>
             <div className='flex flex-col mx-auto w-full px-[10px] gap-2 pc:hidden'>
