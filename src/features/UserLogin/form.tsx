@@ -23,7 +23,7 @@ const LOGIN_MUTATION = gql(`
 export default function LoginForm() {
     const [mutate, { error, loading }] = useMutation(LOGIN_MUTATION, {
         onCompleted(data) {
-            setCookie('access_token', data.signIn.access_token, 90, true);
+            setCookie('access_token', data.signIn.access_token, 90);
             window.location.reload();
             window.location.replace('/');
         },

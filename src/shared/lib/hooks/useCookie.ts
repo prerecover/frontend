@@ -23,7 +23,7 @@ export const useCookie = () => {
     return { getCookie, setCookie, removeCookie };
 };
 
-export function setCookie(name: string, val: string, days: number, httpOnly: boolean = false) {
+export function setCookie(name: string, val: string, days: number) {
     const date = new Date();
     const value = val;
 
@@ -31,13 +31,7 @@ export function setCookie(name: string, val: string, days: number, httpOnly: boo
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
 
     // Set it
-    document.cookie =
-        name +
-        '=' +
-        value +
-        '; expires=' +
-        date.toUTCString() +
-        `; path=/; SameSite=None; Secure; ${httpOnly && 'HttpOnly;'}`;
+    document.cookie = name + '=' + value + '; expires=' + date.toUTCString() + '; path=/; SameSite=None; Secure';
 }
 
 export function getCookie(name: string) {

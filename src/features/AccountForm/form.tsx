@@ -107,10 +107,8 @@ export const FormBlock: FC = () => {
     const [mutate, { error, loading }] = useMutation(CHANGE_ME_MUTATION, {
         context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
         onCompleted(data) {
-            console.log(data);
             toast({ title: 'Данные о профиле успешно изменены!', variant: 'positive' });
             setUser({ appointments: user.appointments, ...data.changeMe });
-            console.log(user);
         },
     });
     useEffect(() => {
@@ -171,8 +169,8 @@ export const FormBlock: FC = () => {
                 action=''
                 onSubmit={form.handleSubmit(onSubmit)}
                 className='flex flex-col gap-[10px] desktop:grid desktop:grid-cols-2 mt-3 relative'>
-                <AccountFormNameField field={firstName} setField={setFirstName} />
-                <AccountFormNameField field={lastName} setField={setLastName} />
+                <AccountFormNameField field={firstName} setField={setFirstName} placeholder='Имя' />
+                <AccountFormNameField field={lastName} setField={setLastName} placeholder='Фамилия' />
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button
