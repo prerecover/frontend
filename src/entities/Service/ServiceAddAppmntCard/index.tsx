@@ -7,7 +7,10 @@ export default function ServiceAddAppmntCard({ service }: { service?: IService }
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100' onClick={() => router.back()}>
+            <BoxWrapper
+                color='white'
+                className='w-full border-blue-100 flex flex-col'
+                onClick={() => router.push(`/service/${service?._id}`)}>
                 <div className='flex gap-3 cursor-pointer '>
                     <div className='flex flex-col text-[16px] font-semibold gap-3  truncate'>
                         <h4>{service?.title}</h4>

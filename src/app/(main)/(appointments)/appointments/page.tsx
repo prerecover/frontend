@@ -1,6 +1,6 @@
 import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
-import AppointmentMain from '@/entities/Appointment/AppointmentMain';
+import AppointmentsBlock from '@/features/AppointmentsBlock';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
@@ -37,7 +37,7 @@ lastName
             <MobileHeader title='Записи' />
             <Header title={['Записи']} />
             <div className='p-4'>
-                <AppointmentMain data={data.appointments} />
+                <AppointmentsBlock data={data.appointments} />
             </div>
         </>
     );

@@ -3,8 +3,10 @@ import { Characteristics } from '@/entities/Common/characteristics';
 import { IAppointment } from '@/shared/types/appointment.interface';
 import { decodeDate } from '@/shared/utils/formatDate';
 import { Info } from './info';
+import { useRouter } from 'next/navigation';
 
 export default function AppointmentMainCard({ appointment }: { appointment: IAppointment }) {
+    const router = useRouter();
     const dateAppointment = decodeDate(new Date(appointment.timeStart));
     const minutes =
         new Date(appointment.timeStart).getMinutes() < 10
@@ -16,7 +18,9 @@ export default function AppointmentMainCard({ appointment }: { appointment: IApp
     const doctorName = `${appointment.doctor.lastName} ${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
 
     return (
-        <div className='flex flex-col p-[20px] bg-white rounded-[12px]'>
+        <div
+            className='flex flex-col p-[20px] bg-white rounded-[12px] cursor-pointer'
+            onClick={() => router.push(`/appointments/${appointment._id}`)}>
             <Text type='h3' className='text-[12px] font-medium text-grey-700'>
                 Названия записи
             </Text>

@@ -74,7 +74,6 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                     <ServicesDesktop online services={clinic.services} withFilter />
                     <ServicesDesktop online={false} services={clinic.services} withFilter />
                     <DoctorsListDesktop doctors={clinic.doctors} withFilter />
-                    <NewsListDesktop news={clinic.news} withFilter />
                 </div>
             </div>
         </>

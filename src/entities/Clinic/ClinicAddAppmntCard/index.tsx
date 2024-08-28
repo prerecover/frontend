@@ -8,7 +8,7 @@ export default function ClinicAddAppmntCard({ clinic }: { clinic: IClinic }) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100 pc:min-h-[180px]'>
+            <BoxWrapper color='white' className='w-full border-blue-100 pc:min-h-[180px] flex flex-col'>
                 <div
                     className='flex gap-3 cursor-pointer items-center'
                     onClick={() => router.push(`/clinic/${clinic._id}`)}>

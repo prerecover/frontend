@@ -1,55 +1,64 @@
 'use client';
-import { SearchInput } from '@/components/ui/search-input';
 import { Text } from '@/components/ui/text';
-import AppointmentMainCard from '@/entities/Appointment/AppointmentMainCard';
-import { cn } from '@/lib/utils';
 import { IAppointment } from '@/shared/types/appointment.interface';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { decodeDate } from '@/shared/utils/formatDate';
+import Profit from './profit';
+import { FilterBox } from '@/components/ui/filter-box';
 import { useState } from 'react';
+import UnionParams from '@/entities/Common/UnionParams';
+import { GraphCol } from '@/components/ui/graph-col';
+import AppointmentInfo from './appointment-info';
+import DoctorServicesDesktop from '@/entities/Doctor/DoctorMain/services-desktop';
+import Image from 'next/image';
+import DoctorInfo from '@/entities/Doctor/DoctorMain/doctor-info';
+import DoctorStats from './doctor-stats';
 
-export default function AppointmentMain({ className, data }: { className?: string; data: IAppointment[] }) {
-    const [search, setSearch] = useState('');
-    const router = useRouter();
+export default function AppointmentMain({ appointment }: { appointment: IAppointment }) {
+    const dateAppointment = decodeDate(new Date(appointment.timeStart));
+    const minutes =
+        new Date(appointment.timeStart).getMinutes() < 10
+            ? `0${new Date(appointment.timeStart).getMinutes()}`
+            : new Date(appointment.timeStart).getMinutes();
+    const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${minutes}`;
+    const duration = appointment.service?.duration;
+    const filters = ['Общие параметры', 'График пользы', 'Показатели врача'];
+    const [filter, setFilter] = useState('Общие параметры');
 
-    const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
+    console.log(dateAppointment, timeAppointment, duration);
     return (
         <>
-            <div className='flex gap-3 items-center'>
-                <SearchInput onChange={onChangeSearch} value={search} placeholder='Введите запрос' />
-            </div>
-            <div className='flex flex-col mt-4'>
-                <div className={cn('flex justify-center gap-2 w-full', className)}>
-                    <div className='flex flex-col gap-4 w-full desktop:grid desktop:grid-cols-3 min-h-[228px]'>
-                        <div
-                            className='w-full h-full bg-blue-100 border border-solid border-blue rounded-[12px] flex flex-col items-center justify-center gap-4 cursor-pointer hover:opacity-80 mobile:hidden'
-                            onClick={() => router.push('/create-appointment')}>
-                            <Image
-                                src={'/assets/blue-plus.svg'}
-                                width={46}
-                                height={46}
-                                alt='add appointment'
-                                className='w-12 h-12'
-                            />
-                            <Text className='text-[20px] text-blue' type='h2'>
-                                Добавить запись
-                            </Text>
+            <div className='flex pt-[20px] px-[14px] flex-col bg-white desktop:m-[20px] desktop:rounded-[12px]'>
+                <div className='flex gap-4 w-full overflow-y-hidden'>
+                    <div className='flex flex-col w-full'>
+                        <Text className='text-[20px] font-medium mb-[20px] mobile:hidden'>Информация о записи</Text>
+                        <AppointmentInfo appointment={appointment} />
+                        <div className='desktop:hidden'>
+                            <Profit />
                         </div>
-                        {data
-                            .filter((appointment) => new Date(appointment.timeStart) > new Date())
-                            .filter((appointment) =>
-                                Object.values(appointment).some((value) => {
-                                    if (typeof value === 'string') {
-                                        return value.toLowerCase().includes(search.toLowerCase());
-                                    }
-                                }),
-                            )
-
-                            .map((appointment) => (
-                                <AppointmentMainCard key={appointment._id} appointment={appointment} />
-                            ))}
+                        <div className='flex flex-col w-full mt-[20px] '>
+                            <FilterBox data={filters} isSelect={filter} setIsSelect={setFilter} />
+                            <UnionParams title='Появление услуги: 3 года' />
+                            <div className='flex flex-col h-fit '>
+                                <Text className='font-semibold text-[16px] ' type='h2'>
+                                    Помогло на:
+                                </Text>
+                                <div className='flex justify-around gap-10 desktop:gap-16 mt-6'>
+                                    <GraphCol />
+                                    <GraphCol />
+                                    <GraphCol />
+                                    <GraphCol />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col w-full mobile:hidden'>
+                        <Profit />
+                    </div>
+                </div>
+                <div className='flex gap-4'>
+                    <div className='flex flex-col w-full mt-[20px] laptop:hidden pc:hidden mobile:hidden'>
+                        <Text className='text-[20px] font-medium mb-[20px] mobile:hidden'>Показатели врача</Text>
+                        <DoctorStats doctor={appointment.doctor} />
                     </div>
                 </div>
             </div>
