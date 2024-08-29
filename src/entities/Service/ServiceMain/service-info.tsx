@@ -61,7 +61,7 @@ export default function ServiceInfo({ service }: { service?: IService }) {
                     </div>
                     <div className='flex-col flex'>
                         <Text type='h5' className='text-grey-700 text-[12px]'>
-                            Описание:
+                            Цена:
                         </Text>
                         <Text className='font-semibold text-[19px] mb-2' type='h1'>
                             {service?.price} UZS

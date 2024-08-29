@@ -7,7 +7,8 @@ const nextConfig = {
 
     env: {
         BASE_URL: process.env.BACKEND
-    }
+    },
+
 };
 
 export default withSentryConfig(nextConfig, {

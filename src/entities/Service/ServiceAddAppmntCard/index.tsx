@@ -1,6 +1,7 @@
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { Characteristics } from '@/entities/Common/characteristics';
 import { IService } from '@/shared/types/service.interface';
+import durationParse from '@/shared/utils/durationParse';
 import { useRouter } from 'next/navigation';
 
 export default function ServiceAddAppmntCard({ service }: { service?: IService }) {
@@ -19,8 +20,9 @@ export default function ServiceAddAppmntCard({ service }: { service?: IService }
                 <Characteristics
                     className='gap-2 mt-4'
                     data={[
-                        { key: 'Длительность:', value: service?.duration.toString() || '0' },
-                        { key: 'Лечилось:', value: '120' },
+                        { key: 'Длительность:', value: durationParse(service?.duration || 0) },
+
+                        { key: 'Лечилось:', value: `${service?.treated} человек` },
                     ]}
                 />
             </BoxWrapper>

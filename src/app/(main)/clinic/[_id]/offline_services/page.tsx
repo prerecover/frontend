@@ -15,6 +15,7 @@ query ServiceByClinic($clinicId: String!){
         img
         online
         offline
+        treated
         price
         title
         updatedAt

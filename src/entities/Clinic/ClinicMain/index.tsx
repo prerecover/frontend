@@ -12,7 +12,6 @@ import { DoughnutBlock } from './doughnut-block';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
 import ServicesDesktop from '@/entities/Common/services-desktop';
 import DoctorsListDesktop from '@/entities/Common/doctors-list-desktop';
-import NewsListDesktop from '@/entities/Common/news-desktop';
 
 export default function ClinicMain({ clinic }: { clinic: IClinic }) {
     const onlineServices = clinic.services?.filter((service) => service.online).length;
@@ -64,7 +63,7 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                     doctors={doctors}
                 />
                 <h1 className='mt-[24px] font-semibold text-[17px] leading-[20px]'>Общие показатели клиники</h1>
-                <UnionParams title='Опыт в лечении: 3 года' />
+                <UnionParams title='Опыт в лечении: 3 года' treated={clinic.treated} />
                 <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1>
                 <DoughnutBlock />
             </div>

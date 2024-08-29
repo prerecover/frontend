@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
 import NewsListDesktop from '@/entities/Common/news-desktop';
 import Image from 'next/image';
+import { formatDate } from '@/shared/utils/formatDate';
 export default function ServiceMain({ service }: { service: IService }) {
     const filters = ['Общие параметры', 'Польза услуги'];
     const [filter, setFilter] = useState('Общие параметры');
@@ -34,7 +35,14 @@ export default function ServiceMain({ service }: { service: IService }) {
                     setIsSelect={setFilter}
                     className='border-[1px] border-blue-200 mt-4 max-h-[45px]'
                 />
-                {filter == 'Общие параметры' ? <UnionParams title='Появление услуги: 3 года' /> : <DoughnutBlock />}
+                {filter == 'Общие параметры' ? (
+                    <UnionParams
+                        title={`Появление услуги: ${formatDate(new Date(service.createdAt))}`}
+                        treated={service.treated}
+                    />
+                ) : (
+                    <DoughnutBlock />
+                )}
             </div>{' '}
             <div className='flex mobile:hidden transition-all '>
                 <ClinicDesktop clinic={service.clinic} />
@@ -53,7 +61,7 @@ export default function ServiceMain({ service }: { service: IService }) {
                             </Text>
                         </div>
                     </div>
-                    <div className='flex pl-[30px] pt-[18px] gap-[30px]'>
+                    <div className='flex pl-[30px] pt-[18px] gap-[30px] h-full'>
                         <div className='bg-white p-4 rounded-[12px] min-w-[530px]'>
                             <ServiceInfo service={service} />
                             <Button
@@ -69,19 +77,14 @@ export default function ServiceMain({ service }: { service: IService }) {
                                 className='border-[1px] border-blue-200 mt-4'
                             />
                             {filter == 'Общие параметры' ? (
-                                <UnionParams title='Появление услуги: 3 года' />
+                                <UnionParams
+                                    title={`Появление услуги: ${formatDate(new Date(service.createdAt))}`}
+                                    treated={service.treated}
+                                />
                             ) : (
                                 <DoughnutBlock />
                             )}
                         </div>{' '}
-                        <NewsListDesktop
-                            rounded_content
-                            news={service.news}
-                            withTitle={false}
-                            bgWhite
-                            withFilter
-                            className='rounded-[10px]'
-                        />
                     </div>
                 </div>
             </div>

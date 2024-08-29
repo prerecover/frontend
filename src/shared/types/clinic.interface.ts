@@ -12,6 +12,7 @@ export interface IClinic extends ICommon {
     rating: number;
     country?: ICountry;
     city?: string;
+    treated: number;
     appointments?: IAppointment[];
     news?: INews[];
     doctors?: IDoctor[];

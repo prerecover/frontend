@@ -15,6 +15,8 @@ query Service($serviceId: String!){
         online
         price
         title
+        treated
+        createdAt
         clinic {
             _id
             title

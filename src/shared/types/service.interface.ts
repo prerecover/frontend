@@ -9,6 +9,7 @@ export interface IService extends ICommon {
     duration: number;
     online: boolean;
     offline: boolean;
+    treated: number;
     price: number;
     doctors?: IDoctor[];
     clinic: IClinic;

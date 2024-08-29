@@ -36,7 +36,7 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
                             Написать
                         </Button>
                     </div>
-                    <UnionParams title='Опыт в лечении: 3 года' />
+                    <UnionParams title='Опыт в лечении: 3 года' treated={clinic?.treated} />
                     <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1>
                     <DoughnutBlock />
                 </div>

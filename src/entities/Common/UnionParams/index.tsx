@@ -2,7 +2,7 @@
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { Param } from './param';
 import { cn } from '@/lib/utils';
-export default function UnionParams({ title = 'default' }: { title?: string }) {
+export default function UnionParams({ title = 'default', treated = 0 }: { title?: string; treated?: number }) {
     return (
         <>
             <BoxWrapper color='white' className='mt-[18px] flex justify-center font-medium border-blue-200'>
@@ -14,7 +14,7 @@ export default function UnionParams({ title = 'default' }: { title?: string }) {
                     <p className='font-medium text-[12px] text-grey-700'>Лечатся</p>
                 </BoxWrapper>
                 <BoxWrapper color='white' className='w-full flex-center flex-col border-blue-200'>
-                    <h1 className='font-medium text-[30px]'>1637</h1>
+                    <h1 className='font-medium text-[30px]'>{treated}</h1>
                     <p className='font-medium text-[12px] text-grey-700'>Лечилось всего</p>
                 </BoxWrapper>
             </div>

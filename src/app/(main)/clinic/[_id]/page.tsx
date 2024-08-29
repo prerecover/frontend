@@ -13,12 +13,14 @@ query Clinic($clinicId: String!){
         avatar
         city
         title
+        treated
         services {
             _id
             online
             offline
             title
             price
+            treated
             duration
             doctors{
                 firstName

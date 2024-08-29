@@ -16,6 +16,7 @@ query ServiceByClinic($clinicId: String!){
         online
         offline
         price
+        treated
         title
         updatedAt
         doctors{

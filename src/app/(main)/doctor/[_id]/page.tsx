@@ -25,6 +25,7 @@ query Doctor ($doctorId: String!){
             online
             offline
             price
+            treated
             title
             doctors {
                 _id
