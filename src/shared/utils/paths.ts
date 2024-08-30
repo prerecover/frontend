@@ -57,6 +57,14 @@ export const REVERSE_ROUTES = [
     },
 ];
 export const ROUTES = {
+    admin_dashboard: {
+        path: '/admin/dashboard',
+        label: 'Работа сайта',
+    },
+    admin_administrator: {
+        path: '/admin/administrator',
+        label: 'Администратор',
+    },
     main: {
         path: '/',
         label: 'О здоровье',

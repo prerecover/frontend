@@ -1,3 +1,13 @@
+import Header from '@/components/layout/header';
+import AdminDasboard from '@/features/AdminDashboard';
+
 export default async function Page() {
-    return <h1>asd</h1>;
+    return (
+        <>
+            <Header title={['Работа сайта']} />
+            <div className='p-4'>
+                <AdminDasboard />
+            </div>
+        </>
+    );
 }
