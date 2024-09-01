@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { IService } from '@/shared/types/service.interface';
 import { Characteristics } from '@/entities/Common/characteristics';
 import durationParse from '@/shared/utils/durationParse';
+import serviceAvatar from '/public/assets/service.svg';
 
 export default function ServiceSearchCard({ service }: { service: IService }) {
     const router = useRouter();
@@ -17,7 +18,7 @@ export default function ServiceSearchCard({ service }: { service: IService }) {
                     className='flex gap-3 cursor-pointer items-start justify-start'
                     onClick={() => router.push(`/service/${service._id}`)}>
                     <Image
-                        src={service?.img || '/assets/service.svg'}
+                        src={service?.img || serviceAvatar}
                         width={60}
                         height={100}
                         className='rounded-[12px] w-[120px] h-[120px]'

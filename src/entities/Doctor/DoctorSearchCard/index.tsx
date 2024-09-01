@@ -2,6 +2,7 @@ import BoxWrapper from '@/components/ui/box-wrapper';
 import { IDoctor } from '@/shared/types/doctor.interface';
 import Image from 'next/image';
 import { Characteristics } from '@/entities/Common/characteristics';
+import doctorAvatar from '/public/assets/doctor.svg';
 import { useRouter } from 'next/navigation';
 
 export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
@@ -11,7 +12,7 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
             <BoxWrapper color='white' className='w-full border-blue-100 desktop:h-[140px] h-full'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/doctor/${doctor._id}`)}>
                     <Image
-                        src={doctor?.avatar || '/assets/doctor.svg'}
+                        src={doctor?.avatar || doctorAvatar}
                         width={100}
                         height={100}
                         className='rounded-[50%] desktop:h-[100px] desktop:w-[100px] h-[60px] w-[60px] object-cover'

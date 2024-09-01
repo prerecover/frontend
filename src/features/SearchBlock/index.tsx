@@ -14,7 +14,7 @@ export type Search = {
     services: IService[];
 };
 
-export default function SearchBlock() {
+export default function SearchBlock({ data }: { data: Search }) {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('Врачи');
 
@@ -45,7 +45,7 @@ export default function SearchBlock() {
                     isSelect={filter}
                     setIsSelect={setFilter}
                 />
-                {/* <SearchList filter={filterObj[filter]} search={search} data={data} /> */}
+                <SearchList filter={filterObj[filter]} search={search} data={data} />
             </div>
         </>
     );

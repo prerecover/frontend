@@ -7,9 +7,41 @@ import UsersStats from './users-stats';
 import AppointmentStats from './appointment-stats';
 import ClinicStats from './clinic-stats';
 import SearchBlock from './search-block';
+import { gql, useQuery } from '@apollo/client';
+import Loader from '@/components/ui/loader';
+import { Search } from '../SearchBlock';
 
-export default function AdminDasboard() {
+const STATS_QUERY = gql(`
+query Stats($chunk: Int!){
+    stats(chunk: $chunk) {
+        appointments {
+            acceptedAppointments
+            completedAppointments
+            rejectedAppointments
+            totalAppointments
+        }
+        clinics {
+            totalClinics
+            totalCreated
+            totalDeleted
+        }
+        users {
+            completedSurvey
+            createdSurvey
+            totalCreatedUsers
+            totalDeletedUsers
+        }
+    }
+}
+`);
+
+export default function AdminDasboard({ data: searchData }: { data: Search }) {
     const [chunkStats, setChunkStats] = useState(1);
+    const { data, refetch, loading } = useQuery(STATS_QUERY, { variables: { chunk: chunkStats } });
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
         <div className='flex'>
             <div className='flex flex-col w-full'>
@@ -34,12 +66,12 @@ export default function AdminDasboard() {
                     </Select>
                 </div>
                 <div className='flex flex-col gap-4 mt-4'>
-                    <UsersStats />
-                    <AppointmentStats />
-                    <ClinicStats />
+                    <UsersStats usersStats={data.stats.users} />
+                    <AppointmentStats appointmentStats={data.stats.appointments} />
+                    <ClinicStats clinicStats={data.stats.clinics} />
                 </div>
             </div>
-            <SearchBlock />
+            <SearchBlock searchData={searchData}/>
         </div>
     );
 }

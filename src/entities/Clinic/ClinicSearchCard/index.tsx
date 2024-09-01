@@ -4,6 +4,9 @@ import Image from 'next/image';
 import { Characteristics } from '@/entities/Common/characteristics';
 import { useRouter } from 'next/navigation';
 import { IClinic } from '@/shared/types/clinic.interface';
+import yellowStar from '/public/assets/yellow-star.svg';
+import greyStar from '/public/assets/grey-star.svg';
+import clinicAvatar from '/public/assets/clinic.jpg';
 
 export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
     const router = useRouter();
@@ -20,7 +23,7 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
             <BoxWrapper color='white' className='w-full border-blue-100'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/clinic/${clinic._id}`)}>
                     <Image
-                        src={clinic?.avatar || '/assets/clinic.jpg'}
+                        src={clinic?.avatar || clinicAvatar}
                         width={200}
                         height={143}
                         className='rounded-[12px] mobile:w-[120px] mobile:h-[120px] w-[200px] h-[143px]'
@@ -31,7 +34,7 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
                             {stars.map((star, i) => (
                                 <Image
                                     key={i}
-                                    src={star == 'yellow' ? '/assets/yellow-star.svg' : '/assets/grey-star.svg'}
+                                    src={star == 'yellow' ? yellowStar : greyStar}
                                     width={19}
                                     height={19}
                                     className='w-[19px] h-[19px]'
