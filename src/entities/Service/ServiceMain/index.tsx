@@ -11,7 +11,6 @@ import 'swiper/css';
 import { useCurrServiceStore } from '@/shared/store/currServiceStore';
 import { useRouter } from 'next/navigation';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
-import NewsListDesktop from '@/entities/Common/news-desktop';
 import Image from 'next/image';
 import { formatDate } from '@/shared/utils/formatDate';
 export default function ServiceMain({ service }: { service: IService }) {

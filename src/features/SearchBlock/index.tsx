@@ -16,7 +16,7 @@ export type Search = {
 
 export default function SearchBlock({ data }: { data: Search }) {
     const [search, setSearch] = useState('');
-    const [filter, setFilter] = useState('Врачи');
+    const [filter, setFilter] = useState('Услуги');
 
     const filters = ['Услуги', 'Клиники', 'Врачи'];
     const filterObj = {

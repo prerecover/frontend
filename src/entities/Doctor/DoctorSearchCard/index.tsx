@@ -9,7 +9,7 @@ export default function DoctorSearchCard({ doctor }: { doctor: IDoctor }) {
     const router = useRouter();
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100 desktop:h-[140px] h-full'>
+            <BoxWrapper color='white' className='w-full border-blue-100 desktop:h-[140px] h-full max-w-[542px]'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/doctor/${doctor._id}`)}>
                     <Image
                         src={doctor?.avatar || doctorAvatar}

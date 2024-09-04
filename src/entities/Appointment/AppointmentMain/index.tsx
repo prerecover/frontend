@@ -8,9 +8,6 @@ import { useState } from 'react';
 import UnionParams from '@/entities/Common/UnionParams';
 import { GraphCol } from '@/components/ui/graph-col';
 import AppointmentInfo from './appointment-info';
-import DoctorServicesDesktop from '@/entities/Doctor/DoctorMain/services-desktop';
-import Image from 'next/image';
-import DoctorInfo from '@/entities/Doctor/DoctorMain/doctor-info';
 import DoctorStats from './doctor-stats';
 
 export default function AppointmentMain({ appointment }: { appointment: IAppointment }) {

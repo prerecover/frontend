@@ -9,7 +9,7 @@ export default function ClinicStats({ clinicStats }: { clinicStats: IClinicStats
         <div className='flex gap-4'>
             <BoxWrapper color='white' className='p-4 border-none w-full'>
                 <Text className='text-[22px] font-medium mb-[26px]'>Клиники</Text>
-                <ClinicDoughnut clinicStats={clinicStats}/>
+                <ClinicDoughnut clinicStats={clinicStats} />
             </BoxWrapper>
             <BoxWrapper color='white' className='p-4 border-none w-full'>
                 <Text className='text-[22px] font-medium mb-[26px]'>Ссылки на регистрацию</Text>

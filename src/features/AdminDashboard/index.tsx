@@ -37,7 +37,7 @@ query Stats($chunk: Int!){
 
 export default function AdminDasboard({ data: searchData }: { data: Search }) {
     const [chunkStats, setChunkStats] = useState(1);
-    const { data, refetch, loading } = useQuery(STATS_QUERY, { variables: { chunk: chunkStats } });
+    const { data, loading } = useQuery(STATS_QUERY, { variables: { chunk: chunkStats } });
     if (loading) {
         return <Loader />;
     }
@@ -71,7 +71,7 @@ export default function AdminDasboard({ data: searchData }: { data: Search }) {
                     <ClinicStats clinicStats={data.stats.clinics} />
                 </div>
             </div>
-            <SearchBlock searchData={searchData}/>
+            <SearchBlock searchData={searchData} />
         </div>
     );
 }

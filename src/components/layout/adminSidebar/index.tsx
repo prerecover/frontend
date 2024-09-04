@@ -5,7 +5,6 @@ import { useSidebarStore } from '@/shared/store/sidebarStore';
 import Logo from '@/components/logo';
 
 import { useEffect } from 'react';
-import { Text } from '@/components/ui/text';
 import { AdminMenu } from './menu';
 
 export default function AdminSidebar({ className }: { className?: string }) {

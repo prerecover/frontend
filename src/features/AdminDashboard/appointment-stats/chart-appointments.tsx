@@ -15,7 +15,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 export default function AppointmentChart() {
     return (
-        <ChartContainer config={chartConfig} className='h-[400px] w-fit'>
+        <ChartContainer config={chartConfig} className='h-[400px] max-w-[500px]'>
             <BarChart accessibilityLayer data={chartData}>
                 <CartesianGrid vertical={false} height={10} />
                 <XAxis

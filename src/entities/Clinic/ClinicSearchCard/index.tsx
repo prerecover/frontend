@@ -20,7 +20,7 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
     }
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100'>
+            <BoxWrapper color='white' className='w-full border-blue-100 max-w-[542px]'>
                 <div className='flex gap-3 cursor-pointer' onClick={() => router.push(`/clinic/${clinic._id}`)}>
                     <Image
                         src={clinic?.avatar || clinicAvatar}

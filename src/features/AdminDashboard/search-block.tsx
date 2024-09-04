@@ -16,9 +16,6 @@ export default function SearchBlock({ searchData }: { searchData: Search }) {
         [filters[0]]: 'services',
     };
 
-    const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
     return (
         <div className='flex flex-col min-w-[490px]'>
             <div className='w-full flex flex-col gap-4 bg-white-background h-screen pb-4 px-[18px]'>

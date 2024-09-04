@@ -9,14 +9,11 @@ export default function ServiceInfo({ service }: { service?: IService }) {
             <div className='flex-col flex gap-3'>
                 <div className='flex flex-col 14px gap-1 font-normal'>
                     <Text type='h5' className='text-grey-700 text-[12px]'>
-                        Клиника:
+                        Название:
                     </Text>
-                    <Link
-                        type='h5'
-                        className='text-[17px] underline underline-offset-4 font-semibold'
-                        href={`/clinic/${service?.clinic?._id}`}>
-                        {service?.clinic?.title}
-                    </Link>
+                    <Text type='h5' className='text-[17px] font-semibold'>
+                        {service?.title}
+                    </Text>
                 </div>
                 <div className='flex flex-col text-[14px] gap-1 font-normal'>
                     <Text type='h5' className='text-grey-700 text-[12px]'>
@@ -28,7 +25,7 @@ export default function ServiceInfo({ service }: { service?: IService }) {
                                 key={doctor._id}
                                 href={`/doctor/${doctor._id}`}
                                 type='h5'
-                                className='underline underline-offset-4 font-semibold text-[14px]'>
+                                className='font-semibold text-[14px] text-blue'>
                                 {`${doctor.lastName} ${doctor.firstName?.charAt(0) + '.'}`}
                             </Link>
                         ))}
@@ -36,11 +33,11 @@ export default function ServiceInfo({ service }: { service?: IService }) {
                 </div>
                 <div className='flex flex-col 14px gap-1 font-normal'>
                     <Text type='h5' className='text-grey-700 text-[12px]'>
-                        Название:
+                        Клиника:
                     </Text>
-                    <Text type='h5' className='text-[14px] underline underline-offset-4 font-semibold'>
-                        {service?.title}
-                    </Text>
+                    <Link className='text-[14px] font-semibold text-blue' href={`/clinic/${service?.clinic._id}`}>
+                        {service?.clinic.title}
+                    </Link>
                 </div>
                 <div className='flex flex-col 14px gap-1 font-normal'>
                     <Text type='h5' className='text-grey-700 text-[12px]'>
