@@ -15,7 +15,6 @@ export default function Sidebar({ className }: { className?: string }) {
     const { isOpenSidebar, setOpenSidebar } = useSidebarStore();
     const { user } = useAuth();
     const clinics: IClinic[] = [];
-
     const pathname = usePathname();
 
     user?.appointments?.forEach((appmnt) => {

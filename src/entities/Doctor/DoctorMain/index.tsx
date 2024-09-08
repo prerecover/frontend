@@ -93,20 +93,11 @@ export default function DoctorMain({ doctor }: { doctor: IDoctor }) {
                 </div>
             </div>
             <div className='p-4 desktop:hidden'>
-                <div className='flex'>
-                    <Image
-                        src={doctor.avatar || '/assets/doctor.svg'}
-                        alt='doctor'
-                        width={120}
-                        height={120}
-                        className='desktop:w-[120px] desktop:h-[120px] w-14 h-14 rounded-full'
-                    />
-                    <div className='flex flex-col gap-2'>
-                        <Text
-                            type='h4'
-                            className='text-[20px] my-auto pl-2 font-semibold'>{`${doctor.firstName} ${doctor.lastName}`}</Text>
-                        <DoctorInfo doctor={doctor} className='mobile:hidden pl-2' />
-                    </div>
+                <div className='flex flex-col gap-2 mobile:mb-4'>
+                    <Text
+                        type='h4'
+                        className='text-[20px] my-auto font-semibold'>{`${doctor.firstName} ${doctor.lastName}`}</Text>
+                    <DoctorInfo doctor={doctor} className='mobile:hidden pl-2' />
                 </div>
                 <DoctorInfo doctor={doctor} />
                 <DoctorStats />

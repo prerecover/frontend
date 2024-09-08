@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 export default function DoctorStats({ className }: { className?: string }) {
     return (
         <>
-            <div className={cn('flex flex-col max-w-[421px]', className)}>
+            <div className={cn('flex flex-col desktop:max-w-[421px]', className)}>
                 <Text className='font-semibold text-[16px] mt-[20px]' type='h2'>
                     Лечилось всего:
                 </Text>
