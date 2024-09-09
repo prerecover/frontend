@@ -1,7 +1,9 @@
 'use client';
+import { toast } from '@/components/ui/use-toast';
 import AppointmentAdminCard from '@/entities/Appointment/AppointmentAdminCard';
 import { cn } from '@/lib/utils';
 import { IAppointment } from '@/shared/types/appointment.interface';
+import { gql, useMutation } from '@apollo/client';
 
 export default function CheckAppointments({ appointments }: { appointments: IAppointment[] }) {
     return (

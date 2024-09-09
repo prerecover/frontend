@@ -19,8 +19,40 @@ import {
 import SurveyDialog from '@/features/SurveyDialog';
 import { useSurveyDialogStore } from '@/shared/store/surveyDialog';
 import { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
+import { toast } from '@/components/ui/use-toast';
+
+const APPROOVE_APPOINTMENT = gql(`
+mutation ApprooveAppointment ($_id: String!){
+    approoveAppointment(appointmentId: $_id) {
+        _id
+        status
+    }
+}
+
+`);
+
+const REJECT_APPOINTMENT = gql(`
+
+mutation RejectAppointment ($_id: String!){
+    rejectAppointment(appointmentId: $_id) {
+        _id
+    }
+}
+
+`);
 
 export default function AppointmentAdminCard({ appointment }: { appointment: IAppointment }) {
+    const [reject] = useMutation(REJECT_APPOINTMENT, {
+        onCompleted() {
+            toast({ variant: 'warning', title: 'Запись отклонена' });
+        },
+    });
+    const [approove] = useMutation(APPROOVE_APPOINTMENT, {
+        onCompleted() {
+            toast({ variant: 'warning', title: 'Запись подтверждена' });
+        },
+    });
     const router = useRouter();
     const dateAppointment = decodeDate(new Date(appointment.timeStart));
     const minutes =
@@ -78,10 +110,16 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
                 <div className='flex gap-3'>
                     {pathname.includes('check-appointments') ? (
                         <>
-                            <Button className='w-full' onClick={() => console.log('asd')}>
+                            <Button
+                                className='w-full'
+                                onClick={() => approove({ variables: { _id: appointment._id } })}>
                                 Подтвердить
                             </Button>
-                            <Button className='bg-red-400 w-full'>Отклонить</Button>
+                            <Button
+                                className='bg-red-400 w-full'
+                                onClick={() => reject({ variables: { _id: appointment._id } })}>
+                                Отклонить
+                            </Button>
                         </>
                     ) : (
                         <>
