@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
+import { IAppointment } from '@/shared/types/appointment.interface';
+import { ISurveyQuestion } from '@/shared/types/survey.interface';
 
 export interface IQuestion {
     text: string;
@@ -23,7 +25,7 @@ mutation CreateSurvey ($surveyInput: SurveyInput!){
 }
 `);
 
-export default function SurveyDialog({ appointmentTitle }: { appointmentTitle: string }) {
+export default function SurveyDialog({ appointment }: { appointment: IAppointment }) {
     const { showSurveyDialog, setShowSurveyDialog } = useSurveyDialogStore();
     const [count, setCount] = useState([new Date()]);
     const router = useRouter();
@@ -34,12 +36,12 @@ export default function SurveyDialog({ appointmentTitle }: { appointmentTitle: s
             toast({ variant: 'positive', title: 'Опрос успешно создан' });
         },
     });
-    const questions: IQuestion[] = [];
+    const questions: ISurveyQuestion[] = [];
     useEffect(() => {
         if (fetch) {
             mutate({
                 variables: {
-                    surveyInput: { questions, title: appointmentTitle },
+                    surveyInput: { questions, title: appointment.title },
                 },
             });
         }
@@ -47,6 +49,7 @@ export default function SurveyDialog({ appointmentTitle }: { appointmentTitle: s
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [questions, fetch]);
     const handleReg = () => {
+        appointment.surveys.push({ questions, _id: '123', createdAt: 1080, updatedAt: 1090, appointment: appointment });
         setFetch(true);
     };
     return (

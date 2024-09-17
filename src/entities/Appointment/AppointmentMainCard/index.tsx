@@ -4,6 +4,7 @@ import { IAppointment } from '@/shared/types/appointment.interface';
 import { decodeDate } from '@/shared/utils/formatDate';
 import { Info } from './info';
 import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 export default function AppointmentMainCard({ appointment }: { appointment: IAppointment }) {
     const router = useRouter();
@@ -19,11 +20,19 @@ export default function AppointmentMainCard({ appointment }: { appointment: IApp
 
     return (
         <div className='flex flex-col relative'>
-            <Text className='text-red-400 rotate-45 text-[28px] absolute z-40 bottom-28 right-52' position='center'>
-                Недоступно
-            </Text>
+            {appointment.status == 'Rejected' ? (
+                <Text className='text-red-400 text-[38px] absolute z-40 bottom-28 right-44' position='center'>
+                    Отказано
+                </Text>
+            ) : (
+                <></>
+            )}
             <div
-                className='flex flex-col p-[20px] bg-white rounded-[12px] cursor-pointer opacity-35 relative'
+                className={cn(
+                    `flex flex-col p-[20px] bg-white rounded-[12px] cursor-pointer relative`,
+                    appointment.status === 'In process' && 'opacity-35',
+                    appointment.status === 'Rejected' && 'opacity-35',
+                )}
                 onClick={() => router.push(`/appointments/${appointment._id}`)}>
                 <Text type='h3' className='text-[12px] font-medium text-grey-700'>
                     Названия записи

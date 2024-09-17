@@ -14,6 +14,7 @@ query Appointments {
         timeStart
         title
         online
+        status
         clinic{
             title
         }

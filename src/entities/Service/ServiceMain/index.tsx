@@ -28,12 +28,7 @@ export default function ServiceMain({ service }: { service: IService }) {
                 <Button className='w-full' variant={'default'} onClick={() => router.push('/add-appointment')}>
                     Записаться
                 </Button>
-                <FilterBox
-                    data={filters}
-                    isSelect={filter}
-                    setIsSelect={setFilter}
-                    className='border-[1px] border-blue-200 mt-4 max-h-[45px]'
-                />
+                <FilterBox data={filters} isSelect={filter} setIsSelect={setFilter} className='mt-4' />
                 {filter == 'Общие параметры' ? (
                     <UnionParams
                         title={`Появление услуги: ${formatDate(new Date(service.createdAt))}`}

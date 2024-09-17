@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import CheckAppointments from '@/features/CheckAppointments';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
@@ -12,15 +13,19 @@ query AllAppointments{
         timeStart
         title
         online
+status
         clinic{
             title
         }
         doctor{
             specialization 
             firstName 
-lastName
+            lastName
             surname 
             avatar
+        }
+        surveys{
+            _id
         }
         service{
             duration
@@ -29,5 +34,10 @@ lastName
 }
     `);
     const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
-    return <CheckAppointments appointments={data.allAppointments} />;
+    return (
+        <>
+            <Header title={['Администратор', 'Создать опрос']} />
+            <CheckAppointments appointments={data.allAppointments} />
+        </>
+    );
 }

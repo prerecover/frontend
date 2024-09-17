@@ -83,6 +83,15 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                         Создание опроса
                     </div>
                 </Link>
+                <Link className='h-[54px]' href={'/admin/administrator/surveys'}>
+                    <div
+                        className={cn(
+                            pathname == '/admin/administrator/surveys' ? `text-dark` : 'text-grey',
+                            'hover:text-dark',
+                        )}>
+                        Опросы
+                    </div>
+                </Link>
             </div>
         </>
     );

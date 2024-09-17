@@ -1,12 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { IQuestion } from '.';
-import { Button } from '@/components/ui/button';
-
-export interface IAnswer {
-    text: string;
-}
+import { IQuestionAnswer, ISurveyQuestion } from '@/shared/types/survey.interface';
 
 export default function SurveyQuestion({
     pos,
@@ -14,11 +9,11 @@ export default function SurveyQuestion({
     fetch,
 }: {
     pos: number;
-    questions: IQuestion[];
+    questions: ISurveyQuestion[];
     fetch: boolean;
 }) {
     const [question, setQuestion] = useState('Как вы себя чувствуете после приема?');
-    const [answers, setAnswers] = useState<IAnswer[]>([]);
+    const [answers, setAnswers] = useState<IQuestionAnswer[]>([]);
     const [show, setShow] = useState(true);
     useEffect(() => {
         if (fetch) {
