@@ -34,7 +34,7 @@ export default function AppointmentMain({ appointment }: { appointment: IAppoint
                         </div>
                         <div className='flex flex-col w-full mt-[20px] '>
                             <FilterBox data={filters} isSelect={filter} setIsSelect={setFilter} />
-                            <UnionParams title='Появление услуги: 3 года' />
+                            <UnionParams title='Появление услуги: 3 года' treated={appointment.service.treated} />
                             <div className='flex flex-col h-fit '>
                                 <Text className='font-semibold text-[16px] ' type='h2'>
                                     Помогло на:

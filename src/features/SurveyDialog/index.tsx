@@ -1,18 +1,13 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useSurveyDialogStore } from '@/shared/store/surveyDialog';
 import { useEffect, useState } from 'react';
-import SurveyQuestion, { IAnswer } from './question';
+import SurveyQuestion from './question';
 import { Button } from '@/components/ui/button';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
 import { IAppointment } from '@/shared/types/appointment.interface';
 import { ISurveyQuestion } from '@/shared/types/survey.interface';
-
-export interface IQuestion {
-    text: string;
-    answers: IAnswer[];
-}
 
 const CREATE_SURVEY = gql(`
 

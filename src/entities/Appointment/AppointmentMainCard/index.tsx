@@ -5,6 +5,7 @@ import { decodeDate } from '@/shared/utils/formatDate';
 import { Info } from './info';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import ChangeAppointmentMainCard from './change';
 
 export default function AppointmentMainCard({ appointment }: { appointment: IAppointment }) {
     const router = useRouter();
@@ -19,47 +20,58 @@ export default function AppointmentMainCard({ appointment }: { appointment: IApp
     const doctorName = `${appointment.doctor.lastName} ${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
 
     return (
-        <div className='flex flex-col relative'>
-            {appointment.status == 'Rejected' ? (
-                <Text className='text-red-400 text-[38px] absolute z-40 bottom-28 right-44' position='center'>
-                    Отказано
-                </Text>
-            ) : (
-                <></>
-            )}
-            <div
-                className={cn(
-                    `flex flex-col p-[20px] bg-white rounded-[12px] cursor-pointer relative`,
-                    appointment.status === 'In process' && 'opacity-35',
-                    appointment.status === 'Rejected' && 'opacity-35',
-                )}
-                onClick={() => router.push(`/appointments/${appointment._id}`)}>
-                <Text type='h3' className='text-[12px] font-medium text-grey-700'>
-                    Названия записи
-                </Text>
-                <Text type='h1' className='text-[16px] font-semibold mt-[7px]'>
-                    {appointment.title}
-                </Text>
+        <>
+            <ChangeAppointmentMainCard
+                appointment={appointment}
+                className={appointment.status !== 'Pending' ? 'hidden' : ''}
+            />
 
-                <Characteristics
-                    className='gap-3 mt-3'
-                    data={[
-                        {
-                            key: 'Формат:',
-                            value: appointment.online ? 'Online' : 'Offline',
-                            className: appointment.online ? 'text-green' : 'text-red-400',
-                        },
-                        { key: 'Предназначена:', value: 'Пока незнаю что сюда вставить' },
-                        { key: 'Создана:', value: `${doctorSpecialization} ${doctorName}` },
-                        {
-                            key: 'Версия:',
-                            value: 'USA',
-                        },
-                    ]}
-                />
-                <div className='w-full h-[1px] bg-blue-100 px-5 mt-4 mb-4'></div>
-                <Info dateAppointment={dateAppointment} timeAppointment={timeAppointment} duration={duration || 0} />
+            <div className={cn(`flex flex-col relative`, appointment.status === 'Pending' && 'hidden')}>
+                {appointment.status == 'Rejected' ? (
+                    <Text className='text-red-400 text-[38px] absolute z-40 bottom-28 right-44' position='center'>
+                        Отказано
+                    </Text>
+                ) : (
+                    <></>
+                )}
+                <div
+                    className={cn(
+                        `flex flex-col p-[20px] bg-white rounded-[12px] cursor-pointer relative`,
+                        appointment.status === 'In process' && 'opacity-35',
+                        appointment.status === 'Rejected' && 'opacity-35',
+                    )}
+                    onClick={() => router.push(`/appointments/${appointment._id}`)}>
+                    <Text type='h3' className='text-[12px] font-medium text-grey-700'>
+                        Названия записи
+                    </Text>
+                    <Text type='h1' className='text-[16px] font-semibold mt-[7px]'>
+                        {appointment.title}
+                    </Text>
+
+                    <Characteristics
+                        className='gap-3 mt-3'
+                        data={[
+                            {
+                                key: 'Формат:',
+                                value: appointment.online ? 'Online' : 'Offline',
+                                className: appointment.online ? 'text-green' : 'text-red-400',
+                            },
+                            { key: 'Предназначена:', value: 'Пока незнаю что сюда вставить' },
+                            { key: 'Создана:', value: `${doctorSpecialization} ${doctorName}` },
+                            {
+                                key: 'Версия:',
+                                value: 'USA',
+                            },
+                        ]}
+                    />
+                    <div className='w-full h-[1px] bg-blue-100 px-5 mt-4 mb-4'></div>
+                    <Info
+                        dateAppointment={dateAppointment}
+                        timeAppointment={timeAppointment}
+                        duration={duration || 0}
+                    />
+                </div>
             </div>
-        </div>
+        </>
     );
 }

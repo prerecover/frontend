@@ -1,12 +1,11 @@
 import { FC, MouseEventHandler, useState } from 'react';
 import { useSidebarStore } from '@/shared/store/sidebarStore';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import styles from './menuItem.module.scss';
 import Image from 'next/image';
-import { Text } from '@/components/ui/text';
 
 type Props = {
     href: string;
@@ -20,7 +19,6 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
     const pathname = usePathname();
     const { isOpenSidebar } = useSidebarStore();
     const [showAdminBlock, setShowAdminBlock] = useState(false);
-    const router = useRouter();
     return (
         <>
             <Link

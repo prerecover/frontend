@@ -12,7 +12,7 @@ export default function SurveyMainCard({ survey }: { survey: ISurvey }) {
                 <Text className='font-medium text-[20px]'>
                     Опрос для записи &quot;{survey.appointment?.title}&quot;
                 </Text>
-                <div className='flex gap-[6px]'>
+                <div className='flex gap-[6px] items-center'>
                     <Image src={'/assets/calendar.svg'} width={20} height={20} alt='calendar' />
                     <Text type='h4' className='text-[16px] font-medium'>
                         {dateAppointment}

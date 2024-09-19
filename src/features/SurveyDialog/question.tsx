@@ -26,13 +26,14 @@ export default function SurveyQuestion({
     }, [fetch]);
     useEffect(() => {
         setAnswers([...answers, { text: 'Отлично' }]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         console.log(answers);
     }, [answers]);
 
     return (
-        <div className='flex flex-col mt-[22px]'>
+        <div className='flex flex-col mt-[22px] cursor-pointer ' onClick={() => setShow(!show)}>
             <Text className='text-[16px] font-normal mb-[14px]'>Вопрос No {pos}</Text>
             <div className={`${show ? 'block' : 'hidden'} transform duration-300 ease-in-out`}>
                 <Input

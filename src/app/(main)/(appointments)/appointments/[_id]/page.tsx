@@ -29,6 +29,7 @@ query Appointment ($_id: String!){
         service {
             _id
             duration
+            treated
             title
         }
     }

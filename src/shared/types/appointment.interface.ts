@@ -1,3 +1,4 @@
+import { IAvailableDate } from './availableDate.interface';
 import { IClinic } from './clinic.interface';
 import { ICommon } from './common.interface';
 import { IDoctor } from './doctor.interface';
@@ -10,7 +11,7 @@ export interface IAppointment extends ICommon {
     notify?: number;
     online: boolean;
     specialCheck: boolean;
-    status: 'In process' | 'Rejected' | 'Approoved';
+    status: 'In process' | 'Rejected' | 'Approoved' | 'Pending';
     timeEnd: number;
     timeStart: number;
     title: string;
@@ -19,6 +20,7 @@ export interface IAppointment extends ICommon {
     doctor: IDoctor;
     duration: number;
     surveys: ISurvey[];
+    availableDates: IAvailableDate[];
 
     service: IService;
 }

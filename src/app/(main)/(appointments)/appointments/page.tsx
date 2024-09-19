@@ -25,6 +25,10 @@ lastName
             surname 
             avatar
         }
+        availableDates {
+            _id
+            date
+        }
         service{
             duration
         }
@@ -32,7 +36,7 @@ lastName
 }
     `);
     const { data } = await getClient().query({ query: APPOINTMENTS_QUERY });
-    console.log(new Date());
+    console.log(data);
     return (
         <>
             <MobileHeader title='Записи' />
