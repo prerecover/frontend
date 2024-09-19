@@ -137,7 +137,7 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
                             </>
                         ) : (
                             <>
-                                {appointment.surveys.length == 0 ? (
+                                {appointment.surveys?.length == 0 ? (
                                     <>
                                         <AlertDialog open={firstDialog}>
                                             <AlertDialogTrigger asChild>

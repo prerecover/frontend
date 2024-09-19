@@ -14,7 +14,6 @@ export default function SurveyQuestion({
 }) {
     const [question, setQuestion] = useState('Как вы себя чувствуете после приема?');
     const [answers, setAnswers] = useState<IQuestionAnswer[]>([]);
-    const [show, setShow] = useState(true);
     useEffect(() => {
         if (fetch) {
             questions.push({
@@ -33,9 +32,9 @@ export default function SurveyQuestion({
     }, [answers]);
 
     return (
-        <div className='flex flex-col mt-[22px] cursor-pointer ' onClick={() => setShow(!show)}>
+        <div className='flex flex-col mt-[22px] cursor-pointer '>
             <Text className='text-[16px] font-normal mb-[14px]'>Вопрос No {pos}</Text>
-            <div className={`${show ? 'block' : 'hidden'} transform duration-300 ease-in-out`}>
+            <div className={` transform duration-300 ease-in-out`}>
                 <Input
                     value={question}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)}

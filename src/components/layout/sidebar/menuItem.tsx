@@ -51,7 +51,7 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                 onMouseLeave={() => setShowAdminBlock(false)}
                 className={cn(
                     showAdminBlock && title == 'Администратор'
-                        ? `flex flex-col gap-[5px] items-center pl-[32px] absolute left-60 bg-white w-[240px] py-4`
+                        ? `flex flex-col gap-[5px] items-center pl-[32px] absolute left-60 bg-white w-[270px] py-4`
                         : 'hidden',
                 )}>
                 <Link className='h-[54px]' href={'/admin/administrator/create-survey'}>
@@ -70,6 +70,15 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                             'hover:text-dark',
                         )}>
                         Проверка записей
+                    </div>
+                </Link>
+                <Link className='h-[54px]' href={'/admin/administrator/approoved-appointments'}>
+                    <div
+                        className={cn(
+                            pathname == '/admin/administrator/approoved-appointments' ? `text-dark` : 'text-grey',
+                            'hover:text-dark',
+                        )}>
+                        Подтвержденные записи
                     </div>
                 </Link>
                 <Link className='h-[54px]' href={'/admin/administrator/create-survey'}>

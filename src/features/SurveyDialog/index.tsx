@@ -44,7 +44,7 @@ export default function SurveyDialog({ appointment }: { appointment: IAppointmen
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [questions, fetch]);
     const handleReg = () => {
-        appointment.surveys.push({ questions, _id: '123', createdAt: 1080, updatedAt: 1090, appointment: appointment });
+        appointment.surveys.push({ questions, _id: '123', createdAt: 1080, updatedAt: 1090 });
         setFetch(true);
     };
     return (

@@ -6,7 +6,7 @@ import { gql } from '@apollo/client';
 export default async function Page() {
     const ALL_APPOINTMENTS_QUERY = gql(`
 query AllAppointments{
-     allAppointments(approoved: false) {
+     allAppointments(approoved: true) {
         _id
         createdAt
         notify
@@ -34,10 +34,9 @@ lastName
 }
     `);
     const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
-    console.log(data);
     return (
         <>
-            <Header title={['Администратор', 'Проверка записей']} />
+            <Header title={['Администратор', 'Подтвержденные записи']} />
             <CheckAppointments appointments={data.allAppointments} />
         </>
     );
