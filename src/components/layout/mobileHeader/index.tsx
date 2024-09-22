@@ -7,9 +7,9 @@ import cn from 'clsx';
 import { useBurgerMenu } from '@/shared/store/burgerMenu';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { ROUTES } from '@/shared/utils/paths';
 import { Text } from '@/components/ui/text';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
+import { useNotifyModal } from '@/shared/store/notifyModal';
 
 export default function MobileHeader({
     className,
@@ -25,6 +25,7 @@ export default function MobileHeader({
     const router = useRouter();
     const { user } = useAuth();
     const blockLocation = ['/', '/search', '/messages', '/account', '/history', '/payments', '/appointments', '/saved'];
+    const { isOpen: modalOpen, setIsOpen: setModalOpen } = useNotifyModal();
     const pathname = usePathname();
     return (
         <>
@@ -78,11 +79,7 @@ export default function MobileHeader({
                         ) : (
                             <></>
                         )}
-                        <div
-                            className='relative'
-                            onClick={() => {
-                                router.push(!user._id ? '/login' : ROUTES.notifications.path);
-                            }}>
+                        <div className='relative' onClick={() => setModalOpen(!modalOpen)}>
                             <Image src={notifi} alt='notifications' width={24} height={24} />
                         </div>
                     </div>
