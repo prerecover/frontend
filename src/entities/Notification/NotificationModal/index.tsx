@@ -50,7 +50,6 @@ export default function NotificationModal() {
         console.log('subscribe in', user._id);
         channel.bind('notification', (data: any) => {
             const notification: INotification = JSON.parse(data.chunk);
-            const notif = new Notification(notification.text);
             setNotifications([...notifications, notification]);
         });
 
