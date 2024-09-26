@@ -15,6 +15,7 @@ export default function AppointmentsBlock({ className, data }: { className?: str
     const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
+    console.log(data);
     return (
         <>
             <div className='flex gap-3 items-center'>

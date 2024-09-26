@@ -11,10 +11,16 @@ export default function NotificationCard({
     notificaion: INotification;
     className?: string;
 }) {
+    const positiveImage = !notificaion.text.includes('отклонена');
     return (
         <>
             <div className={cn('flex gap-3 items-center my-3', className)}>
-                <Image src={'/assets/pay-positive.svg'} width={52} height={52} alt='notification' />
+                <Image
+                    src={positiveImage ? '/assets/notification-success.svg' : '/assets/appointment-negative.svg'}
+                    width={52}
+                    height={52}
+                    alt='notification'
+                />
                 <div className='flex flex-col gap-[6px]'>
                     <Text className='text-[14px] font-medium'>{notificaion.text}</Text>
                     <Text className='text-[12px] font-medium text-grey-500'>

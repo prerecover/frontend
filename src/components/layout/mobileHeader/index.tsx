@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { Text } from '@/components/ui/text';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
+import { useNotifyStore } from '@/shared/store/notifyStore';
 
 export default function MobileHeader({
     className,
@@ -22,6 +23,8 @@ export default function MobileHeader({
 }) {
     const { isOpen, setIsOpen } = useBurgerMenu();
 
+    const { notifications } = useNotifyStore();
+    const haveUnread = notifications.filter((el) => el.isRead === false).length > 0;
     const router = useRouter();
     const { user } = useAuth();
     const blockLocation = ['/', '/search', '/messages', '/account', '/history', '/payments', '/appointments', '/saved'];
@@ -81,6 +84,9 @@ export default function MobileHeader({
                         )}
                         <div className='relative' onClick={() => setModalOpen(!modalOpen)}>
                             <Image src={notifi} alt='notifications' width={24} height={24} />
+                            {haveUnread && (
+                                <div className='absolute bg-red-400 top-[2px] right-[3px] rounded-[50%] w-[5px] h-[5px]'></div>
+                            )}
                         </div>
                     </div>
                 </div>

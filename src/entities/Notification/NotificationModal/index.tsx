@@ -11,6 +11,7 @@ import NotificationCard from '../NotificationCard';
 import { useNotifyStore } from '@/shared/store/notifyStore';
 import Pusher from 'pusher-js';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
+import { INotification } from '@/shared/types/notification.interface';
 
 const SET_READ = gql(`
 
@@ -48,7 +49,9 @@ export default function NotificationModal() {
         const channel = pusher.subscribe(user._id);
         console.log('subscribe in', user._id);
         channel.bind('notification', (data: any) => {
-            setNotifications([...notifications, JSON.parse(data.chunk)]);
+            const notification: INotification = JSON.parse(data.chunk);
+            const notif = new Notification(notification.text);
+            setNotifications([...notifications, notification]);
         });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,6 +111,7 @@ export default function NotificationModal() {
                     {haveUnread && <Text className='text-[14px] font-medium text-grey-700 pt-4'>Непрочитанные</Text>}
                     {notifications
                         .filter((el) => el.isRead === false)
+                        .reverse()
                         .map((el) => (
                             <NotificationCard notificaion={el} key={el._id} className='pl-1' />
                         ))}
@@ -115,6 +119,7 @@ export default function NotificationModal() {
                 <div className='flex flex-col pl-6'>
                     {notifications
                         .filter((el) => el.isRead)
+                        .reverse()
                         .map((el) => (
                             <NotificationCard notificaion={el} key={el._id} className='pl-1' />
                         ))}
