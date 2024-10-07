@@ -85,15 +85,15 @@ const CHANGE_ME_MUTATION = gql(`
 
 export const FormBlock: FC = () => {
     const { setUser, user } = useAuth();
-    const [firstName, setFirstName] = useState<string>('');
-    const [lastName, setLastName] = useState<string>('');
-    const [login, setLogin] = useState<string>('');
-    const [address, setAddress] = useState<string>('');
-    const [number, setNumber] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [city, setCity] = useState<string>('');
+    const [firstName, setFirstName] = useState<string | null>('');
+    const [lastName, setLastName] = useState<string | null>('');
+    const [login, setLogin] = useState<string | null>('');
+    const [address, setAddress] = useState<string | null>('');
+    const [number, setNumber] = useState<string | null>('');
+    const [email, setEmail] = useState<string | null>('');
+    const [city, setCity] = useState<string | null>('');
     const [date, setDate] = useState<Date>(new Date());
-    const [sex, setSex] = useState<boolean>(true);
+    const [sex, setSex] = useState<boolean | null>(true);
     const formSchema = z.object({
         countryTitle: z.string(),
     });
@@ -113,15 +113,15 @@ export const FormBlock: FC = () => {
     });
     useEffect(() => {
         form.setValue('countryTitle', user.country?.title || '');
-        setFirstName(user.firstName || '');
-        setLastName(user.lastName || '');
+        setFirstName(user.firstName || null);
+        setLastName(user.lastName || null);
         setDate(new Date(user.birthday || 0));
-        setLogin(user.login || '');
-        setNumber(user.number || '');
-        setEmail(user.email || '');
+        setLogin(user.login || null);
+        setNumber(user.number || null);
+        setEmail(user.email || null);
         setSex(user.sex || false);
-        setAddress(user.address || '');
-        setCity(user.city || '');
+        setAddress(user.address || null);
+        setCity(user.city || null);
         setToken(getCookie('access_token'));
         setLoad(false);
     }, [error, toast, user, form]);
@@ -208,7 +208,7 @@ export const FormBlock: FC = () => {
                     </SelectContent>
                 </Select>
                 <Input
-                    value={login}
+                    value={login!}
                     onChange={(e) => setLogin(e.currentTarget.value)}
                     className='border-blue'
                     placeholder='Логин'
@@ -237,13 +237,13 @@ export const FormBlock: FC = () => {
                     )}
                 />
                 <Input
-                    value={city}
+                    value={city!}
                     onChange={(e) => setCity(e.currentTarget.value)}
                     className='border-blue'
                     placeholder='Город'
                 />
                 <Input
-                    value={address}
+                    value={address!}
                     onChange={(e) => setAddress(e.currentTarget.value)}
                     className='border-blue'
                     placeholder='Адрес'
@@ -261,7 +261,7 @@ export const FormBlock: FC = () => {
                         <Text type='p' className='text-[14px] font-medium text-grey-700'>
                             Номер
                         </Text>
-                        <input type='text' value={number} onChange={(e) => setNumber(e.currentTarget.value)} />
+                        <input type='text' value={number!} onChange={(e) => setNumber(e.currentTarget.value)} />
                     </div>
                     <Image
                         src={'/assets/tick-circle.svg'}
@@ -280,7 +280,7 @@ export const FormBlock: FC = () => {
                         <Text type='p' className='text-[14px] font-medium text-grey-700'>
                             Эл.почта
                         </Text>
-                        <input type='email' value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+                        <input type='email' value={email!} onChange={(e) => setEmail(e.currentTarget.value)} />
                     </div>
                     <Image
                         src={'/assets/tick-circle.svg'}

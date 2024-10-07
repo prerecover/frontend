@@ -46,7 +46,7 @@ export const Avatar: FC = () => {
             <div className='flex flex-col mobile:hidden justify-center gap-2'>
                 <Text
                     type='p'
-                    className='font-semibold text-[24px]'>{`${user.lastName} ${user.firstName?.charAt(0) + '.'} ${user.surname?.charAt(0) || 'C' + '.'}  `}</Text>
+                    className='font-semibold text-[24px]'>{`${user.lastName || ''} ${user.firstName?.charAt(0) || '' + '.'} ${user.surname?.charAt(0) || '' + '.'}  `}</Text>
 
                 <Text type='p' className='font-medium text-[16px] text-grey-700'>
                     Пользователь

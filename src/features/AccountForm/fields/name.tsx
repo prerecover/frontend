@@ -5,13 +5,13 @@ export default function AccountFormNameField({
     setField,
     placeholder,
 }: {
-    field: string;
-    setField: React.Dispatch<React.SetStateAction<string>>;
+    field: string | null;
+    setField: React.Dispatch<React.SetStateAction<string | null>>;
     placeholder: string;
 }) {
     return (
         <Input
-            value={field}
+            value={field!}
             placeholder={placeholder}
             onChange={(e) => setField(e.currentTarget.value)}
             className='border-blue'

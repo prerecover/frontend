@@ -7,7 +7,7 @@ import { gql } from '@apollo/client';
 const VALIDATE_LINK = gql(`
 query ValidateLink ($_id: String!){
     validateLink(_id: $_id) {
-        clinicEmail
+        _id
     }
 }
 
@@ -25,7 +25,7 @@ query Countries {
 
 export default async function Page({ params: { link } }: { params: { link: string } }) {
     const { data } = await getClient().query({ query: GET_COUNTRIES });
-    const { data: linkData } = await getClient().query({ query: VALIDATE_LINK, variables: { _id: link } });
+    await getClient().query({ query: VALIDATE_LINK, variables: { _id: link } });
     const countries: ICountry[] = data.countries;
-    return <RegistrationClinic countries={countries} email={linkData.validateLink.clinicEmail} />;
+    return <RegistrationClinic countries={countries} email={''} />;
 }
