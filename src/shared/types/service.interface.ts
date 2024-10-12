@@ -11,7 +11,7 @@ export interface IService extends ICommon {
     offline: boolean;
     treated: number;
     price: number;
-    doctors?: IDoctor[];
+    doctors?: IDoctor[] | Partial<IDoctor>[];
     clinic: IClinic;
     news?: INews[];
     img?: string;

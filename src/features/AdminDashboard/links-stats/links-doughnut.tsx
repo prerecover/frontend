@@ -1,6 +1,7 @@
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { Text } from '@/components/ui/text';
+import { ILinkStats } from '@/shared/types/stats';
 
 const data = {
     labels: ['Зарегистрировано', 'Удаленно'],
@@ -43,7 +44,7 @@ const options = {
         },
     },
 };
-export default function LinksDouhgnut() {
+export default function LinksDouhgnut({ linkStats }: { linkStats: ILinkStats }) {
     return (
         <div className='flex items-center'>
             <div className='flex-center w-[185px] h-[185px]'>
@@ -53,12 +54,12 @@ export default function LinksDouhgnut() {
                 <div className='pl-[18px] relative text-[14px] font-medium flex items-center gap-3'>
                     <div className='rounded-full w-[10px] h-[10px] bg-[#0064FA] '></div>
                     <Text className='text-grey-700 text-[18px]'>Сгенерированно</Text>
-                    <Text className='text-[24px] font-semibold'>220</Text>
+                    <Text className='text-[24px] font-semibold'>{linkStats.totalGenerated}</Text>
                 </div>
                 <div className='pl-[18px] relative text-[14px] font-medium flex items-center gap-3'>
                     <div className='rounded-full w-[10px] h-[10px] bg-[#0064fab3]'></div>
                     <Text className='text-grey-700 text-[18px]'>Использованно</Text>
-                    <Text className='text-green text-[24px] font-semibold'>187</Text>
+                    <Text className='text-green text-[24px] font-semibold'>{linkStats.totalUsed}</Text>
                 </div>
             </div>
         </div>

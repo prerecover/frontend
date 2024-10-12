@@ -13,7 +13,7 @@ export default function ServiceSearchCard({ service }: { service: IService }) {
     service?.doctors?.forEach((doctor) => (doctors += `${doctor.lastName} ${doctor.firstName.charAt(0)}., `));
     return (
         <>
-            <BoxWrapper color='white' className='w-full border-blue-100 max-w-[532px]'>
+            <BoxWrapper color='white' className='w-full border-blue-100'>
                 <div
                     className='flex gap-3 cursor-pointer items-start justify-start'
                     onClick={() => router.push(`/service/${service._id}`)}>

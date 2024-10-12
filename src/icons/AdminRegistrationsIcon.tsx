@@ -1,7 +1,11 @@
 import { PropsWithClassName, PropsWithSize } from '@/shared/types';
 import { FC } from 'react';
 
-export const SiteWorkIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className, width = 24, height = 24 }) => {
+export const AdminRegistrationIcon: FC<PropsWithClassName<PropsWithSize>> = ({
+    className,
+    width = 24,
+    height = 24,
+}) => {
     return (
         <svg
             width={width}
@@ -11,33 +15,32 @@ export const SiteWorkIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className,
             fill='none'
             xmlns='http://www.w3.org/2000/svg'>
             <path
-                d='M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z'
+                d='M8 12.1992H15'
                 stroke='#0064FA'
-                strokeWidth='1.25'
                 strokeMiterlimit='10'
                 strokeLinecap='round'
                 strokeLinejoin='round'
             />
             <path
-                d='M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z'
+                d='M8 16.1992H12.38'
                 stroke='#0064FA'
-                strokeWidth='1.25'
+                strokeWidth='1.5'
                 strokeMiterlimit='10'
                 strokeLinecap='round'
                 strokeLinejoin='round'
             />
             <path
-                d='M6 10C8.20914 10 10 8.20914 10 6C10 3.79086 8.20914 2 6 2C3.79086 2 2 3.79086 2 6C2 8.20914 3.79086 10 6 10Z'
+                d='M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z'
                 stroke='#0064FA'
-                strokeWidth='1.25'
+                strokeWidth='1.5'
                 strokeMiterlimit='10'
                 strokeLinecap='round'
                 strokeLinejoin='round'
             />
             <path
-                d='M18 22C20.2091 22 22 20.2091 22 18C22 15.7909 20.2091 14 18 14C15.7909 14 14 15.7909 14 18C14 20.2091 15.7909 22 18 22Z'
+                d='M16 4.01953C19.33 4.19953 21 5.42953 21 9.99953V15.9995C21 19.9995 20 21.9995 15 21.9995H9C4 21.9995 3 19.9995 3 15.9995L3 9.99953C3 5.43953 4.67 4.19953 8 4.01953'
                 stroke='#0064FA'
-                strokeWidth='1.25'
+                strokeWidth='1.5'
                 strokeMiterlimit='10'
                 strokeLinecap='round'
                 strokeLinejoin='round'

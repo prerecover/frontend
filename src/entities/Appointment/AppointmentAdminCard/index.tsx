@@ -104,7 +104,7 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
                     />
                     <div className='w-full h-[1px] bg-blue-100 px-5 mt-4 mb-4'></div>
                     <div className='flex gap-3 '>
-                        {pathname.includes('check-appointments') ? (
+                        {pathname.includes('admin/appointments') ? (
                             <>
                                 {appointment.status == 'In process' ? (
                                     <>

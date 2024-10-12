@@ -3,13 +3,16 @@ import { MenuItem } from './menuItem';
 import { ROUTES } from '@/shared/utils/paths';
 import { SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
-import { HeartIcon } from '@/icons/HeartIcon';
+import { AppointmentIcon } from '@/icons/AppointmentIcon';
+import { RecomendationsIcon } from '@/icons/RecomendationsIcon';
+import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 export const UserMenu = () => {
     const { user } = useAuth();
+    const { logout } = useLogout();
     return (
         <>
-            <MenuItem icon={<HeartIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />
+            <MenuItem icon={<RecomendationsIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />
 
             <MenuItem
                 icon={<SearchIcon width={20} height={20} />}
@@ -17,23 +20,7 @@ export const UserMenu = () => {
                 href={ROUTES.search.path}
             />
             <MenuItem
-                icon={
-                    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                        <path
-                            d='M16.25 10.4173V11.459C16.25 13.9894 16.25 15.2546 15.7187 16.2032C15.3433 16.8737 14.7897 17.4272 14.1193 17.8027C13.1706 18.334 11.9054 18.334 9.375 18.334V18.334C6.84459 18.334 5.57939 18.334 4.63074 17.8027C3.9603 17.4272 3.40674 16.8737 3.03127 16.2032C2.5 15.2546 2.5 13.9894 2.5 11.459V10.0007C2.5 7.6671 2.5 6.50032 2.95414 5.60902C3.35361 4.82501 3.99103 4.1876 4.77504 3.78812C5.66634 3.33398 6.83311 3.33398 9.16667 3.33398V3.33398H10'
-                            stroke='#0064FA'
-                            strokeWidth='1.25'
-                            strokeLinecap='round'
-                        />
-                        <path
-                            d='M15.416 2.08417C15.7475 1.75265 16.1972 1.56641 16.666 1.56641C17.1349 1.56641 17.5845 1.75265 17.916 2.08417C18.2475 2.41569 18.4338 2.86533 18.4338 3.33417C18.4338 3.80301 18.2475 4.25265 17.916 4.58417L9.99935 12.5008L6.66602 13.3342L7.49935 10.0008L15.416 2.08417Z'
-                            stroke='#0064FA'
-                            strokeWidth='1.25'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                    </svg>
-                }
+                icon={<AppointmentIcon width={20} height={20} />}
                 title={ROUTES.notes.label}
                 href={user._id ? ROUTES.notes.path : '/login'}
             />
@@ -55,6 +42,34 @@ export const UserMenu = () => {
                 title={ROUTES.payments.label}
                 href={user._id ? ROUTES.payments.path : '/login'}
             />
+            {/* <MenuItem */}
+            {/*     onClick={() => logout()} */}
+            {/*     icon={ */}
+            {/*         <svg width='20' height='20' viewBox='0 0 20 20' fill='none'> */}
+            {/*             <g clipPath='url(#clip0_5460_28865)'> */}
+            {/*                 <path */}
+            {/*                     d='M12.6991 18.559H12.5908C8.89078 18.559 7.10745 17.1007 6.79912 13.8341C6.76578 13.4924 7.01578 13.184 7.36578 13.1507C7.69912 13.1174 8.01578 13.3757 8.04912 13.7174C8.29078 16.334 9.52412 17.309 12.5991 17.309H12.7075C16.0991 17.309 17.2991 16.109 17.2991 12.7174V7.28405C17.2991 3.89238 16.0991 2.69238 12.7075 2.69238H12.5991C9.50745 2.69238 8.27412 3.68405 8.04912 6.35072C8.00745 6.69238 7.71578 6.95072 7.36578 6.91738C7.01578 6.89238 6.76578 6.58405 6.79078 6.24238C7.07412 2.92572 8.86578 1.44238 12.5908 1.44238H12.6991C16.7908 1.44238 18.5408 3.19238 18.5408 7.28405V12.7174C18.5408 16.809 16.7908 18.559 12.6991 18.559Z' */}
+            {/*                     fill='#0064FA' */}
+            {/*                 /> */}
+            {/*                 <path */}
+            {/*                     d='M12.5009 10.625H3.01758C2.67591 10.625 2.39258 10.3417 2.39258 10C2.39258 9.65833 2.67591 9.375 3.01758 9.375H12.5009C12.8426 9.375 13.1259 9.65833 13.1259 10C13.1259 10.3417 12.8426 10.625 12.5009 10.625Z' */}
+            {/*                     fill='#0064FA' */}
+            {/*                 /> */}
+            {/*                 <path */}
+            {/*                     d='M4.87552 13.4162C4.71719 13.4162 4.55885 13.3579 4.43385 13.2329L1.64219 10.4412C1.40052 10.1995 1.40052 9.79954 1.64219 9.55788L4.43385 6.76621C4.67552 6.52454 5.07552 6.52454 5.31719 6.76621C5.55885 7.00788 5.55885 7.40788 5.31719 7.64954L2.96719 9.99954L5.31719 12.3495C5.55885 12.5912 5.55885 12.9912 5.31719 13.2329C5.20052 13.3579 5.03385 13.4162 4.87552 13.4162Z' */}
+            {/*                     fill='#0064FA' */}
+            {/*                 /> */}
+            {/*             </g> */}
+            {/*             <defs> */}
+            {/*                 <clipPath id='clip0_5460_28865'> */}
+            {/*                     <rect width='24' height='24' fill='white' /> */}
+            {/*                 </clipPath> */}
+            {/*             </defs> */}
+            {/*         </svg> */}
+            {/*     } */}
+            {/*     title={'Выход'} */}
+            {/*     href={'/logout'} */}
+            {/* /> */}
         </>
     );
 };

@@ -15,9 +15,14 @@ export interface IClinicStats {
     totalCreated: number;
     totalDeleted: number;
 }
+export interface ILinkStats {
+    totalGenerated: number;
+    totalUsed: number;
+}
 
 export interface IStatsMain {
     users: IUsersStats;
     appointments: IAppointmentStats;
     clinics: IClinicStats;
+    links: ILinkStats;
 }

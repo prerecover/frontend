@@ -1,8 +1,10 @@
 import { ROUTES } from '@/shared/utils/paths';
 import { MenuItem } from '../sidebar/menuItem';
 import { SiteWorkIcon } from '@/icons/SiteWorkIcon';
-import { CallIcon } from '@/icons/CallIcon';
 import { useLogout } from '@/shared/lib/hooks/useLogout';
+import { AdminRegistrationIcon } from '@/icons/AdminRegistrationsIcon';
+import { AppointmentIcon } from '@/icons/AppointmentIcon';
+import { SurveyIcon } from '@/icons/SurveyIcon';
 
 export const AdminMenu = () => {
     const { logout } = useLogout();
@@ -10,10 +12,16 @@ export const AdminMenu = () => {
         <>
             <MenuItem icon={<SiteWorkIcon />} title={ROUTES.admin_dashboard.label} href={ROUTES.admin_dashboard.path} />
             <MenuItem
-                icon={<CallIcon />}
-                title={ROUTES.admin_administrator.label}
-                href={ROUTES.admin_administrator.path}
+                icon={<AdminRegistrationIcon />}
+                title={ROUTES.admin_registration.label}
+                href={ROUTES.admin_registration.path}
             />
+            <MenuItem
+                icon={<AppointmentIcon />}
+                title={ROUTES.admin_appointments.label}
+                href={ROUTES.admin_appointments.path}
+            />
+            <MenuItem icon={<SurveyIcon />} title={ROUTES.admin_surveys.label} href={ROUTES.admin_surveys.path} />
             <MenuItem
                 onClick={() => logout()}
                 icon={

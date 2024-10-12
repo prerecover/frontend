@@ -27,12 +27,6 @@ export default async function middleware(req: NextRequest) {
     const userToken = req.cookies.get('access_token')?.value;
     const path = req.nextUrl.pathname;
 
-    if (!publicRoutes.includes(path) && !userToken) {
-        return NextResponse.redirect(new URL('/login', req.nextUrl));
-    }
-    if (path.includes('clinicRegistration')) {
-        return NextResponse.next();
-    }
     if (path.includes('admin') && userToken) {
         const isStaff = await checkStaff(userToken);
         if (isStaff) {
@@ -40,6 +34,12 @@ export default async function middleware(req: NextRequest) {
         } else {
             return NextResponse.redirect(new URL('/', req.nextUrl));
         }
+    }
+    if (path.includes('clinicRegistration')) {
+        return NextResponse.next();
+    }
+    if (!publicRoutes.includes(path) && !userToken) {
+        return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
     if (userToken && (await checkStaff(userToken))) {
         return NextResponse.redirect(new URL('/admin/dashboard', req.nextUrl));

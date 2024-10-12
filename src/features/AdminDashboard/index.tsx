@@ -10,6 +10,7 @@ import SearchBlock from './search-block';
 import { gql, useQuery } from '@apollo/client';
 import Loader from '@/components/ui/loader';
 import { Search } from '../SearchBlock';
+import LinkStats from './links-stats';
 
 const STATS_QUERY = gql(`
 query Stats($chunk: Int!){
@@ -30,6 +31,10 @@ query Stats($chunk: Int!){
             createdSurvey
             totalCreatedUsers
             totalDeletedUsers
+        }
+        links {
+            totalGenerated
+            totalUsed
         }
     }
 }
@@ -68,7 +73,10 @@ export default function AdminDasboard({ data: searchData }: { data: Search }) {
                 <div className='flex flex-col gap-4 mt-4'>
                     <UsersStats usersStats={data.stats.users} />
                     <AppointmentStats appointmentStats={data.stats.appointments} />
-                    <ClinicStats clinicStats={data.stats.clinics} />
+                    <div className='flex gap-4'>
+                        <ClinicStats clinicStats={data.stats.clinics} />
+                        <LinkStats linkStats={data.stats.links} />
+                    </div>
                 </div>
             </div>
             <SearchBlock searchData={searchData} />

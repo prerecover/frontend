@@ -61,13 +61,21 @@ export const ROUTES = {
         path: '/admin/dashboard',
         label: 'Работа сайта',
     },
-    admin_administrator: {
-        path: '/admin/administrator',
-        label: 'Администратор',
+    admin_registration: {
+        path: '/admin/registrations',
+        label: 'Регистрация',
+    },
+    admin_appointments: {
+        path: '/admin/appointments',
+        label: 'Записи',
+    },
+    admin_surveys: {
+        path: '/admin/surveys',
+        label: 'Опрос',
     },
     main: {
         path: '/',
-        label: 'О здоровье',
+        label: 'Рекомендации',
     },
     registration: {
         path: '/registration',
