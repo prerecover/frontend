@@ -26,7 +26,11 @@ export default function AppointmentMainCard({ appointment }: { appointment: IApp
                 className={appointment.status !== 'Pending' ? 'hidden' : ''}
             />
 
-            <div className={cn(`flex flex-col relative`, appointment.status === 'Pending' && 'hidden')}>
+            <div
+                className={cn(
+                    `flex flex-col relative border-[1px] border-blue-100 rounded-[12px] border-solid`,
+                    appointment.status === 'Pending' && 'hidden',
+                )}>
                 {appointment.status == 'Rejected' ? (
                     <Text className='text-red-400 text-[38px] absolute z-40 bottom-28 right-44' position='center'>
                         Отказано

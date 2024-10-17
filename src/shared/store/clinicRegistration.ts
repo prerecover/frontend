@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { IService } from '../types/service.interface';
-import { IDoctor } from '../types/doctor.interface';
 
 interface IDataStore {
     name: string;

@@ -1,48 +1,31 @@
-import DoctorSearchCard from '@/entities/Doctor/DoctorSearchCard';
 import { History } from '.';
 import { SearchDataWrapper } from '@/components/searchDataWrapper';
-import ClinicSearchCard from '@/entities/Clinic/ClinicSearchCard';
-import AppointmentHistoryCard from '@/entities/Appointment/AppointmentHistroryCard';
+import AppointmentMainCard from '@/entities/Appointment/AppointmentMainCard';
+import SurveyHistoryCard from '@/entities/Survey/SurveyHistoryCard';
 
 export default function HistoryList({ filter, search, data }: { filter: string; search: string; data: History }) {
     return (
-        <>
-            {filter == 'doctors' ? (
-                <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.doctors.length || 0}>
-                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 '>
-                        {data.doctors
-                            .filter((doctor) =>
-                                Object.values(doctor).some((value) => {
+        <div>
+            {filter == 'surveys' ? (
+                <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.surveys.length || 0}>
+                    <div className='grid grid-cols-1 gap-[10px] slider:grid-cols-2'>
+                        {data.surveys
+                            .filter((survey) =>
+                                Object.values(survey).some((value) => {
                                     if (typeof value === 'string') {
                                         return value.toLowerCase().includes(search.toLowerCase());
                                     }
                                 }),
                             )
-                            .map((doctor) => (
-                                <DoctorSearchCard doctor={doctor} key={doctor._id} />
-                            ))}
-                    </div>
-                </SearchDataWrapper>
-            ) : filter == 'clinics' ? (
-                <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.clinics.length || 0}>
-                    <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
-                        {data.clinics
-                            .filter((clinic) =>
-                                Object.values(clinic).some((value) => {
-                                    if (typeof value === 'string') {
-                                        return value.toLowerCase().includes(search.toLowerCase());
-                                    }
-                                }),
-                            )
-                            .map((clinic) => (
-                                <ClinicSearchCard clinic={clinic} key={clinic._id} />
+                            .map((survey) => (
+                                <SurveyHistoryCard survey={survey} key={survey._id} />
                             ))}
                     </div>
                 </SearchDataWrapper>
             ) : filter == 'appointments' ? (
                 <>
                     <SearchDataWrapper listIsUndefined={data === undefined} listLength={data.appointments.length || 0}>
-                        <div className='grid grid-cols-1 gap-[10px] desktop:grid-cols-3 pc:grid-cols-4'>
+                        <div className='grid grid-cols-1 gap-[10px] slider:grid-cols-2'>
                             {data.appointments
                                 .filter((appointment) => appointment.timeStart < new Date().getTime())
                                 .filter((appointment) =>
@@ -53,7 +36,7 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
                                     }),
                                 )
                                 .map((appointment) => (
-                                    <AppointmentHistoryCard appointment={appointment} key={appointment._id} />
+                                    <AppointmentMainCard appointment={appointment} key={appointment._id} />
                                 ))}
                         </div>
                     </SearchDataWrapper>
@@ -61,6 +44,6 @@ export default function HistoryList({ filter, search, data }: { filter: string; 
             ) : (
                 <></>
             )}
-        </>
+        </div>
     );
 }

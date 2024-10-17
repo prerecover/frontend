@@ -10,6 +10,21 @@ export interface IAppointmentStats {
     acceptedAppointments: number;
     rejectedAppointments: number;
 }
+
+export interface ICalendarStats {
+    changeByCompany: number;
+    changeByClinic: number;
+    visitCalendar: number;
+    noVisitCalendar: number;
+    inProcessAppointments: number;
+}
+
+export interface IAdminStats {
+    approovedAppointments: number;
+    pendingAppointments: number;
+    inProcessAppointments: number;
+}
+
 export interface IClinicStats {
     totalClinics: number;
     totalCreated: number;

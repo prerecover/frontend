@@ -11,6 +11,8 @@ import { gql, useQuery } from '@apollo/client';
 import Loader from '@/components/ui/loader';
 import { Search } from '../SearchBlock';
 import LinkStats from './links-stats';
+import CalendarStats from './calendar-stats';
+import AdminStats from './admin-stats';
 
 const STATS_QUERY = gql(`
 query Stats($chunk: Int!){
@@ -31,6 +33,18 @@ query Stats($chunk: Int!){
             createdSurvey
             totalCreatedUsers
             totalDeletedUsers
+        }
+        admin {
+            approovedAppointments
+            inProcessAppointments
+            pendingAppointments
+        }
+        calendar {
+            changeByClinic
+            changeByCompany
+            inProcessAppointments
+            noVisitCalendar
+            visitCalendar
         }
         links {
             totalGenerated
@@ -77,6 +91,8 @@ export default function AdminDasboard({ data: searchData }: { data: Search }) {
                         <ClinicStats clinicStats={data.stats.clinics} />
                         <LinkStats linkStats={data.stats.links} />
                     </div>
+                    <CalendarStats calendarStats={data.stats.calendar} />
+                    <AdminStats adminStats={data.stats.admin} />
                 </div>
             </div>
             <SearchBlock searchData={searchData} />

@@ -4,49 +4,83 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 export default async function Page() {
-    const SURVEYS_QUERY = gql(`
-query Surveys {
-    surveys {
+    const ALL_APPOINTMENTS_QUERY = gql(`
+query AllAppointments{
+     allAppointments {
         _id
         createdAt
-        updatedAt
-        appointment {
-            _id
-            createdAt
-            status
-            timeStart
+        notify
+        timeStart
+        title
+        online
+        status
+        clinic{
             title
-            clinic {
-                title
-                _id
-            }
-            user {
-                _id
-                firstName
-                lastName
-                surname
-            }
         }
-        questions {
+        doctor{
+            specialization 
+            firstName 
+lastName
+            surname 
+            avatar
+        }
+        surveys{
             _id
-            createdAt
-            text
-            updatedAt
-            answers {
-                _id
-                createdAt
-                text
-                updatedAt
-            }
+        }
+        service{
+            duration
         }
     }
 }
     `);
-    const { data } = await getClient().query({ query: SURVEYS_QUERY });
+    //     const SURVEYS_QUERY = gql(`
+    // query Surveys {
+    //     surveys {
+    //         _id
+    //         createdAt
+    //         updatedAt
+    //         appointment {
+    //             _id
+    //             createdAt
+    //             status
+    //             timeStart
+    //             title
+    //             clinic {
+    //                 title
+    //                 _id
+    //             }
+    //             user {
+    //                 _id
+    //                 firstName
+    //                 lastName
+    //                 surname
+    //             }
+    //             doctor{
+    //                 firstName
+    //                 lastName
+    //                 surname
+    //             }
+    //         }
+    //         questions {
+    //             _id
+    //             createdAt
+    //             text
+    //             updatedAt
+    //             answers {
+    //                 _id
+    //                 createdAt
+    //                 text
+    //                 updatedAt
+    //             }
+    //         }
+    //     }
+    // }
+    //     `);
+    const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
     return (
         <>
             <Header title={['Администратор', 'Опросы']} />
-            <SurveyMain surveys={data.surveys} />
+            <SurveyMain appointments={data.allAppointments} />
         </>
     );
 }

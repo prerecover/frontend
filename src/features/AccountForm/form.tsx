@@ -134,11 +134,11 @@ export const FormBlock: FC = () => {
             toast({ title: 'Ваш возраст меньше 18 лет!', variant: 'destructive' });
             return;
         }
-        [lastName, firstName, login, sex, city, email, number].forEach((val) => {
-            if (val == '') {
-                toast({ title: `Указаны не все поля`, variant: 'destructive' });
-            }
-        });
+        // [lastName, firstName, login, sex, city, email, number].forEach((val) => {
+        //     if (val == '') {
+        //         toast({ title: `Указаны не все поля`, variant: 'destructive' });
+        //     }
+        // });
         mutate({
             variables: {
                 firstName,

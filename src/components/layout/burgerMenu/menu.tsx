@@ -2,7 +2,6 @@ import { ROUTES } from '@/shared/utils/paths';
 import { ReactElement } from 'react';
 import styles from './styles.module.scss';
 import { SearchIcon } from '@/icons';
-import { HeartIcon } from '@/icons/HeartIcon';
 import { RecomendationsIcon } from '@/icons/RecomendationsIcon';
 interface MenuData {
     label: string;

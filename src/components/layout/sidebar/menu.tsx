@@ -5,11 +5,11 @@ import { SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
 import { RecomendationsIcon } from '@/icons/RecomendationsIcon';
-import { useLogout } from '@/shared/lib/hooks/useLogout';
+// import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 export const UserMenu = () => {
     const { user } = useAuth();
-    const { logout } = useLogout();
+    // const { logout } = useLogout();
     return (
         <>
             <MenuItem icon={<RecomendationsIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />

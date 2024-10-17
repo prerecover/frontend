@@ -19,6 +19,7 @@ import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import ChangeAppointmentCard from '../ChangeAppointmentCard';
 import { cn } from '@/lib/utils';
+import { useBlurStore } from '@/shared/store/blurStore';
 
 const SET_STATUS_APPOINTMENT = gql(`
 mutation SetStatusAppointment ($_id: String!, $status: String!){
@@ -37,6 +38,7 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
         },
     });
     const [changeDate, setChangeDate] = useState(false);
+    const { setBlur } = useBlurStore();
     const dateAppointment = decodeDate(new Date(appointment.timeStart));
     const minutes =
         new Date(appointment.timeStart).getMinutes() < 10
@@ -51,15 +53,21 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
 
     const hangleDialog = () => {
         setFirstDialog(false);
+        setBlur(true);
         setShowSurveyDialog(true);
+    };
+
+    const handleChangeAppointment = () => {
+        setBlur(true);
+        setChangeDate(!changeDate);
     };
     console.log(appointment.status);
 
     return (
-        <>
+        <div>
             <ChangeAppointmentCard
                 appointment={appointment}
-                className={`${changeDate === false && 'hidden'}`}
+                className={`${changeDate === false && 'hidden '}`}
                 setChangeDate={setChangeDate}
             />
             <div className={cn('flex flex-col relative', changeDate === true && 'hidden')}>
@@ -117,7 +125,7 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
                                         </Button>
                                         <Button
                                             className='bg-yellow-400 w-full'
-                                            onClick={() => setChangeDate(!changeDate)}>
+                                            onClick={() => handleChangeAppointment()}>
                                             Изменить
                                         </Button>
                                     </>
@@ -172,6 +180,6 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

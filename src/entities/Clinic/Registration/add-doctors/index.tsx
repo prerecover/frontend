@@ -10,7 +10,7 @@ export default function AddDoctorsBlock({
     doctors,
     setDoctors,
 }: {
-    doctors: IDoctor[];
+    doctors: Partial<IDoctor>[];
     setDoctors: React.Dispatch<React.SetStateAction<Partial<IDoctor>[]>>;
 }) {
     const [search, setSearch] = useState('');

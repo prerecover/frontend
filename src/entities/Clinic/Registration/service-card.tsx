@@ -6,7 +6,6 @@ import { IDoctor } from '@/shared/types/doctor.interface';
 import { IService } from '@/shared/types/service.interface';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { useEffect, useState } from 'react';
-import DoctorCard from './doctor-card';
 import { useToast } from '@/components/ui/use-toast';
 import AddDoctorsBlock from './add-doctors';
 import { FilterBox } from '@/components/ui/filter-box';
@@ -14,7 +13,7 @@ import { FilterBox } from '@/components/ui/filter-box';
 export default function ServiceCard({
     fetch: fetchServices,
     serviceArray,
-    setFetch,
+    // setFetch,
 }: {
     serviceArray: Partial<IService>[];
     pos: number;
@@ -27,7 +26,7 @@ export default function ServiceCard({
     const [online, setOnline] = useState('Онлайн');
     const [doctors, setDoctors] = useState<Partial<IDoctor>[]>([]);
     const [duration, setDuration] = useState('');
-    const [count, setCount] = useState([new Date()]);
+    // const [count, setCount] = useState([new Date()]);
     const { toast } = useToast();
 
     const validate = () => {
@@ -48,10 +47,10 @@ export default function ServiceCard({
         return true;
     };
 
-    const addEl = () => {
-        setFetch(false);
-        setCount([...count, new Date()]);
-    };
+    // const addEl = () => {
+    //     setFetch(false);
+    //     setCount([...count, new Date()]);
+    // };
     useEffect(() => {
         if (fetchServices) {
             if (validate()) {

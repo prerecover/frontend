@@ -9,6 +9,18 @@ export interface IClinic extends ICommon {
     title: string;
     avatar?: string;
     address: string;
+    specialization: string;
+    startTime: number;
+    description?: string;
+    calendarLink?: string;
+    adminFirstName?: string;
+    adminLastName?: string;
+    adminNumber?: string;
+    endTime: number;
+    employees?: number;
+    workDays: string;
+    site?: string;
+    card?: string;
     rating: number;
     country?: ICountry;
     city?: string;

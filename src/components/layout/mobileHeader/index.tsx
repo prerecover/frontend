@@ -8,6 +8,7 @@ import { useBurgerMenu } from '@/shared/store/burgerMenu';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Text } from '@/components/ui/text';
+import userImg from '/public/assets/doctor.svg';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
 import { useNotifyStore } from '@/shared/store/notifyStore';
@@ -82,11 +83,24 @@ export default function MobileHeader({
                         ) : (
                             <></>
                         )}
-                        <div className='relative' onClick={() => setModalOpen(!modalOpen)}>
-                            <Image src={notifi} alt='notifications' width={24} height={24} />
-                            {haveUnread && (
-                                <div className='absolute bg-red-400 top-[2px] right-[3px] rounded-[50%] w-[5px] h-[5px]'></div>
-                            )}
+                        <div className='flex gap-4'>
+                            <div className='relative mt-1' onClick={() => setModalOpen(!modalOpen)}>
+                                <Image src={notifi} alt='notifications' width={24} height={24} />
+                                {haveUnread && (
+                                    <div className='absolute bg-red-400 top-[2px] right-[3px] rounded-[50%] w-[5px] h-[5px]'></div>
+                                )}
+                            </div>
+                            <div
+                                className='w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer'
+                                onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
+                                <Image
+                                    src={user?.avatar ? user?.avatar : userImg}
+                                    alt='avatar'
+                                    width={40}
+                                    height={40}
+                                    className='object-cover h-[40px]'
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -153,6 +167,17 @@ export default function MobileHeader({
                                 )}
                             </div>
                         </div>
+                    </div>
+                    <div
+                        className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer'
+                        onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
+                        <Image
+                            src={user?.avatar ? user?.avatar : userImg}
+                            alt='avatar'
+                            width={40}
+                            height={40}
+                            className='object-cover h-[40px]'
+                        />
                     </div>
                 </>
             )}

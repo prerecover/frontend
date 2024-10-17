@@ -1,11 +1,10 @@
-import { FC, MouseEventHandler, useState } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import { useSidebarStore } from '@/shared/store/sidebarStore';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import styles from './menuItem.module.scss';
-import Image from 'next/image';
 
 type Props = {
     href: string;

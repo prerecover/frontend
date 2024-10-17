@@ -8,6 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Script from 'next/script';
 import { Suspense } from 'react';
 import YandexMetrika from '@/components/yandexMetrica';
+import Blur from './blur';
 const montserrat = Montserrat({
     subsets: ['latin', 'cyrillic'],
     weight: ['400', '500', '600', '700'],
@@ -53,6 +54,7 @@ export default function RootLayout({
                     {children}
                     <Toaster />
                 </ApolloWrapper>
+                <Blur />
             </body>
             <script src='//code.jivo.ru/widget/PCxtgM4g4J' async></script>
         </html>

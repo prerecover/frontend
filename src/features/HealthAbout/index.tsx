@@ -1,15 +1,13 @@
 'use client';
 
-import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { Text } from '@/components/ui/text';
-import ProfitStats from './profit-stats';
-import Stats from './stats';
-import Image from 'next/image';
-import { FilterBtn } from '@/components/ui/filter-btn';
+// import ProfitStats from './profit-stats';
+// import Stats from './stats';
+// import Image from 'next/image';
+// import { FilterBtn } from '@/components/ui/filter-btn';
 import AppointmentHealthCard from '@/entities/Appointment/AppointmentHealthCard';
 
 export default function HealthAbout() {
-    const { user } = useAuth();
     return (
         <div className='desktop:mx-[180px] slider:mt-[20px] pc:mx-[520px]'>
             {/* <div className='flex flex-col bg-white p-4 rounded-[20px] pc:min-w-[600px]'> */}

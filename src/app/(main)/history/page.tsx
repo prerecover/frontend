@@ -15,24 +15,36 @@ query History {
             service{
                 duration
             }            
+            doctor {
+                firstName
+                surname
+                lastName
+                specialization
+}
+        availableDates {
+                _id
+                createdAt
+                date
+                updatedAt
+            }
         }
-        clinics {
+        surveys {
             _id
-            address
-            avatar
-            city
-            title
-        }
-        doctors {
-            _id
-            avatar
-            firstName
-            lastName
-            specialization
-            surname
-            workExp
-            country{
+            createdAt
+            passed
+            updatedAt
+            appointment {
+                _id
+                createdAt
+                duration
+                file
+                notify
+                online
+                specialCheck
+                status
+                timeStart
                 title
+                updatedAt
             }
         }
     }
@@ -40,12 +52,12 @@ query History {
     `);
     const { data } = await getClient().query({ query: HISTORY_QUERY });
     return (
-        <>
+        <div className='bg-white'>
             <MobileHeader />
             <Header title={['История пациента']} />
             <div className='p-4'>
                 <MainHistory data={data.history} />
             </div>
-        </>
+        </div>
     );
 }

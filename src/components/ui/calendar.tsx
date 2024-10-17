@@ -78,7 +78,6 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
         if (currentMonth === 11) {
             setCurrentMonth(0);
             setCurrentYear(currentYear + 1);
-            console.log(currentMonth);
             setDate(
                 new Date(
                     `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,
@@ -99,16 +98,13 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
         if (day === undefined) return;
 
         setCurrentDay(day);
-        console.log(day);
         setDate(
             new Date(
                 `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(day) ? '0' : ''}${day}`,
             ),
         );
-        console.log();
     };
     useEffect(() => {
-        console.log('rerender');
         setDate(
             new Date(
                 `${currentYear}-${currentMonth + 1 < 10 ? '0' : ''}${currentMonth + 1}-${zeroDays.includes(currentDay) ? '0' : ''}${currentDay}`,

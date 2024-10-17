@@ -2,15 +2,20 @@ import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { IQuestionAnswer, ISurveyQuestion } from '@/shared/types/survey.interface';
+import Image from 'next/image';
 
 export default function SurveyQuestion({
     pos,
     questions,
     fetch,
+    countList,
+    setCountList,
 }: {
     pos: number;
     questions: ISurveyQuestion[];
     fetch: boolean;
+    countList: Date[];
+    setCountList: React.Dispatch<React.SetStateAction<Date[]>>;
 }) {
     const [question, setQuestion] = useState('Как вы себя чувствуете после приема?');
     const [answers, setAnswers] = useState<IQuestionAnswer[]>([]);
@@ -31,9 +36,21 @@ export default function SurveyQuestion({
         console.log(answers);
     }, [answers]);
 
+    const handleDelete = () => {
+        const countEl = countList.at(pos - 1);
+        console.log(countEl);
+        const copyList = countList.filter((val) => val.getTime() !== countEl?.getTime());
+        console.log(copyList);
+        setCountList(countList);
+    };
+
     return (
         <div className='flex flex-col mt-[22px] cursor-pointer '>
-            <Text className='text-[16px] font-normal mb-[14px]'>Вопрос No {pos}</Text>
+            <div className='flex-between'>
+                <Text className='text-[16px] font-normal mb-[14px]'>Вопрос No {pos}</Text>
+                <Image src={'/assets/trash.svg'} width={22} height={22} alt='delete' onClick={() => handleDelete()} />
+            </div>
+
             <div className={` transform duration-300 ease-in-out`}>
                 <Input
                     value={question}
@@ -55,7 +72,7 @@ export default function SurveyQuestion({
                     ))}
                     <Input
                         placeholder='Добавить ответ + '
-                        className='cursor-pointer'
+                        className='cursor-pointer mb-4'
                         onClick={() => setAnswers([...answers, { text: 'Отлично' }])}
                     />
                 </div>

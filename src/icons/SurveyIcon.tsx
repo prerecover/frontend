@@ -9,8 +9,7 @@ export const SurveyIcon: FC<PropsWithClassName<PropsWithSize>> = ({ className, w
             className={className}
             viewBox='0 0 24 24'
             fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-            >
+            xmlns='http://www.w3.org/2000/svg'>
             <path
                 d='M16 2L8 2C4 2 2 4 2 8L2 21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z'
                 stroke='#0064FA'

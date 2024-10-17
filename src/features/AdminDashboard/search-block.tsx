@@ -3,7 +3,7 @@ import { FilterBtn } from '@/components/ui/filter-btn';
 import { SearchInput } from '@/components/ui/search-input';
 import { useState } from 'react';
 import { Search } from '../SearchBlock';
-import SearchList from '../SearchBlock/search-list';
+import AdminSearchList from './search-list';
 
 export default function SearchBlock({ searchData }: { searchData: Search }) {
     const [filter, setFilter] = useState('Услуги');
@@ -24,7 +24,7 @@ export default function SearchBlock({ searchData }: { searchData: Search }) {
                     <FilterBtn onClick={() => console.log('click')} />
                 </div>
                 <FilterBox data={filters} isSelect={filter} setIsSelect={setFilter} />
-                <SearchList filter={filterObj[filter]} search={search} data={searchData} />
+                <AdminSearchList filter={filterObj[filter]} search={search} data={searchData} />
             </div>
         </div>
     );

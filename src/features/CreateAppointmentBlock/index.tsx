@@ -1,34 +1,26 @@
 'use client';
-import { FilterBox } from '@/components/ui/filter-box';
-import { FilterBtn } from '@/components/ui/filter-btn';
+import { ICountry } from '@/shared/types/country.interface';
+import { Search } from '../SearchBlock';
 import { SearchInput } from '@/components/ui/search-input';
 import { ChangeEvent, useState } from 'react';
+import { FilterBtn } from '@/components/ui/filter-btn';
+import { FilterBox } from '@/components/ui/filter-box';
 import SearchList from './search-list';
-import { IClinic } from '@/shared/types/clinic.interface';
-import { IDoctor } from '@/shared/types/doctor.interface';
-import { IService } from '@/shared/types/service.interface';
 
-export type Search = {
-    clinics: IClinic[];
-    doctors: IDoctor[];
-    services: IService[];
-};
-
-export default function SearchBlock({ data }: { data: Search }) {
+export default function CreateAppointmentBlock({ data }: { countries: ICountry[]; data: Partial<Search> }) {
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('Услуги');
 
-    const filters = ['Услуги', 'Клиники', 'Врачи'];
+    const filters = ['Услуги', 'Клиники'];
     const filterObj = {
         [filters[1]]: 'clinics',
-        [filters[2]]: 'doctors',
         [filters[0]]: 'services',
     };
     const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
     return (
-        <>
+        <div className='p-4'>
             <div className='flex flex-col gap-4 flex-grow '>
                 <div className='flex gap-3 items-center '>
                     <SearchInput
@@ -39,7 +31,7 @@ export default function SearchBlock({ data }: { data: Search }) {
                     <FilterBtn onClick={() => console.log('click')} className='' />
                 </div>
                 <FilterBox
-                    className='max-w-[700px] my-0 mx-auto desktop:mx-0'
+                    className='max-w-[700px] my-0 mx-auto'
                     style={{ margin: '0 auto' }}
                     data={filters}
                     isSelect={filter}
@@ -47,6 +39,6 @@ export default function SearchBlock({ data }: { data: Search }) {
                 />
                 <SearchList filter={filterObj[filter]} search={search} data={data} />
             </div>
-        </>
+        </div>
     );
 }
