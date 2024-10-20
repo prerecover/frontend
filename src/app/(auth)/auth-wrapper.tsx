@@ -29,7 +29,7 @@ query GetMe {
             title
         }
         appointments{
-            title,
+            title
             timeStart
             duration
             clinic{
@@ -37,6 +37,13 @@ query GetMe {
                 _id
                 avatar
             }
+            survey{
+                _id
+                createdAt
+                passed
+                updatedAt
+            }
+            
         }
         login
         city

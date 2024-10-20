@@ -17,6 +17,8 @@ interface IDataStore {
     setCountry: (country: string) => void;
     city: string;
     setCity: (city: string) => void;
+    calendar: string;
+    setCalendar: (calendar: string) => void;
     address: string;
     setAddress: (address: string) => void;
     workdays: string[];
@@ -29,8 +31,6 @@ interface IDataStore {
     setAvatar: (avatar: any) => void;
     debet: string;
     setDebet: (debet: string) => void;
-    telegram: boolean;
-    setTelegram: (telegram: boolean) => void;
     services: Partial<IService>[];
     setServices: (services: Partial<IService>[]) => void;
 }
@@ -40,6 +40,7 @@ export const useClinicRegStore = create<IDataStore>()(
         name: '',
         number: '',
         email: '',
+        calendar: '',
         adminNumber: '',
         site: '',
         country: '',
@@ -50,8 +51,12 @@ export const useClinicRegStore = create<IDataStore>()(
         endTime: '',
         avatar: null,
         debet: '',
-        telegram: false,
         services: [],
+        setCalendar: (calendar: string) => {
+            set((state) => {
+                state.calendar = calendar;
+            });
+        },
         setServices: (services: Partial<IService>[]) => {
             set((state) => {
                 state.services = services;
@@ -120,11 +125,6 @@ export const useClinicRegStore = create<IDataStore>()(
         setAvatar: (avatar: any) => {
             set((state) => {
                 state.avatar = avatar;
-            });
-        },
-        setTelegram: (telegram: boolean) => {
-            set((state) => {
-                state.telegram = telegram;
             });
         },
     })),

@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 const REGISTER_CLINIC = gql(`
 mutation CreateService($registerData: RegisterClinicInput!){
@@ -27,12 +28,27 @@ mutation CreateService($registerData: RegisterClinicInput!){
 `);
 
 export default function RegistrationClinic({ countries, email }: { countries: ICountry[]; email: string }) {
-    const { workdays, startTime, name, endTime, country, address, adminNumber, site, city, debet, setDebet } =
-        useClinicRegStore();
+    const {
+        workdays,
+        startTime,
+        name,
+        endTime,
+        country,
+        address,
+        adminNumber,
+        site,
+        city,
+        debet,
+        setDebet,
+        calendar,
+        setCalendar,
+    } = useClinicRegStore();
     const { toast } = useToast();
 
     const router = useRouter();
     const [count, setCount] = useState([new Date()]);
+    const [calendarUse, setCaledarUse] = useState('Да');
+    const [checkCalendar, setCheckCalendar] = useState(false);
     const [fetch, setFetch] = useState(false);
     const [mutate] = useMutation(REGISTER_CLINIC, {
         onCompleted() {
@@ -65,6 +81,7 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                             address,
                             adminNumber,
                             city,
+                            calendar,
                             site,
                             card: debet,
                             countryName: country,
@@ -105,17 +122,47 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                                 Используете ли вы электронный календарь для записи?
                             </Text>
                             <div className='flex'>
-                                <RadioGroup defaultValue='option-one' className='flex mt-3 gap-6'>
+                                <RadioGroup
+                                    defaultValue='Да'
+                                    className='flex mt-3 gap-6'
+                                    onValueChange={(e) => setCaledarUse(e)}>
                                     <div className='flex items-center space-x-2'>
-                                        <RadioGroupItem value='option-one' id='option-one' />
+                                        <RadioGroupItem value='Да' id='option-one' />
                                         <Label htmlFor='option-one'>Да</Label>
                                     </div>
                                     <div className='flex items-center space-x-2'>
-                                        <RadioGroupItem value='option-two' id='option-two' />
+                                        <RadioGroupItem value='Нет' id='option-two' />
                                         <Label htmlFor='option-two'>Нет</Label>
                                     </div>
                                 </RadioGroup>
                             </div>
+                            <div className={cn('flex flex-col mt-9', calendarUse == 'Нет' && 'hidden')}>
+                                <Text className='text-[18px] font-medium '>
+                                    Как вы будете сверять записи с нашего электронного календаря со своим электронным
+                                    календарем?
+                                </Text>
+                                <div className='flex'>
+                                    <RadioGroup
+                                        defaultValue='Будем сверять сами'
+                                        className='flex mt-3 gap-6'
+                                        onValueChange={() => setCheckCalendar(!checkCalendar)}>
+                                        <div className='flex items-center space-x-2'>
+                                            <RadioGroupItem value='Будем сверять сами' id='option-one' />
+                                            <Label htmlFor='option-one'>Будем сверять сами</Label>
+                                        </div>
+                                        <div className='flex items-center space-x-2'>
+                                            <RadioGroupItem value='Хотим чтобы сверяли вы' id='option-two' />
+                                            <Label htmlFor='option-two'>Хотим чтобы сверяли вы</Label>
+                                        </div>
+                                    </RadioGroup>
+                                </div>
+                            </div>
+                            <Input
+                                value={calendar}
+                                onChange={(e) => setCalendar(e.currentTarget.value)}
+                                placeholder='Введите свое ID календаря'
+                                className={cn('mt-3', !checkCalendar && 'hidden')}
+                            />
                         </div>
                         <div className='flex flex-col mt-9 gap-4 mb-[40px]'>
                             <div className='flex-between'>
@@ -124,7 +171,7 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                                     <Input
                                         value={debet}
                                         onChange={(e) => setDebet(e.currentTarget.value)}
-                                        type='number'
+                                        type=''
                                         className='w-[400px]'
                                         placeholder='AAA - BBB - CCC'
                                     />

@@ -102,12 +102,18 @@ export default function ServiceCard({
                             placeholder='Описание'
                             onChange={(e) => setDescription(e.currentTarget.value)}
                         />
-                        <Input
-                            placeholder='Цена'
-                            required={true}
-                            value={price}
-                            onChange={(e) => setPrice(e.currentTarget.value)}
-                        />
+                        <div className='flex'>
+                            <Input
+                                placeholder='Цена'
+                                required={true}
+                                value={price}
+                                className='rounded-tr-[0px]'
+                                onChange={(e) => setPrice(e.currentTarget.value)}
+                            />
+                            <Text className='border-solid border-[1px] border-blue-100 m-auto w-[80px] h-full flex-center rounded-tr-[12px] rounded-br-[12px] font-medium'>
+                                UZS
+                            </Text>
+                        </div>
                         <div className='flex gap-4'>
                             <FilterBox data={['Онлайн', 'Оффлайн']} isSelect={online} setIsSelect={setOnline} />
                         </div>

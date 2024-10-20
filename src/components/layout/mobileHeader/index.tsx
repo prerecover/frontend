@@ -91,7 +91,7 @@ export default function MobileHeader({
                                 )}
                             </div>
                             <div
-                                className='w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer'
+                                className='w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden'
                                 onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
                                 <Image
                                     src={user?.avatar ? user?.avatar : userImg}
@@ -167,17 +167,17 @@ export default function MobileHeader({
                                 )}
                             </div>
                         </div>
-                    </div>
-                    <div
-                        className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer'
-                        onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
-                        <Image
-                            src={user?.avatar ? user?.avatar : userImg}
-                            alt='avatar'
-                            width={40}
-                            height={40}
-                            className='object-cover h-[40px]'
-                        />
+                        <div
+                            className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer '
+                            onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
+                            <Image
+                                src={user?.avatar ? user?.avatar : userImg}
+                                alt='avatar'
+                                width={40}
+                                height={40}
+                                className='object-cover h-[40px]'
+                            />
+                        </div>
                     </div>
                 </>
             )}

@@ -19,7 +19,7 @@ export interface IAppointment extends ICommon {
     clinic: IClinic;
     doctor: IDoctor;
     duration: number;
-    surveys: ISurvey[];
+    survey: ISurvey;
     availableDates: IAvailableDate[];
 
     service: IService;

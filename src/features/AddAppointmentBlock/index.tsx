@@ -22,6 +22,7 @@ import { DoughnutBlock } from '@/entities/Clinic/ClinicMain/doughnut-block';
 import NewsListDesktop from '@/entities/Common/news-desktop';
 import AppointmentPopupDesktop from './desktop-popup';
 import CalendarBlock from './calendar-block';
+import { IDoctor } from '@/shared/types/doctor.interface';
 
 const CREATE_APPOINTMENT = gql(`
 mutation CreateAppointment ($clinicId: String!, $doctorId: String!, $online: Boolean, $serviceId: String!, $timeStart: Date!, $duration: Int!){
@@ -97,7 +98,6 @@ export default function AddAppointmentBlock() {
         const { hours, minutes } = parseTime(time);
         date.setHours(hours, minutes);
 
-        date.setHours(date.getHours() - 3);
         console.log(service?.doctors![0]._id);
         doctorId == 'empty' && setDoctorId((service?.doctors && service?.doctors[0]._id) || '');
         mutate({
@@ -222,7 +222,11 @@ export default function AddAppointmentBlock() {
                     </>
                 )}
                 {service?.doctors && (
-                    <SelectDoctor doctors={service?.doctors} currentDoctor={doctorId} setCurrentDoctor={setDoctorId} />
+                    <SelectDoctor
+                        doctors={service?.doctors as IDoctor[]}
+                        currentDoctor={doctorId}
+                        setCurrentDoctor={setDoctorId}
+                    />
                 )}
                 <CalendarBlock handleAppointment={handleAppointment} setTime={setTime} time={time} setDate={setDate} />
             </div>

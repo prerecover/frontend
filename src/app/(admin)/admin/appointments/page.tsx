@@ -23,7 +23,7 @@ lastName
             surname 
             avatar
         }
-        surveys{
+        survey{
             _id
         }
         service{

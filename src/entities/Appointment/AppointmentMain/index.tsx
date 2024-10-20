@@ -49,7 +49,7 @@ export default function AppointmentMain({ appointment }: { appointment: IAppoint
                         </div>
                     </div>
                     <div className='flex flex-col w-full mobile:hidden'>
-                        <Profit />
+                        <Profit survey={appointment.survey} />
                     </div>
                 </div>
                 <div className='flex gap-4'>

@@ -91,7 +91,7 @@ export default function NotificationModal() {
     return (
         <div
             className={cn(
-                `mobile:w-dvw mobile:h-dvh w-[466px] h-fit bg-white rounded-[12px] z-40 desktop:absolute desktop:right-10`,
+                `mobile:w-dvw mobile:h-dvh w-[466px] h-fit bg-white rounded-[12px] absolute z-40 desktop:right-10 desktop`,
                 !isOpen && 'hidden',
             )}>
             <div className='flex-between p-[32px]'>

@@ -1,10 +1,14 @@
 import BoxWrapper from '@/components/ui/box-wrapper';
+import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
+import { ISurvey } from '@/shared/types/survey.interface';
 import { useEffect, useState } from 'react';
 
-export default function Profit({ withTitle = true }: { withTitle?: boolean }) {
+export default function Profit({ withTitle = true, survey }: { withTitle?: boolean; survey?: ISurvey }) {
     const [mobile, setMobile] = useState(false);
+    const totalQuestion = survey?.questions.length;
+    const passedQuestion = survey?.questions.filter((question) => question.answer?.text).length;
     useEffect(() => {
         setMobile(window.innerWidth <= 1023);
     }, []);
@@ -68,10 +72,21 @@ export default function Profit({ withTitle = true }: { withTitle?: boolean }) {
                             <Text type='p'>Опрос</Text>
                         </div>
                         <Text type='h1' className='text-[30px] font-medium'>
-                            0
+                            {passedQuestion}/{totalQuestion}
                         </Text>
                     </div>
-                    <div className='flex flex-col h-full laptop:bg-blue-100 pc:bg-blue-100 laptop:p-4 pc:p-4 '></div>
+                    <div className='flex flex-col h-full laptop:bg-blue-100 pc:bg-blue-100 laptop:p-4 pc:p-4 '>
+                        {survey?.questions.map((question) => (
+                            <div className='flex flex-col gap-3' key={question.text}>
+                                <Text className='text-[14px] font-semibold mt-2'>{question.text}</Text>
+                                <Input
+                                    value={question.answer?.text || ''}
+                                    disabled
+                                    className='bg-blue-100 border-solid border-[1px] border-blue-200'
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

@@ -10,6 +10,7 @@ export interface ISurveyQuestion {
     survey?: ISurvey;
     text: string;
     answers: IQuestionAnswer[];
+    answer?: IQuestionAnswer;
 }
 
 export interface ISurvey extends ICommon {

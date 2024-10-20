@@ -4,6 +4,7 @@ import ClinicAddAppmntCard from '@/entities/Clinic/ClinicAddAppmntCard';
 import ServiceAddAppmntCard from '@/entities/Service/ServiceAddAppmntCard';
 import { IService } from '@/shared/types/service.interface';
 import SelectDoctor from './select-doctor';
+import { IDoctor } from '@/shared/types/doctor.interface';
 
 export default function AppointmentPopupDesktop({
     service,
@@ -48,7 +49,7 @@ export default function AppointmentPopupDesktop({
             )}
             {service?.doctors && (
                 <SelectDoctor
-                    doctors={service.doctors}
+                    doctors={service.doctors as IDoctor[]}
                     currentDoctor={currDoctorId}
                     setCurrentDoctor={setCurrDoctorId}
                 />

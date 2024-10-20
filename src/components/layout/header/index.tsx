@@ -23,7 +23,7 @@ export default function Header({ title }: { title: string[] }) {
                 <div className='flex items-center gap-5'>
                     <NotificationsLink />
                     <div
-                        className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer'
+                        className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden'
                         onClick={() => push(`${user?._id ? '/account' : '/login'}`)}>
                         <Image
                             src={user?.avatar ? user?.avatar : userImg}

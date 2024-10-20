@@ -32,7 +32,25 @@ query Appointment ($_id: String!){
             treated
             title
         }
-    }
+        survey {
+            _id
+            createdAt
+            passed
+            updatedAt
+            questions {
+                _id
+                createdAt
+                text
+                updatedAt
+                answer {
+                    _id
+                    createdAt
+                    text
+                    updatedAt
+                }
+            }
+        }
+}
 }
 `);
 

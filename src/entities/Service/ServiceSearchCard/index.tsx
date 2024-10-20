@@ -10,7 +10,7 @@ export default function ServiceSearchCard({ service }: { service: IService }) {
     const router = useRouter();
     const duration = durationParse(service.duration);
     let doctors: string = '';
-    service?.doctors?.forEach((doctor) => (doctors += `${doctor.lastName} ${doctor.firstName.charAt(0)}., `));
+    service?.doctors?.forEach((doctor) => (doctors += `${doctor.lastName} ${doctor.firstName?.charAt(0)}., `));
     return (
         <>
             <BoxWrapper color='white' className='w-full border-blue-100'>
