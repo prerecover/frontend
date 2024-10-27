@@ -12,6 +12,7 @@ query History {
             _id
             timeStart
             title
+            status
             service{
                 duration
             }            
@@ -21,12 +22,6 @@ query History {
                 lastName
                 specialization
 }
-        availableDates {
-                _id
-                createdAt
-                date
-                updatedAt
-            }
         }
         surveys {
             _id

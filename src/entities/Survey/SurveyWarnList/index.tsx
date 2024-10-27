@@ -5,11 +5,10 @@ import SurveyWarn from './SurveyWarn';
 
 export default function SurveyWarnList() {
     const { user } = useAuth();
-    console.log(user.appointments);
     return (
         <div className='flex flex-col gap-1'>
             {user?.appointments
-                ?.filter((appointment) => appointment.survey)
+                ?.filter((appointment) => appointment.survey && !appointment.survey.passed)
                 .map((appointment) => <SurveyWarn survey={appointment.survey} key={appointment.timeStart} />)}
         </div>
     );

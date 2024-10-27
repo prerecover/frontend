@@ -6,7 +6,6 @@ import { IAppointment } from '@/shared/types/appointment.interface';
 import { gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
 
-import { motion } from 'framer-motion';
 import { TimeCiel } from '@/components/ui/time-ceil';
 import Image from 'next/image';
 import { useBlurStore } from '@/shared/store/blurStore';
@@ -85,11 +84,7 @@ export default function ChangeAppointmentCard({
         return { hours, minutes };
     };
     return (
-        <motion.div
-            initial={{ y: -300, opacity: 1 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 300, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 50 }}
+        <div
             className={cn(
                 'w-[988px] h-[740px] absolute z-[200] flex flex-col bg-white left-0 right-0 mx-auto rounded-[12px] p-8',
                 className,
@@ -158,6 +153,6 @@ export default function ChangeAppointmentCard({
                     )}
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

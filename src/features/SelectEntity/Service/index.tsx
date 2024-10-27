@@ -15,27 +15,6 @@ import { useRouter } from 'next/navigation';
 import { useSelectedServicesStore } from '@/shared/store/selectedServicesStore';
 import { useToast } from '@/components/ui/use-toast';
 
-const SELECT_SERVICES = gql(`
-mutation SelectServices($countryTitle: String!, $startPrice: Int!, $endPrice: Int!) {
-    selectServices(
-        selectServiceInput: { countryTitle: $countryTitle, startPrice: $startPrice, endPrice: $endPrice}
-    ) {
-        _id
-        createdAt
-        description
-        duration
-        img
-        offline
-        online
-        price
-        title
-        updatedAt
-    }
-}
-
-
-`);
-
 export default function SelectService({ countries }: { countries: ICountry[] }) {
     const { setServices } = useSelectedServicesStore();
     const router = useRouter();

@@ -5,11 +5,15 @@ import { cn } from '@/lib/utils';
 interface TimeCeilProps {
     value: string;
     time?: string;
+    visible?: boolean;
     setTime?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const TimeCiel: FC<TimeCeilProps> = ({ value = '09:30', setTime, time }) => {
+export const TimeCiel: FC<TimeCeilProps> = ({ value = '09:30', setTime, time, visible }) => {
     const handleClick = () => {
+        if (!visible) {
+            return;
+        }
         if (setTime) {
             setTime(value);
         } else {
@@ -20,6 +24,7 @@ export const TimeCiel: FC<TimeCeilProps> = ({ value = '09:30', setTime, time }) 
         <div
             className={cn(
                 'bg-white py-[10px] px-[19px] h-[37px] flex-center cursor-pointer rounded-[10px] border-solid border-[1px] border-grey-100',
+                !visible && 'opacity-25',
                 time == value && 'bg-blue',
             )}
             onClick={() => handleClick()}>

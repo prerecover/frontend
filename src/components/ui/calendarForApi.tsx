@@ -39,18 +39,15 @@ export const fullDays = ['Понедельник', 'Вторник', 'Среда
 interface ICalendare {
     width?: string;
     height?: string;
+    dates: Date[];
     isAccount?: boolean;
-    variant?: 'weekly' | 'yearly';
+    className?: string;
     setDate: React.Dispatch<React.SetStateAction<Date>>;
     borderColor?: string;
 }
-export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, isAccount = false }) => {
-    const { user } = useAuth();
-    const currentDate: Date = !isAccount
-        ? new Date()
-        : user.birthday
-          ? new Date(user.birthday)
-          : new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate());
+export const CalendarForApi: FC<ICalendare> = ({ width, height, borderColor, setDate, dates, className }) => {
+    console.log(dates);
+    const currentDate: Date = new Date();
     const [currentMonth, setCurrentMonth] = useState<number>(currentDate.getMonth());
     const [currentYear, setCurrentYear] = useState<number>(currentDate.getFullYear());
     const [currentDay, setCurrentDay] = useState<string>(currentDate.getDate().toString());
@@ -96,7 +93,8 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
 
     const zeroDays = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const handleSelectedDay = (day: string) => {
-        if (day === undefined) return;
+        if (day === undefined || !dates.map((day) => day.getDate().toString()).includes(day || '')) return;
+        else if (day === undefined || !dates.map((date) => date.getMonth()).includes(currentMonth)) return;
 
         setCurrentDay(day);
         setDate(
@@ -150,11 +148,13 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
     };
 
     const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+    console.log(dates.map((day) => day.getMonth()));
+    console.log(currentMonth);
 
     return (
         <div>
             <div
-                className='max-w-full bg-white rounded-[16px] p-7 h-max'
+                className={cn('max-w-full bg-white rounded-[16px] p-7 h-max', className)}
                 style={{
                     width,
                     height,
@@ -202,9 +202,14 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
                                 style={day === undefined ? { cursor: '' } : { cursor: 'pointer' }}
                                 className={cn(
                                     today == day &&
-                                        currentMonth == new Date().getMonth() &&
-                                        'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
+                                    currentMonth == new Date().getMonth() &&
+                                    'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
                                     'w-[40px] h-[40px] flex-center m-auto',
+                                    !dates.map((date) => date.getDate().toString()).includes(day || '') &&
+                                    'bg-none opacity-25',
+                                    !dates.map((date) => date.getMonth()).includes(currentMonth) &&
+                                    'bg-none opacity-25',
+
                                     currentDay == day && 'bg-blue rounded-[12px] text-white',
                                 )}
                                 key={i}

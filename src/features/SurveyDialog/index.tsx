@@ -54,7 +54,7 @@ export default function SurveyDialog({ appointment }: { appointment: IAppointmen
     }, [questions, fetch]);
     const handleReg = () => {
         setFetch(true);
-        appointment.surveys.push({ questions, _id: '123', createdAt: 1080, updatedAt: 1090 });
+        appointment.survey = { questions, _id: '123', createdAt: 1080, updatedAt: 1090, passed: false };
     };
     return (
         <Dialog open={showSurveyDialog} onOpenChange={() => handleChangeOpen()}>

@@ -1,18 +1,26 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
+import { useBlurStore } from '@/shared/store/blurStore';
+import { useSurveyUserWindowStore } from '@/shared/store/surveyWindowUserStore';
 import { ISurvey } from '@/shared/types/survey.interface';
 import { fullTime } from '@/shared/utils/formatDate';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function SurveyWarn({ survey }: { survey: ISurvey }) {
-    const router = useRouter();
+    const { setBlur } = useBlurStore();
+    const { setSurvey, setSurveyUserWindowOpen } = useSurveyUserWindowStore();
     const [open, setOpen] = useState<boolean>(false);
     const { hours, minutes, day, year, month } = fullTime(new Date(survey.createdAt));
     const title = `${day}.${month}.${year.toString().slice(2, 4)} / ${hours}:${minutes}`;
     console.log(title);
+
+    const handleSurveyOpen = () => {
+        setBlur(true);
+        setSurveyUserWindowOpen(true);
+        setSurvey(survey);
+    };
     return (
         <div
             className={cn(
@@ -51,10 +59,7 @@ export default function SurveyWarn({ survey }: { survey: ISurvey }) {
                         Для лучшего изучения вашего организма наши специалисты придумали способ в виде прохождения
                         опроса последней записи
                     </Text>
-                    <Button
-                        variant={'outline'}
-                        className='text-white border-white'
-                        onClick={() => router.push('/appointments')}>
+                    <Button variant={'outline'} className='text-white border-white' onClick={() => handleSurveyOpen()}>
                         Перейти в опрос
                     </Button>
                 </div>

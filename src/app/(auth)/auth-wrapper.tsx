@@ -42,6 +42,14 @@ query GetMe {
                 createdAt
                 passed
                 updatedAt
+                questions {
+                    _id
+                    text
+                    answers {
+                        _id
+                        text
+                    }
+                }
             }
             
         }

@@ -10,6 +10,7 @@ export default function AppointmentWarnList() {
         <div className='flex flex-col gap-1'>
             {user?.appointments
                 ?.filter((appointment) => new Date(appointment.timeStart).getTime() - new Date().getTime() > 0)
+                ?.filter((appointment) => appointment.status === 'Approoved')
                 ?.filter((appointment) => fullTime(new Date(appointment.timeStart)).day - fullTime(new Date()).day <= 3)
                 .map((appointment) => <AppointmentsWarn appointment={appointment} key={appointment.timeStart} />)}
         </div>

@@ -16,4 +16,5 @@ export interface ISurveyQuestion {
 export interface ISurvey extends ICommon {
     appointment?: IAppointment;
     questions: ISurveyQuestion[];
+    passed: boolean;
 }
