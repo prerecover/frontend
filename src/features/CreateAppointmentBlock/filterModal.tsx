@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { InputOTP, InputOTPSlot } from '@/components/ui/input-otp';
+// import { InputOTP, InputOTPSlot } from '@/components/ui/input-otp';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
@@ -19,26 +19,26 @@ import { gql, useMutation } from '@apollo/client';
 import { useSelectedClinicsStore } from '@/shared/store/selectedClinicsStore';
 import { MultiRange } from '@/components/ui/multi-range';
 
-const SELECT_SERVICES = gql(`
-mutation SelectServices($countryTitle: String!, $startPrice: Int!, $endPrice: Int!) {
-    selectServices(
-        selectServiceInput: { countryTitle: $countryTitle, startPrice: $startPrice, endPrice: $endPrice}
-    ) {
-        _id
-        createdAt
-        description
-        duration
-        img
-        offline
-        online
-        price
-        title
-        updatedAt
-    }
-}
-
-
-`);
+// const SELECT_SERVICES = gql(`
+// mutation SelectServices($countryTitle: String!, $startPrice: Int!, $endPrice: Int!) {
+//     selectServices(
+//         selectServiceInput: { countryTitle: $countryTitle, startPrice: $startPrice, endPrice: $endPrice}
+//     ) {
+//         _id
+//         createdAt
+//         description
+//         duration
+//         img
+//         offline
+//         online
+//         price
+//         title
+//         updatedAt
+//     }
+// }
+//
+//
+// `);
 
 const SELECT_CLINICS = gql(`
 mutation SelectClinics($countryTitle: String!, $online: Boolean!, $offline: Boolean!) {
@@ -64,12 +64,12 @@ export default function FilterModal({ countries }: { countries: ICountry[] }) {
     const { setClinics } = useSelectedClinicsStore();
     const [country, setCountry] = useState<string>('Выберите страну');
     const [city, setCity] = useState<string>('');
-    const [exp, setExp] = useState<string>('1');
+    // const [exp, setExp] = useState<string>('1');
     const [mutate, { data, loading }] = useMutation(SELECT_CLINICS);
     const [online, setOnline] = useState<boolean>(true);
     const [offline, setOffline] = useState<boolean>(true);
     const [distance, setDistance] = useState<number[]>([100]);
-    const [treatTotal, setTreatTotal] = useState<string>('1000');
+    // const [treatTotal, setTreatTotal] = useState<string>('1000');
     const rangesData = ['Помощь в лечении', 'Ответственность', 'Точность в расчетах', 'Точность в лечении'];
     const [startPrice, setStartPrice] = useState<string>('500');
     const [endPrice, setEndPrice] = useState<string>('5000');

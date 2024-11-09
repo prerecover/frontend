@@ -21,7 +21,7 @@ export const SliderHeader: FC<Props> = ({ title, swiperRef, withArrows }) => {
     };
 
     return (
-        <div className='flex-between gap-4 mb-3 slider:mb-[10px]'>
+        <div className='flex-between gap-4 mb-3 slider:mb-[10px] not_found:hidden'>
             {title && (
                 <h3 className='text-[12px] font-semibold text-grey-700 slider:text-[14px] slider:font-medium '>
                     {title}

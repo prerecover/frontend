@@ -1,19 +1,41 @@
 import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 import { gql, useMutation } from '@apollo/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import { useBlurStore } from '@/shared/store/blurStore';
-import { Calendar } from '@/components/ui/calendar';
 import { CalendarForApi } from '@/components/ui/calendarForApi';
 import { IAppointment } from '@/shared/types/appointment.interface';
 import { TimeCiel } from '@/components/ui/time-ceil';
-const SET_DATES = gql(`
-mutation SetAvailableDates ($availableInput: AvailableDateInput!){
-    setAvailableDates(availableDateInput: $availableInput)
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+const times = [
+    '09:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:30',
+    '17:00',
+    '17:30',
+    '18:00',
+    '18:30',
+    '19:00',
+    '19:30',
+    '20:00',
+    '20:30',
+    '21:00',
+];
+const CHANGE_DATE = gql(`
+mutation ChangeDate ($appointmentId: String!, $timeStart: Date!){
+    changeDate(appointmentId: $appointmentId, timeStart: $timeStart)
 }
-
 `);
 
 export default function ChangeAppointmentCard({
@@ -28,18 +50,38 @@ export default function ChangeAppointmentCard({
     appointment: IAppointment;
 }) {
     const { setBlur } = useBlurStore();
-    const [mutate] = useMutation(SET_DATES, {
+    const [mutate] = useMutation(CHANGE_DATE, {
         onCompleted() {
-            appointment.status = 'Pending';
+            toast({ title: 'Время успешно перенесено', variant: 'positive' });
+            location.reload();
+            appointment.status = 'In process';
         },
     });
-    const [date, setDate] = useState(new Date());
     const [time, setTime] = useState('');
-
+    const { toast } = useToast();
+    const availableDatesList = appointment.availableDates.map((avDate) => new Date(avDate.date));
+    const [date, setDate] = useState(new Date());
     const handleClose = () => {
         setBlur(false);
         setShow(false);
     };
+
+    const handleMutate = () => {
+        const copyDate = date;
+        copyDate.setHours(parseInt(time.slice(0, 2)));
+        copyDate.setMinutes(parseInt(time.slice(3, 5)));
+        mutate({ variables: { appointmentId: appointment._id, timeStart: copyDate } });
+    };
+
+    const checkCeil = (ceil: string) => {
+        const copyDate = date;
+        copyDate.setHours(parseInt(ceil.slice(0, 2)));
+        copyDate.setMinutes(parseInt(ceil.slice(3, 5)));
+        return availableDatesList.map((dateEl) => dateEl.getTime()).includes(copyDate.getTime());
+    };
+    useEffect(() => {
+        setTime('');
+    }, [date]);
 
     return (
         <div
@@ -61,33 +103,19 @@ export default function ChangeAppointmentCard({
                             onClick={() => handleClose()}
                         />
                     </div>
-                    <CalendarForApi
-                        className='mx-auto'
-                        setDate={setDate}
-                        dates={appointment.availableDates.map((apDate) => new Date(apDate.date))}
-                    />
+                    <CalendarForApi className='mx-auto' setDate={setDate} dates={availableDatesList} />
                     <div className='grid grid-cols-4 desktop:grid-cols-5 gap-3'>
-                        <TimeCiel value='09:30' setTime={setTime} time={time} />
-                        <TimeCiel value='10:00' setTime={setTime} time={time} />
-                        <TimeCiel value='10:30' setTime={setTime} time={time} />
-                        <TimeCiel value='11:00' setTime={setTime} time={time} />
-                        <TimeCiel value='11:30' setTime={setTime} time={time} />
-                        <TimeCiel value='13:30' setTime={setTime} time={time} />
-                        <TimeCiel value='14:00' setTime={setTime} time={time} />
-                        <TimeCiel value='14:30' setTime={setTime} time={time} />
-                        <TimeCiel value='15:00' setTime={setTime} time={time} />
-                        <TimeCiel value='15:30' setTime={setTime} time={time} />
-                        <TimeCiel value='16:00' setTime={setTime} time={time} />
-                        <TimeCiel value='16:30' setTime={setTime} time={time} />
-                        <TimeCiel value='17:00' setTime={setTime} time={time} />
-                        <TimeCiel value='17:30' setTime={setTime} time={time} />
-                        <TimeCiel value='18:30' setTime={setTime} time={time} />
-                        <TimeCiel value='19:00' setTime={setTime} time={time} />
-                        <TimeCiel value='19:30' setTime={setTime} time={time} />
-                        <TimeCiel value='20:00' setTime={setTime} time={time} />
-                        <TimeCiel value='20:30' setTime={setTime} time={time} />
-                        <TimeCiel value='21:00' setTime={setTime} time={time} />
+                        {times.map((ceil) => (
+                            <TimeCiel
+                                time={time}
+                                setTime={setTime}
+                                visible={checkCeil(ceil) && true}
+                                value={ceil}
+                                key={ceil}
+                            />
+                        ))}
                     </div>
+                    <Button onClick={() => handleMutate()}>Изменить</Button>
                 </div>
             </div>
         </div>

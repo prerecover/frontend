@@ -68,7 +68,17 @@ export default function BurgerMenu() {
                                         {item.icon}
                                         <Text type='p'>{item.label}</Text>
                                     </div>
-                                    <Image src={arrowRight} alt='go to' width={24} height={24} priority />
+                                    <div className='flex gap-1'>
+                                        {item.path === '/history' && user.historyStudied === true && (
+                                            <Image
+                                                src='/assets/history-study.svg'
+                                                width={24}
+                                                height={24}
+                                                alt='history studie'
+                                            />
+                                        )}
+                                        <Image src={arrowRight} alt='go to' width={24} height={24} priority />
+                                    </div>
                                 </div>
                             </li>
                         ))}

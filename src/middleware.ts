@@ -15,20 +15,24 @@ query GetMe {
     }
 }
 `);
-    const { data, error } = await client.query({
-        query: GET_ME,
-        context: { headers: { Authorization: `Bearer ${token}` } },
-        fetchPolicy: 'no-cache',
-    });
-    if (error?.message === 'Token not found' || error?.message === 'Token no valid or expired') {
-        return NextResponse.redirect(new URL('/login', req.nextUrl));
+    try {
+        const { data } = await client.query({
+            query: GET_ME,
+            context: { headers: { Authorization: `Bearer ${token}` } },
+            fetchPolicy: 'no-cache',
+        });
+
+        return data.getMe.isStaff;
+    } catch {
+        req.cookies.delete('access_token');
+        return 'redirect';
     }
-    return data.getMe.isStaff;
 }
 
 export default async function middleware(req: NextRequest) {
     const userToken = req.cookies.get('access_token')?.value;
     const path = req.nextUrl.pathname;
+    const checkError = await checkStaff(userToken || '', req);
 
     if (path.includes('admin') && userToken) {
         const isStaff = await checkStaff(userToken, req);
@@ -41,10 +45,10 @@ export default async function middleware(req: NextRequest) {
     if (path.includes('clinicRegistration')) {
         return NextResponse.next();
     }
-    if (!publicRoutes.includes(path) && !userToken) {
+    if ((!publicRoutes.includes(path) && !userToken) || (!publicRoutes.includes(path) && checkError === 'redirect')) {
         return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
-    if (userToken && (await checkStaff(userToken, req))) {
+    if (userToken && checkError === true) {
         return NextResponse.redirect(new URL('/admin/dashboard', req.nextUrl));
     } else {
         return NextResponse.next();

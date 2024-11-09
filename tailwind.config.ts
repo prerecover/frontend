@@ -7,6 +7,7 @@ const config = {
     theme: {
         screens: {
             not_found: { max: '576px' },
+            reverse_not_found: { min: '576px' },
             open_sidebar: { min: '1024px', max: '1280' },
             closed_sidebar: { min: '1280px' },
             'layout-1024': { min: '1023px', max: '1279px' },

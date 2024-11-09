@@ -6,8 +6,7 @@ import { IService } from '@/shared/types/service.interface';
 import { gql } from '@apollo/client';
 
 async function getService(_id: string) {
-    const SERVICE_QUERY = gql(`
-query Service($serviceId: String!){
+    const SERVICE_QUERY = gql(` query Service($serviceId: String!){
     service(_id: $serviceId) {
         _id
         description
@@ -18,6 +17,7 @@ query Service($serviceId: String!){
         treated
         createdAt
         clinic {
+            createdAt
             _id
             title
             avatar

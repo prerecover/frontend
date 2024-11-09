@@ -12,7 +12,7 @@ interface InitialState {
 
 export const useSurveyUserWindowStore = create<InitialState>()(
     immer((set) => ({
-        surveyId: {},
+        survey: { _id: '', passed: false, createdAt: 0, questions: [], updatedAt: 0, appointment: undefined },
         setSurvey: (survey: ISurvey) => {
             set((state) => {
                 state.survey = survey;

@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { gql, useMutation } from '@apollo/client';
 import { useToast } from '@/components/ui/use-toast';
+import { getCookie } from '@/shared/lib/hooks/useCookie';
 
 const SURVEY_COMPELTE = gql(`
 mutation CompleteSurvey ($surveyData: [SurveyCompleteInput!]!, $surveyId: String!){
@@ -27,20 +28,24 @@ export interface SurveyCompleteInput {
 export default function SurveyUserMain() {
     const { setBlur } = useBlurStore();
     const { toast } = useToast();
+    const [token, setToken] = useState('');
     const { surveyUserWindowOpen, survey, setSurveyUserWindowOpen } = useSurveyUserWindowStore();
     const [surveyData, setSurveyData] = useState<SurveyCompleteInput[]>([]);
     const [progress, setProgress] = useState('start');
 
     useEffect(() => {
+        setToken(getCookie('access_token') || '');
         if (survey && surveyData.length === survey.questions.length) {
             setProgress('end');
         }
         if (survey && survey.questions.length - surveyData.length >= surveyData.length) {
             setProgress('medium');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [surveyData]);
 
     const [mutate] = useMutation(SURVEY_COMPELTE, {
+        context: { headers: { Authorization: `Bearer ${token}` } },
         onCompleted() {
             location.reload();
         },

@@ -7,51 +7,51 @@ import { Slider } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
 import { ICountry } from '@/shared/types/country.interface';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { MultiRange } from './multi-range';
-import { Button } from '@/components/ui/button';
-import { gql, useMutation } from '@apollo/client';
-import { useRouter } from 'next/navigation';
-import { useSelectedServicesStore } from '@/shared/store/selectedServicesStore';
-import { useToast } from '@/components/ui/use-toast';
+// import { Button } from '@/components/ui/button';
+// import { gql, useMutation } from '@apollo/client';
+// import { useRouter } from 'next/navigation';
+// import { useSelectedServicesStore } from '@/shared/store/selectedServicesStore';
+// import { useToast } from '@/components/ui/use-toast';
 
 export default function SelectService({ countries }: { countries: ICountry[] }) {
-    const { setServices } = useSelectedServicesStore();
-    const router = useRouter();
-    const [country, setCountry] = useState<string>('Выберите страну');
+    // const { setServices } = useSelectedServicesStore();
+    // const router = useRouter();
+    // const [country, setCountry] = useState<string>('Выберите страну');
     const [city, setCity] = useState<string>('');
     const [startPrice, setStartPrice] = useState<string>('500');
     const [endPrice, setEndPrice] = useState<string>('5000');
-    const [mutate, { data, loading }] = useMutation(SELECT_SERVICES, {
-        onError(error) {
-            toast({ title: error.message, description: error.extraInfo, variant: 'destructive' });
-        },
-    });
+    // const [mutate, { data, loading }] = useMutation(SELECT_SERVICES, {
+    //     onError(error) {
+    //         toast({ title: error.message, description: error.extraInfo, variant: 'destructive' });
+    //     },
+    // });
     const [online, setOnline] = useState<boolean>(true);
     const [offline, setOffline] = useState<boolean>(true);
     const [distance, setDistance] = useState<number[]>([100]);
-    const { toast } = useToast();
+    // const { toast } = useToast();
     const rangesData = ['Помощь в лечении', 'Ответственность', 'Точность в расчетах', 'Точность в лечении'];
 
-    useEffect(() => {
-        console.log('mutate');
-        mutate({
-            variables: {
-                countryTitle: country,
-                startPrice: parseInt(startPrice) || 10,
-                endPrice: parseInt(endPrice) || 100000,
-            },
-        });
-    }, [country, startPrice, endPrice, mutate]);
+    // useEffect(() => {
+    //     console.log('mutate');
+    //     mutate({
+    //         variables: {
+    //             countryTitle: country,
+    //             startPrice: parseInt(startPrice) || 10,
+    //             endPrice: parseInt(endPrice) || 100000,
+    //         },
+    //     });
+    // }, [country, startPrice, endPrice, mutate]);
 
-    const handleClick = () => {
-        setServices(data.selectServices);
-        router.push('/service/select/result');
-    };
+    // const handleClick = () => {
+    //     setServices(data.selectServices);
+    //     router.push('/service/select/result');
+    // };
     return (
         <div className='flex flex-col bg-white p-4'>
             <div className='flex flex-col gap-[22px] text-[16px] font-medium'>
-                <Select onValueChange={(value) => setCountry(value)}>
+                <Select>
                     <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 rounded-[8px] bg-[#fff]'>
                         <SelectValue placeholder='Страна' />
                     </SelectTrigger>
@@ -114,10 +114,9 @@ export default function SelectService({ countries }: { countries: ICountry[] }) 
                 {rangesData.map((el) => (
                     <MultiRange title={el} key={el} />
                 ))}
-                {}
-                <Button onClick={handleClick}>
-                    {loading ? 'Загрузка...' : data ? `Найти(${data.selectServices.length})` : 'Найти'}{' '}
-                </Button>
+                {/* <Button onClick={handleClick}> */}
+                {/*     {loading ? 'Загрузка...' : data ? `Найти(${data.selectServices.length})` : 'Найти'}{' '} */}
+                {/* </Button> */}
             </div>
         </div>
     );

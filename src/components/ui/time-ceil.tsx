@@ -9,7 +9,7 @@ interface TimeCeilProps {
     setTime?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const TimeCiel: FC<TimeCeilProps> = ({ value = '09:30', setTime, time, visible }) => {
+export const TimeCiel: FC<TimeCeilProps> = ({ value = '09:30', setTime, time, visible = true }) => {
     const handleClick = () => {
         if (!visible) {
             return;

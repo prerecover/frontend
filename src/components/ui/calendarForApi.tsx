@@ -3,7 +3,6 @@ import { FC, useEffect, useState } from 'react';
 import { Text } from './text';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/app/(auth)/auth-wrapper';
 
 export const months = [
     'Январь',
@@ -46,7 +45,6 @@ interface ICalendare {
     borderColor?: string;
 }
 export const CalendarForApi: FC<ICalendare> = ({ width, height, borderColor, setDate, dates, className }) => {
-    console.log(dates);
     const currentDate: Date = new Date();
     const [currentMonth, setCurrentMonth] = useState<number>(currentDate.getMonth());
     const [currentYear, setCurrentYear] = useState<number>(currentDate.getFullYear());
@@ -123,6 +121,15 @@ export const CalendarForApi: FC<ICalendare> = ({ width, height, borderColor, set
     //     }
     //     return days;
     // };
+    //
+    const checkDate = (day: string) => {
+        console.log(day, currentMonth);
+        console.log(dates.map((dateEl) => console.log(dateEl.getDate(), dateEl.getMonth())));
+        return (
+            dates.filter((dateEl) => dateEl.getDate() === parseInt(day) && dateEl.getMonth() === currentMonth).length >
+            0
+        );
+    };
 
     const getDaysInMonth = (year: number, month: number): (string | undefined)[] => {
         const startDate = new Date(year, month, 1);
@@ -202,13 +209,10 @@ export const CalendarForApi: FC<ICalendare> = ({ width, height, borderColor, set
                                 style={day === undefined ? { cursor: '' } : { cursor: 'pointer' }}
                                 className={cn(
                                     today == day &&
-                                    currentMonth == new Date().getMonth() &&
-                                    'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
+                                        currentMonth == new Date().getMonth() &&
+                                        'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
                                     'w-[40px] h-[40px] flex-center m-auto',
-                                    !dates.map((date) => date.getDate().toString()).includes(day || '') &&
-                                    'bg-none opacity-25',
-                                    !dates.map((date) => date.getMonth()).includes(currentMonth) &&
-                                    'bg-none opacity-25',
+                                    !checkDate(day || '') && 'bg-none opacity-25',
 
                                     currentDay == day && 'bg-blue rounded-[12px] text-white',
                                 )}

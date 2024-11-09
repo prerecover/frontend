@@ -1,5 +1,6 @@
 import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
+import RecentSlider from '@/components/recentSwiper';
 import AppointmentWarnList from '@/entities/Appointment/AppointmentWarnList';
 import SurveyUserMain from '@/entities/Survey/SurveyUserMain';
 import SurveyWarnList from '@/entities/Survey/SurveyWarnList';
@@ -57,11 +58,14 @@ query Search {
     return (
         <>
             <SurveyUserMain />
-            <Header title={['О здоровье']} />
+            <Header title={['Рекомендации']} />
             <MobileHeader />
+            <div className='p-7'>
+                <RecentSlider data={data.search} />
+            </div>
             <AppointmentWarnList />
             <SurveyWarnList />
-            <RecomendationsBlock data={data.search} />
+            <RecomendationsBlock recomendationsData={data.search} />
         </>
     );
 }

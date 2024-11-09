@@ -13,8 +13,11 @@ import { useRouter } from 'next/navigation';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
 import Image from 'next/image';
 import { formatDate } from '@/shared/utils/formatDate';
+import BoxWrapper from '@/components/ui/box-wrapper';
+import { cn } from '@/lib/utils';
+import { Param } from '@/entities/Common/UnionParams/param';
 export default function ServiceMain({ service }: { service: IService }) {
-    const filters = ['Общие параметры', 'Польза услуги'];
+    const filters = ['Показатели услуги', 'Польза услуги'];
     const [filter, setFilter] = useState('Общие параметры');
     const { setService } = useCurrServiceStore();
     const router = useRouter();
@@ -71,10 +74,27 @@ export default function ServiceMain({ service }: { service: IService }) {
                                 className='border-[1px] border-blue-200 mt-4'
                             />
                             {filter == 'Общие параметры' ? (
-                                <UnionParams
-                                    title={`Появление услуги: ${formatDate(new Date(service.createdAt))}`}
-                                    treated={service.treated}
-                                />
+                                <div className='flex gap-[14px] flex-col'>
+                                    <BoxWrapper
+                                        color='white'
+                                        className='mt-[18px] flex justify-center font-medium border-blue-200'>
+                                        <h1>Появление услуги: {formatDate(new Date(service.createdAt))}</h1>
+                                    </BoxWrapper>
+                                    <BoxWrapper color='white' className='w-full flex-center flex-col border-blue-200'>
+                                        <h1 className='font-medium text-[30px]'>32</h1>
+                                        <p className='font-medium text-[12px] text-grey-700'>Прошли лечение</p>
+                                    </BoxWrapper>
+                                    <BoxWrapper
+                                        color='white'
+                                        className={cn(
+                                            'grid grid-cols-2 gap-2 gap-y-[24px] mt-4 py-4 px-0 border-blue-200',
+                                        )}>
+                                        <Param title='64%' text='Помощь в лечении' />
+                                        <Param title='64%' text='Ответственность' />
+                                        <Param title='64%' text='Точность в расчетах' />
+                                        <Param title='64%' text='Точность в лечении' />
+                                    </BoxWrapper>
+                                </div>
                             ) : (
                                 <DoughnutBlock />
                             )}

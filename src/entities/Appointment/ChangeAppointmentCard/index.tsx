@@ -86,7 +86,8 @@ export default function ChangeAppointmentCard({
     return (
         <div
             className={cn(
-                'w-[988px] h-[740px] absolute z-[200] flex flex-col bg-white left-0 right-0 mx-auto rounded-[12px] p-8',
+                'w-[988px] h-[740px] absolute z-[310] flex flex-col bg-white left-0 right-0 mx-auto rounded-[12px] p-8',
+
                 className,
             )}>
             <div className='flex'>

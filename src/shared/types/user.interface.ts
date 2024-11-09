@@ -15,6 +15,7 @@ export interface IUser extends ICommon {
     city?: string;
     surname?: string;
     isStaff: boolean;
+    historyStudied: boolean;
     online: boolean;
     sex: boolean;
     isVerified: boolean;

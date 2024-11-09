@@ -20,6 +20,7 @@ query GetMe {
         avatar
         birthday
         createdAt
+        historyStudied
         email
         firstName
         isStaff
@@ -32,11 +33,13 @@ query GetMe {
             title
             timeStart
             duration
+            status
             clinic{
                 title
                 _id
                 avatar
             }
+        
             survey{
                 _id
                 createdAt
@@ -81,8 +84,8 @@ const INITIAL_USER: IUser = {
 const INITIAL_STATE = {
     user: INITIAL_USER,
     isAuth: false,
-    setUser: () => {},
-    setIsAuth: () => {},
+    setUser: () => { },
+    setIsAuth: () => { },
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);

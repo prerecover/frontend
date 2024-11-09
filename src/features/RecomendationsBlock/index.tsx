@@ -1,10 +1,11 @@
-import RecentSlider from '@/components/recentSwiper';
+'use client';
+import RecomendationSwiper from '@/components/recomendationSwiper';
 import { Search } from '../SearchBlock';
 
-export default function RecomendationsBlock({ data }: { data: Search }) {
+export default function RecomendationsBlock({ recomendationsData }: { recomendationsData: Search }) {
     return (
         <div className='flex flex-col p-7'>
-            <RecentSlider data={data} />
+            <RecomendationSwiper data={recomendationsData} />
         </div>
     );
 }
