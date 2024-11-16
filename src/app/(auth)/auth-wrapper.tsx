@@ -71,6 +71,7 @@ query GetMe {
 const INITIAL_USER: IUser = {
     _id: '',
     avatar: '',
+    historyStudied: false,
     address: '',
     updatedAt: 10,
     createdAt: 10,
@@ -84,8 +85,8 @@ const INITIAL_USER: IUser = {
 const INITIAL_STATE = {
     user: INITIAL_USER,
     isAuth: false,
-    setUser: () => { },
-    setIsAuth: () => { },
+    setUser: () => {},
+    setIsAuth: () => {},
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);

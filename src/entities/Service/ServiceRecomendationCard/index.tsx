@@ -9,9 +9,9 @@ import { Text } from '@/components/ui/text';
 
 export default function ServiceRecomendationCard({ service }: { service: IService }) {
     const router = useRouter();
-    const duration = durationParse(service.duration);
+    const duration = durationParse(service?.duration || 100);
     let doctors: string = '';
-    service?.doctors?.forEach((doctor) => (doctors += `${doctor.lastName} ${doctor.firstName?.charAt(0)}., `));
+    service?.doctors?.forEach((doctor) => (doctors += `${doctor?.lastName} ${doctor?.firstName?.charAt(0)}., `));
     return (
         <>
             <BoxWrapper
@@ -19,7 +19,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                 className='w-full border-blue-100 not_found:flex-center not_found:h-[90px] not_found:w-[134px]'>
                 <div
                     className='flex gap-3 cursor-pointer items-start justify-start not_found:hidden'
-                    onClick={() => router.push(`/service/${service._id}`)}>
+                    onClick={() => router.push(`/service/${service?._id}`)}>
                     <Image
                         src={service?.img || serviceAvatar}
                         width={60}
@@ -28,7 +28,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                         alt='doctor'
                     />
                     <div className='flex flex-col text-[16px] font-semibold gap-3 truncate'>
-                        <h4>{service.title}</h4>
+                        <h4>{service?.title}</h4>
                         <Characteristics
                             className='gap-2'
                             data={[
@@ -43,7 +43,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                                 },
                                 {
                                     key: 'Цена:',
-                                    value: `${service.price} сум`,
+                                    value: `${service?.price} сум`,
                                 },
                             ]}
                         />
@@ -57,7 +57,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                         className='rounded-full w-[40px] h-[40px]'
                         alt='doctor'
                     />
-                    <Text className='font-medium text-[14px] truncate'>{service.title}</Text>
+                    <Text className='font-medium text-[14px] truncate'>{service?.title}</Text>
                 </div>
             </BoxWrapper>
         </>

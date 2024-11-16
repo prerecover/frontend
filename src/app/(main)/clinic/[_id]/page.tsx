@@ -12,6 +12,7 @@ query Clinic($clinicId: String!){
         address
         avatar
         city
+        createdAt
         title
         treated
         services {

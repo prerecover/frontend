@@ -15,7 +15,7 @@ export default function DoctorRecomendationCard({ doctor }: { doctor: IDoctor })
                 className='w-full border-blue-100 h-fit not_found:h-[90px] not_found:flex-center not_found:w-[134px]'>
                 <div
                     className='flex gap-3 cursor-pointer not_found:hidden'
-                    onClick={() => router.push(`/doctor/${doctor._id}`)}>
+                    onClick={() => router.push(`/doctor/${doctor?._id}`)}>
                     <Image
                         src={doctor?.avatar || doctorAvatar}
                         width={100}
@@ -24,14 +24,14 @@ export default function DoctorRecomendationCard({ doctor }: { doctor: IDoctor })
                         alt='doctor'
                     />
                     <div className='flex flex-col text-[16px] font-semibold gap-3  '>
-                        <h4>{`${doctor.lastName} ${doctor.firstName.charAt(0) + '.'} ${doctor.surname?.charAt(0) + '.'}`}</h4>
+                        <h4>{`${doctor?.lastName} ${doctor?.firstName.charAt(0) + '.'} ${doctor?.surname?.charAt(0) + '.'}`}</h4>
 
                         <Characteristics
                             className='gap-2'
                             data={[
-                                { key: 'Страна:', value: doctor.country?.title || '-' },
-                                { key: 'Город:', value: doctor.city || '-' },
-                                { key: 'Специальность:', value: doctor.specialization || '-' },
+                                { key: 'Страна:', value: doctor?.country?.title || '-' },
+                                { key: 'Город:', value: doctor?.city || '-' },
+                                { key: 'Специальность:', value: doctor?.specialization || '-' },
                                 {
                                     key: 'Опыт работы:',
                                     value:
@@ -51,7 +51,7 @@ export default function DoctorRecomendationCard({ doctor }: { doctor: IDoctor })
                         className='rounded-full h-[40px] w-[40px] '
                         alt='doctor'
                     />
-                    <Text className='font-medium truncate text-[14px]'>{`${doctor.lastName} ${doctor.firstName.charAt(0) + '.'} ${doctor.surname?.charAt(0) + '.'}`}</Text>
+                    <Text className='font-medium truncate text-[14px]'>{`${doctor?.lastName} ${doctor?.firstName.charAt(0) + '.'} ${doctor?.surname?.charAt(0) + '.'}`}</Text>
                 </div>
             </BoxWrapper>
         </>

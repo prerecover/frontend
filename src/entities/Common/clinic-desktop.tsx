@@ -8,6 +8,7 @@ import { DoughnutBlock } from '@/entities/Clinic/ClinicMain/doughnut-block';
 import { usePathname } from 'next/navigation';
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { formatDate } from '@/shared/utils/formatDate';
+import { Text } from '@/components/ui/text';
 
 export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic; className?: string }) {
     const path = usePathname();
@@ -39,15 +40,35 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
                     </div>
                     <div className='flex gap-[14px] flex-col'>
                         <BoxWrapper color='white' className='mt-[18px] flex justify-center font-medium border-blue-200'>
-                            <h1>Опыт лечения: {formatDate(new Date(clinic?.createdAt || 0))}</h1>
+                            <h1>Опыт в лечении: {formatDate(new Date(clinic?.createdAt || 0))}</h1>
                         </BoxWrapper>
                         <BoxWrapper color='white' className='w-full flex-center flex-col border-blue-200'>
                             <h1 className='font-medium text-[30px]'>32</h1>
                             <p className='font-medium text-[12px] text-grey-700'>Лечилось всего</p>
                         </BoxWrapper>
+                        <BoxWrapper
+                            color='white'
+                            className='w-full flex flex-col border-blue-200 gap-6 px-[30px] py-[22px]'>
+                            <div className='flex-between'>
+                                <Text className='font-medium text-[18px] text-grey-700'>Помощь в лечении</Text>
+                                <Text className='font-medium text-[22px]'>64%</Text>
+                            </div>
+                            <div className='flex-between'>
+                                <Text className='font-medium text-[18px] text-grey-700'>Ответственность</Text>
+                                <Text className='font-medium text-[22px]'>88%</Text>
+                            </div>
+                            <div className='flex-between'>
+                                <Text className='font-medium text-[18px] text-grey-700'>Точность в рассчетах</Text>
+                                <Text className='font-medium text-[22px]'>77%</Text>
+                            </div>
+                            <div className='flex-between'>
+                                <Text className='font-medium text-[18px] text-grey-700'>Точность в лечении</Text>
+                                <Text className='font-medium text-[22px]'>90%</Text>
+                            </div>
+                        </BoxWrapper>
                     </div>
-                    <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1>
-                    <DoughnutBlock />
+                    {/* <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1> */}
+                    {/* <DoughnutBlock /> */}
                 </div>
             </div>
         </>

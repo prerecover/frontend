@@ -10,7 +10,7 @@ export default function ClinicSlideCard({ clinic }: { clinic: IClinic }) {
         <BoxWrapper color='white' className='w-full border-blue-100 flex gap-3'>
             <div
                 className='flex gap-3 cursor-pointer items-center'
-                onClick={() => router.push(`/clinic/${clinic._id}`)}>
+                onClick={() => router.push(`/clinic/${clinic?._id}`)}>
                 <Image
                     src={clinic?.avatar || '/assets/clinic.jpg'}
                     width={100}
@@ -21,13 +21,13 @@ export default function ClinicSlideCard({ clinic }: { clinic: IClinic }) {
             </div>
             <div className='flex flex-col'>
                 <div className='flex flex-col text-[16px] font-semibold gap-3  truncate '>
-                    <h4>{clinic.title}</h4>
+                    <h4>{clinic?.title}</h4>
                 </div>
                 <Characteristics
                     className='gap-2 mt-2'
                     data={[
                         { key: 'Страна:', value: clinic?.country?.title || '-' },
-                        { key: 'Город:', value: clinic.city || '-' },
+                        { key: 'Город:', value: clinic?.city || '-' },
                     ]}
                 />
             </div>

@@ -12,6 +12,9 @@ import { DoughnutBlock } from './doughnut-block';
 import ClinicDesktop from '@/entities/Common/clinic-desktop';
 import ServicesDesktop from '@/entities/Common/services-desktop';
 import DoctorsListDesktop from '@/entities/Common/doctors-list-desktop';
+import BoxWrapper from '@/components/ui/box-wrapper';
+import { Text } from '@/components/ui/text';
+import { Progress } from '@/components/ui/progress';
 
 export default function ClinicMain({ clinic }: { clinic: IClinic }) {
     const onlineServices = clinic.services?.filter((service) => service.online).length;
@@ -31,21 +34,6 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                         alt='clinic'
                         height={200}
                     />
-                    <Link
-                        className='absolute left-0 right-0 bottom-0 text-[12px] font-medium text-white py-[6px] px-4 bg-blue flex-between'
-                        href='/'>
-                        <p>Имеется запись на 24.01.24 / 09:00</p>
-
-                        <svg width='20' height='20' viewBox='0 0 20 20' fill='none'>
-                            <path
-                                d='M7.5 15L12.5 10L7.5 5'
-                                stroke='white'
-                                strokeWidth='1.5'
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                            />
-                        </svg>
-                    </Link>
                 </div>
                 <ClinicInfo clinic={clinic} />
                 <div className='flex items-center gap-2 mt-4 py-[16px] px-0'>
@@ -63,9 +51,57 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                     doctors={doctors}
                 />
                 <h1 className='mt-[24px] font-semibold text-[17px] leading-[20px]'>Общие показатели клиники</h1>
-                <UnionParams title='ОпcreatedAtыт в лечении: 3 года' treated={clinic.treated} />
-                <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1>
-                <DoughnutBlock />
+                <div className='flex w-full gap-[14px] '>
+                    <UnionParams title='Опыт в лечении: 3 года' treated={clinic.treated} createdAt={clinic.createdAt} />
+                    <div className='flex flex-col w-full'>
+                        <BoxWrapper
+                            color='white'
+                            className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col'>
+                            <div className='flex-between'>
+                                <Text>Рассчитанная польза</Text>
+                                <Text>42%</Text>
+                            </div>
+                            <Progress
+                                value={42}
+                                className='h-[10px]'
+                                color='bg-[#0064FA]'
+                                style={{ backgroundColor: '#C8DBF6' }}
+                            />
+                        </BoxWrapper>
+                        <BoxWrapper
+                            color='white'
+                            className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col'>
+                            <div className='flex-between'>
+                                <Text>Полученная польза услуги</Text>
+                                <Text>10%</Text>
+                            </div>
+                            <Progress
+                                value={10}
+                                className='h-[10px]'
+                                color='bg-[#00CC5E]'
+                                style={{ backgroundColor: '#E5FFF1' }}
+                            />
+                        </BoxWrapper>
+                    </div>
+                </div>
+                <BoxWrapper color='white' className='w-full grid grid-cols-2 border-blue-200 gap-8 px-[30px] py-[22px]'>
+                    <div className='flex-between'>
+                        <Text className='font-medium text-[18px] text-grey-700'>Помощь в лечении</Text>
+                        <Text className='font-medium text-[22px]'>64%</Text>
+                    </div>
+                    <div className='flex-between'>
+                        <Text className='font-medium text-[18px] text-grey-700'>Ответственность</Text>
+                        <Text className='font-medium text-[22px]'>88%</Text>
+                    </div>
+                    <div className='flex-between'>
+                        <Text className='font-medium text-[18px] text-grey-700'>Точность в рассчетах</Text>
+                        <Text className='font-medium text-[22px]'>77%</Text>
+                    </div>
+                    <div className='flex-between'>
+                        <Text className='font-medium text-[18px] text-grey-700'>Точность в лечении</Text>
+                        <Text className='font-medium text-[22px]'>90%</Text>
+                    </div>
+                </BoxWrapper>
             </div>
             <div className='flex mobile:hidden '>
                 <ClinicDesktop clinic={clinic} />

@@ -25,11 +25,10 @@ export default function AccountDesktopMenuItem({
                 </Text>
             </div>
             <div className='flex gap-4'>
-
-            {href == '/history' && user.historyStudied === true && (
-                <Image src='/assets/history-study.svg' width={20} height={20} alt='history studie' />
-            )}
-            <Image src={'/assets/arrow-right.svg'} width={16} height={16} alt='go to' />
+                {href == '/history' && user.historyStudied === true && (
+                    <Image src='/assets/history-study.svg' width={20} height={20} alt='history studie' />
+                )}
+                <Image src={'/assets/arrow-right.svg'} width={16} height={16} alt='go to' />
             </div>
         </Link>
     );

@@ -28,8 +28,8 @@ export default function ServiceSlideCard({ service }: { service: IService }) {
                     <Characteristics
                         className='gap-2 mt-4'
                         data={[
-                            { key: 'Клиника:', value: service.clinic.title },
-                            { key: 'Цена:', value: `${service.price.toString()} сум` },
+                            { key: 'Клиника:', value: service?.clinic?.title },
+                            { key: 'Цена:', value: `${service?.price.toString()} сум` },
                         ]}
                     />
                 </div>
