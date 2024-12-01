@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { formatDate } from '@/shared/utils/formatDate';
 import { Text } from '@/components/ui/text';
+import { Progress } from '@/components/ui/progress';
 
 export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic; className?: string }) {
     const path = usePathname();
@@ -26,7 +27,7 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
                     alt='clinic'
                     height={200}
                 />
-                <div className='p-4'>
+                <div className='p-4 '>
                     <ClinicInfo clinic={clinic} />
                     <div className='flex items-center gap-2 mt-4 py-[16px] px-0'>
                         {path.includes('doctor') && (
@@ -66,6 +67,36 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
                                 <Text className='font-medium text-[22px]'>90%</Text>
                             </div>
                         </BoxWrapper>
+                        <div className='flex flex-col w-full gap-1'>
+                            <BoxWrapper
+                                color='white'
+                                className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col h-[85px]'>
+                                <div className='flex-between'>
+                                    <Text>Рассчитанная польза</Text>
+                                    <Text>42%</Text>
+                                </div>
+                                <Progress
+                                    value={42}
+                                    className='h-[10px]'
+                                    color='bg-[#0064FA]'
+                                    style={{ backgroundColor: '#C8DBF6' }}
+                                />
+                            </BoxWrapper>
+                            <BoxWrapper
+                                color='white'
+                                className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col h-[85px]'>
+                                <div className='flex-between'>
+                                    <Text>Полученная польза услуги</Text>
+                                    <Text>10%</Text>
+                                </div>
+                                <Progress
+                                    value={10}
+                                    className='h-[10px]'
+                                    color='bg-[#00CC5E]'
+                                    style={{ backgroundColor: '#E5FFF1' }}
+                                />
+                            </BoxWrapper>
+                        </div>
                     </div>
                     {/* <h1 className='mt-6 font-medium text-[16px] leading-[20px]'>Польза услуг</h1> */}
                     {/* <DoughnutBlock /> */}

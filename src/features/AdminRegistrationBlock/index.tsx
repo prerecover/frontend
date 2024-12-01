@@ -36,13 +36,13 @@ export default function AdminRegistrationBlock({ clinics }: { clinics: IClinic[]
                         <TableHead className='w-[40px] text-[#606368]'>No</TableHead>
                         <TableHead>Название</TableHead>
                         <TableHead>Дата регистрации</TableHead>
-                        <TableHead>Номер администратора</TableHead>
-                        <TableHead>Ссылка на сайт</TableHead>
-                        <TableHead>Ссылка на эл календарь</TableHead>
+                        <TableHead>Телефон клиники</TableHead>
+                        <TableHead>Телефон администратора</TableHead>
                         <TableHead>Местоположение</TableHead>
                         <TableHead>Дни и время работы</TableHead>
-                        <TableHead>Платежная карта</TableHead>
-                        <TableHead>Количество услуг/врачей</TableHead>
+                        <TableHead>Всего врачей</TableHead>
+                        <TableHead>Всего услуг</TableHead>
+                        <TableHead>Ссылка на редактирование</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -59,13 +59,17 @@ export default function AdminRegistrationBlock({ clinics }: { clinics: IClinic[]
                                 <TableCell className='text-[#606368]'>{i + 1}</TableCell>
                                 <TableCell className='bg-white'>{clinic.title}</TableCell>
                                 <TableCell>{formatDate(new Date(clinic.createdAt))}</TableCell>
-                                <TableCell className='bg-white'>{clinic.adminNumber}</TableCell>
-                                <TableCell>{clinic.site}</TableCell>
-                                <TableCell className='bg-white'>{clinic.calendarLink}</TableCell>
-                                <TableCell>{clinic.address}</TableCell>
-                                <TableCell className='bg-white'>{clinic.workDays}</TableCell>
-                                <TableCell>{clinic.card}</TableCell>
-                                <TableCell className='bg-white'>10/15</TableCell>
+                                <TableCell className='bg-white'>{clinic.number}</TableCell>
+                                <TableCell>{clinic.detail?.adminNumber}</TableCell>
+                                <TableCell className='bg-white'>{clinic.address}</TableCell>
+                                <TableCell>Пока хуй знает</TableCell>
+                                <TableCell className='bg-white'>{clinic.detail?.totalDoctors}</TableCell>
+                                <TableCell>{clinic.detail?.totalServices}</TableCell>
+                                <TableCell className='bg-white'>
+                                    <Text className='text-blue' position='center'>
+                                        Редактировать
+                                    </Text>
+                                </TableCell>
                             </TableRow>
                         ))}
                 </TableBody>

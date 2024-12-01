@@ -9,7 +9,7 @@ export default function ClinicDoughnut({ clinicStats }: { clinicStats: IClinicSt
         datasets: [
             {
                 data: [clinicStats.totalCreated, clinicStats.totalDeleted],
-                backgroundColor: ['#0064FA', 'rgba(0, 100, 250, 0.7)'],
+                backgroundColor: ['#0064FA', '#D64657'],
                 borderColor: ['#fff'],
                 borderWidth: 5,
                 borderRadius: 7,
@@ -46,18 +46,18 @@ export default function ClinicDoughnut({ clinicStats }: { clinicStats: IClinicSt
         },
     };
     return (
-        <div className='flex items-center'>
+        <div className='flex flex-col items-center'>
             <div className='flex-center w-[185px] h-[185px]'>
                 <Doughnut data={data} options={options} plugins={[doughnutLabel]} />
             </div>
-            <div className='flex flex-col gap-[20px]'>
+            <div className='flex flex-col gap-[12px]'>
                 <div className='pl-[18px] relative text-[14px] font-medium flex items-center gap-3'>
                     <div className='rounded-full w-[10px] h-[10px] bg-[#0064FA] '></div>
                     <Text className='text-grey-700 text-[18px]'>Зарегистрировано</Text>
-                    <Text className='text-green text-[24px] font-semibold'>{clinicStats.totalCreated}</Text>
+                    <Text className='text-[#0064FA] text-[24px] font-semibold'>{clinicStats.totalCreated}</Text>
                 </div>
                 <div className='pl-[18px] relative text-[14px] font-medium flex items-center gap-3'>
-                    <div className='rounded-full w-[10px] h-[10px] bg-[#0064fab3]'></div>
+                    <div className='rounded-full w-[10px] h-[10px] bg-red-400'></div>
                     <Text className='text-grey-700 text-[18px]'>Удаленно</Text>
                     <Text className='text-red-400 text-[24px] font-semibold'>{clinicStats.totalDeleted}</Text>
                 </div>

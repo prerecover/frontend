@@ -51,12 +51,12 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                     doctors={doctors}
                 />
                 <h1 className='mt-[24px] font-semibold text-[17px] leading-[20px]'>Общие показатели клиники</h1>
-                <div className='flex w-full gap-[14px] '>
+                <div className='flex w-full gap-[14px] mb-[14px] '>
                     <UnionParams title='Опыт в лечении: 3 года' treated={clinic.treated} createdAt={clinic.createdAt} />
-                    <div className='flex flex-col w-full'>
+                    <div className='flex flex-col w-full gap-1'>
                         <BoxWrapper
                             color='white'
-                            className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col'>
+                            className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col h-[85px]'>
                             <div className='flex-between'>
                                 <Text>Рассчитанная польза</Text>
                                 <Text>42%</Text>
@@ -70,7 +70,7 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
                         </BoxWrapper>
                         <BoxWrapper
                             color='white'
-                            className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col'>
+                            className='rounded-[12px] border-[1px] border-blue-200 p-4 mt-2 gap-4 flex flex-col h-[85px]'>
                             <div className='flex-between'>
                                 <Text>Полученная польза услуги</Text>
                                 <Text>10%</Text>

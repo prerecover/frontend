@@ -1,8 +1,8 @@
 export interface IUsersStats {
     totalCreatedUsers: number;
     totalDeletedUsers: number;
-    createdSurvey: number;
     completedSurvey: number;
+    totalUsers: number;
 }
 export interface IAppointmentStats {
     totalAppointments: number;
@@ -11,18 +11,11 @@ export interface IAppointmentStats {
     rejectedAppointments: number;
 }
 
-export interface ICalendarStats {
-    changeByCompany: number;
-    changeByClinic: number;
-    visitCalendar: number;
-    noVisitCalendar: number;
-    inProcessAppointments: number;
-}
-
 export interface IAdminStats {
+    inProcessAppointments: number;
     approovedAppointments: number;
     pendingAppointments: number;
-    inProcessAppointments: number;
+    inProcessSurveys: number;
 }
 
 export interface IClinicStats {
@@ -30,14 +23,9 @@ export interface IClinicStats {
     totalCreated: number;
     totalDeleted: number;
 }
-export interface ILinkStats {
-    totalGenerated: number;
-    totalUsed: number;
-}
 
 export interface IStatsMain {
     users: IUsersStats;
     appointments: IAppointmentStats;
     clinics: IClinicStats;
-    links: ILinkStats;
 }

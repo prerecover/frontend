@@ -14,11 +14,13 @@ export default function UnionParams({
 }) {
     return (
         <>
-            <div className='flex gap-[14px] mt-[11px] flex-col w-full '>
-                <BoxWrapper color='white' className='w-full flex-center justify-center font-medium border-blue-200'>
+            <div className='flex gap-[14px] flex-col w-full h-full mt-2'>
+                <BoxWrapper
+                    color='white'
+                    className='w-full flex-center justify-center font-medium border-blue-200 h-[85px]'>
                     <h1>Опыт в лечении: {formatDate(new Date(createdAt || 0))}</h1>
                 </BoxWrapper>
-                <BoxWrapper color='white' className='w-full flex-center flex-col border-blue-200'>
+                <BoxWrapper color='white' className='w-full flex-center flex-col border-blue-200 h-[85px]'>
                     <h1 className='font-medium text-[30px]'>{treated}</h1>
                     <p className='font-medium text-[12px] text-grey-700'>Лечилось всего</p>
                 </BoxWrapper>

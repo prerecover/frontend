@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import styles from './menuItem.module.scss';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
 
 type Props = {
     href: string;
@@ -16,6 +17,7 @@ type Props = {
 
 export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) => {
     const pathname = usePathname();
+    const { user } = useAuth();
     const { isOpenSidebar } = useSidebarStore();
     return (
         <>
