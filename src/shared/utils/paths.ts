@@ -77,6 +77,10 @@ export const ROUTES = {
         path: '/',
         label: 'Рекомендации',
     },
+    appointments: {
+        path: '/appointments',
+        label: 'Записи'
+    },
     registration: {
         path: '/registration',
         label: 'Регистрация',
@@ -116,10 +120,6 @@ export const ROUTES = {
     payments: {
         path: '/payments',
         label: 'Платежи',
-    },
-    notes: {
-        path: '/appointments',
-        label: 'Записи',
     },
     notifications: {
         path: '/notifications',

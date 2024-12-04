@@ -1,7 +1,7 @@
 import { MenuItem } from './menuItem';
 
 import { ROUTES } from '@/shared/utils/paths';
-import { SearchIcon } from '@/icons';
+import { HistoryIcon, SavedIcon, SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
 import { RecomendationsIcon } from '@/icons/RecomendationsIcon';
@@ -12,35 +12,23 @@ export const UserMenu = () => {
     // const { logout } = useLogout();
     return (
         <>
-            <MenuItem icon={<RecomendationsIcon />} title={ROUTES.main.label} href={ROUTES.main.path} />
-
             <MenuItem
                 icon={<SearchIcon width={20} height={20} />}
                 title={ROUTES.search.label}
                 href={ROUTES.search.path}
             />
+            <MenuItem icon={<AppointmentIcon/>} title={ROUTES.appointments.label} href={ROUTES.appointments.path} />
+
             <MenuItem
-                icon={<AppointmentIcon width={20} height={20} />}
-                title={ROUTES.notes.label}
-                href={user._id ? ROUTES.notes.path : '/login'}
+                icon={<HistoryIcon width={20} height={20} />}
+                title={ROUTES.history.label}
+                href={user._id ? ROUTES.history.path : '/login'}
             />
             <MenuItem
-                icon={
-                    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                        <circle cx='13.8' cy='10.1984' r='7.175' stroke='#0064FA' strokeWidth='1.25' />
-                        <circle cx='10.1984' cy='13.8' r='7.175' fill='white' stroke='#0064FA' strokeWidth='1.25' />
-                        <path
-                            d='M7.80078 16.8816H10.2008M12.6008 10.7216H10.2008M10.2008 10.7216H9.20078C8.42758 10.7216 7.80078 11.3484 7.80078 12.1216V12.1216C7.80078 12.8948 8.42758 13.5216 9.20078 13.5216H10.9208C11.8486 13.5216 12.6008 14.2737 12.6008 15.2016V15.2016C12.6008 16.1294 11.8486 16.8816 10.9208 16.8816H10.2008M10.2008 10.7216V9.60156M10.2008 16.8816V18.0016'
-                            stroke='#0064FA'
-                            strokeWidth='1.25'
-                            strokeMiterlimit='10'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                        />
-                    </svg>
+                icon={<SavedIcon width={20} height={20}/>
                 }
-                title={ROUTES.payments.label}
-                href={user._id ? ROUTES.payments.path : '/login'}
+                title={ROUTES.saved.label}
+                href={user._id ? ROUTES.saved.path : '/login'}
             />
             {/* <MenuItem */}
             {/*     onClick={() => logout()} */}

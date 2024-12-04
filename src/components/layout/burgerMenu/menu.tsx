@@ -36,8 +36,8 @@ export const menuData: MenuDataProps = {
             icon: <SearchIcon width={20} height={20} className={styles.icon} />,
         },
         {
-            label: ROUTES.notes.label,
-            path: ROUTES.notes.path,
+            label: ROUTES.appointments.label,
+            path: ROUTES.appointments.path,
             icon: (
                 <svg
                     width={20}
