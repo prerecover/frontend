@@ -7,6 +7,7 @@ import { NotificationsLink } from '@/components/notification/NotificationLink';
 import Image from 'next/image';
 import userImg from '/public/assets/doctor.svg';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
+import { Button } from '@/components/ui/button';
 
 export default function Header({ title }: { title: string[] }) {
     const { isOpenSidebar } = useSidebarStore();
@@ -20,6 +21,7 @@ export default function Header({ title }: { title: string[] }) {
                     isOpenSidebar ? 'pl-[274px]' : 'pl-[116px]',
                 )}>
                 <HeaderLink paths={title} />
+                {user._id ? 
                 <div className='flex items-center gap-5'>
                     <NotificationsLink />
                     <div
@@ -34,6 +36,7 @@ export default function Header({ title }: { title: string[] }) {
                         />
                     </div>
                 </div>
+                : <Button onClick={() => push('/login')}>Войти</Button>}
             </header>
         </>
     );

@@ -12,6 +12,8 @@ import userImg from '/public/assets/doctor.svg';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
 import { useNotifyStore } from '@/shared/store/notifyStore';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function MobileHeader({
     className,
@@ -45,6 +47,7 @@ export default function MobileHeader({
                         className='cursor-pointer'>
                         <Image src={isOpen ? burgerClose : burger} alt='burger' width={24} height={24} />
                     </div>
+                    {user._id ? 
                     <div className='flex items-center'>
                         {pathname == '/appointments' ? (
                             <Image
@@ -103,6 +106,8 @@ export default function MobileHeader({
                             </div>
                         </div>
                     </div>
+                    : <Link href='/login' className='text-blue font-semibold'>Войти</Link>}
+
                 </div>
             ) : (
                 <>
