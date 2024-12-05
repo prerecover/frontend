@@ -8,7 +8,6 @@ import styles from './menuItem.module.scss';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import Image from 'next/image';
 import { Text } from '@/components/ui/text';
-import { useRouter } from 'next/navigation';
 
 type Props = {
     href: string;
@@ -23,7 +22,6 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
     const [showAdminClinicsBlock, setShow] = useState(false);
     const { user } = useAuth();
     const { isOpenSidebar } = useSidebarStore();
-    const router = useRouter()
     return (
         <>
             <Link
@@ -35,6 +33,7 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                     !isOpenSidebar && 'w-[52px] h-[52px]',
                 )}
                 href={href}
+                onMouseLeave={() => setShow(false)}
                 onMouseEnter={() => setShow(true)}
                 onClick={onClick}>
                 <div className='flex gap-4'>
@@ -49,20 +48,31 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                     </span>
                 </div>
                 {href === '/admin/clinics' && (
-                <>
-                    <Image src={'/assets/arrow-right.svg'} width={20} height={20} alt='go to' className='opacity-25' />
-                <div className={cn('flex absolute w-fit h-auto bg-white ml-[255px] left-0 flex-col py-4 px-8 gap-8', !showAdminClinicsBlock && href === '/admin/clinics' && 'hidden')}
-
-                onMouseLeave={() => setShow(false)}
-
-                        >
-
-                    <Text onClick={() => router.push('/admin/registration')} className='hover:text-blue text-dark'>Регистрация</Text>
-                    <Text onClick={() => router.push('/admin/clinics')} className='hover:text-blue text-dark'>Клиники</Text>
-                </div>
-                </>
+                    <>
+                        <Image
+                            src={'/assets/arrow-right.svg'}
+                            width={20}
+                            height={20}
+                            alt='go to'
+                            className='opacity-25'
+                        />
+                    </>
                 )}
             </Link>
+            <div
+                onMouseLeave={() => setShow(false)}
+                onMouseEnter={() => setShow(true)}
+                className={cn(
+                    'flex absolute w-[240px] h-auto pl-[255px] bg-white left-60 flex-col py-4 px-12 gap-8 ',
+                    !showAdminClinicsBlock && 'hidden',
+                )}>
+                <Link href={'/admin/registration'} className='hover:text-blue'>
+                    Регистрация
+                </Link>
+                <Link href={'/admin/clinics'} className='hover:text-blue'>
+                    Клиники
+                </Link>
+            </div>
         </>
     );
 };
