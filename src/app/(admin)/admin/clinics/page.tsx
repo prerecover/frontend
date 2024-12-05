@@ -1,5 +1,5 @@
 import Header from '@/components/layout/header';
-import AdminRegistrationBlock from '@/features/AdminRegistrationBlock';
+import AdminClinicsBlock from '@/features/AdminClinicsBlock';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
@@ -54,8 +54,8 @@ export default async function Page() {
     const { data } = await getClient().query({ query: ALL_CLINICS_QUERY });
     return (
         <>
-            <Header title={['Администратор', 'Регистрация']} />
-            <AdminRegistrationBlock clinics={data.clinics} />
+            <Header title={['Клиники']} />
+            <AdminClinicsBlock clinics={data.clinics} />
         </>
     );
 }

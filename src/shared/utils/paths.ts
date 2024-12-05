@@ -65,6 +65,10 @@ export const ROUTES = {
         path: '/admin/registrations',
         label: 'Регистрация',
     },
+    admin_clinics: {
+        path: '/admin/clinics',
+        label: 'Клиники',
+    },
     admin_appointments: {
         path: '/admin/appointments',
         label: 'Записи',

@@ -34,6 +34,7 @@ export default function Sidebar({ className }: { className?: string }) {
         };
 
         resizeWindow();
+        
 
         window.addEventListener('resize', resizeWindow);
 

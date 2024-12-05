@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Text } from '@/components/ui/text';
 
-export default function AdminRegistrationBlock({ clinics }: { clinics: IClinic[] }) {
+export default function AdminClinicsBlock({ clinics }: { clinics: IClinic[] }) {
     const [search, setSearch] = useState('');
     return (
         <div className='flex flex-col'>

@@ -1,5 +1,5 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { HeaderLink } from './linkName';
 import { cn } from '@/lib/utils';
 import { useSidebarStore } from '@/shared/store/sidebarStore';
@@ -11,7 +11,8 @@ import { Button } from '@/components/ui/button';
 
 export default function Header({ title }: { title: string[] }) {
     const { isOpenSidebar } = useSidebarStore();
-    const { user } = useAuth();
+    const { user,  isAuth } = useAuth();
+    const path = usePathname()
     const { push } = useRouter();
     return (
         <>
@@ -21,7 +22,7 @@ export default function Header({ title }: { title: string[] }) {
                     isOpenSidebar ? 'pl-[274px]' : 'pl-[116px]',
                 )}>
                 <HeaderLink paths={title} />
-                {user._id ? 
+                {isAuth || path.includes('admin')? 
                 <div className='flex items-center gap-5'>
                     <NotificationsLink />
                     <div
