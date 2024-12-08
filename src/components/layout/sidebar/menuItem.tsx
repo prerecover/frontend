@@ -63,10 +63,11 @@ export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) =
                 onMouseLeave={() => setShow(false)}
                 onMouseEnter={() => setShow(true)}
                 className={cn(
-                    'flex absolute w-[240px] h-auto pl-[255px] bg-white left-60 flex-col py-4 px-12 gap-8 ',
-                    !showAdminClinicsBlock && 'hidden',
+                    showAdminClinicsBlock && title == 'Клиники'
+                        ? 'flex absolute w-[240px] h-auto pl-[255px] bg-white left-60 top-[135px] flex-col py-4 px-12 gap-8 '
+                        : 'hidden',
                 )}>
-                <Link href={'/admin/registration'} className='hover:text-blue'>
+                <Link href={'/admin/registration'} className='hover:text-blue text-[16px]'>
                     Регистрация
                 </Link>
                 <Link href={'/admin/clinics'} className='hover:text-blue'>

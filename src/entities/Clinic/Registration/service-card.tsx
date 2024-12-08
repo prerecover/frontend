@@ -3,21 +3,24 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp
 import { Text } from '@/components/ui/text';
 import { Textarea } from '@/components/ui/textarea';
 import { IDoctor } from '@/shared/types/doctor.interface';
-import { IService } from '@/shared/types/service.interface';
+import { IService, IServiceCategory } from '@/shared/types/service.interface';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import AddDoctorsBlock from './add-doctors';
 import { FilterBox } from '@/components/ui/filter-box';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ServiceCard({
     fetch: fetchServices,
     serviceArray,
     // setFetch,
+    categories,
 }: {
     serviceArray: Partial<IService>[];
     pos: number;
     fetch: boolean;
+    categories: IServiceCategory[];
     setFetch: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const [price, setPrice] = useState('');
@@ -26,6 +29,7 @@ export default function ServiceCard({
     const [online, setOnline] = useState('Онлайн');
     const [doctors, setDoctors] = useState<Partial<IDoctor>[]>([]);
     const [duration, setDuration] = useState('');
+    const [category, setCategory] = useState<IServiceCategory | undefined>()
     // const [count, setCount] = useState([new Date()]);
     const { toast } = useToast();
 
@@ -58,6 +62,7 @@ export default function ServiceCard({
                     title,
                     price: parseInt(price),
                     description,
+                    category,
                     online: online == 'Онлайн',
                     duration: parseInt(duration),
                     offline: online !== 'Онлайн',
@@ -114,6 +119,20 @@ export default function ServiceCard({
                                 UZS
                             </Text>
                         </div>
+                        <Select onValueChange={(e) => setCategory(categories.find((el) => el.title === e))}>
+                            <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>
+                                {category === undefined && <Text className='text-grey'>Категория*</Text>}
+
+                                <SelectValue className='text-[20px]' />
+                            </SelectTrigger>
+                            <SelectContent className='bg-white rounded-[12px] flex flex-col gap-4'>
+                                {categories.map((category: IServiceCategory) => (
+                                    <SelectItem key={category._id} value={category.title} className='cursor-pointer'>
+                                        {category.title}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                         <div className='flex gap-4'>
                             <FilterBox data={['Онлайн', 'Оффлайн']} isSelect={online} setIsSelect={setOnline} />
                         </div>

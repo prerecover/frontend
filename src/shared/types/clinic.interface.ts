@@ -10,6 +10,7 @@ export interface IClinic extends ICommon {
     typeTitle?: string;
     avatar?: string;
     address: string;
+    ageClinic?: number;
     specialization: string;
 
     number?: string;

@@ -12,7 +12,15 @@ export interface IService extends ICommon {
     treated: number;
     price: number;
     doctors?: IDoctor[] | Partial<IDoctor>[];
+    category: IServiceCategory;
     clinic: IClinic;
     news?: INews[];
     img?: string;
+}
+
+export interface IServiceCategory{
+    _id: string;
+    slug: string;
+    title: string;
+    services?: IService[];
 }

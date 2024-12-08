@@ -3,78 +3,84 @@ import { immer } from 'zustand/middleware/immer';
 import { IService } from '../types/service.interface';
 
 interface IDataStore {
-    name: string;
-    setName: (name: string) => void;
-    email: string;
-    setEmail: (email: string) => void;
-    number: string;
-    setNumber: (number: string) => void;
+    title: string;
+    setTitle: (title: string) => void;
+    ageClinic: number | null;
+    setAgeClinic: (ageClinic: number) => void;
+    typeTitle: string;
+    setTypeTitle: (typeTitle: string) => void;
+    square: number | null;
+    setSquare: (square: number) => void;
     adminNumber: string;
     setAdminNumber: (adminNumber: string) => void;
-    site: string;
-    setSite: (site: string) => void;
+    numbers: string[];
+    setNumbers: (numbers: string[]) => void;
+    registryNumber: string;
+    setRegistryNumber: (registryNumber: string) => void;
+    language: string;
+    setLanguage: (language: string) => void;
+    computerHave: boolean;
+    setComputerHave: (computerHave: boolean) => void;
+    elevatorHave: boolean;
+    setElevatorHave: (elevatorHave: boolean) => void;
+    internetHave: boolean;
+    setInternetHave: (internetHave: boolean) => void;
+    numberOfFloors: number | null;
+    setNumberOfFloors: (numberOfFloors: number) => void;
+    totalDoctors: number;
+    setTotalDoctors: (totalDoctors: number) => void;
+    totalServices: number;
+    setTotalServices: (totalServices: number) => void;
+
     country: string;
     setCountry: (country: string) => void;
     city: string;
     setCity: (city: string) => void;
-    calendar: string;
-    setCalendar: (calendar: string) => void;
     address: string;
     setAddress: (address: string) => void;
-    workdays: string[];
-    setWorkdays: (workdays: string[]) => void;
-    startTime: string;
-    setStartTime: (startTime: string) => void;
-    endTime: string;
-    setEndTime: (endTime: string) => void;
-    avatar: any;
-    setAvatar: (avatar: any) => void;
-    debet: string;
-    setDebet: (debet: string) => void;
     services: Partial<IService>[];
     setServices: (services: Partial<IService>[]) => void;
 }
 
 export const useClinicRegStore = create<IDataStore>()(
     immer((set) => ({
-        name: '',
-        number: '',
-        email: '',
-        calendar: '',
+        title: '',
+        ageClinic: null,
+        typeTitle: '',
+        square: null,
         adminNumber: '',
-        site: '',
+        numbers: [],
+        registryNumber: '',
+        language: '',
+        computerHave: false,
+        elevatorHave: false,
+        internetHave: false,
+        numberOfFloors: null,
+        totalDoctors: 0,
+        totalServices: 0,
+        email: '',
         country: '',
         city: '',
         address: '',
-        workdays: [],
-        startTime: '',
-        endTime: '',
-        avatar: null,
-        debet: '',
         services: [],
-        setCalendar: (calendar: string) => {
+        setTitle: (title: string) => {
             set((state) => {
-                state.calendar = calendar;
+                state.title = title;
             });
         },
-        setServices: (services: Partial<IService>[]) => {
+        setAgeClinic: (ageClinic: number) => {
             set((state) => {
-                state.services = services;
+                state.ageClinic= ageClinic;
             });
         },
-        setName: (name: string) => {
+        setTypeTitle: (typeTitle: string) => {
             set((state) => {
-                state.name = name;
+                state.typeTitle = typeTitle;
             });
         },
-        setNumber: (number: string) => {
+        setSquare: (square: number) => {
             set((state) => {
-                state.number = number;
-            });
-        },
-        setEmail: (email: string) => {
-            set((state) => {
-                state.email = email;
+                state.square= square;
             });
         },
         setAdminNumber: (adminNumber: string) => {
@@ -82,9 +88,54 @@ export const useClinicRegStore = create<IDataStore>()(
                 state.adminNumber = adminNumber;
             });
         },
-        setSite: (site: string) => {
+        setNumbers: (numbers: string[]) => {
             set((state) => {
-                state.site = site;
+                state.numbers = numbers;
+            });
+        },
+        setRegistryNumber: (registryNumber: string) => {
+            set((state) => {
+                state.registryNumber = registryNumber;
+            });
+        },
+        setLanguage: (language: string) => {
+            set((state) => {
+                state.language = language;
+            });
+        },
+        setComputerHave: (computerHave: boolean) => {
+            set((state) => {
+                state.computerHave = computerHave;
+            });
+        },
+        setElevatorHave: (elevatorHave: boolean) => {
+            set((state) => {
+                state.elevatorHave = elevatorHave;
+            });
+        },
+        setInternetHave: (internetHave: boolean) => {
+            set((state) => {
+                state.internetHave= internetHave;
+            });
+        },
+        setNumberOfFloors: (numberOfFloors: number) => {
+            set((state) => {
+                state.numberOfFloors = numberOfFloors;
+            });
+        },
+        setTotalDoctors: (totalDoctors: number) => {
+            set((state) => {
+                state.totalDoctors = totalDoctors;
+            });
+        },
+        setTotalServices: (totalServices: number) => {
+            set((state) => {
+                state.totalServices = totalServices;
+            });
+        },
+        setServices: (services: Partial<IService>[]) => {
+            set((state) => {
+                state.services = services;
             });
         },
         setCountry: (country: string) => {
@@ -100,31 +151,6 @@ export const useClinicRegStore = create<IDataStore>()(
         setAddress: (address: string) => {
             set((state) => {
                 state.address = address;
-            });
-        },
-        setWorkdays: (workdays: string[]) => {
-            set((state) => {
-                state.workdays = workdays;
-            });
-        },
-        setStartTime: (startTime: string) => {
-            set((state) => {
-                state.startTime = startTime;
-            });
-        },
-        setEndTime: (endTime: string) => {
-            set((state) => {
-                state.endTime = endTime;
-            });
-        },
-        setDebet: (debet: string) => {
-            set((state) => {
-                state.debet = debet;
-            });
-        },
-        setAvatar: (avatar: any) => {
-            set((state) => {
-                state.avatar = avatar;
             });
         },
     })),

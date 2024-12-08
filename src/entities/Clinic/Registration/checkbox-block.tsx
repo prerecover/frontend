@@ -1,0 +1,67 @@
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Text } from '@/components/ui/text';
+import { useClinicRegStore } from '@/shared/store/clinicRegistration';
+
+export default function CheckboxBlock() {
+    const { computerHave, setComputerHave, elevatorHave, setElevatorHave, internetHave, setInternetHave } =
+        useClinicRegStore();
+    console.log(computerHave);
+    return (
+        <div className='flex-between'>
+            <div className='flex gap-[14px]'>
+                <Text className='font-medium text-[18px]'>Есть компьютер?</Text>
+                <div className='flex gap-2'>
+                    <RadioGroup
+                        defaultValue={computerHave === false ? 'Нет' : 'Да'}
+                        onValueChange={(e) => setComputerHave(!computerHave)}
+                        className='flex gap-2'>
+                        <div className='flex-center gap-3'>
+                            <RadioGroupItem value='Да' id='option-one' />
+                            <Text className='font-medium'>Да</Text>
+                        </div>
+                        <div className='flex-center gap-3'>
+                            <RadioGroupItem value='Нет' id='option-two' />
+                            <Text className='font-medium'>Нет</Text>
+                        </div>
+                    </RadioGroup>
+                </div>
+            </div>
+            <div className='flex gap-[14px]'>
+                <Text className='font-medium text-[18px]'>Есть лифт?</Text>
+                <div className='flex gap-2'>
+                    <RadioGroup
+                        defaultValue={elevatorHave === false ? 'Нет' : 'Да'}
+                        className='flex gap-2'
+                        onValueChange={(e) => setElevatorHave(!elevatorHave)}>
+                        <div className='flex-center gap-3'>
+                            <RadioGroupItem value='Да' id='option-one' />
+                            <Text className='font-medium'>Да</Text>
+                        </div>
+                        <div className='flex-center gap-3'>
+                            <RadioGroupItem value='Нет' id='option-two' />
+                            <Text className='font-medium'>Нет</Text>
+                        </div>
+                    </RadioGroup>
+                </div>
+            </div>
+            <div className='flex gap-[14px]'>
+                <Text className='font-medium text-[18px]'>Есть интернет?</Text>
+                <div className='flex gap-2'>
+                    <RadioGroup
+                        defaultValue={internetHave === false ? 'Нет' : 'Да'}
+                        className='flex gap-2'
+                        onValueChange={(e) => setInternetHave(!internetHave)}>
+                        <div className='flex-center gap-3'>
+                            <RadioGroupItem value='Да' id='option-one' />
+                            <Text className='font-medium'>Да</Text>
+                        </div>
+                        <div className='flex-center gap-3'>
+                            <RadioGroupItem value='Нет' id='option-two' />
+                            <Text className='font-medium'>Нет</Text>
+                        </div>
+                    </RadioGroup>
+                </div>
+            </div>
+        </div>
+    );
+}

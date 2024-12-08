@@ -1,6 +1,5 @@
 'use client';
 import { Text } from '@/components/ui/text';
-import DisabledBlock from './disabled-block';
 import LeftParams from './left-params';
 import RightParams from './right-params';
 import { useEffect, useState } from 'react';
@@ -11,13 +10,16 @@ import { Input } from '@/components/ui/input';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 import ServiceCard from './service-card';
 import { Button } from '@/components/ui/button';
-import { IService } from '@/shared/types/service.interface';
+import { IService, IServiceCategory } from '@/shared/types/service.interface';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import CheckboxBlock from './checkbox-block';
+import QuantityBlock from './quantity-block';
+import LocationBlock from './location-block';
 
 const REGISTER_CLINIC = gql(`
 mutation CreateService($registerData: RegisterClinicInput!){
@@ -27,28 +29,12 @@ mutation CreateService($registerData: RegisterClinicInput!){
     }
 `);
 
-export default function RegistrationClinic({ countries, email }: { countries: ICountry[]; email: string }) {
-    const {
-        workdays,
-        startTime,
-        name,
-        endTime,
-        country,
-        address,
-        adminNumber,
-        site,
-        city,
-        debet,
-        setDebet,
-        calendar,
-        setCalendar,
-    } = useClinicRegStore();
+export default function RegistrationClinic({ countries, serviceCategories }: { countries: ICountry[], serviceCategories: IServiceCategory[] }) {
+    const { title, country, address, adminNumber, city } = useClinicRegStore();
     const { toast } = useToast();
 
     const router = useRouter();
     const [count, setCount] = useState([new Date()]);
-    const [calendarUse, setCaledarUse] = useState('Да');
-    const [checkCalendar, setCheckCalendar] = useState(false);
     const [fetch, setFetch] = useState(false);
     const [mutate] = useMutation(REGISTER_CLINIC, {
         onCompleted() {
@@ -57,7 +43,7 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
         },
     });
     const validate = () => {
-        const data = [name, adminNumber, country, city, workdays, startTime, endTime];
+        const data = [title, adminNumber, country, city];
         data.forEach((field) => {
             if (field.length == 0) {
                 toast({ variant: 'destructive', title: 'Указаны не все поля' });
@@ -81,15 +67,8 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                             address,
                             adminNumber,
                             city,
-                            calendar,
-                            site,
-                            card: debet,
                             countryName: country,
-                            endTime: parseInt(endTime),
-                            startTime: parseInt(startTime),
-                            email,
-                            title: name,
-                            workdays: workdays.join(','),
+                            title,
                             services: serviceArray,
                         },
                     },
@@ -104,87 +83,28 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
     };
     return (
         <>
-            <div className='flex ml-[163px] mt-[49px] gap-[30px] mr-[50px]'>
+            <div className='flex gap-[30px] '>
                 <div className='flex flex-col'>
+                    <Text className='text-[28px] font-medium mt-[16px]' position='center'>
+                        Информация о клинике
+                    </Text>
                     <div className='bg-white max-w-[1175px] w-full rounded-[12px] mt-[9px] px-9'>
-                        <Text className='text-[28px] font-medium mt-[46px]' position='center'>
-                            Информация о клинике
-                        </Text>
-                        <div className='flex gap-[30px] mt-9'>
+                        <Text className='text-[18px] font-medium mt-7'>Общие</Text>
+                        <div className='flex gap-[30px] mt-2'>
                             <LeftParams />
                             <RightParams countries={countries} />
                         </div>
+                        <div className='mt-4'>
+                            <CheckboxBlock />
+                        </div>
+                        <div className='mt-7'>
+                            <QuantityBlock/>
+                        </div>
+                        <div className='mt-7'>
+                            <LocationBlock countries={countries}/>
+                        </div>
                         <div className='mt-9 flex w-full'>
                             <ClinicActivity />
-                        </div>
-                        <div className='flex flex-col mt-9'>
-                            <Text className='text-[18px] font-medium '>
-                                Используете ли вы электронный календарь для записи?
-                            </Text>
-                            <div className='flex'>
-                                <RadioGroup
-                                    defaultValue='Да'
-                                    className='flex mt-3 gap-6'
-                                    onValueChange={(e) => setCaledarUse(e)}>
-                                    <div className='flex items-center space-x-2'>
-                                        <RadioGroupItem value='Да' id='option-one' />
-                                        <Label htmlFor='option-one'>Да</Label>
-                                    </div>
-                                    <div className='flex items-center space-x-2'>
-                                        <RadioGroupItem value='Нет' id='option-two' />
-                                        <Label htmlFor='option-two'>Нет</Label>
-                                    </div>
-                                </RadioGroup>
-                            </div>
-                            <div className={cn('flex flex-col mt-9', calendarUse == 'Нет' && 'hidden')}>
-                                <Text className='text-[18px] font-medium '>
-                                    Как вы будете сверять записи с нашего электронного календаря со своим электронным
-                                    календарем?
-                                </Text>
-                                <div className='flex'>
-                                    <RadioGroup
-                                        defaultValue='Будем сверять сами'
-                                        className='flex mt-3 gap-6'
-                                        onValueChange={() => setCheckCalendar(!checkCalendar)}>
-                                        <div className='flex items-center space-x-2'>
-                                            <RadioGroupItem value='Будем сверять сами' id='option-one' />
-                                            <Label htmlFor='option-one'>Будем сверять сами</Label>
-                                        </div>
-                                        <div className='flex items-center space-x-2'>
-                                            <RadioGroupItem value='Хотим чтобы сверяли вы' id='option-two' />
-                                            <Label htmlFor='option-two'>Хотим чтобы сверяли вы</Label>
-                                        </div>
-                                    </RadioGroup>
-                                </div>
-                            </div>
-                            <Input
-                                value={calendar}
-                                onChange={(e) => setCalendar(e.currentTarget.value)}
-                                placeholder='Введите свое ID календаря'
-                                className={cn('mt-3', !checkCalendar && 'hidden')}
-                            />
-                        </div>
-                        <div className='flex flex-col mt-9 gap-4 mb-[40px]'>
-                            <div className='flex-between'>
-                                <div className='flex flex-col gap-4'>
-                                    <Text className='text-[18px] font-medium '>Предоставьте свою платежную карту?</Text>
-                                    <Input
-                                        value={debet}
-                                        onChange={(e) => setDebet(e.currentTarget.value)}
-                                        type=''
-                                        className='w-[400px]'
-                                        placeholder='AAA - BBB - CCC'
-                                    />
-                                    <Image
-                                        src={'/assets/cards-block.svg'}
-                                        width={270}
-                                        height={28}
-                                        alt='cards-block'
-                                        priority
-                                    />
-                                </div>
-                                <Image src={'/assets/card-policy.svg'} width={636} height={167} alt='card-policy' />
-                            </div>
                         </div>
                     </div>
                     <div className='flex flex-col mt-9 gap-4'>
@@ -194,6 +114,7 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                         <div className='flex flex-col bg-white px-[40px] py-[30px] rounded-[12px]'>
                             {count.map((_, pos) => (
                                 <ServiceCard
+                                    categories={serviceCategories}
                                     key={pos}
                                     pos={pos + 1}
                                     fetch={fetch}
@@ -218,7 +139,6 @@ export default function RegistrationClinic({ countries, email }: { countries: IC
                         </Button>
                     </div>
                 </div>
-                <DisabledBlock email={email} />
             </div>
         </>
     );
