@@ -31,6 +31,20 @@ interface IDataStore {
     setTotalDoctors: (totalDoctors: number) => void;
     totalServices: number;
     setTotalServices: (totalServices: number) => void;
+    mondayTime: string | null;
+    setMondayTime: (time: string) => void;
+    tuesdayTime: string | null;
+    setTuesdayTime: (time: string) => void;
+    wednesdayTime: string | null;
+    setWednesdayTime: (time: string) => void;
+    thursdayTime: string | null;
+    setThursdayTime: (time: string ) => void;
+    fridayTime: string| null;
+    setFridayTime: (time: string) => void;
+    saturdayTime: string | null;
+    setSaturdayTime: (time: string ) => void;
+    sundayTime: string | null;
+    setSundayTime: (time: string ) => void;
 
     country: string;
     setCountry: (country: string) => void;
@@ -51,6 +65,13 @@ export const useClinicRegStore = create<IDataStore>()(
         adminNumber: '',
         numbers: [],
         registryNumber: '',
+        mondayTime: null,
+        tuesdayTime: null,
+        wednesdayTime: null,
+        thursdayTime: null,
+        fridayTime: null,
+        saturdayTime: null,
+        sundayTime: null,
         language: '',
         computerHave: false,
         elevatorHave: false,
@@ -70,7 +91,7 @@ export const useClinicRegStore = create<IDataStore>()(
         },
         setAgeClinic: (ageClinic: number) => {
             set((state) => {
-                state.ageClinic= ageClinic;
+                state.ageClinic = ageClinic;
             });
         },
         setTypeTitle: (typeTitle: string) => {
@@ -80,7 +101,7 @@ export const useClinicRegStore = create<IDataStore>()(
         },
         setSquare: (square: number) => {
             set((state) => {
-                state.square= square;
+                state.square = square;
             });
         },
         setAdminNumber: (adminNumber: string) => {
@@ -96,6 +117,41 @@ export const useClinicRegStore = create<IDataStore>()(
         setRegistryNumber: (registryNumber: string) => {
             set((state) => {
                 state.registryNumber = registryNumber;
+            });
+        },
+        setMondayTime: (time: string) => {
+            set((state) => {
+                state.mondayTime = time;
+            });
+        },
+        setTuesdayTime: (time: string) => {
+            set((state) => {
+                state.tuesdayTime = time;
+            });
+        },
+        setWednesdayTime: (time: string) => {
+            set((state) => {
+                state.wednesdayTime = time;
+            });
+        },
+        setThursdayTime: (time: string) => {
+            set((state) => {
+                state.thursdayTime = time;
+            });
+        },
+        setFridayTime: (time: string) => {
+            set((state) => {
+                state.fridayTime = time;
+            });
+        },
+        setSaturdayTime: (time: string) => {
+            set((state) => {
+                state.saturdayTime = time;
+            });
+        },
+        setSundayTime: (time: string) => {
+            set((state) => {
+                state.sundayTime = time;
             });
         },
         setLanguage: (language: string) => {
@@ -115,7 +171,7 @@ export const useClinicRegStore = create<IDataStore>()(
         },
         setInternetHave: (internetHave: boolean) => {
             set((state) => {
-                state.internetHave= internetHave;
+                state.internetHave = internetHave;
             });
         },
         setNumberOfFloors: (numberOfFloors: number) => {

@@ -39,7 +39,7 @@ export default function RegistrationClinic({ countries, serviceCategories }: { c
     const [mutate] = useMutation(REGISTER_CLINIC, {
         onCompleted() {
             router.replace('/login');
-            toast({ variant: 'positive', title: 'Ваши данные успешно добавлены' });
+            toast({ variant: 'positive', title: 'Данные успешно добавлены' });
         },
     });
     const validate = () => {
