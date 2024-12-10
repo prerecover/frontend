@@ -4,7 +4,7 @@ import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 
 export default function QuantityBlock() {
-    const { setNumberOfFloors, totalServices, setTotalServices, totalDoctors, setTotalDoctors } = useClinicRegStore();
+    const { setNumberOfFloors, setTotalServices, setTotalDoctors } = useClinicRegStore();
     return (
         <div className='flex-between'>
             <div className='flex items-center gap-[14px]'>

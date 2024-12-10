@@ -4,7 +4,6 @@ import { IClinic } from '@/shared/types/clinic.interface';
 import Image from 'next/image';
 import ClinicInfo from '@/entities/Clinic/ClinicMain/clinic-info';
 import { Button } from '@/components/ui/button';
-import { DoughnutBlock } from '@/entities/Clinic/ClinicMain/doughnut-block';
 import { usePathname } from 'next/navigation';
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { formatDate } from '@/shared/utils/formatDate';

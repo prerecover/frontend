@@ -4,11 +4,11 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 const ALL_CLINICS_QUERY = gql(`
-
 query Clinics {
     clinics {
         _id
         address
+        age
         avatar
         card
         city
@@ -18,24 +18,27 @@ query Clinics {
         email
         employees
         isVerfied
-        number
         specialization
         title
         treated
+        typeTitle
         updatedAt
         detail {
             _id
             adminFirstName
             adminLastName
             adminNumber
+            calendar
             computerHave
             elevatorHave
             fridayTime
-            calendar
             internetHave
+            language
             mondayTime
             numberOfFloors
+            numbers
             rating
+            registryNumber
             saturdayTime
             site
             square
@@ -48,6 +51,8 @@ query Clinics {
         }
     }
 }
+
+
     `);
 
 export default async function Page() {

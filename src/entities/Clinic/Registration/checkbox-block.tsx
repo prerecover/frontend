@@ -13,7 +13,7 @@ export default function CheckboxBlock() {
                 <div className='flex gap-2'>
                     <RadioGroup
                         defaultValue={computerHave === false ? 'Нет' : 'Да'}
-                        onValueChange={(e) => setComputerHave(!computerHave)}
+                        onValueChange={() => setComputerHave(!computerHave)}
                         className='flex gap-2'>
                         <div className='flex-center gap-3'>
                             <RadioGroupItem value='Да' id='option-one' />
@@ -32,7 +32,7 @@ export default function CheckboxBlock() {
                     <RadioGroup
                         defaultValue={elevatorHave === false ? 'Нет' : 'Да'}
                         className='flex gap-2'
-                        onValueChange={(e) => setElevatorHave(!elevatorHave)}>
+                        onValueChange={() => setElevatorHave(!elevatorHave)}>
                         <div className='flex-center gap-3'>
                             <RadioGroupItem value='Да' id='option-one' />
                             <Text className='font-medium'>Да</Text>
@@ -50,7 +50,7 @@ export default function CheckboxBlock() {
                     <RadioGroup
                         defaultValue={internetHave === false ? 'Нет' : 'Да'}
                         className='flex gap-2'
-                        onValueChange={(e) => setInternetHave(!internetHave)}>
+                        onValueChange={() => setInternetHave(!internetHave)}>
                         <div className='flex-center gap-3'>
                             <RadioGroupItem value='Да' id='option-one' />
                             <Text className='font-medium'>Да</Text>

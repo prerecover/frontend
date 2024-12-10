@@ -12,7 +12,6 @@ import userImg from '/public/assets/doctor.svg';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
 import { useNotifyStore } from '@/shared/store/notifyStore';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function MobileHeader({
@@ -47,67 +46,70 @@ export default function MobileHeader({
                         className='cursor-pointer'>
                         <Image src={isOpen ? burgerClose : burger} alt='burger' width={24} height={24} />
                     </div>
-                    {user._id ? 
-                    <div className='flex items-center'>
-                        {pathname == '/appointments' ? (
-                            <Image
-                                src={'/assets/add-circle.svg'}
-                                alt='add note'
-                                width={28}
-                                height={28}
-                                priority
-                                className='mr-7 cursor-pointer'
-                                onClick={() => {
-                                    router.push('/create-appointment');
-                                    setIsOpen(false);
-                                }}
-                            />
-                        ) : pathname == '/payments' ? (
-                            <svg
-                                className='mr-7 cursor-pointer'
-                                width='28'
-                                height='28'
-                                viewBox='0 0 28 28'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'>
-                                <path
-                                    d='M14.0013 3.79102C15.1289 3.79102 16.043 4.7051 16.043 5.83268C16.043 6.96026 15.1289 7.87435 14.0013 7.87435C12.8737 7.87435 11.9596 6.96026 11.9596 5.83268C11.9596 4.7051 12.8737 3.79102 14.0013 3.79102Z'
-                                    fill='#262626'
-                                />
-                                <path
-                                    d='M14.0013 11.9577C15.1289 11.9577 16.043 12.8718 16.043 13.9993C16.043 15.1269 15.1289 16.041 14.0013 16.041C12.8737 16.041 11.9596 15.1269 11.9596 13.9993C11.9596 12.8718 12.8737 11.9577 14.0013 11.9577Z'
-                                    fill='#262626'
-                                />
-                                <path
-                                    d='M14.0013 20.1243C15.1289 20.1243 16.043 21.0384 16.043 22.166C16.043 23.2936 15.1289 24.2077 14.0013 24.2077C12.8737 24.2077 11.9596 23.2936 11.9596 22.166C11.9596 21.0384 12.8737 20.1243 14.0013 20.1243Z'
-                                    fill='#262626'
-                                />
-                            </svg>
-                        ) : (
-                            <></>
-                        )}
-                        <div className='flex gap-4'>
-                            <div className='relative mt-1' onClick={() => setModalOpen(!modalOpen)}>
-                                <Image src={notifi} alt='notifications' width={24} height={24} />
-                                {haveUnread && (
-                                    <div className='absolute bg-red-400 top-[2px] right-[3px] rounded-[50%] w-[5px] h-[5px]'></div>
-                                )}
-                            </div>
-                            <div
-                                className='w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden'
-                                onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
+                    {user._id ? (
+                        <div className='flex items-center'>
+                            {pathname == '/appointments' ? (
                                 <Image
-                                    src={user?.avatar ? user?.avatar : userImg}
-                                    alt='avatar'
-                                    width={40}
-                                    height={40}
-                                    className='object-cover h-[40px]'
+                                    src={'/assets/add-circle.svg'}
+                                    alt='add note'
+                                    width={28}
+                                    height={28}
+                                    priority
+                                    className='mr-7 cursor-pointer'
+                                    onClick={() => {
+                                        router.push('/create-appointment');
+                                        setIsOpen(false);
+                                    }}
                                 />
+                            ) : pathname == '/payments' ? (
+                                <svg
+                                    className='mr-7 cursor-pointer'
+                                    width='28'
+                                    height='28'
+                                    viewBox='0 0 28 28'
+                                    fill='none'
+                                    xmlns='http://www.w3.org/2000/svg'>
+                                    <path
+                                        d='M14.0013 3.79102C15.1289 3.79102 16.043 4.7051 16.043 5.83268C16.043 6.96026 15.1289 7.87435 14.0013 7.87435C12.8737 7.87435 11.9596 6.96026 11.9596 5.83268C11.9596 4.7051 12.8737 3.79102 14.0013 3.79102Z'
+                                        fill='#262626'
+                                    />
+                                    <path
+                                        d='M14.0013 11.9577C15.1289 11.9577 16.043 12.8718 16.043 13.9993C16.043 15.1269 15.1289 16.041 14.0013 16.041C12.8737 16.041 11.9596 15.1269 11.9596 13.9993C11.9596 12.8718 12.8737 11.9577 14.0013 11.9577Z'
+                                        fill='#262626'
+                                    />
+                                    <path
+                                        d='M14.0013 20.1243C15.1289 20.1243 16.043 21.0384 16.043 22.166C16.043 23.2936 15.1289 24.2077 14.0013 24.2077C12.8737 24.2077 11.9596 23.2936 11.9596 22.166C11.9596 21.0384 12.8737 20.1243 14.0013 20.1243Z'
+                                        fill='#262626'
+                                    />
+                                </svg>
+                            ) : (
+                                <></>
+                            )}
+                            <div className='flex gap-4'>
+                                <div className='relative mt-1' onClick={() => setModalOpen(!modalOpen)}>
+                                    <Image src={notifi} alt='notifications' width={24} height={24} />
+                                    {haveUnread && (
+                                        <div className='absolute bg-red-400 top-[2px] right-[3px] rounded-[50%] w-[5px] h-[5px]'></div>
+                                    )}
+                                </div>
+                                <div
+                                    className='w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden'
+                                    onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
+                                    <Image
+                                        src={user?.avatar ? user?.avatar : userImg}
+                                        alt='avatar'
+                                        width={40}
+                                        height={40}
+                                        className='object-cover h-[40px]'
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    : <Link href='/login' className='text-blue font-semibold'>Войти</Link>}
-
+                    ) : (
+                        <Link href='/login' className='text-blue font-semibold'>
+                            Войти
+                        </Link>
+                    )}
                 </div>
             ) : (
                 <>

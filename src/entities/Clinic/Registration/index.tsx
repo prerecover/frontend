@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { ICountry } from '@/shared/types/country.interface';
 import ClinicActivity from './clinic-activity';
 import Image from 'next/image';
-import { Input } from '@/components/ui/input';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 import ServiceCard from './service-card';
 import { Button } from '@/components/ui/button';
@@ -14,9 +13,6 @@ import { IService, IServiceCategory } from '@/shared/types/service.interface';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
 import CheckboxBlock from './checkbox-block';
 import QuantityBlock from './quantity-block';
 import LocationBlock from './location-block';
@@ -29,8 +25,39 @@ mutation CreateService($registerData: RegisterClinicInput!){
     }
 `);
 
-export default function RegistrationClinic({ countries, serviceCategories }: { countries: ICountry[], serviceCategories: IServiceCategory[] }) {
-    const { title, country, address, adminNumber, city } = useClinicRegStore();
+export default function RegistrationClinic({
+    countries,
+    serviceCategories,
+}: {
+    countries: ICountry[];
+    serviceCategories: IServiceCategory[];
+}) {
+    const {
+        title,
+        typeTitle,
+        ageClinic,
+        square,
+        country,
+        address,
+        adminNumber,
+        city,
+        numbers,
+        registryNumber,
+        language,
+        computerHave,
+        elevatorHave,
+        internetHave,
+        numberOfFloors,
+        totalDoctors,
+        totalServices,
+        mondayTime,
+        tuesdayTime,
+        wednesdayTime,
+        thursdayTime,
+        fridayTime,
+        saturdayTime,
+        sundayTime,
+    } = useClinicRegStore();
     const { toast } = useToast();
 
     const router = useRouter();
@@ -64,11 +91,30 @@ export default function RegistrationClinic({ countries, serviceCategories }: { c
                 mutate({
                     variables: {
                         registerData: {
+                            title,
+                            age: ageClinic,
+                            square,
+                            numberOfFloors,
+                            mondayTime,
+                            tuesdayTime,
+                            wednesdayTime,
+                            thursdayTime,
+                            fridayTime,
+                            saturdayTime,
+                            sundayTime,
+                            language,
+                            numbers: numbers.filter((num) => num),
+                            registryNumber,
+                            computerHave,
+                            elevatorHave,
+                            internetHave,
+                            totalServices,
+                            totalDoctors,
+                            typeTitle,
                             address,
                             adminNumber,
                             city,
                             countryName: country,
-                            title,
                             services: serviceArray,
                         },
                     },
@@ -92,16 +138,16 @@ export default function RegistrationClinic({ countries, serviceCategories }: { c
                         <Text className='text-[18px] font-medium mt-7'>Общие</Text>
                         <div className='flex gap-[30px] mt-2'>
                             <LeftParams />
-                            <RightParams countries={countries} />
+                            <RightParams />
                         </div>
                         <div className='mt-4'>
                             <CheckboxBlock />
                         </div>
                         <div className='mt-7'>
-                            <QuantityBlock/>
+                            <QuantityBlock />
                         </div>
                         <div className='mt-7'>
-                            <LocationBlock countries={countries}/>
+                            <LocationBlock countries={countries} />
                         </div>
                         <div className='mt-9 flex w-full'>
                             <ClinicActivity />

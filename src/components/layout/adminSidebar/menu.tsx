@@ -11,7 +11,7 @@ export const AdminMenu = () => {
     return (
         <>
             <MenuItem icon={<SiteWorkIcon />} title={ROUTES.admin_dashboard.label} href={ROUTES.admin_dashboard.path} />
-            
+
             <MenuItem
                 icon={<AdminRegistrationIcon />}
                 title={ROUTES.admin_clinics.label}
@@ -47,8 +47,6 @@ export const AdminMenu = () => {
                             </clipPath>
                         </defs>
                     </svg>
-                    
-                    
                 }
                 title={'Выход'}
                 href={'/logout'}
@@ -56,4 +54,3 @@ export const AdminMenu = () => {
         </>
     );
 };
-

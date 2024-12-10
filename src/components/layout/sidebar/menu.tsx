@@ -4,7 +4,6 @@ import { ROUTES } from '@/shared/utils/paths';
 import { HistoryIcon, SavedIcon, SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
-import { RecomendationsIcon } from '@/icons/RecomendationsIcon';
 // import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 export const UserMenu = () => {
@@ -17,7 +16,7 @@ export const UserMenu = () => {
                 title={ROUTES.search.label}
                 href={ROUTES.search.path}
             />
-            <MenuItem icon={<AppointmentIcon/>} title={ROUTES.appointments.label} href={ROUTES.appointments.path} />
+            <MenuItem icon={<AppointmentIcon />} title={ROUTES.appointments.label} href={ROUTES.appointments.path} />
 
             <MenuItem
                 icon={<HistoryIcon width={20} height={20} />}
@@ -25,8 +24,7 @@ export const UserMenu = () => {
                 href={user._id ? ROUTES.history.path : '/login'}
             />
             <MenuItem
-                icon={<SavedIcon width={20} height={20}/>
-                }
+                icon={<SavedIcon width={20} height={20} />}
                 title={ROUTES.saved.label}
                 href={user._id ? ROUTES.saved.path : '/login'}
             />

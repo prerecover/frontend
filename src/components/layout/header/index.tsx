@@ -11,8 +11,8 @@ import { Button } from '@/components/ui/button';
 
 export default function Header({ title }: { title: string[] }) {
     const { isOpenSidebar } = useSidebarStore();
-    const { user,  isAuth } = useAuth();
-    const path = usePathname()
+    const { user, isAuth } = useAuth();
+    const path = usePathname();
     const { push } = useRouter();
     return (
         <>
@@ -22,22 +22,24 @@ export default function Header({ title }: { title: string[] }) {
                     isOpenSidebar ? 'pl-[274px]' : 'pl-[116px]',
                 )}>
                 <HeaderLink paths={title} />
-                {isAuth || path.includes('admin')? 
-                <div className='flex items-center gap-5'>
-                    <NotificationsLink />
-                    <div
-                        className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden'
-                        onClick={() => push(`${user?._id ? '/account' : '/login'}`)}>
-                        <Image
-                            src={user?.avatar ? user?.avatar : userImg}
-                            alt='avatar'
-                            width={40}
-                            height={40}
-                            className='object-cover h-[40px]'
-                        />
+                {isAuth || path.includes('admin') ? (
+                    <div className='flex items-center gap-5'>
+                        <NotificationsLink />
+                        <div
+                            className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden'
+                            onClick={() => push(`${user?._id ? '/account' : '/login'}`)}>
+                            <Image
+                                src={user?.avatar ? user?.avatar : userImg}
+                                alt='avatar'
+                                width={40}
+                                height={40}
+                                className='object-cover h-[40px]'
+                            />
+                        </div>
                     </div>
-                </div>
-                : <Button onClick={() => push('/login')}>Войти</Button>}
+                ) : (
+                    <Button onClick={() => push('/login')}>Войти</Button>
+                )}
             </header>
         </>
     );

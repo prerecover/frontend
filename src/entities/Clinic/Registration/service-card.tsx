@@ -29,7 +29,7 @@ export default function ServiceCard({
     const [online, setOnline] = useState('Онлайн');
     const [doctors, setDoctors] = useState<Partial<IDoctor>[]>([]);
     const [duration, setDuration] = useState('');
-    const [category, setCategory] = useState<IServiceCategory | undefined>()
+    const [category, setCategory] = useState<IServiceCategory | undefined>();
     // const [count, setCount] = useState([new Date()]);
     const { toast } = useToast();
 
@@ -62,7 +62,7 @@ export default function ServiceCard({
                     title,
                     price: parseInt(price),
                     description,
-                    category,
+                    category: category?.title,
                     online: online == 'Онлайн',
                     duration: parseInt(duration),
                     offline: online !== 'Онлайн',

@@ -13,7 +13,6 @@ export interface IClinic extends ICommon {
     ageClinic?: number;
     specialization: string;
 
-    number?: string;
     description?: string;
     calendar?: string;
     detail?: IClinicDetail;
@@ -41,6 +40,7 @@ export interface IClinicDetail {
     totalServices: number;
     numberOfFloors?: number;
     mondayTime?: number;
+    numbers?: string[];
     tuesdayTime?: number;
     wednesdayTime?: number;
     thursdayTime?: number;

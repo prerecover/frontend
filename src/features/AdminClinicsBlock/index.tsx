@@ -59,7 +59,9 @@ export default function AdminClinicsBlock({ clinics }: { clinics: IClinic[] }) {
                                 <TableCell className='text-[#606368]'>{i + 1}</TableCell>
                                 <TableCell className='bg-white'>{clinic.title}</TableCell>
                                 <TableCell>{formatDate(new Date(clinic.createdAt))}</TableCell>
-                                <TableCell className='bg-white'>{clinic.number}</TableCell>
+                                <TableCell className='bg-white flex flex-col'>
+                                    {clinic.detail?.numbers?.map((num) => <Text key={num}>{num}</Text>)}
+                                </TableCell>
                                 <TableCell>{clinic.detail?.adminNumber}</TableCell>
                                 <TableCell className='bg-white'>{clinic.address}</TableCell>
                                 <TableCell>Пока хуй знает</TableCell>

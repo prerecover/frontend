@@ -83,7 +83,7 @@ export const ROUTES = {
     },
     appointments: {
         path: '/appointments',
-        label: 'Записи'
+        label: 'Записи',
     },
     registration: {
         path: '/registration',

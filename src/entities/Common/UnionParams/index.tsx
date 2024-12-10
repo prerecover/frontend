@@ -1,10 +1,7 @@
 'use client';
 import BoxWrapper from '@/components/ui/box-wrapper';
-import { Param } from './param';
-import { cn } from '@/lib/utils';
 import { formatDate } from '@/shared/utils/formatDate';
 export default function UnionParams({
-    title = 'default',
     treated = 0,
     createdAt,
 }: {

@@ -12,7 +12,6 @@ export const MultiRange: FC<MultiRangeProps> = ({ title }) => {
         <div className='text-[16px] font-medium'>
             <div className='flex flex-col gap-[18px]'>
                 <div className='flex-between'>
-                
                     <Text type='h2'>{title}</Text>
                     <Text type='h2'>
                         {value[0]}-{value[1]}%

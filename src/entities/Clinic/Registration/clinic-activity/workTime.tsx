@@ -41,7 +41,7 @@ export default function WorkTime() {
                 func(time);
             });
         }
-        console.log(regStore.wednesdayTime, regStore.thursdayTime);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [time]);
 
     return (

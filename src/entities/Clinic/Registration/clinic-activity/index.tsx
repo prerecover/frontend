@@ -1,5 +1,4 @@
 import { Text } from '@/components/ui/text';
-import { Days } from './days';
 import WorkTime from './workTime';
 import { useState } from 'react';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';

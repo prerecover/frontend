@@ -38,13 +38,13 @@ interface IDataStore {
     wednesdayTime: string | null;
     setWednesdayTime: (time: string) => void;
     thursdayTime: string | null;
-    setThursdayTime: (time: string ) => void;
-    fridayTime: string| null;
+    setThursdayTime: (time: string) => void;
+    fridayTime: string | null;
     setFridayTime: (time: string) => void;
     saturdayTime: string | null;
-    setSaturdayTime: (time: string ) => void;
+    setSaturdayTime: (time: string) => void;
     sundayTime: string | null;
-    setSundayTime: (time: string ) => void;
+    setSundayTime: (time: string) => void;
 
     country: string;
     setCountry: (country: string) => void;

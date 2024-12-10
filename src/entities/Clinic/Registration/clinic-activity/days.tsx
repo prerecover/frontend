@@ -1,12 +1,11 @@
 import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
-import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 import { FC, useState } from 'react';
 
 export const Days: FC = () => {
     // const { workdays, setWorkdays } = useClinicRegStore();
     const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-    const [workdays, setWorkdays] = useState<string[]>([])
+    const [workdays, setWorkdays] = useState<string[]>([]);
 
     const changeDays = (day: string) => {
         if (workdays.includes(day)) {

@@ -5,9 +5,7 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import styles from './menuItem.module.scss';
-import { useAuth } from '@/app/(auth)/auth-wrapper';
 import Image from 'next/image';
-import { Text } from '@/components/ui/text';
 
 type Props = {
     href: string;
@@ -20,7 +18,6 @@ type Props = {
 export const MenuItem: FC<Props> = ({ className, href, icon, title, onClick }) => {
     const pathname = usePathname();
     const [showAdminClinicsBlock, setShow] = useState(false);
-    const { user } = useAuth();
     const { isOpenSidebar } = useSidebarStore();
     return (
         <>
