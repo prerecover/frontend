@@ -86,7 +86,7 @@ export default function AdminClinicsBlock({ clinics, countries }: { clinics: ICl
                     {clinics
                         .filter((clinic) =>
                             weekendWork
-                                ? clinic.detail.saturdayTime && clinic.detail.sundayTime
+                                ? clinic.detail.saturdayTime || clinic.detail.sundayTime
                                 : !clinic.detail.saturdayTime && !clinic.detail.sundayTime,
                         )
                         .filter((clinic) => clinic.title.toLowerCase().includes(search.toLowerCase()))
