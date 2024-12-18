@@ -23,6 +23,11 @@ query Clinics {
         treated
         typeTitle
         updatedAt
+        country {
+            _id
+            slug
+            title
+        }
         detail {
             _id
             adminFirstName
@@ -55,12 +60,22 @@ query Clinics {
 
     `);
 
+const GET_COUNTRIES = gql(`
+query Countries {
+    countries {
+        _id
+        slug
+        title
+    }
+}
+`);
 export default async function Page() {
     const { data } = await getClient().query({ query: ALL_CLINICS_QUERY });
+    const { data: countries } = await getClient().query({ query: GET_COUNTRIES });
     return (
         <>
             <Header title={['Клиники']} />
-            <AdminClinicsBlock clinics={data.clinics} />
+            <AdminClinicsBlock clinics={data.clinics} countries={countries.countries} />
         </>
     );
 }

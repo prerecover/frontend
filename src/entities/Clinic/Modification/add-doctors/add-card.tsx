@@ -18,7 +18,6 @@ export default function AddDoctorCard({
     const formSchema = z.object({
         firstName: z.string().min(2).max(50),
         lastName: z.string().min(2).max(50),
-        surname: z.string().min(2).max(50),
         exp: z.string().nonempty(),
         age: z.coerce.number().gte(18, 'Age mut be 18 and above'),
         specialization: z.string().min(2),
@@ -28,15 +27,14 @@ export default function AddDoctorCard({
         defaultValues: {
             firstName: '',
             lastName: '',
-            surname: '',
             exp: '',
             age: undefined,
             specialization: '',
         },
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
-        const { firstName, lastName, exp, specialization, surname } = values;
-        setDoctors([...doctors, { firstName, lastName, workExp: parseInt(exp), specialization, surname }]);
+        const { firstName, lastName, exp, specialization } = values;
+        setDoctors([...doctors, { firstName, lastName, workExp: parseInt(exp), specialization }]);
         setShow(false);
     }
 
@@ -64,18 +62,6 @@ export default function AddDoctorCard({
                                 <FormItem>
                                     <FormControl>
                                         <Input placeholder='Фамилия' {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name='surname'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormControl>
-                                        <Input placeholder='Отчество' {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

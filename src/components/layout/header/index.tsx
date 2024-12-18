@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 
 export default function Header({ title }: { title: string[] }) {
     const { isOpenSidebar } = useSidebarStore();
-    const { user, isAuth } = useAuth();
+    const { user } = useAuth();
     const path = usePathname();
     const { push } = useRouter();
     return (
@@ -22,7 +22,7 @@ export default function Header({ title }: { title: string[] }) {
                     isOpenSidebar ? 'pl-[274px]' : 'pl-[116px]',
                 )}>
                 <HeaderLink paths={title} />
-                {isAuth || path.includes('admin') ? (
+                {user._id || path.includes('admin') ? (
                     <div className='flex items-center gap-5'>
                         <NotificationsLink />
                         <div

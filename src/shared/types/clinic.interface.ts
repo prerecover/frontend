@@ -10,16 +10,16 @@ export interface IClinic extends ICommon {
     typeTitle?: string;
     avatar?: string;
     address: string;
-    ageClinic?: number;
+    age?: number;
     specialization: string;
 
     description?: string;
     calendar?: string;
-    detail?: IClinicDetail;
+    detail: IClinicDetail;
     employees?: number;
     card?: string;
-    country?: ICountry;
-    city?: string;
+    country: ICountry;
+    city: string;
     treated: number;
     appointments?: IAppointment[];
     news?: INews[];
@@ -33,12 +33,14 @@ export interface IClinicDetail {
     adminLastName?: string;
     adminNumber?: string;
     computerHave: boolean;
-    evelevatorHave: boolean;
+    elevatorHave: boolean;
     internetHave: boolean;
     square?: number;
+    language?: string;
+    registryNumber?: string;
     totalDoctors: number;
     totalServices: number;
-    numberOfFloors?: number;
+    numberOfFloors: number;
     mondayTime?: number;
     numbers?: string[];
     tuesdayTime?: number;

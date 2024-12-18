@@ -32,6 +32,7 @@ export default function MobileHeader({
     const blockLocation = ['/', '/search', '/messages', '/account', '/history', '/payments', '/appointments', '/saved'];
     const { isOpen: modalOpen, setIsOpen: setModalOpen } = useNotifyModal();
     const pathname = usePathname();
+    console.log(user._id);
     return (
         <>
             {blockLocation.includes(pathname) ? (

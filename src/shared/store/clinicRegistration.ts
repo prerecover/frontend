@@ -26,11 +26,11 @@ interface IDataStore {
     internetHave: boolean;
     setInternetHave: (internetHave: boolean) => void;
     numberOfFloors: number | null;
-    setNumberOfFloors: (numberOfFloors: number) => void;
-    totalDoctors: number;
-    setTotalDoctors: (totalDoctors: number) => void;
-    totalServices: number;
-    setTotalServices: (totalServices: number) => void;
+    setNumberOfFloors: (numberOfFloors: number | null) => void;
+    totalDoctors: number | null;
+    setTotalDoctors: (totalDoctors: number | null) => void;
+    totalServices: number | null;
+    setTotalServices: (totalServices: number | null) => void;
     mondayTime: string | null;
     setMondayTime: (time: string) => void;
     tuesdayTime: string | null;
@@ -77,8 +77,8 @@ export const useClinicRegStore = create<IDataStore>()(
         elevatorHave: false,
         internetHave: false,
         numberOfFloors: null,
-        totalDoctors: 0,
-        totalServices: 0,
+        totalDoctors: null,
+        totalServices: null,
         email: '',
         country: '',
         city: '',
@@ -174,17 +174,17 @@ export const useClinicRegStore = create<IDataStore>()(
                 state.internetHave = internetHave;
             });
         },
-        setNumberOfFloors: (numberOfFloors: number) => {
+        setNumberOfFloors: (numberOfFloors: number | null) => {
             set((state) => {
                 state.numberOfFloors = numberOfFloors;
             });
         },
-        setTotalDoctors: (totalDoctors: number) => {
+        setTotalDoctors: (totalDoctors: number | null) => {
             set((state) => {
                 state.totalDoctors = totalDoctors;
             });
         },
-        setTotalServices: (totalServices: number) => {
+        setTotalServices: (totalServices: number | null) => {
             set((state) => {
                 state.totalServices = totalServices;
             });

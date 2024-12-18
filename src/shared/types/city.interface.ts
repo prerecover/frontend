@@ -1,5 +1,3 @@
-export interface ICity {
-    _id: string;
-    slug: string;
-    title: string;
-}
+import { ICountry } from './country.interface';
+
+export interface ICity extends ICountry {}

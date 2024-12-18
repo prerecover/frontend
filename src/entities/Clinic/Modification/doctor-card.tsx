@@ -18,7 +18,6 @@ export default function DoctorCard({
 }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [surname, setSurname] = useState('');
     const [exp, setExp] = useState('');
     const [show, setShow] = useState(false);
     const [specialization, setSpecialization] = useState('');
@@ -35,13 +34,7 @@ export default function DoctorCard({
     useEffect(() => {
         if (fetchDoctors) {
             if (validate())
-                doctorsArray.push({
-                    firstName,
-                    lastName,
-                    workExp: parseInt(exp),
-                    specialization: specialization,
-                    surname,
-                });
+                doctorsArray.push({ firstName, lastName, workExp: parseInt(exp), specialization: specialization });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchDoctors]);
@@ -73,12 +66,6 @@ export default function DoctorCard({
                                 required={true}
                                 value={lastName}
                                 onChange={(e) => setLastName(e.currentTarget.value)}
-                            />
-                            <Input
-                                placeholder='Отчество'
-                                required={true}
-                                value={surname}
-                                onChange={(e) => setSurname(e.currentTarget.value)}
                             />
                             <Input
                                 placeholder='Опыт врача (лет)'

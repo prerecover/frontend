@@ -12,7 +12,7 @@ export default function ClinicSearchCard({ clinic }: { clinic: IClinic }) {
     const router = useRouter();
     const stars: string[] = [];
     for (let i = 0; i < 5; i++) {
-        if (i < clinic.rating) {
+        if (i < clinic.detail?.rating) {
             stars.push('yellow');
         } else {
             stars.push('grey');
