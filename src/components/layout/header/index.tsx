@@ -27,7 +27,7 @@ export default function Header({ title }: { title: string[] }) {
                         <NotificationsLink />
                         <div
                             className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden'
-                            onClick={() => push(`${user?._id ? '/account' : '/login'}`)}>
+                            onClick={() => push(`${user?._id ? `/account/${user.userId}` : '/login'}`)}>
                             <Image
                                 src={user?.avatar ? user?.avatar : userImg}
                                 alt='avatar'

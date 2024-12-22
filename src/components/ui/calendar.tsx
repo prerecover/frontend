@@ -96,6 +96,7 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
 
     const zeroDays = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const handleSelectedDay = (day: string) => {
+        if (parseInt(day) < new Date().getDate()) return;
         if (day === undefined) return;
 
         setCurrentDay(day);
@@ -154,7 +155,7 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
     return (
         <div>
             <div
-                className='max-w-full bg-white rounded-[16px] p-7 h-max'
+                className='max-w-full bg-white rounded-[16px] p-4 h-max'
                 style={{
                     width,
                     height,
@@ -205,7 +206,9 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
                                         currentMonth == new Date().getMonth() &&
                                         'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
                                     'w-[40px] h-[40px] flex-center m-auto',
+
                                     currentDay == day && 'bg-blue rounded-[12px] text-white',
+                                    parseInt(day || '') < new Date().getDate() && 'bg-none opacity-25',
                                 )}
                                 key={i}
                                 onClick={() => handleSelectedDay(day || '')}>

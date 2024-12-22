@@ -1,7 +1,7 @@
 'use client';
 import { IClinic } from '@/shared/types/clinic.interface';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { formatDate } from '@/shared/utils/formatDate';
+import { formatDate, parseWeekDay } from '@/shared/utils/formatDate';
 import { SearchInput } from '@/components/ui/search-input';
 import { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -15,14 +15,6 @@ export default function AdminClinicsBlock({ clinics, countries }: { clinics: ICl
     const [search, setSearch] = useState('');
     const [country, setCountry] = useState('');
     const [weekendWork, setWeekendWork] = useState(true);
-    const parseWeekDay = (dayWeek: number | undefined) => {
-        if (!dayWeek) {
-            return '-';
-        }
-        const startTime = `${dayWeek.toString().slice(0, 2)}:${dayWeek.toString().slice(2, 4)}`;
-        const endTime = `${dayWeek.toString().slice(4, 6)}:${dayWeek.toString().slice(6, 8)}`;
-        return `${startTime}:${endTime}`;
-    };
     return (
         <div className='flex flex-col'>
             <div className='flex-between p-4 gap-40'>

@@ -16,6 +16,7 @@ const GET_ME = gql(`
 query GetMe {
     getMe {
         _id
+        userId
         address
         avatar
         birthday

@@ -26,6 +26,32 @@ async function getService(_id: string) {
             country{
                 title
             }
+            detail {
+            _id
+            adminFirstName
+            adminLastName
+            adminNumber
+            calendar
+            computerHave
+            elevatorHave
+            fridayTime
+            internetHave
+            language
+            mondayTime
+            numberOfFloors
+            numbers
+            rating
+            registryNumber
+            saturdayTime
+            site
+            square
+            sundayTime
+            thursdayTime
+            totalDoctors
+            totalServices
+            tuesdayTime
+            wednesdayTime
+        }
         }
         doctors {
             _id

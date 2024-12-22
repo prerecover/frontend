@@ -68,6 +68,14 @@ export const formatDate = (date: Date) => {
 
     return date.toLocaleDateString('ru-RU', options);
 };
+export const parseWeekDay = (dayWeek: number | undefined) => {
+    if (!dayWeek) {
+        return '-';
+    }
+    const startTime = `${dayWeek.toString().slice(0, 2)}:${dayWeek.toString().slice(2, 4)}`;
+    const endTime = `${dayWeek.toString().slice(4, 6)}:${dayWeek.toString().slice(6, 8)}`;
+    return `${startTime}-${endTime}`;
+};
 
 export const fullTime = (date: Date) => {
     const day = date.getDate();

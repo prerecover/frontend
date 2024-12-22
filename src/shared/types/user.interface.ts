@@ -3,6 +3,7 @@ import { ICommon } from './common.interface';
 import { ICountry } from './country.interface';
 
 export interface IUser extends ICommon {
+    userId: string;
     address?: string;
     avatar?: string;
     birthday?: number;

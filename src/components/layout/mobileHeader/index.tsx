@@ -95,7 +95,7 @@ export default function MobileHeader({
                                 </div>
                                 <div
                                     className='w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden'
-                                    onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
+                                    onClick={() => router.push(`${user?._id ? `/account/${user.userId}` : '/login'}`)}>
                                     <Image
                                         src={user?.avatar ? user?.avatar : userImg}
                                         alt='avatar'

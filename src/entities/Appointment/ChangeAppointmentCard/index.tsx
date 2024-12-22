@@ -117,7 +117,7 @@ export default function ChangeAppointmentCard({
                         <TimeCiel value='21:00' setTime={setTime} time={time} />
                     </div>
                     <Button
-                        className='max-w-[430px] mt-4'
+                        className='max-w-[430px]'
                         variant={date && time ? 'default' : 'outline'}
                         disabled={!(date && time)}
                         onClick={() => handleDate(date, parseTime(time))}>

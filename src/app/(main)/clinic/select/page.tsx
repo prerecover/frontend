@@ -15,6 +15,7 @@ query Countries {
 export default async function Page() {
     const { data } = await getClient().query({ query: GET_COUNTRIES });
     const countries: ICountry[] = data.countries;
+
     return (
         <>
             <HeaderCenter title='Выбор клиники' />

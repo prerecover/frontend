@@ -1,5 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { IClinic } from '@/shared/types/clinic.interface';
+import { parseWeekDay } from '@/shared/utils/formatDate';
 
 export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
     return (
@@ -40,7 +41,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                                     Кол-во этажей:
                                 </Text>
                                 <Text type='h5' fz={500}>
-                                    144
+                                    {clinic?.detail.numberOfFloors}
                                 </Text>
                             </div>
                             <div className='flex items-center text-[14px] gap-1 font-normal'>
@@ -48,7 +49,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                                     Лифт:
                                 </Text>
                                 <Text type='h5' fz={500}>
-                                    есть
+                                    {clinic?.detail.elevatorHave ? 'Есть' : 'Нет'}
                                 </Text>
                             </div>
                         </div>
@@ -56,12 +57,50 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                             <Text type='h5' fz={500}>
                                 Дни и время работы
                             </Text>
+
                             <div className='flex-between text-[14px] gap-1 font-normal'>
                                 <Text type='h5' className='text-grey-700'>
-                                    Пн-Пт
+                                    Пн
                                 </Text>
                                 <Text type='h5' fz={500}>
-                                    8:00-17:00
+                                    {(clinic?.detail.mondayTime && parseWeekDay(clinic.detail.mondayTime)) ||
+                                        'Выходной'}
+                                </Text>
+                            </div>
+                            <div className='flex-between text-[14px] gap-1 font-normal'>
+                                <Text type='h5' className='text-grey-700'>
+                                    Вт
+                                </Text>
+                                <Text type='h5' fz={500}>
+                                    {(clinic?.detail.tuesdayTime && parseWeekDay(clinic.detail.tuesdayTime)) ||
+                                        'Выходной'}
+                                </Text>
+                            </div>
+                            <div className='flex-between text-[14px] gap-1 font-normal'>
+                                <Text type='h5' className='text-grey-700'>
+                                    Ср
+                                </Text>
+                                <Text type='h5' fz={500}>
+                                    {(clinic?.detail.wednesdayTime && parseWeekDay(clinic.detail.wednesdayTime)) ||
+                                        'Выходной'}
+                                </Text>
+                            </div>
+                            <div className='flex-between text-[14px] gap-1 font-normal'>
+                                <Text type='h5' className='text-grey-700'>
+                                    Чт
+                                </Text>
+                                <Text type='h5' fz={500}>
+                                    {(clinic?.detail.thursdayTime && parseWeekDay(clinic.detail.thursdayTime)) ||
+                                        'Выходной'}
+                                </Text>
+                            </div>
+                            <div className='flex-between text-[14px] gap-1 font-normal'>
+                                <Text type='h5' className='text-grey-700'>
+                                    Пт
+                                </Text>
+                                <Text type='h5' fz={500}>
+                                    {(clinic?.detail.fridayTime && parseWeekDay(clinic.detail.fridayTime)) ||
+                                        'Выходной'}
                                 </Text>
                             </div>
                             <div className='flex-between text-[14px] gap-1 font-normal'>
@@ -69,7 +108,8 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                                     Cб
                                 </Text>
                                 <Text type='h5' fz={500}>
-                                    9:00-14:00
+                                    {(clinic?.detail.saturdayTime && parseWeekDay(clinic.detail.saturdayTime)) ||
+                                        'Выходной'}
                                 </Text>
                             </div>
                             <div className='flex-between text-[14px] gap-1 font-normal'>
@@ -77,7 +117,8 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                                     Вс
                                 </Text>
                                 <Text type='h5' fz={500}>
-                                    Выходной
+                                    {(clinic?.detail.sundayTime && parseWeekDay(clinic.detail.sundayTime)) ||
+                                        'Выходной'}
                                 </Text>
                             </div>
                         </div>

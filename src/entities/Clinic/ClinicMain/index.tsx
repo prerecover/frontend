@@ -19,6 +19,7 @@ export default function ClinicMain({ clinic }: { clinic: IClinic }) {
     const offlineServices = clinic.services?.filter((service) => service.offline).length;
     const news = clinic.news?.length;
     const doctors = clinic.doctors?.length;
+
     return (
         <>
             <div className='desktop:hidden p-4 '>
