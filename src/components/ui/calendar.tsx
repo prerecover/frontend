@@ -57,7 +57,7 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
     const today = currentDate.getDate().toString();
 
     const handlePreviousMonth = () => {
-        if (currentMonth === 1) {
+        if (currentMonth === 0) {
             setCurrentMonth(11);
             setCurrentYear(currentYear - 1);
             setDate(
@@ -96,8 +96,11 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
 
     const zeroDays = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const handleSelectedDay = (day: string) => {
-        if (parseInt(day) < new Date().getDate()) return;
+        if (!fourDaysCheck(day)) return;
         if (day === undefined) return;
+        // if (fourDaysCheck(day, currentMonth)) return;
+        // else if (parseInt(currentDay) - parseInt(day) <= 4) return;
+        console.log(currentDay, day);
 
         setCurrentDay(day);
         setDate(
@@ -126,6 +129,18 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
     //     }
     //     return days;
     // };
+    //
+    //
+    const fourDaysCheck = (day: string) => {
+        const checkDate = new Date(currentYear, currentMonth, parseInt(day)).getTime();
+        const fourDaysDate = new Date(
+            new Date().getFullYear(),
+            new Date().getMonth(),
+            new Date().getDate() + 5,
+        ).getTime();
+        console.log(fourDaysDate - checkDate);
+        if (fourDaysDate - checkDate <= 0) return true;
+    };
 
     const getDaysInMonth = (year: number, month: number): (string | undefined)[] => {
         const startDate = new Date(year, month, 1);
@@ -151,6 +166,7 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
     };
 
     const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+    console.log(currentMonth, new Date().getMonth());
 
     return (
         <div>
@@ -202,13 +218,16 @@ export const Calendar: FC<ICalendare> = ({ width, height, borderColor, setDate, 
                             <li
                                 style={day === undefined ? { cursor: '' } : { cursor: 'pointer' }}
                                 className={cn(
-                                    today == day &&
-                                        currentMonth == new Date().getMonth() &&
+                                    today === day &&
+                                        currentMonth === new Date().getMonth() &&
                                         'border-blue border-solid border-[2px] rounded-[12px] text-blue font-medium',
                                     'w-[40px] h-[40px] flex-center m-auto',
 
                                     currentDay == day && 'bg-blue rounded-[12px] text-white',
-                                    parseInt(day || '') < new Date().getDate() && 'bg-none opacity-25',
+                                    !fourDaysCheck(day || '') && 'bg-none opacity-25',
+                                    // parseInt(day || '') < parseInt(today) && 'bg-none opacity-25',
+                                    // parseInt(day || '') < new Date().getDate() && 'bg-none opacity-25',
+                                    // parseInt(day || '') - parseInt(currentDay) <= 4 && 'bg-none opacity-25',
                                 )}
                                 key={i}
                                 onClick={() => handleSelectedDay(day || '')}>

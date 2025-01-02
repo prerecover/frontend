@@ -1,3 +1,4 @@
+import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import SavedMain from '@/entities/Saved/SavedMain';
 import { getClient } from '@/lib/apollo-client';
@@ -8,23 +9,31 @@ export default async function Page() {
 query SavedAll {
     savedAll {
         _id
-        createdAt
-        updatedAt
-        news {
+        clinic {
             _id
-            text
+            avatar
+            city
             title
-            like{
-                _id
-                author{
-                    _id
-                }
+            country{
+                title
             }
-            saved{
+        }
+        doctor {
+            _id
+            avatar
+            firstName
+            lastName
+            specialization
+            surname
+        }
+        service {
+            _id
+            img
+            price
+            title
+            clinic {
                 _id
-                author{
-                    _id
-                }
+                title
             }
         }
     }
@@ -34,6 +43,7 @@ query SavedAll {
 
     return (
         <>
+            <Header title={['Сохраненное']} />
             <MobileHeader title='Сохраненное' end={false} />
             <div className='p-4 flex flex-col'>
                 <SavedMain saved={savedData.savedAll} />

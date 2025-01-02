@@ -126,6 +126,10 @@ const config = {
                     '0%,70%,100%': { opacity: '1' },
                     '20%,50%': { opacity: '0' },
                 },
+                'end-menu-animate': {
+                    from: { bottom: '-60px' },
+                    to: { bottom: '0px' },
+                },
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',

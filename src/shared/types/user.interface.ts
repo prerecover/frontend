@@ -1,6 +1,7 @@
 import { IAppointment } from './appointment.interface';
 import { ICommon } from './common.interface';
 import { ICountry } from './country.interface';
+import { ISaved } from './saved.interface';
 
 export interface IUser extends ICommon {
     userId: string;
@@ -21,5 +22,6 @@ export interface IUser extends ICommon {
     sex: boolean;
     isVerified: boolean;
     appointments: IAppointment[];
+    saved?: ISaved[];
     verificationCode?: number;
 }

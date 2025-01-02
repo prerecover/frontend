@@ -1,9 +1,11 @@
 import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
+import EndMenu from '@/components/layout/mobileHeader/end-menu';
 import ServiceMain from '@/entities/Service/ServiceMain';
 import { getClient } from '@/lib/apollo-client';
 import { IService } from '@/shared/types/service.interface';
 import { gql } from '@apollo/client';
+import { cookies } from 'next/headers';
 
 async function getService(_id: string) {
     const SERVICE_QUERY = gql(` query Service($serviceId: String!){
@@ -82,12 +84,14 @@ async function getService(_id: string) {
 
 export default async function Page({ params }: { params: { _id: string } }) {
     const service: IService = await getService(params._id);
+    const { get } = cookies();
     return (
         <>
             <Header title={['Поиск', 'Профиль клиники']} />
-            <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} end={false} />
+            <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} />
 
             <ServiceMain service={service} />
+            <EndMenu token={get('access_token')?.value} />
         </>
     );
 }

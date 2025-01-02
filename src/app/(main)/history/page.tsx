@@ -16,6 +16,10 @@ query History {
             service{
                 duration
             }            
+            availableDates{
+                _id
+                date
+            }
             doctor {
                 firstName
                 surname

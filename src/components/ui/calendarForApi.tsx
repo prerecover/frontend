@@ -52,7 +52,7 @@ export const CalendarForApi: FC<ICalendare> = ({ width, height, borderColor, set
     const today = currentDate.getDate().toString();
 
     const handlePreviousMonth = () => {
-        if (currentMonth === 1) {
+        if (currentMonth === 0) {
             setCurrentMonth(11);
             setCurrentYear(currentYear - 1);
             setDate(

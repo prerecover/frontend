@@ -71,6 +71,7 @@ query GetMe {
 
 const INITIAL_USER: IUser = {
     _id: '',
+    userId: '',
     avatar: '',
     historyStudied: false,
     address: '',
@@ -95,6 +96,7 @@ const AuthContext = createContext<IContextType>(INITIAL_STATE);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<IUser>(INITIAL_USER);
     const [isAuth, setIsAuth] = useState(false);
+    console.log(user);
     useEffect(() => {
         const token = getCookie('access_token');
         client

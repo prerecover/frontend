@@ -1,8 +1,10 @@
 import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
+import EndMenu from '@/components/layout/mobileHeader/end-menu';
 import ClinicMain from '@/entities/Clinic/ClinicMain';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
+import { cookies } from 'next/headers';
 
 async function getClinic(_id: string) {
     const CLINIC_QUERY = gql(`
@@ -34,36 +36,6 @@ query Clinic($clinicId: String!){
             _id
             slug
             title
-        }
-        news {
-            _id
-            text,
-            title,
-            like{
-                _id
-                author{
-                    _id
-                }
-            }
-            saved{
-                _id
-                author{
-                    _id
-                }
-            }
-            clinic{
-                avatar,
-                title
-            }
-            newsVideos {
-                _id
-                video
-            }
-            newsImages {
-                _id
-                image
-            }
-            
         }
         detail {
             _id
@@ -108,6 +80,7 @@ query Clinic($clinicId: String!){
 
 export default async function Page({ params }: { params: { _id: string } }) {
     const clinic = await getClinic(params._id);
+    const { get } = cookies();
     console.log(clinic.news);
     return (
         <>
@@ -117,6 +90,7 @@ export default async function Page({ params }: { params: { _id: string } }) {
             <div className='bg-white'>
                 <ClinicMain clinic={clinic} />
             </div>
+            <EndMenu token={get('access_token')?.value} />
         </>
     );
 }

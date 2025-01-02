@@ -12,6 +12,7 @@ export const months = [
     'Ноябрь',
     'Декабрь',
 ];
+
 export const monthTable: any = {
     Январь: 0,
     Февраль: 1,

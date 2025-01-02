@@ -13,6 +13,7 @@ mutation UploadAvatar ($avatar: Upload!){
 
 export const Avatar: FC = () => {
     const { user, setUser } = useAuth();
+
     const [token, setToken] = useState<string | undefined>();
     const [mutate] = useMutation(AVATAR_LOAD, {
         context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
@@ -43,6 +44,7 @@ export const Avatar: FC = () => {
                 className='w-[100px] h-[100px] rounded-full cursor-pointer object-cover'
                 alt='avatar'
             />
+
             <div className='flex flex-col mobile:hidden justify-center gap-2'>
                 <Text
                     type='p'

@@ -12,7 +12,6 @@ export interface IClinic extends ICommon {
     address: string;
     age?: number;
     specialization: string;
-
     description?: string;
     calendar?: string;
     detail: IClinicDetail;

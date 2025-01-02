@@ -1,7 +1,7 @@
-import AuthProvider from '../(auth)/auth-wrapper';
-import Sidebar from '@/components/layout/sidebar';
 import BurgerMenu from '@/components/layout/burgerMenu';
+import Sidebar from '@/components/layout/sidebar';
 import NotificationModal from '@/entities/Notification/NotificationModal';
+import AuthProvider from '../(auth)/auth-wrapper';
 
 export default async function MainLayout({
     children,

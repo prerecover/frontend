@@ -13,6 +13,7 @@ import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
 import { useNotifyStore } from '@/shared/store/notifyStore';
 import Link from 'next/link';
+import { useEndMenuModal } from '@/shared/store/endMenuModal';
 
 export default function MobileHeader({
     className,
@@ -32,6 +33,7 @@ export default function MobileHeader({
     const blockLocation = ['/', '/search', '/messages', '/account', '/history', '/payments', '/appointments', '/saved'];
     const { isOpen: modalOpen, setIsOpen: setModalOpen } = useNotifyModal();
     const pathname = usePathname();
+    const { setIsOpen: setEndMenuOpen, isOpen: endMenuOpen } = useEndMenuModal();
     console.log(user._id);
     return (
         <>
@@ -42,9 +44,7 @@ export default function MobileHeader({
 
                         className,
                     )}>
-                    <div
-                        onClick={() => (!user._id ? router.push('/login') : setIsOpen(!isOpen))}
-                        className='cursor-pointer'>
+                    <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer'>
                         <Image src={isOpen ? burgerClose : burger} alt='burger' width={24} height={24} />
                     </div>
                     {user._id ? (
@@ -131,6 +131,7 @@ export default function MobileHeader({
                                 {title !== 'Записи' && end ? (
                                     <svg
                                         className='fixed right-2 top-4'
+                                        onClick={() => setEndMenuOpen(!endMenuOpen)}
                                         width='28'
                                         height='28'
                                         viewBox='0 0 28 28'
@@ -151,7 +152,7 @@ export default function MobileHeader({
                                     </svg>
                                 ) : end === true ? (
                                     <svg
-                                        className='fixed right-5 top-4'
+                                        className='fixed right-5 top-4 '
                                         width='33'
                                         height='33'
                                         viewBox='0 0 33 33'
@@ -175,17 +176,17 @@ export default function MobileHeader({
                                 )}
                             </div>
                         </div>
-                        <div
-                            className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer '
-                            onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}>
-                            <Image
-                                src={user?.avatar ? user?.avatar : userImg}
-                                alt='avatar'
-                                width={40}
-                                height={40}
-                                className='object-cover h-[40px]'
-                            />
-                        </div>
+                        {/* <div */}
+                        {/*     className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer ' */}
+                        {/*     onClick={() => router.push(`${user?._id ? '/account' : '/login'}`)}> */}
+                        {/*     <Image */}
+                        {/*         src={user?.avatar ? user?.avatar : userImg} */}
+                        {/*         alt='avatar' */}
+                        {/*         width={40} */}
+                        {/*         height={40} */}
+                        {/*         className='object-cover h-[40px]' */}
+                        {/*     /> */}
+                        {/* </div> */}
                     </div>
                 </>
             )}

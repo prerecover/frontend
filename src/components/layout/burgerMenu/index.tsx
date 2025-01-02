@@ -30,9 +30,7 @@ export default function BurgerMenu() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isInView]);
     return (
-        <div
-            className={cn(`${!isOpen && 'hidden transition-all'}`, 'desktop:hidden transition-all')}
-            onClick={() => !user._id && router.push('/login')}>
+        <div className={cn(`${!isOpen && 'hidden transition-all'}`, 'desktop:hidden transition-all')}>
             <AnimatePresence>
                 <>
                     <motion.div
@@ -55,7 +53,9 @@ export default function BurgerMenu() {
                             <li
                                 key={idx}
                                 onClick={() => {
-                                    router.push(user._id ? item.path : '/login');
+                                    item.path === '/search'
+                                        ? router.push(item.path)
+                                        : router.push(user._id ? item.path : '/login');
                                     setIsOpen(false);
                                 }}
                                 className={cn(
