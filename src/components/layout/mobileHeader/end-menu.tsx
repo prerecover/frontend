@@ -56,12 +56,12 @@ export default function EndMenu({ token }: { token: string | undefined }) {
     const [mutateSave] = useMutation(SAVE_MUTATION, {
         onCompleted(data) {
             setSavedId(data.createSaved._id);
-            toast({ variant: 'positive', title: 'Сохранено!' });
+            // toast({ variant: 'positive', title: 'Сохранено!' });
         },
     });
     const [mutateDelete] = useMutation(DELETE_MUTATION, {
         onCompleted() {
-            toast({ variant: 'warning', title: 'Удалено из сохраненного!' });
+            // toast({ variant: 'warning', title: 'Удалено из сохраненного!' });
         },
     });
     const { toast } = useToast();
