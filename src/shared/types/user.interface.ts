@@ -24,4 +24,19 @@ export interface IUser extends ICommon {
     appointments: IAppointment[];
     saved?: ISaved[];
     verificationCode?: number;
+    detail?: IUserDetail;
+}
+
+export interface IUserDetail {
+    _id: string;
+    height?: number;
+    weight?: number;
+    pressureStart?: number;
+    pressureEnd?: number;
+    oxygen?: number;
+    pulse?: number;
+    allergy?: string;
+    sleepTime?: number;
+    temperature?: number;
+    user?: IUser;
 }

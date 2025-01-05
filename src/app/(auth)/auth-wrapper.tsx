@@ -30,6 +30,18 @@ query GetMe {
         country{
             title
         }
+        detail {
+            _id
+            allergey
+            height
+            oxygen
+            pressureEnd
+            pressureStart
+            pulse
+            sleepTime
+            temperature
+            weight
+        }
         appointments{
             title
             timeStart
@@ -87,8 +99,8 @@ const INITIAL_USER: IUser = {
 const INITIAL_STATE = {
     user: INITIAL_USER,
     isAuth: false,
-    setUser: () => {},
-    setIsAuth: () => {},
+    setUser: () => { },
+    setIsAuth: () => { },
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
@@ -96,7 +108,6 @@ const AuthContext = createContext<IContextType>(INITIAL_STATE);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<IUser>(INITIAL_USER);
     const [isAuth, setIsAuth] = useState(false);
-    console.log(user);
     useEffect(() => {
         const token = getCookie('access_token');
         client

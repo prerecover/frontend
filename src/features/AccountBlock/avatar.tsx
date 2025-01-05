@@ -50,8 +50,8 @@ export const Avatar: FC = () => {
                     type='p'
                     className='font-semibold text-[24px]'>{`${user.lastName || ''} ${user.firstName?.charAt(0) || '' + '.'} ${user.surname?.charAt(0) || '' + '.'}  `}</Text>
 
-                <Text type='p' className='font-medium text-[16px] text-grey-700'>
-                    Пользователь
+                <Text type='p' className='font-medium text-[16px]'>
+                    ID {user.userId.slice(0, 4)} {user.userId.slice(4, 8)} {user.userId.slice(8)}
                 </Text>
             </div>
         </div>

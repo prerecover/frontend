@@ -4,13 +4,61 @@ import ClinicSavedCard from '@/entities/Clinic/ClinicSavedCard';
 import DoctorSavedCard from '@/entities/Doctor/DoctorSavedCard';
 import ServiceSavedCard from '@/entities/Service/ServiceSavedCard';
 import { ISaved } from '@/shared/types/saved.interface';
-import { useRef } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import { useEffect, useRef, useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 
-export default function SavedMain({ saved }: { saved: ISaved[] }) {
-    console.log(saved);
+const SAVED_QUERY = gql(`
+query SavedAll {
+    savedAll {
+        _id
+        clinic {
+            _id
+            avatar
+            city
+            title
+            country{
+                title
+            }
+        }
+        doctor {
+            _id
+            avatar
+            firstName
+            lastName
+            specialization
+            surname
+        }
+        service {
+            _id
+            img
+            price
+            title
+            clinic {
+                _id
+                title
+            }
+        }
+    }
+}
+    `);
+
+export default function SavedMain({ token }: { token: string }) {
+    const { data, refetch } = useQuery(SAVED_QUERY, { context: { headers: { Authorization: `Bearer ${token}` } } });
+    const [saved, setSaved] = useState<ISaved[]>([]);
     const swiperRef = useRef<SwiperRef>(null);
+
+    useEffect(() => {
+        if (data) {
+            setSaved(data.savedAll);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        refetch();
+    });
+
     return (
         <div className='flex flex-col gap-4'>
             <Text fw={500} fz={20}>
