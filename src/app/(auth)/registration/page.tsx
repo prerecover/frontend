@@ -1,10 +1,10 @@
 import AuthContainer from '@/components/ui/authContainer';
 import { Text } from '@/components/ui/text';
-import googleImg from '/public/assets/google.svg';
-import facebookImg from '/public/assets/facebook.svg';
-import appleImg from '/public/assets/apple.svg';
-import Image from 'next/image';
 import { RegistrationForm } from '@/features/Registration/form';
+import AuthWithApple from '@/features/AuthWithApple';
+import AuthWithGoogle from '@/features/AuthWithGoogle';
+import AuthWithTelegram from '@/features/AuthWithTelegram';
+import Link from 'next/link';
 
 export default function Registration() {
     return (
@@ -14,10 +14,16 @@ export default function Registration() {
                     Регистрация
                 </Text>
                 <RegistrationForm />
-                <div className='flex-center gap-4'>
-                    <Image src={googleImg} priority width={25} height={25} alt='with Google' />
-                    <Image src={facebookImg} priority width={25} height={25} alt='with Facebook' />
-                    <Image src={appleImg} priority width={25} height={25} alt='with Apple' />
+                <div className='flex-center gap-1'>
+                    <Text className='text-grey-600'>У вас есть аккаунт?</Text>
+                    <Link href={'/login'} className='text-blue'>
+                        Войти
+                    </Link>
+                </div>
+                <div className='grid gap-4 reverse_slider:flex-center'>
+                    <AuthWithTelegram />
+                    <AuthWithGoogle />
+                    <AuthWithApple />
                 </div>
             </AuthContainer>
         </>

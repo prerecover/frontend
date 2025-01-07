@@ -1,9 +1,10 @@
+'use client';
 import AuthContainer from '@/components/ui/authContainer';
 import Line from '@/components/ui/line';
 import { Text } from '@/components/ui/text';
 import AuthWithApple from '@/features/AuthWithApple';
-import AuthWithFacebook from '@/features/AuthWithFacebook';
 import AuthWithGoogle from '@/features/AuthWithGoogle';
+import AuthWithTelegram from '@/features/AuthWithTelegram';
 import { UserLogin } from '@/features/UserLogin';
 
 export default function Login() {
@@ -21,10 +22,10 @@ export default function Login() {
                     </Text>
                     <Line color='#D6E7FF' />
                 </div>
-                <div className='grid gap-4'>
+                <div className='grid gap-4 reverse_slider:flex-center'>
+                    <AuthWithTelegram />
                     <AuthWithGoogle />
                     <AuthWithApple />
-                    <AuthWithFacebook />
                 </div>
             </AuthContainer>
         </>

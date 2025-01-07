@@ -34,7 +34,6 @@ export default function MobileHeader({
     const { isOpen: modalOpen, setIsOpen: setModalOpen } = useNotifyModal();
     const pathname = usePathname();
     const { setIsOpen: setEndMenuOpen, isOpen: endMenuOpen } = useEndMenuModal();
-    console.log(user._id);
     return (
         <>
             {blockLocation.includes(pathname) ? (

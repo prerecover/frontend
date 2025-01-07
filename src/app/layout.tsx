@@ -58,6 +58,8 @@ export default function RootLayout({
                 <Blur />
             </body>
             <script src='//code.jivo.ru/widget/PCxtgM4g4J' async></script>
+            <script src='https://telegram.org/js/telegram-widget.js' async></script>
+            {/* <script src='https://telegram.org/js/telegram-web-app.js' async></script> */}
         </html>
     );
 }

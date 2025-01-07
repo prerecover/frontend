@@ -40,3 +40,12 @@ export interface IUserDetail {
     temperature?: number;
     user?: IUser;
 }
+
+export interface IAuthByTelegram {
+    auth_date: number;
+    first_name: string;
+    hash: string;
+    id: number;
+    username: string;
+    photo_url: string;
+}

@@ -55,6 +55,7 @@ export default function AccountBlock() {
                 />
                 <AccountMedForm className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:w-full' form={medForm} />
             </div>
+            <AccountDesktopMenu />
         </>
     );
 }

@@ -124,7 +124,7 @@ export const RegistrationForm: FC = () => {
                             </FormItem>
                         )}
                     />
-                    <Policy isChecked={checked} setIsChecked={setChecked} />
+                    {/* <Policy isChecked={checked} setIsChecked={setChecked} /> */}
                     <Button type='submit' className='mt-[15px]'>
                         {loading ? 'Загрузка' : 'Зарегистрироваться'}
                     </Button>
