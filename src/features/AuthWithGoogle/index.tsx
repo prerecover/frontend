@@ -1,11 +1,11 @@
 import AuthWith from '@/components/ui/auth-with';
-import Link from 'next/link';
 import googleImg from '/public/assets/google.svg';
+import { signIn } from 'next-auth/react';
 
 export default function AuthWithGoogle() {
     return (
-        <Link href={'/'}>
+        <div onClick={() => signIn('google', { callbackUrl: '/' })} className='cursor-pointer'>
             <AuthWith img={googleImg} text='Войти с помощью Google' />
-        </Link>
+        </div>
     );
 }
