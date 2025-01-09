@@ -2,9 +2,9 @@
 import AuthContainer from '@/components/ui/authContainer';
 import Line from '@/components/ui/line';
 import { Text } from '@/components/ui/text';
-import AuthWithApple from '@/features/AuthWithApple';
 import AuthWithGoogle from '@/features/AuthWithGoogle';
 import AuthWithTelegram from '@/features/AuthWithTelegram';
+import AuthWithVk from '@/features/AuthWithVk';
 import { UserLogin } from '@/features/UserLogin';
 
 export default function Login() {
@@ -25,7 +25,7 @@ export default function Login() {
                 <div className='grid gap-4 reverse_slider:flex-center'>
                     <AuthWithTelegram />
                     <AuthWithGoogle />
-                    <AuthWithApple />
+                    <AuthWithVk />
                 </div>
             </AuthContainer>
         </>

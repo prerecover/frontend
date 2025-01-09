@@ -49,3 +49,18 @@ export interface IAuthByTelegram {
     username: string;
     photo_url: string;
 }
+export interface IAuthByOther {
+    id: string;
+    email?: string;
+    name: string;
+    image: string;
+}
+
+export interface IAuthByGoogle {
+    id: string;
+    email: string;
+    verified_email: boolean;
+    name: string;
+    given_name: string;
+    picture: string;
+}

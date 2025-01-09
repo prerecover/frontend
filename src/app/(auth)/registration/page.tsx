@@ -1,9 +1,10 @@
+"use client"
 import AuthContainer from '@/components/ui/authContainer';
 import { Text } from '@/components/ui/text';
-import { RegistrationForm } from '@/features/Registration/form';
-import AuthWithApple from '@/features/AuthWithApple';
 import AuthWithGoogle from '@/features/AuthWithGoogle';
 import AuthWithTelegram from '@/features/AuthWithTelegram';
+import AuthWithVk from '@/features/AuthWithVk';
+import { RegistrationForm } from '@/features/Registration/form';
 import Link from 'next/link';
 
 export default function Registration() {
@@ -23,7 +24,7 @@ export default function Registration() {
                 <div className='grid gap-4 reverse_slider:flex-center'>
                     <AuthWithTelegram />
                     <AuthWithGoogle />
-                    <AuthWithApple />
+                    <AuthWithVk />
                 </div>
             </AuthContainer>
         </>
