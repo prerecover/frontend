@@ -1,5 +1,5 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Policy } from './Policy';
 import { useCredStore } from '@/shared/store/credStore';
 import { useRouteStore } from '@/shared/store/prevRouter';
 
@@ -26,7 +25,7 @@ const REGISTRATION_MUTATION = gql(`
 `);
 
 export const RegistrationForm: FC = () => {
-    const [checked, setChecked] = useState<boolean>(false);
+    // const [checked, setChecked] = useState<boolean>(false);
     const { setEmail } = useCredStore();
     const { setRoute } = useRouteStore();
     const path = usePathname();

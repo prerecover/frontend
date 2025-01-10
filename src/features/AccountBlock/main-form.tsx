@@ -15,7 +15,7 @@ import { formatDate } from '@/shared/utils/formatDate';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalendarIcon } from 'lucide-react';
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import AccountFormNameField from './fields/name';
@@ -130,7 +130,7 @@ export default function AccountMainForm({
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        const { birthday } = values;
+        console.log(values);
         const age = Math.abs(new Date().getUTCFullYear() - date.getUTCFullYear());
         console.log(age);
         if (age < 18) {

@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import AuthContainer from '@/components/ui/authContainer';
 import { Text } from '@/components/ui/text';
 import AuthWithGoogle from '@/features/AuthWithGoogle';

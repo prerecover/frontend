@@ -1,12 +1,8 @@
 import { FormField, FormItem, FormControl, FormMessage, Form } from '@/components/ui/form';
 import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
-import { PropsWithClassName } from '@/shared/types';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FC } from 'react';
-import { useForm, UseFormReturn } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
-import { z } from 'zod';
 
 export default function AccountMedForm({
     className,

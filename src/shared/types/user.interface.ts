@@ -64,3 +64,13 @@ export interface IAuthByGoogle {
     given_name: string;
     picture: string;
 }
+
+export interface IAuthByVk {
+    id: string;
+    email?: string;
+    first_name: string;
+    photo: string;
+    last_name: string;
+    can_access_closed: boolean;
+    is_closed: boolean;
+}

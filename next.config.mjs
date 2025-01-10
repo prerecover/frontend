@@ -2,7 +2,7 @@
 const nextConfig = {
     output: 'standalone',
     reactStrictMode: true,
-    images: { domains: ['localhost', "img-cdn.pixlr.com", "encrypted-tbn0.gstatic.com", "static.vecteezy.com", "www.fotor.com", "t.me", "lh3.googleusercontent.com"] },
+    images: { domains: ['localhost', "img-cdn.pixlr.com", "encrypted-tbn0.gstatic.com", "static.vecteezy.com", "www.fotor.com", "t.me", "lh3.googleusercontent.com", "sun9-49.userapi.com"] },
     env: {
         NEXT_PUBLIC_BACKEND: process.env.NEXT_PUBLIC_BACKEND
     },
