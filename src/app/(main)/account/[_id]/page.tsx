@@ -9,6 +9,9 @@ export default async function Page() {
             <MobileHeader title='Профиль' />
             <Header title={['Профиль']} />
             <AppointmentWarnList />
+
+
+
             <AccountBlock />
         </>
     );

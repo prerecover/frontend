@@ -2,23 +2,28 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { IService } from '../types/service.interface';
 
+type stringArg = (T: string) => void;
+type numberArg = (T: number) => void;
+
 interface IDataStore {
     title: string;
-    setTitle: (title: string) => void;
+    setTitle: stringArg;
     ageClinic: number | null;
-    setAgeClinic: (ageClinic: number) => void;
+    setAgeClinic: numberArg;
     typeTitle: string;
-    setTypeTitle: (typeTitle: string) => void;
+    setTypeTitle: stringArg;
     square: number | null;
-    setSquare: (square: number) => void;
+    setSquare: numberArg;
     adminNumber: string;
-    setAdminNumber: (adminNumber: string) => void;
+    setAdminNumber: stringArg;
+    avatar: string;
+    setAvatar: stringArg;
     numbers: string[];
     setNumbers: (numbers: string[]) => void;
     registryNumber: string;
-    setRegistryNumber: (registryNumber: string) => void;
+    setRegistryNumber: stringArg;
     language: string;
-    setLanguage: (language: string) => void;
+    setLanguage: stringArg;
     computerHave: boolean;
     setComputerHave: (computerHave: boolean) => void;
     elevatorHave: boolean;
@@ -26,32 +31,32 @@ interface IDataStore {
     internetHave: boolean;
     setInternetHave: (internetHave: boolean) => void;
     numberOfFloors: number | null;
-    setNumberOfFloors: (numberOfFloors: number | null) => void;
+    setNumberOfFloors: numberArg;
     totalDoctors: number | null;
-    setTotalDoctors: (totalDoctors: number | null) => void;
+    setTotalDoctors: numberArg;
     totalServices: number | null;
-    setTotalServices: (totalServices: number | null) => void;
+    setTotalServices: numberArg;
     mondayTime: string | null;
-    setMondayTime: (time: string) => void;
+    setMondayTime: stringArg;
     tuesdayTime: string | null;
-    setTuesdayTime: (time: string) => void;
+    setTuesdayTime: stringArg;
     wednesdayTime: string | null;
-    setWednesdayTime: (time: string) => void;
+    setWednesdayTime: stringArg;
     thursdayTime: string | null;
-    setThursdayTime: (time: string) => void;
+    setThursdayTime: stringArg;
     fridayTime: string | null;
-    setFridayTime: (time: string) => void;
+    setFridayTime: stringArg;
     saturdayTime: string | null;
-    setSaturdayTime: (time: string) => void;
+    setSaturdayTime: stringArg;
     sundayTime: string | null;
-    setSundayTime: (time: string) => void;
+    setSundayTime: stringArg;
 
     country: string;
-    setCountry: (country: string) => void;
+    setCountry: stringArg;
     city: string;
-    setCity: (city: string) => void;
+    setCity: stringArg;
     address: string;
-    setAddress: (address: string) => void;
+    setAddress: stringArg;
     services: Partial<IService>[];
     setServices: (services: Partial<IService>[]) => void;
 }
@@ -66,6 +71,7 @@ export const useClinicRegStore = create<IDataStore>()(
         numbers: [],
         registryNumber: '',
         mondayTime: null,
+        avatar: '',
         tuesdayTime: null,
         wednesdayTime: null,
         thursdayTime: null,
@@ -84,6 +90,11 @@ export const useClinicRegStore = create<IDataStore>()(
         city: '',
         address: '',
         services: [],
+        setAvatar: (avatar: string) => {
+            set((state) => {
+                state.avatar = avatar;
+            });
+        },
         setTitle: (title: string) => {
             set((state) => {
                 state.title = title;

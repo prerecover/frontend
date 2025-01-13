@@ -11,6 +11,7 @@ const AUTH_MUTATION = gql(`
             }`);
 
 export async function GET(request: Request) {
+
     const code = new URL(request.url).searchParams.get('code');
     const clientId = process.env.NEXT_PUBLIC_VK_CLIENT_ID;
     const clientSecret = process.env.NEXT_PUBLIC_VK_CLIENT_SECRET;
@@ -65,7 +66,7 @@ export async function GET(request: Request) {
     if (userData.error) {
         return NextResponse.json({ error: userData.error.error_msg }, { status: 400 });
     }
-    return NextResponse.redirect('https://74b9-147-45-132-29.ngrok-free.app/', {
+    return NextResponse.redirect(process.env.NEXT_PUBLIC_FRONTEND_ROOT!, {
         headers: {
             'Set-Cookie': `access_token=${await authUser('vk', user as IAuthByVk)}; Path=/; Secure; `,
         },

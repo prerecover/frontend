@@ -36,6 +36,7 @@ export async function GET(req: Request) {
     const authUser = async (key: 'vk' | 'google', googleData: IAuthByGoogle) => {
         const data: IAuthByOther = {
             image: googleData.picture,
+
             name: googleData.name,
             id: googleData.id,
             email: googleData.email,
@@ -46,7 +47,7 @@ export async function GET(req: Request) {
         });
         return mutData.authByOther.access_token;
     };
-    return NextResponse.redirect('http://localhost:3001/', {
+    return NextResponse.redirect(process.env.NEXT_PUBLIC_FRONTEND_ROOT!, {
         headers: {
             'Set-Cookie': `access_token=${await authUser('google', userInfo.data as IAuthByGoogle)}; Path=/; Secure; `,
         },

@@ -146,7 +146,7 @@ export default function SavedMain({ token }: { token: string }) {
                                 </SwiperSlide>
                             ))}
                     </>
-                </Swiper>
+                </Text>
                 <Text fw={500} fz={16} className={saved.filter((pred) => pred.service).length == 0 ? 'hidden' : ''}>
                     Услуги
                 </Text>

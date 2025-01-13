@@ -55,7 +55,7 @@ export default async function middleware(req: NextRequest) {
         }
     }
     if (userToken && checkError === true) {
-        return NextResponse.redirect(new URL('/admin/dashboard', req.nextUrl));
+        return NextResponse.redirect(new URL('/admin/clinics', req.nextUrl));
     } else {
         return NextResponse.next();
     }

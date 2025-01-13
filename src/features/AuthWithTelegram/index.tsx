@@ -18,7 +18,6 @@ export default function AuthWithTelegram() {
     const [mutate] = useMutation(TELEGRAM_AUTH_MUTATION, {
         onCompleted(data) {
             setCookie('access_token', data.authByTelegram.access_token, 90);
-
             window.location.reload();
             window.location.replace('/');
         },
@@ -29,7 +28,11 @@ export default function AuthWithTelegram() {
                 bot_id: process.env.NEXT_PUBLIC_TELEGRAM_TOKEN,
                 request_access: true,
             },
-            (data: IAuthByTelegram) => mutate({ variables: { input: data } }),
+            (data: IAuthByTelegram) => {
+                data.id = data.id.toString();
+                mutate({ variables: { input: data } });
+            },
+
             // (data: any) => console.log(data),
         );
     };

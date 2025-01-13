@@ -3,7 +3,7 @@ import { Text } from '@/components/ui/text';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
 import { gql, useMutation } from '@apollo/client';
 import Image from 'next/image';
-import { FC, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 
 const AVATAR_LOAD = gql(`
 mutation UploadAvatar ($avatar: Upload!){
@@ -28,9 +28,11 @@ export const Avatar: FC = () => {
         setToken(accessToken);
     }, []);
 
-    const handleImg = (e: any) => {
-        const file = e.target.files[0];
-        mutate({ variables: { avatar: file } });
+    const handleImg = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const file = e.target.files[0];
+            mutate({ variables: { avatar: file } });
+        }
     };
     return (
         <div className='flex mt-7  z-20 desktop:my-auto desktop:gap-4'>

@@ -2,7 +2,7 @@
 import { Text } from '@/components/ui/text';
 import LeftParams from './left-params';
 import RightParams from './right-params';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { ICountry } from '@/shared/types/country.interface';
 import ClinicActivity from './clinic-activity';
 import Image from 'next/image';
@@ -16,6 +16,7 @@ import { useToast } from '@/components/ui/use-toast';
 import CheckboxBlock from './checkbox-block';
 import QuantityBlock from './quantity-block';
 import LocationBlock from './location-block';
+import { AvatarLoad } from '@/components/ui/avatar-load';
 
 const REGISTER_CLINIC = gql(`
 mutation CreateService($registerData: RegisterClinicInput!){
@@ -57,6 +58,8 @@ export default function RegistrationClinic({
         fridayTime,
         saturdayTime,
         sundayTime,
+        avatar,
+        setAvatar,
     } = useClinicRegStore();
     const { toast } = useToast();
 
@@ -170,6 +173,8 @@ export default function RegistrationClinic({
                             ))}
                             <div className='flex flex-col mt-[10px] items-center'>
                                 <Image
+                                
+
                                     src={'/assets/blue-plus.svg'}
                                     width={32}
                                     height={32}
@@ -185,6 +190,11 @@ export default function RegistrationClinic({
                         </Button>
                     </div>
                 </div>
+                <AvatarLoad
+                    className='w-[198px] h-fit px-5 py-3 mt-16'
+                    imgState={avatar}
+                    reactSetState={setAvatar as React.Dispatch<SetStateAction<string>>}
+                />
             </div>
         </>
     );

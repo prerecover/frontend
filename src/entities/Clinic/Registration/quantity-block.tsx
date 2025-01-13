@@ -9,8 +9,11 @@ export default function QuantityBlock() {
         <div className='flex-between'>
             <div className='flex items-center gap-[14px]'>
                 <Text className='font-medium text-[18px]'>Кол-во этажей</Text>
+                
                 <InputOTP
+                
                     maxLength={3}
+
                     pattern={REGEXP_ONLY_DIGITS}
                     onChange={(value) => setNumberOfFloors(parseInt(value))}>
                     <InputOTPGroup className='gap-[14px]'>

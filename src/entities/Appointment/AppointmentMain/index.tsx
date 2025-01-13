@@ -17,7 +17,7 @@ export default function AppointmentMain({ appointment }: { appointment: IAppoint
             ? `0${new Date(appointment.timeStart).getMinutes()}`
             : new Date(appointment.timeStart).getMinutes();
     const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${minutes}`;
-    const duration = appointment.service?.duration;
+    const duration = appointment.service?.durationMin;
     const filters = ['Общие параметры', 'График пользы', 'Показатели врача'];
     const [filter, setFilter] = useState('Общие параметры');
 

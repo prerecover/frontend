@@ -9,7 +9,7 @@ import { Text } from '@/components/ui/text';
 
 export default function ServiceRecomendationCard({ service }: { service: IService }) {
     const router = useRouter();
-    const duration = durationParse(service?.duration || 100);
+    const duration = durationParse(service?.durationMin || 100);
     let doctors: string = '';
     service?.doctors?.forEach((doctor) => (doctors += `${doctor?.lastName} ${doctor?.firstName?.charAt(0)}., `));
     return (
@@ -43,7 +43,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                                 },
                                 {
                                     key: 'Цена:',
-                                    value: `${service?.price} сум`,
+                                    value: `${service?.priceMax} сум`,
                                 },
                             ]}
                         />

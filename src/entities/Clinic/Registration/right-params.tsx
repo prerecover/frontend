@@ -43,21 +43,6 @@ export default function RightParams() {
                     type='number'
                     onChange={(e) => setSquare(parseInt(e.currentTarget.value))}
                 />
-                <Input
-                    placeholder='Телефон клиники 1'
-                    required={true}
-                    onChange={(e) => changeInputState(0, e.currentTarget.value)}
-                />
-                <Input
-                    placeholder='Телефон клиники 2'
-                    required={true}
-                    onChange={(e) => changeInputState(1, e.currentTarget.value)}
-                />
-                <Input
-                    placeholder='Телефон клиники 4'
-                    required={true}
-                    onChange={(e) => changeInputState(3, e.currentTarget.value)}
-                />
                 <Select onValueChange={(e) => setLanguage(e)} defaultValue={''}>
                     <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>
                         {language === '' && <Text className='text-grey text-[14px]'>Язык клиники</Text>}
@@ -76,6 +61,12 @@ export default function RightParams() {
                         </SelectItem>
                     </SelectContent>
                 </Select>
+
+                <Input
+                    placeholder='Телефоны клиники'
+                    required={true}
+                    onChange={(e) => changeInputState(0, e.currentTarget.value)}
+                />
             </div>
         </div>
     );

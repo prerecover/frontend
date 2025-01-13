@@ -36,7 +36,7 @@ export default function ServiceOfDoctorCard({
                         <div className='flex truncate'>
                             <h3 className='font-medium text-[#7D7F82] text-[16px]'>Длительность:</h3>
                             <h3 className='font-medium text-[#262626] text-[16px] ml-2'>
-                                {durationParse(service?.duration || 0)}
+                                {durationParse(service?.durationMin || 0)}
                             </h3>
                         </div>
                         <div className='flex'>
@@ -50,7 +50,7 @@ export default function ServiceOfDoctorCard({
                         <div className='h-[1px] w-screen bg-[#C8DBF6] mt-3'></div>
                         <div className='flex mt-3 gap-1 items-center'>
                             <h3 className='font-medium text-[#262626] text-[16px]'>Цена:</h3>
-                            <h1 className='font-semibold text-[19px]'>{service?.price} UZS</h1>
+                            <h1 className='font-semibold text-[19px]'>{service?.priceMin} UZS</h1>
                         </div>
                     </div>
                 </div>

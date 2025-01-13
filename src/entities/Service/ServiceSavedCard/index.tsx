@@ -20,7 +20,7 @@ export default function ServiceSavedCard({ service }: { service: IService }) {
                 </div>
                 <div className='flex text-[12px] font-medium gap-1'>
                     <Text className='text-grey-700'>Цена:</Text>
-                    <Text>{service.price} сум</Text>
+                    <Text>{service.priceMin} сум</Text>
                 </div>
             </div>
         </div>

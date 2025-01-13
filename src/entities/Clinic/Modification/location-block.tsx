@@ -19,6 +19,7 @@ export default function LocationBlock({
     const { country, setCountry, city, setCity, address, setAddress } = useClinicRegStore();
     useEffect(() => {
         setCountry(countryEdit.title);
+
         setCity(cityEdit);
         setAddress(addressEdit);
         // eslint-disable-next-line react-hooks/exhaustive-deps

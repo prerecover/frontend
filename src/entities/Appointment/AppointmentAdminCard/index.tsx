@@ -45,7 +45,7 @@ export default function AppointmentAdminCard({ appointment }: { appointment: IAp
             ? `0${new Date(appointment.timeStart).getMinutes()}`
             : new Date(appointment.timeStart).getMinutes();
     const timeAppointment = `${new Date(appointment.timeStart).getHours()}:${minutes}`;
-    const duration = appointment.service?.duration;
+    const duration = appointment.service?.durationMin;
     const doctorName = `${appointment.doctor.lastName} ${appointment.doctor.firstName.charAt(0).toUpperCase()}.${appointment.doctor.surname.charAt(0).toUpperCase()}`;
     const pathname = usePathname();
     const [firstDialog, setFirstDialog] = useState(false);

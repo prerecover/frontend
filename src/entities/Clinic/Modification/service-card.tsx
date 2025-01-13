@@ -60,11 +60,11 @@ export default function ServiceCard({
             if (validate()) {
                 serviceArray.push({
                     title,
-                    price: parseInt(price),
+                    priceMin: parseInt(price || '1'),
                     description,
                     category: category?.title,
                     online: online == 'Онлайн',
-                    duration: parseInt(duration),
+                    durationMax: parseInt(duration),
                     offline: online !== 'Онлайн',
                     doctors: doctors,
                 });

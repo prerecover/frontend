@@ -20,7 +20,7 @@ export default function ServiceAddAppmntCard({ service }: { service?: IService }
                 <Characteristics
                     className='gap-2 mt-4'
                     data={[
-                        { key: 'Длительность:', value: durationParse(service?.duration || 0) },
+                        { key: 'Длительность:', value: durationParse(service?.durationMin || 0) },
 
                         { key: 'Лечилось:', value: `${service?.treated} человек` },
                     ]}

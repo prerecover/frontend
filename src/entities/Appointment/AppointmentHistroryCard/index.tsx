@@ -17,7 +17,7 @@ export default function AppointmentHistoryCard({ appointment }: { appointment: I
                 data={[
                     {
                         key: 'Длительность',
-                        value: durationParse(appointment.service.duration),
+                        value: durationParse(appointment.service.durationMin || 0),
                     },
                     { key: 'Все врачи:', value: '12' },
                     { key: 'Мед.задания:', value: '17' },

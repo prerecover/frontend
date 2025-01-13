@@ -107,7 +107,7 @@ export default function AddAppointmentBlock() {
                 online: filter == 'Онлайн',
                 serviceId: service?._id,
                 timeStart: date.getTime(),
-                duration: service?.duration,
+                duration: service?.durationMax,
             },
         });
     };

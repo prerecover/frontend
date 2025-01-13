@@ -53,7 +53,7 @@ export default function ServiceInfo({ service }: { service?: IService }) {
                             Длительность:
                         </Text>
                         <Text type='h5' className='text-[14px] font-medium'>
-                            {durationParse(service?.duration || 100)}
+                            {durationParse(service?.durationMin || 100)}
                         </Text>
                     </div>
                     <div className='flex-col flex'>
@@ -61,7 +61,7 @@ export default function ServiceInfo({ service }: { service?: IService }) {
                             Цена:
                         </Text>
                         <Text className='font-semibold text-[19px] mb-2' type='h1'>
-                            {service?.price} UZS
+                            {service?.priceMin} UZS
                         </Text>
                     </div>
                 </div>

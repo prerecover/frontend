@@ -3,14 +3,25 @@ import { ICommon } from './common.interface';
 import { IDoctor } from './doctor.interface';
 import { INews } from './news.interface';
 
+export enum PAYMENT_METHOD {
+    ONLINE = 'Онлайн',
+    CASHBOX = 'В кассу',
+    TO_DOCTOR = 'Врачу',
+    INSTALLMENT = 'В рассрочку',
+    CREDIT = 'В кредит',
+}
+
 export interface IService extends ICommon {
     title: string;
     description: string;
-    duration: number;
+    durationMin?: number;
+    durationMax?: number;
     online: boolean;
     offline: boolean;
+    paymentMethods: PAYMENT_METHOD[];
     treated: number;
-    price: number;
+    priceMin?: number;
+    priceMax?: number;
     doctors?: IDoctor[] | Partial<IDoctor>[];
     category: IServiceCategory | string;
     clinic: IClinic;

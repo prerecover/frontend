@@ -45,15 +45,15 @@ export interface IAuthByTelegram {
     auth_date: number;
     first_name: string;
     hash: string;
-    id: number;
+    id: string;
     username: string;
-    photo_url: string;
+    photo_url?: string;
 }
 export interface IAuthByOther {
     id: string;
     email?: string;
     name: string;
-    image: string;
+    image?: string;
 }
 
 export interface IAuthByGoogle {
@@ -62,7 +62,7 @@ export interface IAuthByGoogle {
     verified_email: boolean;
     name: string;
     given_name: string;
-    picture: string;
+    picture?: string;
 }
 
 export interface IAuthByVk {

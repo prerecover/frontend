@@ -37,9 +37,11 @@ query Search {
         services {
             _id
             description
-            duration
+            durationMin
+            durationMax
             online
-            price
+            priceMin
+            priceMax
             title
             img
             doctors{

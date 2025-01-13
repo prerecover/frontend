@@ -1,6 +1,5 @@
 import { ROUTES } from '@/shared/utils/paths';
 import { MenuItem } from '../sidebar/menuItem';
-import { SiteWorkIcon } from '@/icons/SiteWorkIcon';
 import { useLogout } from '@/shared/lib/hooks/useLogout';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
 import { SurveyIcon } from '@/icons/SurveyIcon';
@@ -9,7 +8,7 @@ export const AdminMenu = () => {
     const { logout } = useLogout();
     return (
         <>
-            <MenuItem icon={<SiteWorkIcon />} title={ROUTES.admin_dashboard.label} href={ROUTES.admin_dashboard.path} />
+            {/* <MenuItem icon={<SiteWorkIcon />} title={ROUTES.admin_dashboard.label} href={ROUTES.admin_dashboard.path} /> */}
 
             <MenuItem
                 icon={

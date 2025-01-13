@@ -40,16 +40,6 @@ export default function LeftParams() {
                     onChange={(e) => setAdminNumber(e.currentTarget.value)}
                 />
                 <Input
-                    placeholder='Телефон клиники 3'
-                    required={true}
-                    onChange={(e) => changeInputState(2, e.currentTarget.value)}
-                />
-                <Input
-                    placeholder='Телефон клиники 5'
-                    required={true}
-                    onChange={(e) => changeInputState(4, e.currentTarget.value)}
-                />
-                <Input
                     placeholder='Как быстро связываться с регистратурой клиники'
                     required={true}
                     value={registryNumber}
