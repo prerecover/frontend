@@ -3,7 +3,6 @@ import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 
 export default function StatisticBlock({ className }: { className?: string }) {
-    const {} = s;
     return (
         <div className={cn('flex flex-col', className)}>
             <Text className='text-[14px] font-medium mt-3 '>Статистика</Text>

@@ -5,13 +5,15 @@ import { IDoctor } from '@/shared/types/doctor.interface';
 import { useState } from 'react';
 import AddDoctorCard from './add-card';
 import Image from 'next/image';
+import { UseFormSetValue } from 'react-hook-form';
 
+export type HookFormSetState = UseFormSetValue<any>;
 export default function AddDoctorsBlock({
     doctors,
     setDoctors,
 }: {
     doctors: Partial<IDoctor>[];
-    setDoctors: React.Dispatch<React.SetStateAction<Partial<IDoctor>[]>>;
+    setDoctors: HookFormSetState
 }) {
     const [search, setSearch] = useState('');
     const [showAddCard, setShowAddCard] = useState(false);
@@ -26,7 +28,7 @@ export default function AddDoctorsBlock({
                 )}
             </div>
             {showAddCard === true ? (
-                <AddDoctorCard doctors={doctors} setShow={setShowAddCard} setDoctors={setDoctors} />
+                <AddDoctorCard doctors={doctors} setShow={setShowAddCard} setForm={setDoctors} />
             ) : (
                 <div className='flex flex-col h-full'>
                     <div className='flex gap-[10px]'>

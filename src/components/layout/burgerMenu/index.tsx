@@ -20,6 +20,7 @@ export default function BurgerMenu() {
     const router = useRouter();
     const { logout } = useLogout();
     const pathname = usePathname();
+
     useEffect(() => {
         return () => {
             document.body.style.overflow = '';

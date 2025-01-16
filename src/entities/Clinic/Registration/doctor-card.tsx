@@ -40,6 +40,7 @@ export default function DoctorCard({
                     lastName,
                     workExp: parseInt(exp),
                     specialization: specialization,
+
                     surname,
                 });
         }

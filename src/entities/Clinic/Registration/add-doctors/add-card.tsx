@@ -5,14 +5,15 @@ import { IDoctor } from '@/shared/types/doctor.interface';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { HookFormSetState } from '.';
 
 export default function AddDoctorCard({
     doctors,
     setShow,
-    setDoctors,
+    setForm,
 }: {
     doctors: Partial<IDoctor>[];
-    setDoctors: React.Dispatch<React.SetStateAction<Partial<IDoctor>[]>>;
+    setForm: HookFormSetState
     setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const formSchema = z.object({
@@ -36,7 +37,7 @@ export default function AddDoctorCard({
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
         const { firstName, lastName, exp, specialization, surname } = values;
-        setDoctors([...doctors, { firstName, lastName, workExp: parseInt(exp), specialization, surname }]);
+        setForm('doctors', [...doctors, { firstName, lastName, workExp: parseInt(exp), specialization, surname }]);
         setShow(false);
     }
 

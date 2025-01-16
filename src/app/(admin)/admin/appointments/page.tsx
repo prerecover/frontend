@@ -35,6 +35,7 @@ lastName
 
 export default async function Page() {
     const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
+
     return (
         <div>
             <Header title={['Администратор', 'Записи']} />

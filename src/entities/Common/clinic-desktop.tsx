@@ -18,7 +18,9 @@ export default function ClinicDesktop({ clinic, className }: { clinic?: IClinic;
                 className={cn(
                     'border-solid border border-blue-100 m-0 relative rounded-[10px] min-w-[554px] bg-white',
                     className,
+                
                 )}>
+                    
                 <Image
                     src={clinic?.avatar || '/assets/clinic.jpg'}
                     width={554}

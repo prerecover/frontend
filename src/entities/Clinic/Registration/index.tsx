@@ -95,29 +95,32 @@ export default function RegistrationClinic({
                     variables: {
                         registerData: {
                             title,
-                            age: ageClinic,
-                            square,
-                            numberOfFloors,
-                            mondayTime,
-                            tuesdayTime,
-                            wednesdayTime,
-                            thursdayTime,
-                            fridayTime,
-                            saturdayTime,
-                            sundayTime,
-                            language,
-                            numbers: numbers.filter((num) => num),
-                            registryNumber,
-                            computerHave,
-                            elevatorHave,
-                            internetHave,
-                            totalServices,
-                            totalDoctors,
                             typeTitle,
-                            address,
-                            adminNumber,
-                            city,
+                            age: ageClinic,
                             countryName: country,
+                            city,
+                            detail: {
+                                square,
+                                numberOfFloors,
+                                mondayTime,
+                                tuesdayTime,
+                                wednesdayTime,
+                                thursdayTime,
+                                fridayTime,
+                                saturdayTime,
+                                sundayTime,
+                                language,
+                                numbers: numbers.filter((num) => num),
+                                registryNumber,
+                                computerHave,
+                                elevatorHave,
+                                internetHave,
+                                totalServices,
+                                totalDoctors,
+                                adminNumber,
+                            },
+                            address,
+                            avatar,
                             services: serviceArray,
                         },
                     },
@@ -132,12 +135,12 @@ export default function RegistrationClinic({
     };
     return (
         <>
-            <div className='flex gap-[30px] '>
-                <div className='flex flex-col'>
+            <div className='flex'>
+                <div className='flex flex-col w-full'>
                     <Text className='text-[28px] font-medium mt-[16px]' position='center'>
                         Информация о клинике
                     </Text>
-                    <div className='bg-white max-w-[1175px] w-full rounded-[12px] mt-[9px] px-9'>
+                    <div className='bg-white w-full rounded-[12px] mt-[9px] px-9'>
                         <Text className='text-[18px] font-medium mt-7'>Общие</Text>
                         <div className='flex gap-[30px] mt-2'>
                             <LeftParams />
@@ -173,8 +176,6 @@ export default function RegistrationClinic({
                             ))}
                             <div className='flex flex-col mt-[10px] items-center'>
                                 <Image
-                                
-
                                     src={'/assets/blue-plus.svg'}
                                     width={32}
                                     height={32}
@@ -193,7 +194,7 @@ export default function RegistrationClinic({
                 <AvatarLoad
                     className='w-[198px] h-fit px-5 py-3 mt-16'
                     imgState={avatar}
-                    reactSetState={setAvatar as React.Dispatch<SetStateAction<string>>}
+                    reactSetState={setAvatar as React.Dispatch<SetStateAction<File>>}
                 />
             </div>
         </>

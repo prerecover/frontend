@@ -9,6 +9,7 @@ export default function LocationBlock({ countries }: { countries: ICountry[] }) 
     return (
         <div className='flex flex-col gap-[20px]'>
             <Text className='font-medium text-[18px]'>Местоположение</Text>
+
             <div className='flex-between gap-4'>
                 <Select onValueChange={(e) => setCountry(e)} defaultValue={country}>
                     <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>

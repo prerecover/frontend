@@ -16,8 +16,8 @@ interface IDataStore {
     setSquare: numberArg;
     adminNumber: string;
     setAdminNumber: stringArg;
-    avatar: string;
-    setAvatar: stringArg;
+    avatar: File | null;
+    setAvatar: (avatar: File) => void;
     numbers: string[];
     setNumbers: (numbers: string[]) => void;
     registryNumber: string;
@@ -71,7 +71,7 @@ export const useClinicRegStore = create<IDataStore>()(
         numbers: [],
         registryNumber: '',
         mondayTime: null,
-        avatar: '',
+        avatar: null,
         tuesdayTime: null,
         wednesdayTime: null,
         thursdayTime: null,
@@ -90,7 +90,7 @@ export const useClinicRegStore = create<IDataStore>()(
         city: '',
         address: '',
         services: [],
-        setAvatar: (avatar: string) => {
+        setAvatar: (avatar: File) => {
             set((state) => {
                 state.avatar = avatar;
             });

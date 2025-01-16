@@ -1,10 +1,10 @@
 import { cn } from '@/lib/utils';
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { Text } from './text';
 import Image from 'next/image';
 import { UseFormSetValue } from 'react-hook-form';
 
-export type ReactSetState = React.Dispatch<React.SetStateAction<string>>;
+export type ReactSetState = React.Dispatch<React.SetStateAction<File>>;
 export type HookFormSetState = UseFormSetValue<any>;
 
 export function AvatarLoad({
@@ -14,28 +14,28 @@ export function AvatarLoad({
     formSetState,
 }: {
     className?: string;
-    imgState: string;
+    imgState?: File;
     reactSetState?: ReactSetState;
     formSetState?: HookFormSetState;
 }) {
     const imageRef = useRef<HTMLInputElement | null>(null);
+    const [imageUrl, setImageUrl] = useState<string>('')
 
     const handleImg = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
             if (reactSetState) {
-                reactSetState(URL.createObjectURL(file));
+                reactSetState(file)
             } else if (formSetState) {
-                console.log('formsetstate');
-                formSetState('avatar', URL.createObjectURL(file));
-                console.log(imgState);
+                formSetState('avatar', file);
             }
+            setImageUrl(URL.createObjectURL(file))
         }
     };
     return (
         <>
             <input type='file' onChange={(e) => handleImg(e)} className='hidden' ref={imageRef} />
-            {!imgState ? (
+            {!imageUrl ? (
                 <div
                     className={cn(
                         className,
@@ -53,7 +53,7 @@ export function AvatarLoad({
                 <div
                     className={cn(className, 'rounded-[12px] cursor-pointer')}
                     onClick={() => imageRef.current?.click()}>
-                    <Image src={imgState} alt='currmg' width={150} height={150} className='rounded-[12px]' />
+                    <Image src={imageUrl} alt='currmg' width={150} height={150} className='rounded-[12px] p-5' />
                 </div>
             )}
         </>

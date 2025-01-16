@@ -51,6 +51,7 @@ export default function RootLayout({
                 <Suspense fallback={<></>}>
                     <YandexMetrika />
                 </Suspense>
+                
                 <ApolloWrapper>
                     {children}
                     <Toaster />
@@ -59,7 +60,6 @@ export default function RootLayout({
             </body>
             <script src='//code.jivo.ru/widget/PCxtgM4g4J' async></script>
             <script src='https://telegram.org/js/telegram-widget.js' async></script>
-            {/* <script src='https://telegram.org/js/telegram-web-app.js' async></script> */}
         </html>
     );
 }

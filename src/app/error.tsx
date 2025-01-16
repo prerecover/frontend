@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import errorImg from '/public/assets/500.svg';
+import { useEffect } from 'react';
 export default function Error() {
     const router = useRouter();
     return (
@@ -13,6 +14,7 @@ export default function Error() {
                 <Button width='436px' onClick={() => router.push('/')}>
                     Вернуться
                 </Button>
+                
             </div>
         </div>
     );

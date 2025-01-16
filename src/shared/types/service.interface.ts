@@ -11,6 +11,9 @@ export enum PAYMENT_METHOD {
     CREDIT = 'В кредит',
 }
 
+type PM = keyof typeof PAYMENT_METHOD
+export const PAYMENT_METHOD_ARRAY = Object.values(PAYMENT_METHOD) as Array<PM> 
+
 export interface IService extends ICommon {
     title: string;
     description: string;
