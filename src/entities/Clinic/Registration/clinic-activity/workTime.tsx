@@ -45,8 +45,8 @@ export default function WorkTime() {
     }, [time]);
 
     return (
-        <div className='flex'>
-            <div className='flex-center w-full'>
+        <div className='flex justify-around'>
+            <div className='flex-center '>
                 {days.map((day) => (
                     <div
                         key={day}
@@ -61,7 +61,7 @@ export default function WorkTime() {
                     </div>
                 ))}
             </div>
-            <div className='flex items-center w-full'>
+            <div className='flex items-center '>
                 <Text className='font-semibold text-[16px] ml-[18px] mr-[18px]'>с</Text>
                 <InputOTP maxLength={8} pattern={REGEXP_ONLY_DIGITS} value={time} onChange={(value) => setTime(value)}>
                     <InputOTPGroup className='gap-[14px]'>

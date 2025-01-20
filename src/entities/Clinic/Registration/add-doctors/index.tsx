@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { SearchInput } from '@/components/ui/search-input';
 import { Text } from '@/components/ui/text';
-import { IDoctor } from '@/shared/types/doctor.interface';
+import { IDoctorCreate } from '@/shared/types/doctor.interface';
 import { useState } from 'react';
 import AddDoctorCard from './add-card';
 import Image from 'next/image';
@@ -12,8 +12,8 @@ export default function AddDoctorsBlock({
     doctors,
     setDoctors,
 }: {
-    doctors: Partial<IDoctor>[];
-    setDoctors: HookFormSetState
+    doctors: Partial<IDoctorCreate>[];
+    setDoctors: React.Dispatch<React.SetStateAction<Partial<IDoctorCreate>[]>>;
 }) {
     const [search, setSearch] = useState('');
     const [showAddCard, setShowAddCard] = useState(false);
@@ -28,7 +28,7 @@ export default function AddDoctorsBlock({
                 )}
             </div>
             {showAddCard === true ? (
-                <AddDoctorCard doctors={doctors} setShow={setShowAddCard} setForm={setDoctors} />
+                <AddDoctorCard doctors={doctors} setShow={setShowAddCard} setDoctors={setDoctors} />
             ) : (
                 <div className='flex flex-col h-full'>
                     <div className='flex gap-[10px]'>

@@ -16,7 +16,6 @@ export const SearchInput: FC<SearchInputProps> = ({ placeholder = 'Поиск', 
                 <input
                     type='text'
                     placeholder={placeholder}
-
                     value={value}
                     onChange={onChange}
                     className='w-full h-[48px]'

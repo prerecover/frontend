@@ -1,6 +1,6 @@
 import { IClinic } from './clinic.interface';
 import { ICommon } from './common.interface';
-import { IDoctor } from './doctor.interface';
+import { IDoctor, IDoctorCreate } from './doctor.interface';
 import { INews } from './news.interface';
 
 export enum PAYMENT_METHOD {
@@ -11,8 +11,8 @@ export enum PAYMENT_METHOD {
     CREDIT = 'В кредит',
 }
 
-type PM = keyof typeof PAYMENT_METHOD
-export const PAYMENT_METHOD_ARRAY = Object.values(PAYMENT_METHOD) as Array<PM> 
+type PM = keyof typeof PAYMENT_METHOD;
+export const PAYMENT_METHOD_ARRAY = Object.keys(PAYMENT_METHOD) as Array<PM>;
 
 export interface IService extends ICommon {
     title: string;
@@ -21,7 +21,7 @@ export interface IService extends ICommon {
     durationMax?: number;
     online: boolean;
     offline: boolean;
-    paymentMethods: PAYMENT_METHOD[];
+    paymentMethods: string[];
     treated: number;
     priceMin?: number;
     priceMax?: number;
@@ -29,7 +29,24 @@ export interface IService extends ICommon {
     category: IServiceCategory | string;
     clinic: IClinic;
     news?: INews[];
-    img?: string;
+    avatar?: string;
+}
+export interface IServiceCreate extends ICommon {
+    title: string;
+    description: string;
+    durationMin?: number;
+    durationMax?: number;
+    online: boolean;
+    offline: boolean;
+    paymentMethods: string[];
+    treated: number;
+    priceMin?: number;
+    priceMax?: number;
+    doctors?: IDoctorCreate[] | Partial<IDoctorCreate>[];
+    category: IServiceCategory | string;
+    clinic: IClinic;
+    news?: INews[];
+    avatar?: File;
 }
 
 export interface IServiceCategory {

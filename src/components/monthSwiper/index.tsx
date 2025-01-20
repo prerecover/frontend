@@ -64,7 +64,7 @@ export default function MonthSwiper({
                         ))}
                     </Swiper>
                     <RightArrow onClick={handleNext} />
-                </Tex>
+                </div>
                 <div className='h-[1px] w-full bg-[#C8DBF6] opacity-45 my-5'></div>
             </div>
         </>

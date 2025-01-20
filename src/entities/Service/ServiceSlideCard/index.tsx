@@ -13,7 +13,7 @@ export default function ServiceSlideCard({ service }: { service: IService }) {
             onClick={() => router.push(`/service/${service?._id}`)}>
             <div className='flex gap-3'>
                 <Image
-                    src={service?.img || '/assets/service.svg'}
+                    src={service?.avatar || '/assets/service.svg'}
                     alt='service'
                     width={98}
                     height={68}

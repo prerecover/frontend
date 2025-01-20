@@ -13,10 +13,9 @@ import { getCookie } from '@/shared/lib/hooks/useCookie';
 import { ICountry } from '@/shared/types/country.interface';
 import { formatDate } from '@/shared/utils/formatDate';
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { CalendarIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useForm, UseFormReturn } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import AccountFormNameField from './fields/name';
 import Image from 'next/image';
@@ -57,6 +56,7 @@ const CHANGE_ME_MUTATION = gql(`
 
 export default function AccountMainForm({
     className,
+    form,
 }: {
     className: string;
     medForm: UseFormReturn<{
@@ -85,8 +85,7 @@ export default function AccountMainForm({
     }>;
 }) {
     const { setUser, user } = useAuth();
-    const [date, setDate] = useState<Date>(new Date());
-    const formSchema = z.object({
+    const userFormSchema = z.object({
         firstName: z.string(),
         lastName: z.string(),
         number: z.string(),
@@ -98,12 +97,7 @@ export default function AccountMainForm({
         sex: z.boolean(),
         countryTitle: z.string(),
     });
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            birthday: new Date(),
-        },
-    });
+    const [date, setDate] = useState<Date>(new Date());
     const { toast } = useToast();
     const [token, setToken] = useState<string | undefined>();
     const { data: countries } = useQuery(GET_COUNTRIES);
@@ -129,7 +123,7 @@ export default function AccountMainForm({
         setToken(getCookie('access_token'));
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof userFormSchema>) {
         console.log(values);
         const age = Math.abs(new Date().getUTCFullYear() - date.getUTCFullYear());
         console.log(age);

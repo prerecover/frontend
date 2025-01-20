@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 import ServiceCard from './service-card';
 import { Button } from '@/components/ui/button';
-import { IService, IServiceCategory } from '@/shared/types/service.interface';
+import { IServiceCategory, IServiceCreate } from '@/shared/types/service.interface';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
@@ -83,7 +83,7 @@ export default function RegistrationClinic({
         return true;
     };
 
-    const serviceArray: Partial<IService>[] = [];
+    const serviceArray: Partial<IServiceCreate>[] = [];
     const addEl = () => {
         setFetch(false);
         setCount([...count, new Date()]);
@@ -110,7 +110,7 @@ export default function RegistrationClinic({
                                 saturdayTime,
                                 sundayTime,
                                 language,
-                                numbers: numbers.filter((num) => num),
+                                numbers,
                                 registryNumber,
                                 computerHave,
                                 elevatorHave,
@@ -133,14 +133,15 @@ export default function RegistrationClinic({
     const handleReg = () => {
         setFetch(true);
     };
+
     return (
         <>
-            <div className='flex'>
+            <div className='flex '>
                 <div className='flex flex-col w-full'>
                     <Text className='text-[28px] font-medium mt-[16px]' position='center'>
                         Информация о клинике
                     </Text>
-                    <div className='bg-white w-full rounded-[12px] mt-[9px] px-9'>
+                    <div className='bg-white w-full max-w-[1180px] rounded-[12px] mt-[9px] px-9 mx-auto'>
                         <Text className='text-[18px] font-medium mt-7'>Общие</Text>
                         <div className='flex gap-[30px] mt-2'>
                             <LeftParams />
@@ -155,7 +156,7 @@ export default function RegistrationClinic({
                         <div className='mt-7'>
                             <LocationBlock countries={countries} />
                         </div>
-                        <div className='mt-9 flex w-full'>
+                        <div className='mt-9'>
                             <ClinicActivity />
                         </div>
                     </div>
@@ -193,8 +194,7 @@ export default function RegistrationClinic({
                 </div>
                 <AvatarLoad
                     className='w-[198px] h-fit px-5 py-3 mt-16'
-                    imgState={avatar}
-                    reactSetState={setAvatar as React.Dispatch<SetStateAction<File>>}
+                    setAvatar={setAvatar as React.Dispatch<SetStateAction<File>>}
                 />
             </div>
         </>

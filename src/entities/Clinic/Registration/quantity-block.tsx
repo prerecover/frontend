@@ -21,8 +21,6 @@ export default function QuantityBlock() {
                             index={1}
                             className='border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]'
                         />
-
-
                     </InputOTPGroup>
                 </InputOTP>
             </div>

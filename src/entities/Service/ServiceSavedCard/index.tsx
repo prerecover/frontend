@@ -6,7 +6,7 @@ export default function ServiceSavedCard({ service }: { service: IService }) {
     return (
         <div className='flex items-center w-[318px] h-[101px] rounded-[12px] border-[1px] border-blue-200 border-solid px-[14px] py-[23px] gap-3'>
             <Image
-                src={service.img || '/assets/service.svg'}
+                src={service.avatar || '/assets/service.svg'}
                 width={90}
                 height={63}
                 className='rounded-[8px] h-[63px]'

@@ -18,7 +18,7 @@ export default function ServiceSearchCard({ service }: { service: IService }) {
                     className='flex gap-3 cursor-pointer items-start justify-start'
                     onClick={() => router.push(`/service/${service._id}`)}>
                     <Image
-                        src={service?.img || serviceAvatar}
+                        src={service?.avatar || serviceAvatar}
                         width={60}
                         height={100}
                         className='rounded-[12px] w-[120px] h-[120px]'

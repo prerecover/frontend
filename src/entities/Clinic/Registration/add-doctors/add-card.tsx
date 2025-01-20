@@ -1,22 +1,24 @@
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { IDoctor } from '@/shared/types/doctor.interface';
+import { IDoctorCreate } from '@/shared/types/doctor.interface';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { HookFormSetState } from '.';
+import { AvatarLoad } from '@/components/ui/avatar-load';
+import { useState } from 'react';
 
 export default function AddDoctorCard({
     doctors,
     setShow,
-    setForm,
+    setDoctors,
 }: {
-    doctors: Partial<IDoctor>[];
-    setForm: HookFormSetState
+    doctors: Partial<IDoctorCreate>[];
+    setDoctors: React.Dispatch<React.SetStateAction<Partial<IDoctorCreate>[]>>;
     setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const formSchema = z.object({
+        avatar: z.custom<File>().optional(),
         firstName: z.string().min(2).max(50),
         lastName: z.string().min(2).max(50),
         surname: z.string().min(2).max(50),
@@ -35,9 +37,10 @@ export default function AddDoctorCard({
             specialization: '',
         },
     });
+    const [avatar, setAvatar] = useState<File>(null);
     function onSubmit(values: z.infer<typeof formSchema>) {
         const { firstName, lastName, exp, specialization, surname } = values;
-        setForm('doctors', [...doctors, { firstName, lastName, workExp: parseInt(exp), specialization, surname }]);
+        setDoctors([...doctors, { firstName, lastName, workExp: parseInt(exp), specialization, surname, avatar }]);
         setShow(false);
     }
 
@@ -46,6 +49,7 @@ export default function AddDoctorCard({
             <div className='flex flex-col w-full gap-4'>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+                        <AvatarLoad setAvatar={setAvatar} className='w-[178px] p-4' />
                         <FormField
                             control={form.control}
                             name='firstName'

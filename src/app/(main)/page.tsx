@@ -43,7 +43,7 @@ query Search {
             priceMin
             priceMax
             title
-            img
+            avatar 
             doctors{
                 firstName 
                 lastName
@@ -55,7 +55,8 @@ query Search {
     }
 }
     `);
-    const { data } = await getClient().query({ query: SEARCH_QUERY });
+    const { data, errors } = await getClient().query({ query: SEARCH_QUERY });
+    console.log(errors);
     return (
         <>
             <SurveyUserMain />

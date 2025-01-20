@@ -51,7 +51,6 @@ export default function RootLayout({
                 <Suspense fallback={<></>}>
                     <YandexMetrika />
                 </Suspense>
-                
                 <ApolloWrapper>
                     {children}
                     <Toaster />

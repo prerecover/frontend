@@ -2,34 +2,22 @@ import { cn } from '@/lib/utils';
 import { ChangeEvent, useRef, useState } from 'react';
 import { Text } from './text';
 import Image from 'next/image';
-import { UseFormSetValue } from 'react-hook-form';
-
-export type ReactSetState = React.Dispatch<React.SetStateAction<File>>;
-export type HookFormSetState = UseFormSetValue<any>;
 
 export function AvatarLoad({
     className,
-    imgState,
-    reactSetState,
-    formSetState,
+    setAvatar,
 }: {
     className?: string;
-    imgState?: File;
-    reactSetState?: ReactSetState;
-    formSetState?: HookFormSetState;
+    setAvatar?: React.Dispatch<React.SetStateAction<File>>;
 }) {
     const imageRef = useRef<HTMLInputElement | null>(null);
-    const [imageUrl, setImageUrl] = useState<string>('')
+    const [imageUrl, setImageUrl] = useState<string>('');
 
     const handleImg = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
-            if (reactSetState) {
-                reactSetState(file)
-            } else if (formSetState) {
-                formSetState('avatar', file);
-            }
-            setImageUrl(URL.createObjectURL(file))
+            setAvatar(file);
+            setImageUrl(URL.createObjectURL(file));
         }
     };
     return (

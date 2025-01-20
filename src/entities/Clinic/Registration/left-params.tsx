@@ -2,23 +2,8 @@ import { Input } from '@/components/ui/input';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 
 export default function LeftParams() {
-    const {
-        title,
-        setTitle,
-        adminNumber,
-        setAdminNumber,
-        typeTitle,
-        setTypeTitle,
-        registryNumber,
-        setRegistryNumber,
-        setNumbers,
-        numbers,
-    } = useClinicRegStore();
-    const changeInputState = (index: number, value: string) => {
-        const newState = [...numbers];
-        newState[index] = value;
-        setNumbers(newState);
-    };
+    const { title, setTitle, adminNumber, setAdminNumber, typeTitle, setTypeTitle, registryNumber, setRegistryNumber } =
+        useClinicRegStore();
     return (
         <div className='flex flex-col w-full'>
             <div className='flex flex-col gap-4'>

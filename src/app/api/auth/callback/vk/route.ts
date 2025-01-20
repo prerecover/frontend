@@ -11,7 +11,6 @@ const AUTH_MUTATION = gql(`
             }`);
 
 export async function GET(request: Request) {
-
     const code = new URL(request.url).searchParams.get('code');
     const clientId = process.env.NEXT_PUBLIC_VK_CLIENT_ID;
     const clientSecret = process.env.NEXT_PUBLIC_VK_CLIENT_SECRET;

@@ -4,8 +4,8 @@ import AccountDesktopMenu from './desktop-menu';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import AccountMainForm from '@/features/AccountBlock/main-form';
-import AccountMedForm from '@/features/AccountBlock/med-form';
+// import AccountMainForm from '@/features/AccountBlock/main-form';
+// import AccountMedForm from '@/features/AccountBlock/med-form';
 
 export default function AccountBlock() {
     const medFormSchema = z.object({
@@ -24,6 +24,7 @@ export default function AccountBlock() {
         resolver: zodResolver(medFormSchema),
         defaultValues: { age: 12 },
     });
+    console.log(medForm);
     const userFormSchema = z.object({
         firstName: z.string(),
         lastName: z.string(),
@@ -42,19 +43,20 @@ export default function AccountBlock() {
             birthday: new Date(),
         },
     });
+    console.log(userForm);
     return (
         <>
             <div className='h-[84px] desktop:h-[122px] desktop:flex desktop:px-4 desktop:gap-4 bg-white  relative z-0 mobile:flex-center rounded-[12px] desktop:m-4'>
                 <Avatar />
             </div>
-            <div className='desktop:m-4 desktop:flex desktop:flex-row flex-col gap-4'>
-                <AccountMainForm
-                    className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:mt-10 mobile:w-full'
-                    form={userForm}
-                    medForm={medForm}
-                />
-                <AccountMedForm className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:w-full' form={medForm} />
-            </div>
+            {/* <div className='desktop:m-4 desktop:flex desktop:flex-row flex-col gap-4'> */}
+            {/*     <AccountMainForm */}
+            {/*         className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:mt-10 mobile:w-full' */}
+            {/*         form={userForm} */}
+            {/*         medForm={medForm} */}
+            {/*     /> */}
+            {/*     <AccountMedForm className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:w-full' form={medForm} /> */}
+            {/* </div> */}
             <AccountDesktopMenu />
         </>
     );

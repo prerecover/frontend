@@ -27,7 +27,7 @@ export default async function Page() {
     const countries: ICountry[] = data.countries;
     return (
         <div className='mx-auto'>
-            <RegistrationClinic countries={countries} serviceCategories={serviceCategories.serviceCategories} />;
+            <RegistrationClinic countries={countries} serviceCategories={serviceCategories.serviceCategories} />
         </div>
     );
 }

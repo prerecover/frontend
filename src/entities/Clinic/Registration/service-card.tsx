@@ -1,47 +1,45 @@
 import { Input } from '@/components/ui/input';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 import { Text } from '@/components/ui/text';
 import { Textarea } from '@/components/ui/textarea';
-import { IDoctor } from '@/shared/types/doctor.interface';
-import { IService, IServiceCategory, PAYMENT_METHOD, PAYMENT_METHOD_ARRAY } from '@/shared/types/service.interface';
-import { REGEXP_ONLY_DIGITS } from 'input-otp';
+import { IDoctorCreate } from '@/shared/types/doctor.interface';
+import {
+    IServiceCategory,
+    IServiceCreate,
+    PAYMENT_METHOD,
+    PAYMENT_METHOD_ARRAY,
+} from '@/shared/types/service.interface';
 import { useEffect, useState } from 'react';
-import { useToast } from '@/components/ui/use-toast';
 import AddDoctorsBlock from './add-doctors';
-import { FilterBox } from '@/components/ui/filter-box';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Form, FormField, FormControl, FormItem } from '@/components/ui/form';
+import { Form } from '@/components/ui/form';
 import { AvatarLoad } from '@/components/ui/avatar-load';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DurationDiapasonInput } from '@/components/ui/duration-diapason';
 import { PriceDiaposonInput } from '@/components/ui/price-diaposon';
 
 export default function ServiceCard({
-    pos,
-    setFetch,
     fetch,
     categories,
     serviceArray,
 }: {
     // setFetch,
-    serviceArray: Partial<IService>[];
+    serviceArray: Partial<IServiceCreate>[];
     pos: number;
     fetch: boolean;
     categories: IServiceCategory[];
     setFetch: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const serviceSchema = z.object({
-        avatar: z.custom<File>(),
+        avatar: z.custom<File>().optional(),
         online: z.boolean(),
         offline: z.boolean(),
         title: z.string(),
         description: z.string(),
-        paymentMethods: z.custom<PAYMENT_METHOD[]>(),
+        paymentMethods: z.custom<string[]>(),
         category: z.string(),
-        doctors: z.custom<Partial<IDoctor>[]>(),
         priceMin: z.number().optional(),
         priceMax: z.number().optional(),
         durationMin: z.number().optional(),
@@ -51,29 +49,40 @@ export default function ServiceCard({
         resolver: zodResolver(serviceSchema),
         defaultValues: {
             paymentMethods: [],
-            doctors: [],
         },
     });
+
     const changePaymentsState = (index: number, value: string) => {
-        const newState = [...form.watch('paymentMethods')];
+        console.log(service.paymentMethods);
+        const newState = [...service.paymentMethods];
         newState[index] = value;
-        form.setValue('paymentMethods', newState);
+        setService({ ...service, paymentMethods: newState });
     };
-    const [durationStatus, setDurationStatus] = useState<'диапазон' | 'точная' | 'неизвестно'>('диапазон');
-    const [priceStatus, setPriceStatus] = useState<'диапазон' | 'точная' | 'неизвестно'>('диапазон');
+    const [service, setService] = useState<Partial<IServiceCreate>>({ doctors: [], paymentMethods: [] });
+    const [durationStatus, setDurationStatus] = useState('диапазон');
+    const [priceStatus, setPriceStatus] = useState('диапазон');
     const [countPaymentMethods, setCountPaymentMethods] = useState(['']);
+    const [doctors, setDoctors] = useState<Partial<IDoctorCreate[]>>([]);
+    const [priceMin, setMinPrice] = useState<number>(0);
+    const [priceMax, setMaxPrice] = useState<number>(0);
+    const [durationMin, setMinDuration] = useState<number>(0);
+    const [durationMax, setMaxDuration] = useState<number>(0);
+    const [avatar, setAvatar] = useState<File>(null);
     console.log(form.watch('paymentMethods'));
     useEffect(() => {
-        form.setValue('durationMin', null);
-        form.setValue('durationMax', null);
+        setService({ ...service, durationMin: null });
+        setService({ ...service, durationMax: null });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [durationStatus]);
     useEffect(() => {
-        form.setValue('priceMin', null);
-        form.setValue('priceMax', null);
+        setService({ ...service, priceMin: null });
+        setService({ ...service, priceMax: null });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [priceStatus]);
     console.log(form.getValues());
     useEffect(() => {
-        if (fetch) serviceArray.push(form.getValues());
+        if (fetch) serviceArray.push({ ...service, priceMax, priceMin, durationMax, durationMin, avatar, doctors });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetch]);
     return (
         <div className='flex flex-col w-full'>
@@ -93,21 +102,17 @@ export default function ServiceCard({
             {/* /> */}
             {/* </div> */}
             <div>
-                <div className='flex gap-[60px]'>
+                <div className='flex gap-[60px] max-w-[1180px]'>
                     <Form {...form}>
                         <div className='flex flex-col gap-[18px] w-full'>
                             <Text className='text-[18px] font-medium '>Основные данные</Text>
-                            <AvatarLoad
-                                imgState={form.watch('avatar')}
-                                formSetState={form.setValue}
-                                className='w-[178px] px-5 py-3'
-                            />
+                            <AvatarLoad setAvatar={setAvatar} className='w-[178px] px-5 py-3' />
                             <div className='flex gap-3 items-center'>
                                 <div className='flex gap-1 items-center'>
                                     <Checkbox
                                         className='rounded-full w-[20px] h-[20px] '
                                         onCheckedChange={() => {
-                                            form.setValue('online', !form.watch('online'));
+                                            setService({ ...service, online: service.online });
                                         }}
                                     />
 
@@ -117,43 +122,28 @@ export default function ServiceCard({
                                     <Checkbox
                                         className='rounded-full w-[20px] h-[20px]'
                                         onCheckedChange={() => {
-                                            form.setValue('offline', !form.watch('offline'));
+                                            setService({ ...service, offline: service.offline });
                                         }}
                                     />
                                     <Text>Оффлайн</Text>
                                 </div>
                             </div>
-                            <FormField
-                                control={form.control}
-                                name='title'
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <Input placeholder='Название' {...field} />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
+                            <Input
+                                placeholder='Название'
+                                onChange={(e) => setService({ ...service, title: e.currentTarget.value })}
                             />
-                            <FormField
-                                control={form.control}
-                                name='description'
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <Textarea placeholder='Описание' {...field} />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
+                            <Textarea
+                                placeholder='Описание'
+                                onChange={(e) => setService({ ...service, description: e.currentTarget.value })}
                             />
 
                             <Select
                                 onValueChange={(e) =>
-                                    form.setValue('category', categories.find((el) => el.title === e)?.title)
+                                    // @ts-ignore
+                                    setService({ ...service, category: categories.find((el) => el.title === e).title })
                                 }>
                                 <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>
-                                    {form.watch('category') === undefined && (
-                                        <Text className='text-grey'>Категория*</Text>
-                                    )}
+                                    {service.category === undefined && <Text className='text-grey'>Категория*</Text>}
 
                                     <SelectValue className='text-[20px]' />
                                 </SelectTrigger>
@@ -170,9 +160,9 @@ export default function ServiceCard({
                             </Select>
                             <Text className='text-[18px] font-medium '>Оплата</Text>
                             {countPaymentMethods.map((_, index) => (
-                                <Select onValueChange={(e) => changePaymentsState(index, e)}>
+                                <Select onValueChange={(e) => changePaymentsState(index, e)} key={index}>
                                     <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>
-                                        {!form.watch('paymentMethods')[index] && (
+                                        {!service.paymentMethods[index] && (
                                             <Text className='text-grey'>Выбрать из списка*</Text>
                                         )}
 
@@ -181,7 +171,7 @@ export default function ServiceCard({
                                     <SelectContent className='bg-white rounded-[12px] flex flex-col gap-4'>
                                         {PAYMENT_METHOD_ARRAY.map((method, i) => (
                                             <SelectItem key={i} value={method} className='cursor-pointer'>
-                                                {method}
+                                                {PAYMENT_METHOD[method]}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
@@ -215,18 +205,18 @@ export default function ServiceCard({
                                 <>
                                     <div className='flex items-center gap-4'>
                                         <Text className='text-[18px]'>от</Text>
-                                        <DurationDiapasonInput durationPos='min' formSetState={form.setValue} />
+                                        <DurationDiapasonInput setDuration={setMinDuration} />
                                     </div>
                                     <div className='flex items-center gap-3'>
                                         <Text className='text-[18px]'>до</Text>
-                                        <DurationDiapasonInput durationPos='max' formSetState={form.setValue} />
+                                        <DurationDiapasonInput setDuration={setMaxDuration} />
                                     </div>
                                 </>
                             ) : durationStatus == 'точная' ? (
                                 <>
                                     <div className='flex items-center gap-4'>
                                         <Text className='text-[18px]'>от</Text>
-                                        <DurationDiapasonInput durationPos='min' formSetState={form.setValue} />
+                                        <DurationDiapasonInput setDuration={setMinDuration} />
                                     </div>
                                 </>
                             ) : (
@@ -255,23 +245,22 @@ export default function ServiceCard({
                                 <>
                                     <div className='flex items-center gap-4'>
                                         <Text className='text-[18px]'>от</Text>
-                                        <PriceDiaposonInput pricePos='min' formSetState={form.setValue} />
+                                        <PriceDiaposonInput setPrice={setMinPrice} />
                                         <Text className='text-[18px]'>до</Text>
-                                        <PriceDiaposonInput pricePos='max' formSetState={form.setValue} />
+                                        <PriceDiaposonInput setPrice={setMaxPrice} />
                                     </div>
                                 </>
                             ) : priceStatus == 'точная' ? (
                                 <>
-                                    <PriceDiaposonInput pricePos='min' formSetState={form.setValue} />
+                                    <PriceDiaposonInput setPrice={setMinPrice} />
                                 </>
                             ) : (
                                 <></>
                             )}
                         </div>
                     </Form>
-
                     <div className='w-[1px] bg-blue-100'></div>
-                    <AddDoctorsBlock doctors={form.watch('doctors')} setDoctors={form.setValue} />
+                    <AddDoctorsBlock doctors={doctors} setDoctors={setDoctors} />
                 </div>
             </div>
         </div>

@@ -24,3 +24,24 @@ export interface IDoctor extends ICommon {
     verificationCod?: number;
     workExp?: number;
 }
+export interface IDoctorCreate extends ICommon {
+    address?: string;
+    avatar?: File;
+    birthday?: number;
+    email?: string;
+    login?: string;
+    number?: string;
+    firstName: string;
+    lastName: string;
+    specialization: string;
+    country?: ICountry;
+    services?: IService[];
+    clinic: IClinic;
+    city?: string;
+    surname: string;
+    isMain?: boolean;
+    sex: boolean;
+    isVerified: boolean;
+    verificationCod?: number;
+    workExp?: number;
+}

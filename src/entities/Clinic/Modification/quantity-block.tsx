@@ -31,7 +31,7 @@ export default function QuantityBlock({
                     value={numberOfFloors?.toString() || ''}
                     defaultValue={numberOfFloors?.toString()}
                     pattern={REGEXP_ONLY_DIGITS}
-                    onChange={(value) => setNumberOfFloors(parseInt(value) || null)}>
+                    onChange={(value) => setNumberOfFloors(parseInt(value))}>
                     <InputOTPGroup className='gap-[14px]'>
                         <InputOTPSlot
                             index={0}
@@ -55,7 +55,7 @@ export default function QuantityBlock({
                     pattern={REGEXP_ONLY_DIGITS}
                     value={totalServices?.toString() || ''}
                     defaultValue={totalServices?.toString()}
-                    onChange={(value) => setTotalServices(parseInt(value) || null)}>
+                    onChange={(value) => setTotalServices(parseInt(value))}>
                     <InputOTPGroup className='gap-[14px]'>
                         <InputOTPSlot
                             index={0}
@@ -79,7 +79,7 @@ export default function QuantityBlock({
                     pattern={REGEXP_ONLY_DIGITS}
                     value={totalDoctors?.toString() || ''}
                     defaultValue={totalDoctors?.toString()}
-                    onChange={(value) => setTotalDoctors(parseInt(value) || null)}>
+                    onChange={(value) => setTotalDoctors(parseInt(value))}>
                     <InputOTPGroup className='gap-[14px]'>
                         <InputOTPSlot
                             index={0}

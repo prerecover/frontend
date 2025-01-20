@@ -1,13 +1,11 @@
 import ArrayInput from '@/components/ui/array-input';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Text } from '@/components/ui/text';
 import { useClinicRegStore } from '@/shared/store/clinicRegistration';
 
 export default function RightParams() {
-    const { ageClinic, setAgeClinic, square, setSquare, numbers, setNumbers, language, setLanguage } =
-        useClinicRegStore();
+    const { ageClinic, setAgeClinic, square, setSquare, setNumbers, language, setLanguage } = useClinicRegStore();
     return (
         <div className='flex flex-col w-full'>
             <div className='flex flex-col gap-4'>
@@ -59,7 +57,7 @@ export default function RightParams() {
                     </SelectContent>
                 </Select>
 
-                <ArrayInput reactSetState={setNumbers as React.Dispatch<React.SetStateAction<string[]>>} />
+                <ArrayInput setArray={setNumbers as React.Dispatch<React.SetStateAction<string[]>>} />
             </div>
         </div>
     );

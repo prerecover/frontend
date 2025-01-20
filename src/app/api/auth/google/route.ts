@@ -6,7 +6,5 @@ export async function GET() {
         `&response_type=code` +
         `&scope=email profile`;
 
-    const asd = 3;
-
     return Response.redirect(googleAuthUrl, 302);
 }

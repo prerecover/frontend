@@ -21,7 +21,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                     className='flex gap-3 cursor-pointer items-start justify-start not_found:hidden'
                     onClick={() => router.push(`/service/${service?._id}`)}>
                     <Image
-                        src={service?.img || serviceAvatar}
+                        src={service?.avatar || serviceAvatar}
                         width={60}
                         height={100}
                         className='rounded-[12px] w-[120px] h-[120px]'
@@ -51,7 +51,7 @@ export default function ServiceRecomendationCard({ service }: { service: IServic
                 </div>
                 <div className='not_found:flex-center not_found:flex-col not_found:gap-2 hidden'>
                     <Image
-                        src={service?.img || serviceAvatar}
+                        src={service?.avatar || serviceAvatar}
                         width={40}
                         height={40}
                         className='rounded-full w-[40px] h-[40px]'

@@ -10,8 +10,6 @@ export default async function Page() {
             <Header title={['Профиль']} />
             <AppointmentWarnList />
 
-
-
             <AccountBlock />
         </>
     );
