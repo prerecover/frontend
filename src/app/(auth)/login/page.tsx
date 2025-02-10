@@ -8,26 +8,26 @@ import AuthWithVk from '@/features/AuthWithVk';
 import { UserLogin } from '@/features/UserLogin';
 
 export default function Login() {
-    return (
-        <>
-            <AuthContainer className='gap-[24px]'>
-                <Text type='h2' position='center' className='text-[20px] text-center'>
-                    Вход
-                </Text>
-                <UserLogin />
-                <div className='flex-center gap-5'>
-                    <Line color='#D6E7FF' />
-                    <Text type='p' color='#D6E7FF' className='text-grey text-[14px]'>
-                        Или
-                    </Text>
-                    <Line color='#D6E7FF' />
-                </div>
-                <div className='grid gap-4 reverse_slider:flex-center'>
-                    <AuthWithTelegram />
-                    <AuthWithGoogle />
-                    <AuthWithVk />
-                </div>
-            </AuthContainer>
-        </>
-    );
+  return (
+    <>
+      <AuthContainer className="gap-[24px]">
+        <Text type="h2" position="center" className="text-[20px] text-center">
+          Вход
+        </Text>
+        <UserLogin />
+        <div className="flex-center gap-5">
+          <Line color="#D6E7FF" />
+          <Text type="p" color="#D6E7FF" className="text-grey text-[14px]">
+            Или
+          </Text>
+          <Line color="#D6E7FF" />
+        </div>
+        <div className="grid gap-4 reverse_slider:flex-center">
+          <AuthWithTelegram />
+          <AuthWithGoogle />
+          <AuthWithVk />
+        </div>
+      </AuthContainer>
+    </>
+  );
 }

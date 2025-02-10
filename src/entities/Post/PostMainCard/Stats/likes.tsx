@@ -28,45 +28,52 @@ const DELETE_LIKE = gql(`
 }
 
 `);
-export default function LikeBtn({ like, newsId }: { like?: ILike; newsId: string }) {
-    const { user } = useAuth();
-    const [isLike, setIsLike] = useState<boolean>(like ? true : false);
-    const [likeId, setLikeId] = useState<string | undefined>(like?._id);
-    const [token, setToken] = useState<string | undefined>();
-    const [createLike] = useMutation(CREATE_LIKE, {
-        context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
-        onCompleted(data) {
-            setLikeId(data.createLike._id);
-        },
-    });
-    useEffect(() => {
-        setToken(getCookie('access_token'));
-    }, []);
-    const [deleteLike] = useMutation(DELETE_LIKE);
-    const router = useRouter();
+export default function LikeBtn({
+  like,
+  newsId,
+}: {
+  like?: ILike;
+  newsId: string;
+}) {
+  const { user } = useAuth();
+  const [isLike, setIsLike] = useState<boolean>(like ? true : false);
+  const [likeId, setLikeId] = useState<string | undefined>(like?._id);
+  const [token, setToken] = useState<string | undefined>();
+  const [createLike] = useMutation(CREATE_LIKE, {
+    context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
+    onCompleted(data) {
+      setLikeId(data.createLike._id);
+    },
+  });
+  useEffect(() => {
+    setToken(getCookie('access_token'));
+  }, []);
+  const [deleteLike] = useMutation(DELETE_LIKE);
+  const router = useRouter();
 
-    const handlePost = () => {
-        if (!user?._id) {
-            router.push('/login');
-            return;
-        }
-        if (isLike) {
-            setIsLike(false);
-            deleteLike({ variables: { likeId: likeId } });
-        } else {
-            setIsLike(true);
-            createLike({ variables: { authorId: user._id, newsId: newsId } });
-        }
-    };
-    return (
-        <div
-            className='w-[38px] h-[38px] flex-center rounded-[12px] bg-blue-100 cursor-pointer slider:w-[40px] slider:h-[40px]'
-            onClick={handlePost}>
-            <LikeIcon
-                className={cn({
-                    [styles.likeActive]: isLike,
-                })}
-            />
-        </div>
-    );
+  const handlePost = () => {
+    if (!user?._id) {
+      router.push('/login');
+      return;
+    }
+    if (isLike) {
+      setIsLike(false);
+      deleteLike({ variables: { likeId: likeId } });
+    } else {
+      setIsLike(true);
+      createLike({ variables: { authorId: user._id, newsId: newsId } });
+    }
+  };
+  return (
+    <div
+      className="w-[38px] h-[38px] flex-center rounded-[12px] bg-blue-100 cursor-pointer slider:w-[40px] slider:h-[40px]"
+      onClick={handlePost}
+    >
+      <LikeIcon
+        className={cn({
+          [styles.likeActive]: isLike,
+        })}
+      />
+    </div>
+  );
 }

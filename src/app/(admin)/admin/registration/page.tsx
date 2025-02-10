@@ -22,12 +22,17 @@ query ServiceCategories {
 }
 `);
 export default async function Page() {
-    const { data } = await getClient().query({ query: GET_COUNTRIES });
-    const { data: serviceCategories } = await getClient().query({ query: GET_CATEGORIES });
-    const countries: ICountry[] = data.countries;
-    return (
-        <div className='mx-auto'>
-            <RegistrationClinic countries={countries} serviceCategories={serviceCategories.serviceCategories} />
-        </div>
-    );
+  const { data } = await getClient().query({ query: GET_COUNTRIES });
+  const { data: serviceCategories } = await getClient().query({
+    query: GET_CATEGORIES,
+  });
+  const countries: ICountry[] = data.countries;
+  return (
+    <div className="mx-auto">
+      <RegistrationClinic
+        countries={countries}
+        serviceCategories={serviceCategories.serviceCategories}
+      />
+    </div>
+  );
 }

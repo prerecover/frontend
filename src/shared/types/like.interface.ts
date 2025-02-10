@@ -3,6 +3,6 @@ import { INews } from './news.interface';
 import { IUser } from './user.interface';
 
 export interface ILike extends ICommon {
-    news: INews;
-    author: IUser;
+  news: INews;
+  author: IUser;
 }

@@ -4,7 +4,7 @@ import { IDoctor } from './doctor.interface';
 import { IService } from './service.interface';
 
 export interface IRecomendation extends ICommon {
-    service: IService;
-    clinic: IClinic;
-    doctor: IDoctor;
+  service: IService;
+  clinic: IClinic;
+  doctor: IDoctor;
 }

@@ -5,7 +5,7 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 export default async function Page() {
-    const HISTORY_QUERY = gql(`
+  const HISTORY_QUERY = gql(`
 query History {
     history {
         appointments {
@@ -14,7 +14,8 @@ query History {
             title
             status
             service{
-                duration
+                durationMin
+                durationMax
             }            
             availableDates{
                 _id
@@ -24,7 +25,10 @@ query History {
                 firstName
                 surname
                 lastName
-                specialization
+                specialization{
+                    _id
+                    title
+}
 }
         }
         surveys {
@@ -49,14 +53,14 @@ query History {
     }
 }
     `);
-    const { data } = await getClient().query({ query: HISTORY_QUERY });
-    return (
-        <div className='bg-white'>
-            <MobileHeader />
-            <Header title={['История пациента']} />
-            <div className='p-4'>
-                <MainHistory data={data.history} />
-            </div>
-        </div>
-    );
+  const { data } = await getClient().query({ query: HISTORY_QUERY });
+  return (
+    <div className="bg-white">
+      <MobileHeader />
+      <Header title={['История пациента']} />
+      <div className="p-4">
+        <MainHistory data={data.history} />
+      </div>
+    </div>
+  );
 }

@@ -7,50 +7,56 @@ import durationParse from '@/shared/utils/durationParse';
 import serviceAvatar from '/public/assets/service.svg';
 
 export default function ServiceSearchCard({ service }: { service: IService }) {
-    const router = useRouter();
-    const duration = durationParse(service.durationMin || 0);
-    let doctors: string = '';
-    service?.doctors?.forEach((doctor) => (doctors += `${doctor.lastName} ${doctor.firstName?.charAt(0)}., `));
-    return (
-        <>
-            <BoxWrapper color='white' className='w-full border-blue-100'>
-                <div
-                    className='flex gap-3 cursor-pointer items-start justify-start'
-                    onClick={() => router.push(`/service/${service._id}`)}>
-                    <Image
-                        src={service?.avatar || serviceAvatar}
-                        width={60}
-                        height={100}
-                        className='rounded-[12px] w-[120px] h-[120px]'
-                        alt='doctor'
-                    />
-                    <div className='flex flex-col text-[16px] font-semibold gap-3 truncate'>
-                        <h4>{service.title}</h4>
-                        <Characteristics
-                            className='gap-2'
-                            data={[
-                                {
-                                    key: 'Врачи:',
-                                    value: doctors || '-',
-                                },
-                                {
-                                    key: 'Клиника:',
-                                    value: service?.clinic?.title || '-',
-                                    className: 'underline text-blue underline-offset-2',
-                                },
-                                {
-                                    key: 'Длительность:',
-                                    value: duration,
-                                },
-                                {
-                                    key: 'Цена:',
-                                    value: `${service.priceMax} сум`,
-                                },
-                            ]}
-                        />
-                    </div>
-                </div>
-            </BoxWrapper>
-        </>
-    );
+  const router = useRouter();
+  const duration = durationParse(service.durationMin || 0);
+  let doctors: string = '';
+  service?.doctors?.forEach(
+    (doctor) =>
+      (doctors += `${doctor.lastName} ${doctor.firstName?.charAt(0)}., `)
+  );
+  return (
+    <>
+      <BoxWrapper color="white" className="w-full border-blue-100">
+        <div
+          className="flex gap-3 cursor-pointer items-start justify-start"
+          onClick={() => router.push(`/service/${service._id}`)}
+        >
+          <Image
+            src={service?.avatar || serviceAvatar}
+            width={60}
+            height={100}
+            className="rounded-[12px] w-[120px] h-[120px]"
+            alt="doctor"
+          />
+          <div className="flex flex-col text-[16px] font-semibold gap-3 truncate">
+            <h4>{service.title}</h4>
+            <Characteristics
+              className="gap-2"
+              data={[
+                {
+                  key: 'Врачи:',
+                  value: doctors || '-',
+                },
+                {
+                  key: 'Клиника:',
+                  value: service?.clinic?.title || '-',
+                  className: 'underline text-blue underline-offset-2',
+                },
+                {
+                  key: 'Длительность:',
+                  value: service.durationMin ? duration : 'Неизвестно',
+                },
+                {
+                  key: 'Цена:',
+                  value: service.priceMin
+                    ? `${service.priceMin} сум`
+                    : 'Неизвестно',
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </BoxWrapper>
+    </>
+  );
 }

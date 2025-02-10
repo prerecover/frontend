@@ -12,50 +12,57 @@ mutation UploadAvatar ($avatar: Upload!){
 `);
 
 export const Avatar: FC = () => {
-    const { user, setUser } = useAuth();
+  const { user, setUser } = useAuth();
 
-    const [token, setToken] = useState<string | undefined>();
-    const [mutate] = useMutation(AVATAR_LOAD, {
-        context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
-        onCompleted(data) {
-            setUser((prev) => ({ ...prev, avatar: data.uploadAvatar }));
-        },
-    });
-    const imageRef = useRef<HTMLInputElement | null>(null);
+  const [token, setToken] = useState<string | undefined>();
+  const [mutate] = useMutation(AVATAR_LOAD, {
+    context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
+    onCompleted(data) {
+      setUser((prev) => ({ ...prev, avatar: data.uploadAvatar }));
+    },
+  });
+  const imageRef = useRef<HTMLInputElement | null>(null);
 
-    useEffect(() => {
-        const accessToken = getCookie('access_token');
-        setToken(accessToken);
-    }, []);
+  useEffect(() => {
+    const accessToken = getCookie('access_token');
+    setToken(accessToken);
+  }, []);
 
-    const handleImg = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            const file = e.target.files[0];
-            mutate({ variables: { avatar: file } });
-        }
-    };
-    return (
-        <div className='flex mt-7  z-20 desktop:my-auto desktop:gap-4'>
-            <input type='file' onChange={(e) => handleImg(e)} className='hidden' ref={imageRef} />
-            <Image
-                src={user?.avatar || '/assets/avatar-load.svg'}
-                priority
-                width={100}
-                onClick={() => imageRef.current?.click()}
-                height={100}
-                className='w-[100px] h-[100px] rounded-full cursor-pointer object-cover'
-                alt='avatar'
-            />
+  const handleImg = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      mutate({ variables: { avatar: file } });
+    }
+  };
+  return (
+    <div className="flex mt-7  z-20 desktop:my-auto desktop:gap-4">
+      <input
+        type="file"
+        onChange={(e) => handleImg(e)}
+        className="hidden"
+        ref={imageRef}
+      />
+      <Image
+        src={user?.avatar || '/assets/avatar-load.svg'}
+        priority
+        width={100}
+        onClick={() => imageRef.current?.click()}
+        height={100}
+        className="w-[100px] h-[100px] rounded-full cursor-pointer object-cover"
+        alt="avatar"
+      />
 
-            <div className='flex flex-col mobile:hidden justify-center gap-2'>
-                <Text
-                    type='p'
-                    className='font-semibold text-[24px]'>{`${user.lastName || ''} ${user.firstName?.charAt(0) || '' + '.'} ${user.surname?.charAt(0) || '' + '.'}  `}</Text>
+      <div className="flex flex-col mobile:hidden justify-center gap-2">
+        <Text
+          type="p"
+          className="font-semibold text-[24px]"
+        >{`${user.lastName || ''} ${user.firstName?.charAt(0) || '' + '.'} ${user.surname?.charAt(0) || '' + '.'}  `}</Text>
 
-                <Text type='p' className='font-medium text-[16px]'>
-                    ID {user.userId.slice(0, 4)} {user.userId.slice(4, 8)} {user.userId.slice(8)}
-                </Text>
-            </div>
-        </div>
-    );
+        <Text type="p" className="font-medium text-[16px]">
+          ID {user.userId.slice(0, 4)} {user.userId.slice(4, 8)}{' '}
+          {user.userId.slice(8)}
+        </Text>
+      </div>
+    </div>
+  );
 };

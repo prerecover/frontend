@@ -1,13 +1,21 @@
 'use client';
+import { FilterBox } from '@/components/ui/filter-box';
 import { Text } from '@/components/ui/text';
 import ClinicSavedCard from '@/entities/Clinic/ClinicSavedCard';
 import DoctorSavedCard from '@/entities/Doctor/DoctorSavedCard';
 import ServiceSavedCard from '@/entities/Service/ServiceSavedCard';
+import UndergoingSavedCard from '@/entities/Undergoing/UndergoingSavedCard';
 import { ISaved } from '@/shared/types/saved.interface';
-import { gql, useQuery } from '@apollo/client';
-import { useEffect, useRef, useState } from 'react';
+import { gql, useMutation, useQuery } from '@apollo/client';
+import { useEffect, useState } from 'react';
 import 'swiper/css';
-import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+
+const DELETE_BY_CATEGORY = gql(`
+mutation CreateSaved ($ids: [String!]!){
+    removeSavedArray(ids: $ids)
+}
+
+`);
 
 const SAVED_QUERY = gql(`
 query SavedAll {
@@ -32,12 +40,40 @@ query SavedAll {
         }
         service {
             _id
-            img
-            price
+            avatar 
+            priceMin
+            priceMax
             title
             clinic {
                 _id
                 title
+            }
+        }
+        undergoing {
+            _id
+            createdAt
+            rating
+            updatedAt
+            appointment {
+                _id
+                createdAt
+                duration
+                file
+                notify
+                online
+                specialCheck
+                status
+                timeStart
+                title
+                updatedAt
+                doctor {
+                    firstName
+                    lastName
+                    surname
+                }
+                clinic {
+                    title
+                }
             }
         }
     }
@@ -45,150 +81,104 @@ query SavedAll {
     `);
 
 export default function SavedMain({ token }: { token: string }) {
-    const { data, refetch } = useQuery(SAVED_QUERY, { context: { headers: { Authorization: `Bearer ${token}` } } });
-    const [saved, setSaved] = useState<ISaved[]>([]);
-    const swiperRef = useRef<SwiperRef>(null);
+  const { data, refetch } = useQuery(SAVED_QUERY, {
+    context: { headers: { Authorization: `Bearer ${token}` } },
+  });
+  const filterData = ['Услуги', 'Врачи', 'Клиники', 'Прохождения'];
+  const [deleteByCategory, { called }] = useMutation(DELETE_BY_CATEGORY);
 
-    useEffect(() => {
-        if (data) {
-            setSaved(data.savedAll);
-        }
-    }, [data]);
+  const [select, setSelect] = useState(filterData[1]);
+  const [saved, setSaved] = useState<ISaved[]>([]);
+  const currArray = saved.filter((el) =>
+    select == 'Услуги'
+      ? el.service
+      : select == 'Врачи'
+        ? el.doctor
+        : select == 'Клиники'
+          ? el.clinic
+          : el.undergoing
+  );
 
-    useEffect(() => {
-        refetch();
-    });
+  console.log(saved);
+  useEffect(() => {
+    if (data) {
+      setSaved(data.savedAll);
+    }
+  }, [data, refetch, called]);
 
-    return (
-        <div className='flex flex-col gap-4'>
-            <Text fw={500} fz={20}>
-                Профили
-            </Text>
-            <div className='bg-white mt-3 rounded-[12px] flex flex-col gap-3 px-4 py-[20px]'>
-                <Text fw={500} fz={16} className={saved.filter((pred) => pred.doctor).length == 0 ? 'hidden' : ''}>
-                    Врачи
-                </Text>
-                <Swiper
-                    ref={swiperRef}
-                    spaceBetween={1}
-                    slidesPerView={1}
-                    slidesPerGroup={1}
-                    className='mx-auto'
-                    slidesOffsetBefore={1}
-                    breakpoints={{
-                        300: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-                        768: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
+  useEffect(() => {
+    refetch();
+  });
 
-                        1024: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-
-                        1920: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-                    }}
-                    slidesOffsetAfter={1}>
-                    <>
-                        {saved
-                            .filter((pred) => pred.doctor)
-                            .map((el) => (
-                                <SwiperSlide key={el._id}>
-                                    {el.doctor && <DoctorSavedCard doctor={el.doctor} />}
-                                </SwiperSlide>
-                            ))}
-                    </>
-                </Swiper>
-                <Text fw={500} fz={16} className={saved.filter((pred) => pred.clinic).length == 0 ? 'hidden' : ''}>
-                    Клиники
-                </Text>
-                <Swiper
-                    ref={swiperRef}
-                    spaceBetween={1}
-                    slidesPerView={1}
-                    slidesPerGroup={1}
-                    className='mx-auto'
-                    slidesOffsetBefore={1}
-                    breakpoints={{
-                        300: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-                        768: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-
-                        1024: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-
-                        1920: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-                    }}
-                    slidesOffsetAfter={1}>
-                    <>
-                        {saved
-                            .filter((pred) => pred.clinic)
-                            .map((el) => (
-                                <SwiperSlide key={el._id}>
-                                    {el.clinic && <ClinicSavedCard clinic={el.clinic} />}
-                                </SwiperSlide>
-                            ))}
-                    </>
-                </Swiper>
-                <Text fw={500} fz={16} className={saved.filter((pred) => pred.service).length == 0 ? 'hidden' : ''}>
-                    Услуги
-                </Text>
-                <Swiper
-                    ref={swiperRef}
-                    spaceBetween={1}
-                    slidesPerView={1}
-                    slidesPerGroup={1}
-                    className='mx-auto'
-                    slidesOffsetBefore={1}
-                    breakpoints={{
-                        300: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-                        768: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-
-                        1024: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-
-                        1920: {
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                        },
-                    }}
-                    slidesOffsetAfter={1}>
-                    <>
-                        {saved
-                            .filter((pred) => pred.service)
-                            .map((el) => (
-                                <SwiperSlide key={el._id}>
-                                    {el.service && <ServiceSavedCard service={el.service} />}
-                                </SwiperSlide>
-                            ))}
-                    </>
-                </Swiper>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex flex-col gap-4 rounded-[12px] pc:max-w-[947px] w-full m-4 p-4 mx-auto pc:bg-white">
+      <FilterBox
+        data={filterData}
+        isSelect={select}
+        setIsSelect={setSelect}
+        className="bg-white"
+      />
+      <div className="flex-between">
+        <Text fw={500} fz={20}>
+          {currArray.length} сохранений
+        </Text>
+        <Text
+          fw={500}
+          fz={20}
+          className="text-grey-700 cursor-pointer"
+          onClick={() =>
+            deleteByCategory({
+              variables: { ids: currArray.map((el) => el._id) },
+            })
+          }
+        >
+          Сбросить
+        </Text>
+      </div>
+      <div className="bg-white mt-3 rounded-[12px] gap-3 px-4 py-[20px] grid grid-cols-2">
+        {saved
+          .filter((pred) =>
+            select == 'Услуги'
+              ? pred.service
+              : select == 'Врачи'
+                ? pred.doctor
+                : select == 'Клиники'
+                  ? pred.clinic
+                  : pred.undergoing
+          )
+          .map((el) => (
+            <>
+              {select == 'Услуги' && (
+                <ServiceSavedCard
+                  service={el.service}
+                  refetch={refetch}
+                  savedId={el._id}
+                />
+              )}
+              {select == 'Врачи' && (
+                <DoctorSavedCard
+                  doctor={el.doctor}
+                  refetch={refetch}
+                  savedId={el._id}
+                />
+              )}
+              {select == 'Клиники' && (
+                <ClinicSavedCard
+                  clinic={el.clinic}
+                  refetch={refetch}
+                  savedId={el._id}
+                />
+              )}
+              {select == 'Прохождения' && (
+                <UndergoingSavedCard
+                  undergoing={el.undergoing}
+                  refetch={refetch}
+                  savedId={el._id}
+                />
+              )}
+            </>
+          ))}
+      </div>
+    </div>
+  );
 }

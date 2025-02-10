@@ -5,14 +5,14 @@ import { useState } from 'react';
 import { Operations } from './operations';
 
 export default function PaymentsBlock() {
-    const [filter, setFilter] = useState('Все операции');
+  const [filter, setFilter] = useState('Все операции');
 
-    const filters = ['Все операции', 'Покупки', 'Отмены'];
-    return (
-        <div className='flex flex-col gap-3'>
-            <Statistic />
-            <FilterBox isSelect={filter} setIsSelect={setFilter} data={filters} />
-            <Operations />
-        </div>
-    );
+  const filters = ['Все операции', 'Покупки', 'Отмены'];
+  return (
+    <div className="flex flex-col gap-3">
+      <Statistic />
+      <FilterBox isSelect={filter} setIsSelect={setFilter} data={filters} />
+      <Operations />
+    </div>
+  );
 }

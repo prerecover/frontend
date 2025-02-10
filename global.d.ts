@@ -1,6 +1,6 @@
 export {};
 declare global {
-    interface Window {
-        [key: string]: any;
-    }
+  interface Window {
+    [key: string]: any;
+  }
 }

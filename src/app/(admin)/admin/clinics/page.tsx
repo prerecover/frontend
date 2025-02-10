@@ -70,12 +70,15 @@ query Countries {
 }
 `);
 export default async function Page() {
-    const { data } = await getClient().query({ query: ALL_CLINICS_QUERY });
-    const { data: countries } = await getClient().query({ query: GET_COUNTRIES });
-    return (
-        <>
-            <Header title={['Клиники']} />
-            <AdminClinicsBlock clinics={data.clinics} countries={countries.countries} />
-        </>
-    );
+  const { data } = await getClient().query({ query: ALL_CLINICS_QUERY });
+  const { data: countries } = await getClient().query({ query: GET_COUNTRIES });
+  return (
+    <>
+      <Header title={['Клиники']} />
+      <AdminClinicsBlock
+        clinics={data.clinics}
+        countries={countries.countries}
+      />
+    </>
+  );
 }

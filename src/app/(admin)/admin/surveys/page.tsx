@@ -4,7 +4,7 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 export default async function Page() {
-    const ALL_APPOINTMENTS_QUERY = gql(`
+  const ALL_APPOINTMENTS_QUERY = gql(`
 query AllAppointments{
      allAppointments {
         _id
@@ -33,54 +33,54 @@ lastName
     }
 }
     `);
-    //     const SURVEYS_QUERY = gql(`
-    // query Surveys {
-    //     surveys {
-    //         _id
-    //         createdAt
-    //         updatedAt
-    //         appointment {
-    //             _id
-    //             createdAt
-    //             status
-    //             timeStart
-    //             title
-    //             clinic {
-    //                 title
-    //                 _id
-    //             }
-    //             user {
-    //                 _id
-    //                 firstName
-    //                 lastName
-    //                 surname
-    //             }
-    //             doctor{
-    //                 firstName
-    //                 lastName
-    //                 surname
-    //             }
-    //         }
-    //         questions {
-    //             _id
-    //             createdAt
-    //             text
-    //             updatedAt
-    //             answers {
-    //                 _id
-    //                 createdAt
-    //                 text
-    //                 updatedAt
-    //             }
-    //         }
-    //     }
-    // }
-    //     `);
-    const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
-    return (
-        <>
-            <Header title={['Администратор', 'Опросы']} />
-            <SurveyMain appointments={data.allAppointments} />
-        </>
-    );
+  //     const SURVEYS_QUERY = gql(`
+  // query Surveys {
+  //     surveys {
+  //         _id
+  //         createdAt
+  //         updatedAt
+  //         appointment {
+  //             _id
+  //             createdAt
+  //             status
+  //             timeStart
+  //             title
+  //             clinic {
+  //                 title
+  //                 _id
+  //             }
+  //             user {
+  //                 _id
+  //                 firstName
+  //                 lastName
+  //                 surname
+  //             }
+  //             doctor{
+  //                 firstName
+  //                 lastName
+  //                 surname
+  //             }
+  //         }
+  //         questions {
+  //             _id
+  //             createdAt
+  //             text
+  //             updatedAt
+  //             answers {
+  //                 _id
+  //                 createdAt
+  //                 text
+  //                 updatedAt
+  //             }
+  //         }
+  //     }
+  // }
+  //     `);
+  const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
+  return (
+    <>
+      <Header title={['Администратор', 'Опросы']} />
+      <SurveyMain appointments={data.allAppointments} />
+    </>
+  );
 }

@@ -1,172 +1,206 @@
 import { Input } from '@/components/ui/input';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from '@/components/ui/input-otp';
 import { Text } from '@/components/ui/text';
 import { Textarea } from '@/components/ui/textarea';
-import { IDoctor } from '@/shared/types/doctor.interface';
-import { IService, IServiceCategory } from '@/shared/types/service.interface';
+import { IDoctorCreate } from '@/shared/types/doctor.interface';
+import {
+  IServiceCategory,
+  IServiceCreate,
+} from '@/shared/types/service.interface';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import AddDoctorsBlock from './add-doctors';
 import { FilterBox } from '@/components/ui/filter-box';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export default function ServiceCard({
-    fetch: fetchServices,
-    serviceArray,
-    // setFetch,
-    categories,
+  fetch: fetchServices,
+  serviceArray,
+  // setFetch,
+  categories,
 }: {
-    serviceArray: Partial<IService>[];
-    pos: number;
-    fetch: boolean;
-    categories: IServiceCategory[];
-    setFetch: React.Dispatch<React.SetStateAction<boolean>>;
+  serviceArray: Partial<IServiceCreate>[];
+  pos: number;
+  fetch: boolean;
+  categories: IServiceCategory[];
+  setFetch: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-    const [price, setPrice] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [online, setOnline] = useState('Онлайн');
-    const [doctors, setDoctors] = useState<Partial<IDoctor>[]>([]);
-    const [duration, setDuration] = useState('');
-    const [category, setCategory] = useState<IServiceCategory | undefined>();
-    // const [count, setCount] = useState([new Date()]);
-    const { toast } = useToast();
+  const [price, setPrice] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [online, setOnline] = useState('Онлайн');
+  const [doctors, setDoctors] = useState<Partial<IDoctorCreate[]>>([]);
+  const [duration, setDuration] = useState('');
+  const [category, setCategory] = useState<IServiceCategory | undefined>();
+  // const [count, setCount] = useState([new Date()]);
+  const { toast } = useToast();
 
-    const validate = () => {
-        const data = [title, description];
-        data.map((field) => {
-            if (field.length < 0) {
-                toast({ variant: 'destructive', title: 'Указаны не все поля' });
-                return false;
-            }
+  const validate = () => {
+    const data = [title, description];
+    data.map((field) => {
+      if (field.length < 0) {
+        toast({ variant: 'destructive', title: 'Указаны не все поля' });
+        return false;
+      }
+    });
+    if (typeof parseInt(price) !== 'number') {
+      toast({
+        variant: 'destructive',
+        title: 'Неправильно указана цена услуги',
+      });
+    }
+    if (typeof parseInt(duration) !== 'number') {
+      toast({
+        variant: 'destructive',
+        title: 'Неправильно указана длительность услуги',
+      });
+    }
+
+    return true;
+  };
+
+  // const addEl = () => {
+  //     setFetch(false);
+  //     setCount([...count, new Date()]);
+  // };
+  useEffect(() => {
+    if (fetchServices) {
+      if (validate()) {
+        serviceArray.push({
+          title,
+          priceMin: parseInt(price || '1'),
+          description,
+          category: category,
+          online: online == 'Онлайн',
+          durationMax: parseInt(duration),
+          offline: online !== 'Онлайн',
+          doctors: doctors,
         });
-        if (typeof parseInt(price) !== 'number') {
-            toast({ variant: 'destructive', title: 'Неправильно указана цена услуги' });
-        }
-        if (typeof parseInt(duration) !== 'number') {
-            toast({ variant: 'destructive', title: 'Неправильно указана длительность услуги' });
-        }
-
-        return true;
-    };
-
-    // const addEl = () => {
-    //     setFetch(false);
-    //     setCount([...count, new Date()]);
-    // };
-    useEffect(() => {
-        if (fetchServices) {
-            if (validate()) {
-                serviceArray.push({
-                    title,
-                    priceMin: parseInt(price || '1'),
-                    description,
-                    category: category?.title,
-                    online: online == 'Онлайн',
-                    durationMax: parseInt(duration),
-                    offline: online !== 'Онлайн',
-                    doctors: doctors,
-                });
-            }
-        }
-        console.log(serviceArray, 'service array');
-        console.log(doctors, 'doctors array');
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetchServices]);
-    console.log(doctors);
-    return (
-        <div className='flex flex-col w-full'>
-            {/* <div className='flex-between w-full'> */}
-            {/* <Button onClick={() => { */}
-            {/*     const newArr = posArr.filter((el) => el !== posArr[pos - 1]) */}
-            {/*     setPosArr(newArr) */}
-            {/**/}
-            {/* }}>delete</Button> */}
-            {/* <Image */}
-            {/*     src={'/assets/black-arrow-down.svg'} */}
-            {/*     width={28} */}
-            {/*     height={28} */}
-            {/*     alt='close' */}
-            {/*     className='w-[28px] h-[28px] cursor-pointer' */}
-            {/*     onClick={() => setShow(!show)} */}
-            {/* /> */}
-            {/* </div> */}
-            <div>
-                <div className='flex gap-[60px]'>
-                    <div className='flex flex-col gap-[18px] w-full'>
-                        <Text className='text-[18px] font-medium '>Основные данные</Text>
-                        <Input
-                            placeholder='Название'
-                            required={true}
-                            value={title}
-                            onChange={(e) => setTitle(e.currentTarget.value)}
-                        />
-                        <Textarea
-                            value={description}
-                            placeholder='Описание'
-                            onChange={(e) => setDescription(e.currentTarget.value)}
-                        />
-                        <div className='flex'>
-                            <Input
-                                placeholder='Цена'
-                                required={true}
-                                value={price}
-                                className='rounded-tr-[0px]'
-                                onChange={(e) => setPrice(e.currentTarget.value)}
-                            />
-                            <Text className='border-solid border-[1px] border-blue-100 m-auto w-[80px] h-full flex-center rounded-tr-[12px] rounded-br-[12px] font-medium'>
-                                UZS
-                            </Text>
-                        </div>
-                        <Select onValueChange={(e) => setCategory(categories.find((el) => el.title === e))}>
-                            <SelectTrigger className='w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]'>
-                                {category === undefined && <Text className='text-grey'>Категория*</Text>}
-
-                                <SelectValue className='text-[20px]' />
-                            </SelectTrigger>
-                            <SelectContent className='bg-white rounded-[12px] flex flex-col gap-4'>
-                                {categories.map((category: IServiceCategory) => (
-                                    <SelectItem key={category._id} value={category.title} className='cursor-pointer'>
-                                        {category.title}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                        <div className='flex gap-4'>
-                            <FilterBox data={['Онлайн', 'Оффлайн']} isSelect={online} setIsSelect={setOnline} />
-                        </div>
-                        <Text className='text-[18px] font-medium '>Длительность</Text>
-                        <InputOTP
-                            maxLength={4}
-                            pattern={REGEXP_ONLY_DIGITS}
-                            value={duration}
-                            onChange={(val) => setDuration(val)}>
-                            <InputOTPGroup className='gap-[14px]'>
-                                <InputOTPSlot
-                                    index={0}
-                                    className='border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]'
-                                />
-                                <InputOTPSlot
-                                    index={1}
-                                    className='border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]'
-                                />
-                                <Text className='font-semibold text-[16px]'>:</Text>
-                                <InputOTPSlot
-                                    index={2}
-                                    className='border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]'
-                                />
-                                <InputOTPSlot
-                                    index={3}
-                                    className='border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]'
-                                />
-                            </InputOTPGroup>
-                        </InputOTP>
-                    </div>
-                    <div className='w-[1px] bg-blue-100'></div>
-                    <AddDoctorsBlock doctors={doctors} setDoctors={setDoctors} />
-                </div>
+      }
+    }
+    console.log(serviceArray, 'service array');
+    console.log(doctors, 'doctors array');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchServices]);
+  console.log(doctors);
+  return (
+    <div className="flex flex-col w-full">
+      {/* <div className='flex-between w-full'> */}
+      {/* <Button onClick={() => { */}
+      {/*     const newArr = posArr.filter((el) => el !== posArr[pos - 1]) */}
+      {/*     setPosArr(newArr) */}
+      {/**/}
+      {/* }}>delete</Button> */}
+      {/* <Image */}
+      {/*     src={'/assets/black-arrow-down.svg'} */}
+      {/*     width={28} */}
+      {/*     height={28} */}
+      {/*     alt='close' */}
+      {/*     className='w-[28px] h-[28px] cursor-pointer' */}
+      {/*     onClick={() => setShow(!show)} */}
+      {/* /> */}
+      {/* </div> */}
+      <div>
+        <div className="flex gap-[60px]">
+          <div className="flex flex-col gap-[18px] w-full">
+            <Text className="text-[18px] font-medium ">Основные данные</Text>
+            <Input
+              placeholder="Название"
+              required={true}
+              value={title}
+              onChange={(e) => setTitle(e.currentTarget.value)}
+            />
+            <Textarea
+              value={description}
+              placeholder="Описание"
+              onChange={(e) => setDescription(e.currentTarget.value)}
+            />
+            <div className="flex">
+              <Input
+                placeholder="Цена"
+                required={true}
+                value={price}
+                className="rounded-tr-[0px]"
+                onChange={(e) => setPrice(e.currentTarget.value)}
+              />
+              <Text className="border-solid border-[1px] border-blue-100 m-auto w-[80px] h-full flex-center rounded-tr-[12px] rounded-br-[12px] font-medium">
+                UZS
+              </Text>
             </div>
+            <Select
+              onValueChange={(e) =>
+                setCategory(categories.find((el) => el.title === e))
+              }
+            >
+              <SelectTrigger className="w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]">
+                {category === undefined && (
+                  <Text className="text-grey">Категория*</Text>
+                )}
+
+                <SelectValue className="text-[20px]" />
+              </SelectTrigger>
+              <SelectContent className="bg-white rounded-[12px] flex flex-col gap-4">
+                {categories.map((category: IServiceCategory) => (
+                  <SelectItem
+                    key={category._id}
+                    value={category.title}
+                    className="cursor-pointer"
+                  >
+                    {category.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <div className="flex gap-4">
+              <FilterBox
+                data={['Онлайн', 'Оффлайн']}
+                isSelect={online}
+                setIsSelect={setOnline}
+              />
+            </div>
+            <Text className="text-[18px] font-medium ">Длительность</Text>
+            <InputOTP
+              maxLength={4}
+              pattern={REGEXP_ONLY_DIGITS}
+              value={duration}
+              onChange={(val) => setDuration(val)}
+            >
+              <InputOTPGroup className="gap-[14px]">
+                <InputOTPSlot
+                  index={0}
+                  className="border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]"
+                />
+                <InputOTPSlot
+                  index={1}
+                  className="border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]"
+                />
+                <Text className="font-semibold text-[16px]">:</Text>
+                <InputOTPSlot
+                  index={2}
+                  className="border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]"
+                />
+                <InputOTPSlot
+                  index={3}
+                  className="border-blue font-semibold text-[16px] rounded-[12px] h-[47px] w-[43px]"
+                />
+              </InputOTPGroup>
+            </InputOTP>
+          </div>
+          <div className="w-[1px] bg-blue-100"></div>
+          <AddDoctorsBlock doctors={doctors} setDoctors={setDoctors} />
         </div>
-    );
+      </div>
+    </div>
+  );
 }

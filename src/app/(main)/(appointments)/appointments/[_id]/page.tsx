@@ -17,6 +17,7 @@ query Appointment ($_id: String!){
             avatar
             city
             title
+            treated
         }
         doctor {
             _id
@@ -55,12 +56,15 @@ query Appointment ($_id: String!){
 `);
 
 export default async function Page({ params }: { params: { _id: string } }) {
-    const { data } = await getClient().query({ query: APPOINTMENT_QUERY, variables: { _id: params._id } });
-    return (
-        <>
-            <Header title={['Профиль клиники']} />
-            <MobileHeader title='Онлайн услуга' end={false} />
-            <AppointmentMain appointment={data.appointment} />
-        </>
-    );
+  const { data } = await getClient().query({
+    query: APPOINTMENT_QUERY,
+    variables: { _id: params._id },
+  });
+  return (
+    <>
+      <Header title={['Профиль клиники']} />
+      <MobileHeader title="Онлайн услуга" />
+      <AppointmentMain appointment={data.appointment} />
+    </>
+  );
 }

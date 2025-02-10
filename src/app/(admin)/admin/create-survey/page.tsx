@@ -4,7 +4,7 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 export default async function Page() {
-    const ALL_APPOINTMENTS_QUERY = gql(`
+  const ALL_APPOINTMENTS_QUERY = gql(`
 query AllAppointments{
      allAppointments(status: Approo ) {
         _id
@@ -18,7 +18,10 @@ status
             title
         }
         doctor{
-            specialization 
+            specialization {
+_id
+title
+}
             firstName 
             lastName
             surname 
@@ -33,11 +36,11 @@ status
     }
 }
     `);
-    const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
-    return (
-        <>
-            <Header title={['Администратор', 'Создать опрос']} />
-            <CheckAppointments appointments={data.allAppointments} />
-        </>
-    );
+  const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
+  return (
+    <>
+      <Header title={['Администратор', 'Создать опрос']} />
+      <CheckAppointments appointments={data.allAppointments} />
+    </>
+  );
 }

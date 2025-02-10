@@ -2,48 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
 
 .swiper {
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 @layer base {
-    :root {
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-    }
+  :root {
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
 
-    .dark {
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
-    }
+  .dark {
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
 @layer base {
-    body {
-        @apply h-full w-full overflow-x-hidden bg-white-background;
-    }
+  body {
+    @apply h-full w-full overflow-x-hidden bg-white-background;
+  }
 
-    .flex-center {
-        @apply flex justify-center items-center
-    }
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
 
-    .flex-between {
-        @apply flex justify-between items-center
-    }
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
 }

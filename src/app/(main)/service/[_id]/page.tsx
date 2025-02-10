@@ -1,27 +1,51 @@
 import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
-import EndMenu from '@/components/layout/mobileHeader/end-menu';
 import ServiceMain from '@/entities/Service/ServiceMain';
 import { getClient } from '@/lib/apollo-client';
 import { IService } from '@/shared/types/service.interface';
 import { gql } from '@apollo/client';
-import { cookies } from 'next/headers';
 
 async function getService(_id: string) {
-    const SERVICE_QUERY = gql(` query Service($serviceId: String!){
+  const SERVICE_QUERY = gql(` query Service($serviceId: String!){
     service(_id: $serviceId) {
         _id
         description
-        duration
+        durationMin
+        durationMax
         online
-        price
+        priceMin
+        priceMax
         title
+        category {
+            _id
+            slug
+            title
+        }
         treated
         createdAt
+        appointments {
+            _id
+            title
+            user {
+                userId
+                _id
+            }
+            clinic {
+                title
+            }
+            doctor {
+                _id
+                firstName
+                lastName
+                surname
+ 
+            }
+        }
         clinic {
             createdAt
             _id
             title
+            treated
             avatar
             address
             city
@@ -78,20 +102,23 @@ async function getService(_id: string) {
     }
 }
         `);
-    const { data } = await getClient().query({ query: SERVICE_QUERY, variables: { serviceId: _id } });
-    return data.service;
+  const { data } = await getClient().query({
+    query: SERVICE_QUERY,
+    variables: { serviceId: _id },
+  });
+  return data.service;
 }
 
 export default async function Page({ params }: { params: { _id: string } }) {
-    const service: IService = await getService(params._id);
-    const { get } = cookies();
-    return (
-        <>
-            <Header title={['Поиск', 'Профиль клиники']} />
-            <MobileHeader title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`} />
+  const service: IService = await getService(params._id);
+  return (
+    <>
+      <Header title={['Поиск', 'Профиль услуги']} />
+      <MobileHeader
+        title={`${service.online ? 'Онлайн услуга' : 'Офлайн услуга'}`}
+      />
 
-            <ServiceMain service={service} />
-            <EndMenu token={get('access_token')?.value} />
-        </>
-    );
+      <ServiceMain service={service} />
+    </>
+  );
 }

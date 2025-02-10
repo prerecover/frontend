@@ -1,11 +1,15 @@
 'use client';
 import RecomendationSwiper from '@/components/recomendationSwiper';
-import { Search } from '../SearchBlock';
+import { ISearch } from '../SearchBlock';
 
-export default function RecomendationsBlock({ recomendationsData }: { recomendationsData: Search }) {
-    return (
-        <div className='flex flex-col p-7'>
-            <RecomendationSwiper data={recomendationsData} />
-        </div>
-    );
+export default function RecomendationsBlock({
+  recomendationsData,
+}: {
+  recomendationsData: ISearch;
+}) {
+  return (
+    <div className="flex flex-col p-7">
+      <RecomendationSwiper data={recomendationsData} />
+    </div>
+  );
 }

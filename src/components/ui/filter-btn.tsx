@@ -4,41 +4,42 @@ import { Button } from './button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import controller from '/public/assets/controller.svg';
-import close from '/public/assets/close.svg';
+import blueController from '/public/assets/blue-controller.svg';
+import { Text } from './text';
 
 export interface FilterBtnProps {
-    onClick: () => void;
-    isActive?: boolean;
-    small?: boolean;
+  onClick: () => void;
+  variant?: 'default' | 'outline';
 }
 
-export const FilterBtn: FC<PropsWithClassName<FilterBtnProps>> = ({ className, onClick, isActive, small = true }) => {
-    return (
-        <>
-            {small == true ? (
-                <Button
-                    className={cn(className, 'h-[48px] p-3 rounded-[12px] w-[48px]', small != true && 'slider:hidden')}
-                    color='#0064FA'
-                    onClick={onClick}>
-                    <div className='justify-center gap-[10px]'>
-                        <Image src={isActive ? close : controller} alt='controller' width={20} height={20} />
-                    </div>
-                </Button>
-            ) : (
-                <Button
-                    className={cn(
-                        className,
-                        'py-[14px] px-[18px] rounded-[12px] w-[150px]',
-                        small != false && 'reverse_slider:hidden',
-                    )}
-                    color='#0064FA'
-                    onClick={onClick}>
-                    <div className='flex gap-[5px]'>
-                        <Image src={controller} alt='controller' width={20} height={20} />
-                        Фильтры
-                    </div>
-                </Button>
-            )}
-        </>
-    );
+export const FilterBtn: FC<PropsWithClassName<FilterBtnProps>> = ({
+  className,
+  onClick,
+  variant = 'default',
+}) => {
+  return (
+    <>
+      <Button
+        className={cn(
+          className,
+          'py-[14px] px-[13px] rounded-[12px] w-fit mx-auto',
+          variant == 'outline' &&
+            'text-blue border-blue border-solid border-[1px] font-medium'
+        )}
+        color="#FFFFFF"
+        onClick={onClick}
+      >
+        <div className="flex gap-[5px]">
+          <Image
+            src={variant == 'outline' ? blueController : controller}
+            alt="controller"
+            className="mx-auto"
+            width={20}
+            height={20}
+          />
+          <Text className="reverse_slider:hidden pr-3">Фильтры</Text>
+        </div>
+      </Button>
+    </>
+  );
 };

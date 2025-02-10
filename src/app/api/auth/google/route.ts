@@ -1,10 +1,10 @@
 export async function GET() {
-    const googleAuthUrl =
-        `https://accounts.google.com/o/oauth2/v2/auth?` +
-        `client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}` +
-        `&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI}` +
-        `&response_type=code` +
-        `&scope=email profile`;
+  const googleAuthUrl =
+    `https://accounts.google.com/o/oauth2/v2/auth?` +
+    `client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}` +
+    `&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI}` +
+    `&response_type=code` +
+    `&scope=email profile`;
 
-    return Response.redirect(googleAuthUrl, 302);
+  return Response.redirect(googleAuthUrl, 302);
 }

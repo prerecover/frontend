@@ -5,7 +5,7 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 export default async function Page() {
-    const SEARCH_QUERY = gql(`
+  const SEARCH_QUERY = gql(`
 query Search {
     search {
         clinics {
@@ -24,7 +24,10 @@ query Search {
             firstName
             lastName
             surname
-            specialization
+            specialization{
+                _id 
+                title
+            }
             workExp
             country{
                 title
@@ -33,30 +36,75 @@ query Search {
         services {
             _id
             description
-            duration
+            durationMin
             online
-            price
+            priceMin
             title
-            img
+            avatar 
             doctors{
                 firstName 
                 lastName
             }
             clinic{
                 title
+                city
+            }
+            category{
+                title
+            }
+        }
+        undergoings {
+            _id
+            createdAt
+            rating
+            updatedAt
+            appointment {
+                _id
+                createdAt
+                duration
+                file
+                notify
+                online
+                specialCheck
+                status
+                timeStart
+                title
+                updatedAt
+                doctor {
+                    _id
+                    avatar
+                    createdAt
+                    email
+                    firstName
+                    lastName
+                    mainStatus
+                    number
+                    online
+                    surname
+                    updatedAt
+                    workExp
+                }
+                service {
+                    _id
+                    avatar
+                    title
+                }
+                clinic{
+                    city
+}
             }
         }
     }
 }
     `);
-    const { data } = await getClient().query({ query: SEARCH_QUERY });
-    return (
-        <>
-            <MobileHeader />
-            <Header title={['Поиск']} />
-            <div className='p-4'>
-                <SearchBlock data={data.search} />
-            </div>
-        </>
-    );
+  const { data } = await getClient().query({ query: SEARCH_QUERY });
+  return (
+    <>
+      <MobileHeader />
+      <Header title={['Поиск']} />
+      <div className="p-4">
+        <SearchBlock data={data.search} />
+      </div>
+    </>
+  );
 }

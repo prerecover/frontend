@@ -1,13 +1,11 @@
-import Header from '@/components/layout/header';
-import MobileHeader from '@/components/layout/mobileHeader';
+import HeaderCenter from '@/components/layout/headerCenter';
 import AddAppointmentBlock from '@/features/AddAppointmentBlock';
 
-export default async function Page() {
-    return (
-        <>
-            <Header title={['Поиск']} />
-            <MobileHeader title='Запись' end={false} />
-            <AddAppointmentBlock />
-        </>
-    );
+export default function Page() {
+  return (
+    <>
+      <HeaderCenter title="Создание записи" />
+      <AddAppointmentBlock />
+    </>
+  );
 }

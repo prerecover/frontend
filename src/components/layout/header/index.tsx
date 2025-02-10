@@ -10,37 +10,41 @@ import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { Button } from '@/components/ui/button';
 
 export default function Header({ title }: { title: string[] }) {
-    const { isOpenSidebar } = useSidebarStore();
-    const { user } = useAuth();
-    const path = usePathname();
-    const { push } = useRouter();
-    return (
-        <>
-            <header
-                className={cn(
-                    'fixed top-0 left-0 right-0 w-full h-[65px] bg-white border-b-[1px] border-solid border-b-blue-100 py-[12px] px-[30px] flex-between gap-4 z-10 mobile:hidden',
-                    isOpenSidebar ? 'pl-[274px]' : 'pl-[116px]',
-                )}>
-                <HeaderLink paths={title} />
-                {user._id || path.includes('admin') ? (
-                    <div className='flex items-center gap-5'>
-                        <NotificationsLink />
-                        <div
-                            className='w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden'
-                            onClick={() => push(`${user?._id ? `/account/id${user.userId}` : '/login'}`)}>
-                            <Image
-                                src={user?.avatar ? user?.avatar : userImg}
-                                alt='avatar'
-                                width={40}
-                                height={40}
-                                className='object-cover h-[40px]'
-                            />
-                        </div>
-                    </div>
-                ) : (
-                    <Button onClick={() => push('/login')}>Войти</Button>
-                )}
-            </header>
-        </>
-    );
+  const { isOpenSidebar } = useSidebarStore();
+  const { user } = useAuth();
+  const path = usePathname();
+  const { push } = useRouter();
+  return (
+    <>
+      <header
+        className={cn(
+          'fixed top-0 left-0 right-0 w-full h-[65px] bg-white border-b-[1px] border-solid border-b-blue-100 py-[12px] px-[30px] flex-between gap-4 z-10 mobile:hidden tablet:hidden ',
+          isOpenSidebar ? 'pl-[274px]' : 'pl-[116px]'
+        )}
+      >
+        <HeaderLink paths={title} />
+        {user._id || path.includes('admin') ? (
+          <div className="flex items-center gap-5">
+            <NotificationsLink />
+            <div
+              className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden"
+              onClick={() =>
+                push(`${user?._id ? `/account/id${user.userId}` : '/login'}`)
+              }
+            >
+              <Image
+                src={user?.avatar ? user?.avatar : userImg}
+                alt="avatar"
+                width={40}
+                height={40}
+                className="object-cover h-[40px]"
+              />
+            </div>
+          </div>
+        ) : (
+          <Button onClick={() => push('/login')}>Войти</Button>
+        )}
+      </header>
+    </>
+  );
 }

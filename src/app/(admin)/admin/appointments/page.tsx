@@ -17,7 +17,10 @@ query AllAppointments{
             title
         }
         doctor{
-            specialization 
+            specialization {
+                _id
+                title
+}
             firstName 
 lastName
             surname 
@@ -34,12 +37,12 @@ lastName
     `);
 
 export default async function Page() {
-    const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
+  const { data } = await getClient().query({ query: ALL_APPOINTMENTS_QUERY });
 
-    return (
-        <div>
-            <Header title={['Администратор', 'Записи']} />
-            <AdminAppointmentsBlock appointments={data.allAppointments} />
-        </div>
-    );
+  return (
+    <div>
+      <Header title={['Администратор', 'Записи']} />
+      <AdminAppointmentsBlock appointments={data.allAppointments} />
+    </div>
+  );
 }

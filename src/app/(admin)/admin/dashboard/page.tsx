@@ -4,7 +4,7 @@ import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
 
 export default async function Page() {
-    const SEARCH_QUERY = gql(`
+  const SEARCH_QUERY = gql(`
 query Search {
     search {
         clinics {
@@ -23,7 +23,10 @@ query Search {
             firstName
             lastName
             surname
-            specialization
+            specialization{
+                _id
+                title
+}
             workExp
             country{
                 title
@@ -48,13 +51,13 @@ query Search {
     }
 }
     `);
-    const { data } = await getClient().query({ query: SEARCH_QUERY });
-    return (
-        <>
-            <Header title={['Работа сайта']} />
-            <div className='p-4'>
-                <AdminDasboard data={data.search} />
-            </div>
-        </>
-    );
+  const { data } = await getClient().query({ query: SEARCH_QUERY });
+  return (
+    <>
+      <Header title={['Работа сайта']} />
+      <div className="p-4">
+        <AdminDasboard data={data.search} />
+      </div>
+    </>
+  );
 }

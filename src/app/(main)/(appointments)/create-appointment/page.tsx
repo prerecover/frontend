@@ -32,7 +32,10 @@ query Search {
             firstName
             lastName
             surname
-            specialization
+            specialization{
+                _id 
+                title
+}
             workExp
             country{
                 title
@@ -41,11 +44,13 @@ query Search {
         services {
             _id
             description
-            duration
+            durationMin
+            durationMax
             online
-            price
+            priceMin
+            priceMax
             title
-            img
+            avatar 
             doctors{
                 firstName 
                 lastName
@@ -58,13 +63,13 @@ query Search {
 }
     `);
 export default async function Page() {
-    const { data: searchData } = await getClient().query({ query: SEARCH_QUERY });
-    const { data } = await getClient().query({ query: GET_COUNTRIES });
-    const countries: ICountry[] = data.countries;
-    return (
-        <>
-            <HeaderCenter title='Добавление записи' />
-            <CreateAppointmentBlock countries={countries} data={searchData.search} />
-        </>
-    );
+  const { data: searchData } = await getClient().query({ query: SEARCH_QUERY });
+  const { data } = await getClient().query({ query: GET_COUNTRIES });
+  const countries: ICountry[] = data.countries;
+  return (
+    <>
+      <HeaderCenter title="Добавление записи" />
+      <CreateAppointmentBlock countries={countries} data={searchData.search} />
+    </>
+  );
 }
