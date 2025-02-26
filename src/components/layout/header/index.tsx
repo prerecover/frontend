@@ -8,12 +8,21 @@ import Image from 'next/image';
 import userImg from '/public/assets/doctor.svg';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { Button } from '@/components/ui/button';
+import { useProfileModal } from '@/shared/store/profileModal';
+import { useNotifyModal } from '@/shared/store/notifyModal';
 
 export default function Header({ title }: { title: string[] }) {
   const { isOpenSidebar } = useSidebarStore();
   const { user } = useAuth();
   const path = usePathname();
   const { push } = useRouter();
+  const { setIsOpen, isOpen } = useProfileModal();
+  const { setIsOpen: setNotifyOpen } = useNotifyModal();
+
+  const handleProfile = () => {
+    setIsOpen(!isOpen);
+    setNotifyOpen(false);
+  };
   return (
     <>
       <header
@@ -28,9 +37,7 @@ export default function Header({ title }: { title: string[] }) {
             <NotificationsLink />
             <div
               className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden"
-              onClick={() =>
-                push(`${user?._id ? `/account/id${user.userId}` : '/login'}`)
-              }
+              onClick={() => handleProfile()}
             >
               <Image
                 src={user?.avatar ? user?.avatar : userImg}

@@ -1,5 +1,5 @@
 'use client';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -21,20 +21,26 @@ import { useCredStore } from '@/shared/store/credStore';
 import { useRouteStore } from '@/shared/store/prevRouter';
 
 const REGISTRATION_MUTATION = gql(`
-    mutation RegistrationUser($email: String!, $password: String!){
+    mutation RegistrationUser($email: String!, $password: String!, $city: String!, $country: String!){
         registrationUser(
-            registrationInput: { email: $email, password: $password }
+            registrationInput: { email: $email, password: $password, city: $city, country: $country }
     ) {
         _id
     }
 }
 `);
+interface LocationType {
+  city: string;
+  country: string;
+}
 
 export const RegistrationForm: FC = () => {
   // const [checked, setChecked] = useState<boolean>(false);
   const { setEmail } = useCredStore();
   const { setRoute } = useRouteStore();
   const path = usePathname();
+  const [location, setLocation] = useState<LocationType>(null);
+
   const router = useRouter();
   const [mutate, { error, loading }] = useMutation(REGISTRATION_MUTATION, {
     onCompleted() {
@@ -52,6 +58,12 @@ export const RegistrationForm: FC = () => {
       });
     }
   }, [error, toast]);
+  useEffect(() => {
+    fetch('/api/location')
+      .then((res) => res.json())
+      .then((data: LocationType) => setLocation(data))
+      .catch(() => setLocation(null));
+  }, []);
   const formSchema = z
     .object({
       email: z.string().email('No valid email'),
@@ -89,6 +101,8 @@ export const RegistrationForm: FC = () => {
       variables: {
         email: values.email,
         password: values.password,
+        city: location.city,
+        country: location.country,
       },
     });
     setEmail(values.email);

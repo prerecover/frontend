@@ -9,10 +9,7 @@ import { IService } from '@/shared/types/service.interface';
 import { IUndergoing } from '@/shared/types/undergoings.interface';
 import { SearchFilter } from '@/components/ui/search-filter';
 import { gql, useQuery } from '@apollo/client';
-
-const GET_CATEGORIES = gql(`
-query ServiceCategories {
-    serviceCategories {
+const GET_CATEGORIES = gql(` query ServiceCategories { serviceCategories {
         _id
         slug
         title

@@ -94,7 +94,7 @@ export default function NotificationModal() {
   return (
     <div
       className={cn(
-        `mobile:w-dvw mobile:h-dvh w-[466px] h-fit bg-white rounded-[12px] absolute z-40 desktop:right-10 desktop`,
+        `mobile:w-dvw tablet:w-dvw mobile:h-dvh tablet:h-dvh w-[466px] h-fit bg-white rounded-[12px] absolute z-40 desktop:right-7 pc:right-7`,
         !isOpen && 'hidden'
       )}
     >

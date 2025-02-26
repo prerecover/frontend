@@ -8,8 +8,7 @@ export const useLogout = () => {
   const router = useRouter();
   const logout = useCallback(() => {
     setCookie('access_token', '', 0);
-    window.location.reload();
-    router.push('/login');
+    window.location.replace('/login');
   }, [router]);
 
   return { logout };

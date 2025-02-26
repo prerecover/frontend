@@ -8,16 +8,16 @@ export default function AccountFormNameField({
 }: {
   field: string;
   setField: UseFormSetValue<{
-    firstName: string;
-    lastName: string;
-    number: string;
-    email: string;
-    login: string;
-    address: string;
-    city: string;
-    birthday: Date;
-    sex: boolean;
-    countryTitle: string;
+    firstName?: string;
+    lastName?: string;
+    number?: string;
+    email?: string;
+    login?: string;
+    address?: string;
+    city?: string;
+    birthday?: Date;
+    sex?: boolean;
+    countryTitle?: string;
   }>;
   placeholder: string;
 }) {
@@ -31,7 +31,7 @@ export default function AccountFormNameField({
           e.currentTarget.value
         )
       }
-      className="border-blue"
+      className="border-blue h-[49px]"
     />
   );
 }

@@ -70,7 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></iframe>
         </noscript>
       </body>
-      <script src="//code.jivo.ru/widget/PCxtgM4g4J" async></script>
+      {/* <script src="//code.jivo.ru/widget/PCxtgM4g4J" async></script> */}
       <script src="https://telegram.org/js/telegram-widget.js" async></script>
     </html>
   );

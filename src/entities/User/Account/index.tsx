@@ -50,11 +50,11 @@ export default function AccountBlock() {
         <Avatar />
       </div>
       {/* <div className='desktop:m-4 desktop:flex desktop:flex-row flex-col gap-4'> */}
-      {/*     <AccountMainForm */}
-      {/*         className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:mt-10 mobile:w-full' */}
-      {/*         form={userForm} */}
-      {/*         medForm={medForm} */}
-      {/*     /> */}
+      {/* <AccountMainForm */}
+      {/*   className="w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:mt-10 mobile:w-full" */}
+      {/*   form={userForm} */}
+      {/*   medForm={medForm} */}
+      {/* /> */}
       {/*     <AccountMedForm className='w-1/2 bg-white p-4 desktop:rounded-[12px] mobile:w-full' form={medForm} /> */}
       {/* </div> */}
       <AccountDesktopMenu />

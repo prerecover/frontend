@@ -5,6 +5,8 @@ import NotificationModal from '@/entities/Notification/NotificationModal';
 import AuthProvider from '../(auth)/auth-wrapper';
 import { usePathname } from 'next/navigation';
 import Footer from '@/components/layout/footer';
+import { AccountModal } from '@/features/AccountModal';
+import Script from 'next/script';
 export default function MainLayout({
   children,
 }: Readonly<{
@@ -24,12 +26,17 @@ export default function MainLayout({
             }
           >
             <NotificationModal />
+            <AccountModal />
             {children}
           </div>
           <Sidebar />
           <Footer />
           <BurgerMenu />
         </section>
+        <Script
+          src="//code.jivo.ru/widget/PCxtgM4g4J"
+          strategy="afterInteractive"
+        />
       </AuthProvider>
     </>
   );

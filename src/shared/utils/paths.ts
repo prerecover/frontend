@@ -79,7 +79,7 @@ export const ROUTES = {
   },
   main: {
     path: '/',
-    label: 'Рекомендации',
+    label: 'Мое здоровье',
   },
   appointments: {
     path: '/appointments',
