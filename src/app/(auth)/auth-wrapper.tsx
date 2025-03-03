@@ -119,7 +119,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           },
         },
       })
-      .then((data) => setUser(data.data.getMe));
+      .then((data) => {
+        setUser(data.data.getMe);
+        setIsAuth(true);
+      });
   }, []);
   const value = {
     user,

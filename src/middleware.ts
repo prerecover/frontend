@@ -3,17 +3,6 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { client } from './lib/apollo';
 
-const publicRoutes = [
-  '/login',
-  '/registration',
-  '/forgot-password',
-  '/new-password',
-  '/confirmation',
-  '/',
-  '/search',
-  '/service/*',
-];
-
 // 1. Specify protected and public routes
 
 async function checkStaff(token: string, req: NextRequest) {
@@ -42,9 +31,6 @@ export default async function middleware(req: NextRequest) {
   const userToken = req.cookies.get('access_token')?.value;
   const path = req.nextUrl.pathname;
   const checkError = await checkStaff(userToken || '', req);
-  if (!publicRoutes.includes(path) && !userToken) {
-    return NextResponse.redirect(new URL('/login', req.nextUrl));
-  }
 
   if (path.includes('admin') && userToken) {
     const isStaff = await checkStaff(userToken, req);
@@ -55,7 +41,7 @@ export default async function middleware(req: NextRequest) {
     }
   }
   if (userToken && checkError === true) {
-    return NextResponse.redirect(new URL('/admin/clinics', req.nextUrl));
+    return NextResponse.redirect(new URL('/admin', req.nextUrl));
   } else {
     return NextResponse.next();
   }

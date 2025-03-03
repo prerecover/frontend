@@ -1,7 +1,40 @@
-import Header from '@/components/layout/header';
-import AdminClinicsBlock from '@/features/AdminClinicsBlock';
+import AdminBlock from '@/features/AdminBlock';
 import { getClient } from '@/lib/apollo-client';
 import { gql } from '@apollo/client';
+
+const ALL_APPOINTMENTS_QUERY = gql(`
+query AllAppointments {
+    allAppointments {
+        _id
+        createdAt
+        notify
+        status
+        title
+        user {
+            _id
+            userId
+            address
+            city
+            number
+        }
+        service {
+            title
+        }
+        clinic {
+            title
+            city
+            address
+            typeTitle
+        }
+        doctor {
+            number
+            firstName
+            lastName
+            surname
+        }
+    }
+}
+`);
 
 const ALL_CLINICS_QUERY = gql(`
 query Clinics {
@@ -70,14 +103,19 @@ query Countries {
 }
 `);
 export default async function Page() {
-  const { data } = await getClient().query({ query: ALL_CLINICS_QUERY });
+  const { data: clinics } = await getClient().query({
+    query: ALL_CLINICS_QUERY,
+  });
+  const { data: appointments } = await getClient().query({
+    query: ALL_APPOINTMENTS_QUERY,
+  });
   const { data: countries } = await getClient().query({ query: GET_COUNTRIES });
   return (
     <>
-      <Header title={['Клиники']} />
-      <AdminClinicsBlock
-        clinics={data.clinics}
+      <AdminBlock
+        clinics={clinics.clinics}
         countries={countries.countries}
+        appointments={appointments.allAppointments}
       />
     </>
   );

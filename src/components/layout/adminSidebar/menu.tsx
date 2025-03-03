@@ -92,7 +92,7 @@ export const AdminMenu = () => {
           </svg>
         }
         title={'Выход'}
-        href={'/logout'}
+        href={'/login'}
       />
     </>
   );

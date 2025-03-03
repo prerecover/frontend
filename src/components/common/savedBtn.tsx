@@ -7,7 +7,7 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useToast } from '../ui/use-toast';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const SAVED_QUERY = gql`
   query SavedAll {
@@ -61,11 +61,12 @@ export const SavedBtn = ({
   type: 'clinic' | 'doctor' | 'service';
   id: string;
 }) => {
-  const { user } = useAuth();
+  const { user, isAuth } = useAuth();
   const { toast } = useToast();
   const [token, setToken] = useState('');
   const [status, setStatus] = useState('');
   const pathname = usePathname();
+  const router = useRouter();
   const { data, refetch } = useQuery(SAVED_QUERY, {
     context: {
       headers: {
@@ -124,6 +125,10 @@ export const SavedBtn = ({
   }, [data, pathname]);
 
   const savedHandle = () => {
+    if (!isAuth) {
+      router.push('/login');
+      return;
+    }
     switch (type) {
       case 'clinic':
         if (status.length == 0) {

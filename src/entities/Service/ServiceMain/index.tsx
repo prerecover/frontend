@@ -1,4 +1,5 @@
 'use client';
+import { useAuth } from '@/app/(auth)/auth-wrapper';
 import SavedBtn from '@/components/common/savedBtn';
 import BoxWrapper from '@/components/ui/box-wrapper';
 import { Button } from '@/components/ui/button';
@@ -19,9 +20,12 @@ export default function ServiceMain({ service }: { service: IService }) {
   const filters = ['Показатели услуги', 'Польза услуги'];
   const [filter, setFilter] = useState('Общие параметры');
   const { setService } = useCurrServiceStore();
+  const { isAuth } = useAuth();
   const router = useRouter();
+  console.log(isAuth);
   useEffect(() => {
     setService(service);
+    console.log(service.doctors[0]);
   }, [service, setService]);
   return (
     <>
@@ -98,7 +102,9 @@ export default function ServiceMain({ service }: { service: IService }) {
             <Button
               className="w-full mt-3"
               variant={'default'}
-              onClick={() => router.push('/add-appointment')}
+              onClick={() =>
+                isAuth ? router.push('/add-appointment') : router.push('/login')
+              }
             >
               Записаться
             </Button>

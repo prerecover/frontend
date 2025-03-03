@@ -41,6 +41,7 @@ mutation CreateAppointment ($clinicId: String!, $doctorId: String!, $online: Boo
             firstName   
             lastName 
             surname
+        
         }   
         updatedAt
     }

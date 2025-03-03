@@ -69,15 +69,19 @@ query Clinic($clinicId: String!){
             firstName 
             lastName 
             surname
-            specialization
+            specialization{
+                _id
+                title
+}
         }
     }
 }
         `);
-  const { data } = await getClient().query({
+  const { data, errors } = await getClient().query({
     query: CLINIC_QUERY,
     variables: { clinicId: _id },
   });
+  console.log(errors);
   return data.clinic;
 }
 

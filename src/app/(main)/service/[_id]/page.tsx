@@ -85,6 +85,10 @@ async function getService(_id: string) {
             lastName
             surname
             avatar
+            specialization{
+                _id
+                title
+}
         }
         news {
             _id
