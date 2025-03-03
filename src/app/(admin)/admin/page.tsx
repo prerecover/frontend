@@ -25,6 +25,9 @@ query AllAppointments {
             city
             address
             typeTitle
+            detail{
+                numbers
+}
         }
         doctor {
             number

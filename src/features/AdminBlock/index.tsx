@@ -28,6 +28,7 @@ import Image from 'next/image';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
 import ClinicTable from './tables/ClinicTable';
 import { IAppointment } from '@/shared/types/appointment.interface';
+import AppointmentsTable from './tables/AppointmentTable';
 
 export default function AdminBlock({
   clinics,
@@ -45,16 +46,39 @@ export default function AdminBlock({
   const [smsValue, setSmsValue] = useState('');
   const [country, setCountry] = useState('');
   const [weekendWork, setWeekendWork] = useState(true);
+  const handleValue = (
+    key: 'appointment' | 'clinic' | 'sms',
+    value: string
+  ) => {
+    switch (key) {
+      case 'clinic':
+        setClinicValue(value);
+        setAppointmentValue('');
+        setSmsValue('');
+        break;
+      case 'appointment':
+        setClinicValue('');
+        setAppointmentValue(value);
+        setSmsValue('');
+        break;
+      default:
+        setClinicValue('');
+        setAppointmentValue('');
+        setSmsValue(value);
+        break;
+    }
+  };
+
   return (
     <div className="flex flex-col overflow-x-scroll">
       <div className="flex-between p-4 gap-40">
         <div className="flex items-center  gap-3 w-full">
           <Select
-            onValueChange={(e) => setClinicValue(e)}
-            defaultValue={clinicValue}
+            onValueChange={(e) => handleValue('clinic', e)}
+            value={clinicValue}
           >
             <SelectTrigger className="max-w-[340px] py-7 pr-5 pl-6 border-[1px]  border-blue border-solid bg-[#fff] rounded-[12px] text-blue">
-              {clinicValue === '' && (
+              {!clinicValue && (
                 <div className="flex gap-4">
                   <Image
                     src={'/assets/clinic.svg'}
@@ -80,8 +104,8 @@ export default function AdminBlock({
             </SelectContent>
           </Select>
           <Select
-            onValueChange={(e) => setAppointmentValue(e)}
-            defaultValue={appointmentValue}
+            onValueChange={(e) => handleValue('appointment', e)}
+            value={appointmentValue}
           >
             <SelectTrigger className="max-w-[340px] py-7 pr-5 pl-6 border-[1px]  border-blue border-solid bg-[#fff] rounded-[12px] text-blue">
               {appointmentValue === '' && (
@@ -93,21 +117,41 @@ export default function AdminBlock({
               <SelectValue className="text-[20px]" />
             </SelectTrigger>
             <SelectContent className="bg-white rounded-[12px] flex flex-col gap-4">
-              <SelectItem value={'Запросы'} className="cursor-pointer">
-                Запросы 12
+              <SelectItem value={'Pending'} className="cursor-pointer">
+                Запросы{' '}
+                {
+                  appointments.filter(
+                    (appointment) => appointment.status == 'Pending'
+                  ).length
+                }
               </SelectItem>
               <SelectItem value={'В процессе'} className="cursor-pointer">
-                В процессе 12
+                В процессе{' '}
+                {
+                  appointments.filter(
+                    (appointment) => appointment.status == 'In process'
+                  ).length
+                }
               </SelectItem>
               <SelectItem value={'Состоявшиеся'} className="cursor-pointer">
-                Состоявшиеся 12
+                Состоявшиеся{' '}
+                {
+                  appointments.filter(
+                    (appointment) => appointment.status == 'Approoved'
+                  ).length
+                }
               </SelectItem>
               <SelectItem value={'Отменено'} className="cursor-pointer">
-                Отменено 12
+                Отменено{' '}
+                {
+                  appointments.filter(
+                    (appointment) => appointment.status == 'Pending'
+                  ).length
+                }
               </SelectItem>
             </SelectContent>
           </Select>
-          <Select onValueChange={(e) => setSmsValue(e)} defaultValue={smsValue}>
+          <Select onValueChange={(e) => handleValue('sms', e)} value={smsValue}>
             <SelectTrigger className="max-w-[340px] py-7 pr-5 pl-6 border-[1px]  border-blue border-solid bg-[#fff] rounded-[12px] text-blue">
               {smsValue === '' && (
                 <div className="flex gap-4">
@@ -144,7 +188,7 @@ export default function AdminBlock({
       {clinicValue ? (
         <ClinicTable clinics={clinics} />
       ) : appointmentValue ? (
-        <></>
+        <AppointmentsTable appointments={appointments} />
       ) : (
         <></>
       )}
