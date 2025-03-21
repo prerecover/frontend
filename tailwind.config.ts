@@ -58,6 +58,9 @@ const config = {
         100: '#EBF3FF',
         200: '#C8DBF6',
       },
+      sky: {
+        DEFAULT: "#075985",
+      },
       red: {
         400: '#D64657',
       },
@@ -109,11 +112,13 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      /*
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      */
       keyframes: {
         'skeleton-loading': {
           '0%, 100%': { transform: '0.5' },

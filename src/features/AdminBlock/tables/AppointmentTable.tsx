@@ -49,7 +49,7 @@ export default function AppointmentsTable({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {appointments
+        {/*appointments
           .filter((appointment) =>
             status ? appointment.status == status : appointment
           )
@@ -94,7 +94,46 @@ export default function AppointmentsTable({
               <TableCell className="min-w-[180px] ">-</TableCell>
               <TableCell className="min-w-[180px] ">Выбрать</TableCell>
             </TableRow>
-          ))}
+          ))*/}
+          <TableRow className="text-center">
+              <TableCell className="w-[40px]">1</TableCell>
+              <TableCell className="min-w-[180px] bg-white p-10">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] ">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] bg-white ">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] ">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] bg-white">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] ">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] bg-white">
+                ID 2
+              </TableCell>
+              <TableCell className="min-w-[180px] ">
+               1
+              </TableCell>
+              <TableCell className="min-w-[180px] bg-white">
+               1
+              </TableCell>
+              <TableCell className="min-w-[180px] ">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] ">
+                1
+              </TableCell>
+              <TableCell className="min-w-[180px] ">-</TableCell>
+              <TableCell className="min-w-[180px] ">-</TableCell>
+              <TableCell className="min-w-[180px] ">Выбрать</TableCell>
+            </TableRow>
       </TableBody>
     </Table>
   );

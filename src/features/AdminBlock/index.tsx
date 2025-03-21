@@ -15,6 +15,9 @@ import { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Text } from '@/components/ui/text';
+import BlueBox from '@/components/ui/blue-box'
+import { FaPlus } from "react-icons/fa6";
+import { CiLogout } from "react-icons/ci";
 import { ICountry } from '@/shared/types/country.interface';
 import {
   Select,
@@ -71,8 +74,8 @@ export default function AdminBlock({
 
   return (
     <div className="flex flex-col overflow-x-scroll">
-      <div className="flex-between p-4 gap-40">
-        <div className="flex items-center  gap-3 w-full">
+      <div className="flex items-center justify-between p-4">
+        <div className="flex items-center gap-3 w-1/3">
           <Select
             onValueChange={(e) => handleValue('clinic', e)}
             value={clinicValue}
@@ -179,16 +182,25 @@ export default function AdminBlock({
             </SelectContent>
           </Select>
         </div>
-
-        <SearchInput
-          value={search}
-          onChange={(e) => setSearch(e.currentTarget.value)}
-        />
+        
+        <div className='flex gap-3 w-1/2'>
+          <BlueBox className="flex items-center gap-3 text-blue hover:bg-blue/10 cursor-pointer">
+            <span>Добавить</span>
+            <FaPlus />
+          </BlueBox>
+          <SearchInput
+            value={search}
+            onChange={(e) => setSearch(e.currentTarget.value)}
+          />
+          <BlueBox className="flex items-center gap-3 text-blue hover:bg-blue/10 cursor-pointer">
+            <CiLogout />
+          </BlueBox>
+        </div>
       </div>
       {clinicValue ? (
         <ClinicTable clinics={clinics} />
       ) : appointmentValue ? (
-        <AppointmentsTable appointments={appointments} />
+        <AppointmentsTable appointments={appointments} status='Pending' />
       ) : (
         <></>
       )}

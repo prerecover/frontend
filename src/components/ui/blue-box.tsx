@@ -15,7 +15,7 @@ export default function BlueBox({
     <div
       className={cn(
         className,
-        'border-[1px] border-solid border-blue-100 rounded-[12px] p-4 mobile:p-3'
+        'border-[1px] border-solid border-blue rounded-[12px] p-4 mobile:p-3'
       )}
       style={style}
     >
