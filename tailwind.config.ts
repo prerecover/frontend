@@ -31,6 +31,12 @@ const config = {
       burger_first: { max: '375px' },
       burger_second: { max: '320px' },
       mobile_header: { min: '576px', max: '768px' },
+
+      'max-xs': { max: '480px' },
+      'max-sm': { max: '768px' },
+      'max-md': { max: '1023px' },
+      'max-lg': { max: '1439px' },
+      'max-xl': { max: '1919px' },
     },
     fontFamily: {
       sans: ['var(--font-montserrat)'],

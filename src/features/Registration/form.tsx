@@ -101,8 +101,8 @@ export const RegistrationForm: FC = () => {
       variables: {
         email: values.email,
         password: values.password,
-        city: location.city,
-        country: location.country,
+        city: location.city ?? '',
+        country: location.country ?? '',
       },
     });
     setEmail(values.email);

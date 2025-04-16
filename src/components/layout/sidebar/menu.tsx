@@ -1,9 +1,10 @@
 import { MenuItem } from './menuItem';
 
 import { ROUTES } from '@/shared/utils/paths';
-import { HistoryIcon, SavedIcon, SearchIcon } from '@/icons';
+import {HistoryIcon, SavedIcon, SearchIcon} from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
+import { HeartIcon } from '@/icons/HeartIcon';
 // import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 export const UserMenu = () => {
@@ -11,6 +12,11 @@ export const UserMenu = () => {
   // const { logout } = useLogout();
   return (
     <>
+      <MenuItem
+        icon={<HeartIcon width={20} height={20} />}
+        title={ROUTES.main.label}
+        href={ROUTES.main.path}
+      />
       <MenuItem
         icon={<SearchIcon width={20} height={20} />}
         title={ROUTES.search.label}
