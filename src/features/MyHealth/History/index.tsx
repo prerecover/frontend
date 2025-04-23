@@ -1,29 +1,34 @@
 import Image from 'next/image';
 import Files from './Files';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Appointment from './Appointment';
 import ModalHistory from './ModalHistory';
+import { IAppointment } from '../types/appointment.types';
 
 interface IListSelections {
   id: number;
   content: string;
-  component: any;
+  component: React.ReactElement;
+}
+interface IHistoryProps {
+  appointemtns: IAppointment[]
 }
 
 const listSelectionsData: IListSelections[] = [
   {
     id: 1,
     content: 'Записи',
-    component: <Appointment />,
+    component: <Appointment appointments={[]} />,
   },
   {
     id: 2,
     content: 'Файлы',
-    component: <Files />,
+    component: <Files appointments={[]}/>,
   },
 ];
 
-export default function History() {
+
+export default function History({appointemtns}: IHistoryProps) {
   const [active, setActive] = useState<IListSelections>(listSelectionsData[0]);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
 
@@ -97,7 +102,7 @@ export default function History() {
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 pb-4 min-h-0">
-        {active.component}
+      {React.cloneElement(active.component, { appointments: appointemtns })}
       </div>
     </div>
   );

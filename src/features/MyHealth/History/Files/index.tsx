@@ -1,3 +1,4 @@
+import { IAppointment } from '@/shared/types/appointment.interface';
 import { IFile } from '../../types/files.types';
 import CardFile from './CardFile';
 
@@ -34,7 +35,12 @@ const fileData: IFile[] = [
   },
 ];
 
-export default function Files() {
+interface IFilesProps {
+  appointments: IAppointment[]
+}
+
+
+export default function Files({appointments}: IFilesProps) {
   return (
     <div className="grid grid-cols-3 gap-4 min-h-0 h-ful">
       {fileData && fileData.map((item) => <CardFile file={item} />)}

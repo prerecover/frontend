@@ -6,8 +6,8 @@ export interface IPeriod {
 
 export interface IRecordCompleted {
   id: string;
-  name: string;
-  effectiveness: number;
+  title: string;
+  effectivity: number;
   successInTreatment: number;
 }
 

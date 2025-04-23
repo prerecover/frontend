@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
+interface ISkeletonProps {
+  value: number;
+}
 
-export default function Skeleton() {
-  const value = 62;
+export default function Skeleton({value}: ISkeletonProps) {
   const skeletonRef = useRef<SVGSVGElement | null>(null);
   const [intersectionY, setIntersectionY] = useState(0);
 

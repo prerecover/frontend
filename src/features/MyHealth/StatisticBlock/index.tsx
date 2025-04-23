@@ -23,71 +23,18 @@ const periodData: IPeriod[] = [
   },
 ];
 
-const recordCompletedData: IRecordCompleted[] = [
-  {
-    id: '1',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '2',
-    name: 'Восстановление легких',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '3',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '4',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '5',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '6',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '7',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '8',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-  {
-    id: '9',
-    name: 'Восстановление',
-    effectiveness: 3,
-    successInTreatment: 3,
-  },
-];
+interface IStatisticBlockProps {
+  recordCompletedData: IRecordCompleted[];
+}
 
-export default function StatisticBlock() {
+export default function StatisticBlock({recordCompletedData}: IStatisticBlockProps) {
   const [period, setPeriod] = useState<IPeriod>(periodData[0]);
   const recordsCompleted = 12;
   const successInTreatmentRecords: IStatisticRecord[] = recordCompletedData
     .filter((item) => 'successInTreatment' in item)
     .map((item) => ({
       id: item.id,
-      name: item.name,
+      name: item.title,
       value: item.successInTreatment,
     }));
 
@@ -95,8 +42,8 @@ export default function StatisticBlock() {
     .filter((item) => 'effectiveness' in item)
     .map((item) => ({
       id: item.id,
-      name: item.name,
-      value: item.effectiveness,
+      name: item.title,
+      value: item.effectivity,
     }));
   return (
     <div className="flex flex-col items-start gap-8 bg-white pt-3 pb-6 px-6 rounded-xl w-full flex-1 overflow-hidden min-w-[543px]">

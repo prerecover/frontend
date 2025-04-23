@@ -85,7 +85,7 @@ export default function Sidebar({ className }: { className?: string }) {
           )}
         >
           {clinics.slice(0, 5).map((clinic) => (
-            <LastVisitClinic key={clinic._id} clinic={clinic} />
+            <LastVisitClinic key={clinic?._id} clinic={clinic} />
           ))}
         </div>
       </section>

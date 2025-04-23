@@ -11,7 +11,7 @@ export default function CardAppointment({
   appointment,
 }: ICardAppointmentProps) {
   const {
-    name,
+    title,
     status,
     format,
     clinic,
@@ -28,7 +28,7 @@ export default function CardAppointment({
   const time = dateFormatted.format('HH:mm');
 
   return (
-    <div className="p-5 text-[#262626] font-bold relative border border-[#C8DBF6] rounded-xl max-sm:p-4">
+    <div className="p-5 text-[#262626] font-bold relative border border-[#C8DBF6] rounded-xl max-sm:p-4 max-h-[292px]">
       <p
         className="absolute top-4 right-4 max-sm:text-base"
         style={
@@ -40,7 +40,7 @@ export default function CardAppointment({
       <ul className="flex flex-col text-sm gap-3">
         <li>
           <p className="text-xs text-[#B1B2B4]">Название записи</p>
-          <h2 className="font-semibold text-xl">{name}</h2>
+          <h2 className="font-semibold text-xl">{title}</h2>
         </li>
         <li>
           <p className="text-[#B1B2B4]">

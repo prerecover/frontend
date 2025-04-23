@@ -1,6 +1,6 @@
 export interface IAppointment {
   id: string;
-  name: string;
+  title: string;
   status: string;
   format: 'online' | 'offline';
   clinic: string;
@@ -12,6 +12,9 @@ export interface IAppointment {
   duration: string;
   dateAppointment: string;
   benifest?: number;
+  effectivity: number,
+  learning: number,
+  successInTreatment: number
 }
 
 export type UpcomingEntriesType = Omit<
@@ -20,5 +23,5 @@ export type UpcomingEntriesType = Omit<
 >;
 export type ModalAppointment = Pick<
   IAppointment,
-  'id' | 'name' | 'duration' | 'benifest'
+  'id' | 'title' | 'duration' | 'benifest'
 >;
