@@ -9,8 +9,6 @@ import useScreenType from '@/shared/lib/hooks/useScreenType';
 import LaptopMyHealth from '@/features/MyHealth/Screens/LaptopMyHealth';
 import MobileMyHealth from '@/features/MyHealth/Screens/MobileMyHealth';
 import { IAppointment } from './types/appointment.types';
-import usersApi from '@/app/api/users/users.api';
-import { useEffect } from 'react';
 import { useUserStore } from '@/shared/store/userStore';
 
 interface IMyHealthProps {
@@ -24,12 +22,13 @@ export default  function MyHealth({appointments, user}: IMyHealthProps) {
   setUser(user)
 
   const screenType = useScreenType();
+  
 
   return (
     <>
       {screenType === 'desktop' && <DesktopMyHealth appointments={appointments}/>}
-      {screenType === 'laptop' && <LaptopMyHealth />}
-      {screenType === 'mobile' && <MobileMyHealth />}
+      {screenType === 'laptop' && <LaptopMyHealth appointments={appointments}/>}
+      {screenType === 'mobile' && <MobileMyHealth appointments={appointments}/>}
     </>
   );
 }

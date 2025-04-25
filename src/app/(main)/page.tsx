@@ -8,6 +8,7 @@ import usersApi from '../api/users/users.api';
 export default async function Home() {
 
   const data = await appointmentApi.findAppointment();
+  
   const user = await usersApi.findMe();
 
   return (

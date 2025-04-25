@@ -3,8 +3,8 @@ const Loader: FC = () => {
   return (
     <svg
       className="absolute left-0 right-0 mx-auto my-auto bottom-0 top-0 z-[200] animate-spin"
-      width="160"
-      height="160"
+      width="100"
+      height="100"
       viewBox="0 0 88 88"
       fill="none"
     >

@@ -9,7 +9,11 @@ export const APPOINTMENTS_QUERY = gql`
       clinic {
         title
       }
+      successInTreatment
+      learning
+      effectivity
       online
+      file
       doctor {
         firstName 
         lastName

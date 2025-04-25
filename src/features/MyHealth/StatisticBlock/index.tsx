@@ -38,8 +38,10 @@ export default function StatisticBlock({recordCompletedData}: IStatisticBlockPro
       value: item.successInTreatment,
     }));
 
+    
+
   const effectivenessRecords: IStatisticRecord[] = recordCompletedData
-    .filter((item) => 'effectiveness' in item)
+    .filter((item) => 'effectivity' in item)
     .map((item) => ({
       id: item.id,
       name: item.title,
