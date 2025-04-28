@@ -10,6 +10,8 @@ import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { Button } from '@/components/ui/button';
 import { useProfileModal } from '@/shared/store/profileModal';
 import { useNotifyModal } from '@/shared/store/notifyModal';
+import { AccountSheetContent } from '@/features/AccountSheetContent';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export default function Header({ title }: { title: string[] }) {
   const { isOpenSidebar } = useSidebarStore();
@@ -35,18 +37,25 @@ export default function Header({ title }: { title: string[] }) {
         {user._id || path.includes('admin') ? (
           <div className="flex items-center gap-5">
             <NotificationsLink />
-            <div
-              className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden"
-              onClick={() => handleProfile()}
-            >
-              <Image
-                src={user?.avatar ? user?.avatar : userImg}
-                alt="avatar"
-                width={40}
-                height={40}
-                className="object-cover h-[40px]"
-              />
-            </div>
+            <Sheet>
+              <SheetTrigger asChild>
+                <div
+                  className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer reverse_slider:hidden"
+                  onClick={() => handleProfile()}
+                >
+                  <Image
+                    src={user?.avatar ? user?.avatar : userImg}
+                    alt="avatar"
+                    width={40}
+                    height={40}
+                    className="object-cover h-[40px]"
+                  />
+                </div>
+              </SheetTrigger>
+              <SheetContent>
+                <AccountSheetContent />
+              </SheetContent>
+            </Sheet>
           </div>
         ) : (
           <Button onClick={() => push('/login')}>Войти</Button>

@@ -5,7 +5,6 @@ import NotificationModal from '@/entities/Notification/NotificationModal';
 import AuthProvider from '../(auth)/auth-wrapper';
 import { usePathname } from 'next/navigation';
 import Footer from '@/components/layout/footer';
-import { AccountModal } from '@/features/AccountModal';
 import Script from 'next/script';
 export default function MainLayout({
   children,
@@ -26,7 +25,6 @@ export default function MainLayout({
             }
           >
             <NotificationModal />
-            <AccountModal />
             {children}
           </div>
           <Sidebar />

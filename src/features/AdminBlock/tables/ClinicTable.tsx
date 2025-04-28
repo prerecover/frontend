@@ -1,6 +1,6 @@
- "use client";
- import {useState} from 'react';
- import {
+'use client';
+import { useState } from 'react';
+import {
   Table,
   TableCaption,
   TableHeader,
@@ -11,7 +11,7 @@
 } from '@/components/ui/table';
 import { Text } from '@/components/ui/text';
 import { IClinic } from '@/shared/types/clinic.interface';
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus } from 'react-icons/fa6';
 import {
   formatDate,
   formatRelativeDate,
@@ -20,13 +20,12 @@ import {
 import Image from 'next/image';
 
 export default function ClinicTable({ clinics }: { clinics: IClinic[] }) {
-
   const [visibleAction, setVisibleAction] = useState(false);
   const [visibleList, setVisibleList] = useState(false);
 
   return (
     <Table className="overflow-x-scroll w-screen">
-      <TableCaption className='mt-40'>Список всех клиник</TableCaption>
+      <TableCaption className="mt-40">Список всех клиник</TableCaption>
 
       <TableHeader>
         <TableRow>
@@ -176,119 +175,116 @@ export default function ClinicTable({ clinics }: { clinics: IClinic[] }) {
           </TableRow>
         ))*/}
         <TableRow className="text-center">
-            <TableCell className="w-[40px]">1</TableCell>
-            <TableCell className="min-w-[180px] bg-white p-10">
-              Хелликс
-            </TableCell>
-            <TableCell className="min-w-[180px] ">Клиника</TableCell>
-            <TableCell className="min-w-[180px] bg-white ">
-              Август 2012 г.
-            </TableCell>
-            <TableCell className="min-w-[180px] ">
-             36 м²
-            </TableCell>
-            <TableCell className="min-w-[180px] bg-white">
+          <TableCell className="w-[40px]">1</TableCell>
+          <TableCell className="min-w-[180px] bg-white p-10">Хелликс</TableCell>
+          <TableCell className="min-w-[180px] ">Клиника</TableCell>
+          <TableCell className="min-w-[180px] bg-white ">
+            Август 2012 г.
+          </TableCell>
+          <TableCell className="min-w-[180px] ">36 м²</TableCell>
+          <TableCell className="min-w-[180px] bg-white">
             + 7 (999) 03-20-911
-            </TableCell>
-            <TableCell className="min-w-[180px] ">
-            + 7 (999) 03-20-911
-            </TableCell>
-            <TableCell className="min-w-[180px] bg-white">
-            Палестина
-            </TableCell>
-            <TableCell className="min-w-[180px] ">Абу-Даби</TableCell>
-            <TableCell className="min-w-[180px] bg-white">
-            ул: Чурки 12
-            </TableCell>
-            <TableCell className="min-w-[180px] ">
-              12
-            </TableCell>
-            <TableCell className="min-w-[180px] bg-white">
-              <Image
-                src={'/assets/close-circle.svg'}
-                width={24}
-                height={24}
-                alt={'out'}
-                className="m-auto"
-              />
-            </TableCell>
-            <TableCell className="min-w-[180px] ">
-              <Image
-                src={'/assets/tick-circle.svg'}
-                width={24}
-                height={24}
-                alt={'out'}
-                className="m-auto"
-              />
-            </TableCell>
+          </TableCell>
+          <TableCell className="min-w-[180px] ">+ 7 (999) 03-20-911</TableCell>
+          <TableCell className="min-w-[180px] bg-white">Палестина</TableCell>
+          <TableCell className="min-w-[180px] ">Абу-Даби</TableCell>
+          <TableCell className="min-w-[180px] bg-white">ул: Чурки 12</TableCell>
+          <TableCell className="min-w-[180px] ">12</TableCell>
+          <TableCell className="min-w-[180px] bg-white">
+            <Image
+              src={'/assets/close-circle.svg'}
+              width={24}
+              height={24}
+              alt={'out'}
+              className="m-auto"
+            />
+          </TableCell>
+          <TableCell className="min-w-[180px] ">
+            <Image
+              src={'/assets/tick-circle.svg'}
+              width={24}
+              height={24}
+              alt={'out'}
+              className="m-auto"
+            />
+          </TableCell>
 
-            <TableCell className="min-w-[180px] bg-white">
-              <div className="flex-between ">
-                <Text className="font-semibold">пн</Text>
-                8:00 -17:00
-              </div>
-              <div className="flex-between ">
-                <Text className="font-semibold">сб-вс</Text>
-                8:00 -14:00
-              </div>
-            </TableCell>
-            <TableCell className="min-w-[180px] ">3</TableCell>
-            <TableCell className="min-w-[180px] bg-white">24</TableCell>
-            <TableCell className="min-w-[180px] ">
-              <span className="text-blue cursor-pointer">Загрузить</span>
-            </TableCell>
-            <TableCell className="min-w-[180px] bg-white">
-            Английский
-            Русский
-            </TableCell>
-            <TableCell className="min-w-[180px] ">
-              <Image
-                src={'/assets/close-circle.svg'}
-                width={24}
-                height={24}
-                alt={'out'}
-                className="m-auto"
-              />
-            </TableCell>
-            <TableCell className="min-w-[180px] bg-white">
+          <TableCell className="min-w-[180px] bg-white">
+            <div className="flex-between ">
+              <Text className="font-semibold">пн</Text>
+              8:00 -17:00
+            </div>
+            <div className="flex-between ">
+              <Text className="font-semibold">сб-вс</Text>
+              8:00 -14:00
+            </div>
+          </TableCell>
+          <TableCell className="min-w-[180px] ">3</TableCell>
+          <TableCell className="min-w-[180px] bg-white">24</TableCell>
+          <TableCell className="min-w-[180px] ">
+            <span className="text-blue cursor-pointer">Загрузить</span>
+          </TableCell>
+          <TableCell className="min-w-[180px] bg-white">
+            Английский Русский
+          </TableCell>
+          <TableCell className="min-w-[180px] ">
+            <Image
+              src={'/assets/close-circle.svg'}
+              width={24}
+              height={24}
+              alt={'out'}
+              className="m-auto"
+            />
+          </TableCell>
+          <TableCell className="min-w-[180px] bg-white">
             <span className="text-blue cursor-pointer">5</span> / 130
-            </TableCell>
-            <TableCell className="min-w-[180px] ">
+          </TableCell>
+          <TableCell className="min-w-[180px] ">
             <span className="text-blue cursor-pointer">12</span> / 130
-            </TableCell>
-            <TableCell className="min-w-[180px] bg-white relative">
-              <span
-              onClick={() => setVisibleList(!visibleList)} 
-              className="text-blue cursor-pointer">3</span>
-              {visibleList && 
-                <div className='w-[280px] absolute bottom-0 right-0 flex flex-col items-start bg-white shadow-md rounded-xl translate-y-full'>
-                  <button className='text-blue hover:text-sky font-semibold flex items-center justify-center gap-x-2 w-full p-4'>
-                    <span>Добавить</span>
-                    <FaPlus />
-                  </button>
-                  <div className="cursor-pointer p-4 hover:bg-white-background w-full text-left">
-                    <h4 className="font-semibold">Клиника Хелликс</h4>
-                    <p>Абу-Даби, ул: Чурки 12</p>
-                  </div>
-                  <div className="cursor-pointer p-4 hover:bg-white-background w-full text-left">
-                    <h4 className="font-semibold">Клиника Хелликс</h4>
-                    <p>Абу-Даби, ул: Чурки 12</p>
-                  </div>
+          </TableCell>
+          <TableCell className="min-w-[180px] bg-white relative">
+            <span
+              onClick={() => setVisibleList(!visibleList)}
+              className="text-blue cursor-pointer"
+            >
+              3
+            </span>
+            {visibleList && (
+              <div className="w-[280px] absolute bottom-0 right-0 flex flex-col items-start bg-white shadow-md rounded-xl translate-y-full">
+                <button className="text-blue hover:text-sky font-semibold flex items-center justify-center gap-x-2 w-full p-4">
+                  <span>Добавить</span>
+                  <FaPlus />
+                </button>
+                <div className="cursor-pointer p-4 hover:bg-white-background w-full text-left">
+                  <h4 className="font-semibold">Клиника Хелликс</h4>
+                  <p>Абу-Даби, ул: Чурки 12</p>
                 </div>
-              }
-            </TableCell>
-            <TableCell className="min-w-[180px] relative">
-              <span 
+                <div className="cursor-pointer p-4 hover:bg-white-background w-full text-left">
+                  <h4 className="font-semibold">Клиника Хелликс</h4>
+                  <p>Абу-Даби, ул: Чурки 12</p>
+                </div>
+              </div>
+            )}
+          </TableCell>
+          <TableCell className="min-w-[180px] relative">
+            <span
               onClick={() => setVisibleAction(!visibleAction)}
-              className="text-blue cursor-pointer">Выбрать</span>
-              {visibleAction && 
-                <div className='w-[180px] absolute bottom-0 right-0 flex flex-col items-start bg-white shadow-md rounded-xl translate-y-full'>
-                  <span className="cursor-pointer p-4 hover:bg-white-background w-full text-left">Изменить</span>
-                  <span className="cursor-pointer p-4 hover:bg-white-background w-full text-left">Удалить</span>
-                </div>
-              }
-            </TableCell>
-          </TableRow>
+              className="text-blue cursor-pointer"
+            >
+              Выбрать
+            </span>
+            {visibleAction && (
+              <div className="w-[180px] absolute bottom-0 right-0 flex flex-col items-start bg-white shadow-md rounded-xl translate-y-full">
+                <span className="cursor-pointer p-4 hover:bg-white-background w-full text-left">
+                  Изменить
+                </span>
+                <span className="cursor-pointer p-4 hover:bg-white-background w-full text-left">
+                  Удалить
+                </span>
+              </div>
+            )}
+          </TableCell>
+        </TableRow>
       </TableBody>
     </Table>
   );

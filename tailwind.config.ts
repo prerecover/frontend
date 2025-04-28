@@ -11,26 +11,70 @@ const config = {
   prefix: '',
   theme: {
     screens: {
-      not_found: { max: '576px' },
-      reverse_not_found: { min: '576px' },
-      open_sidebar: { min: '1024px', max: '1280' },
-      closed_sidebar: { min: '1280px' },
-      'layout-1024': { min: '1023px', max: '1279px' },
-      mobile: { max: '768px' },
-      desktop: { min: '1023px', max: '1919px' },
-      tablet: { min: '769px', max: '1023px' },
-      small_laptop: { min: '1024px', max: '1439px' },
-      laptop: { min: '1440px', max: '1919px' },
-      pc: { min: '1920px' },
-      reverse_pc: { max: '1919px' },
-      slider: { min: '768px' },
-      reverse_slider: { max: '768px' },
-      logo: { max: '1280px' },
-
-      extra_desktop: { min: '500px' },
-      burger_first: { max: '375px' },
-      burger_second: { max: '320px' },
-      mobile_header: { min: '576px', max: '768px' },
+      not_found: {
+        max: '576px',
+      },
+      reverse_not_found: {
+        min: '576px',
+      },
+      open_sidebar: {
+        min: '1024px',
+        max: '1280',
+      },
+      closed_sidebar: {
+        min: '1280px',
+      },
+      'layout-1024': {
+        min: '1023px',
+        max: '1279px',
+      },
+      mobile: {
+        max: '768px',
+      },
+      desktop: {
+        min: '1023px',
+        max: '1919px',
+      },
+      tablet: {
+        min: '769px',
+        max: '1023px',
+      },
+      small_laptop: {
+        min: '1024px',
+        max: '1439px',
+      },
+      laptop: {
+        min: '1440px',
+        max: '1919px',
+      },
+      pc: {
+        min: '1920px',
+      },
+      reverse_pc: {
+        max: '1919px',
+      },
+      slider: {
+        min: '768px',
+      },
+      reverse_slider: {
+        max: '768px',
+      },
+      logo: {
+        max: '1280px',
+      },
+      extra_desktop: {
+        min: '500px',
+      },
+      burger_first: {
+        max: '375px',
+      },
+      burger_second: {
+        max: '320px',
+      },
+      mobile_header: {
+        min: '576px',
+        max: '768px',
+      },
     },
     fontFamily: {
       sans: ['var(--font-montserrat)'],
@@ -42,31 +86,31 @@ const config = {
       },
       dark: '#262626',
       grey: {
+        '100': '#F2F4F5',
+        '200': '#E9EAEB',
+        '300': '#DFE0E1',
+        '400': '#D0D1D2',
+        '500': '#B1B2B4',
+        '600': '#97999B',
+        '700': '#7D7F82',
+        '800': '#646668',
+        '900': '#3C3D3E',
         DEFAULT: '#B1B2B4',
-        100: '#F2F4F5',
-        200: '#E9EAEB',
-        300: '#DFE0E1',
-        400: '#D0D1D2',
-        500: '#B1B2B4',
-        600: '#97999B',
-        700: '#7D7F82',
-        800: '#646668',
-        900: '#3C3D3E',
       },
       blue: {
+        '100': '#EBF3FF',
+        '200': '#C8DBF6',
         DEFAULT: '#0064FA',
-        100: '#EBF3FF',
-        200: '#C8DBF6',
       },
       sky: {
-        DEFAULT: "#075985",
+        DEFAULT: '#075985',
       },
       red: {
-        400: '#D64657',
+        '400': '#D64657',
       },
       green: '#00CC5E',
       yellow: {
-        400: '#FFC555',
+        '400': '#FFC555',
       },
     },
     container: {
@@ -112,33 +156,46 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
-      /*
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      */
       keyframes: {
         'skeleton-loading': {
-          '0%, 100%': { transform: '0.5' },
-          '50%': { transform: '1' },
+          '0%, 100%': {
+            transform: '0.5',
+          },
+          '50%': {
+            transform: '1',
+          },
         },
         'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
         'caret-blink': {
-          '0%,70%,100%': { opacity: '1' },
-          '20%,50%': { opacity: '0' },
+          '0%,70%,100%': {
+            opacity: '1',
+          },
+          '20%,50%': {
+            opacity: '0',
+          },
         },
         'end-menu-animate': {
-          from: { bottom: '-60px' },
-          to: { bottom: '0px' },
+          from: {
+            bottom: '-60px',
+          },
+          to: {
+            bottom: '0px',
+          },
         },
       },
       animation: {

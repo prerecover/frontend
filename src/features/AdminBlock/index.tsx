@@ -15,9 +15,9 @@ import { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Text } from '@/components/ui/text';
-import BlueBox from '@/components/ui/blue-box'
-import { FaPlus } from "react-icons/fa6";
-import { CiLogout } from "react-icons/ci";
+import BlueBox from '@/components/ui/blue-box';
+import { FaPlus } from 'react-icons/fa6';
+import { CiLogout } from 'react-icons/ci';
 import { ICountry } from '@/shared/types/country.interface';
 import {
   Select,
@@ -182,8 +182,8 @@ export default function AdminBlock({
             </SelectContent>
           </Select>
         </div>
-        
-        <div className='flex gap-3 w-1/2'>
+
+        <div className="flex gap-3 w-1/2">
           <BlueBox className="flex items-center gap-3 text-blue hover:bg-blue/10 cursor-pointer">
             <span>Добавить</span>
             <FaPlus />
@@ -200,7 +200,7 @@ export default function AdminBlock({
       {clinicValue ? (
         <ClinicTable clinics={clinics} />
       ) : appointmentValue ? (
-        <AppointmentsTable appointments={appointments} status='Pending' />
+        <AppointmentsTable appointments={appointments} status="Pending" />
       ) : (
         <></>
       )}
