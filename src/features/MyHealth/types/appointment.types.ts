@@ -12,9 +12,9 @@ export interface IAppointment {
   duration: string;
   dateAppointment: string;
   benifest?: number;
-  effectivity: number,
-  learning: number,
-  successInTreatment: number
+  effectivity: number;
+  learning: number;
+  successInTreatment: number;
 }
 
 export type UpcomingEntriesType = Omit<

@@ -13,10 +13,14 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'sun9-49.userapi.com',
       'c3e9083f-3cdf-458b-b641-36c2d0e15309.selstorage.ru',
+      'i.pinimg.com',
     ],
   },
   env: {
     NEXT_PUBLIC_BACKEND: process.env.NEXT_PUBLIC_BACKEND,
+  },
+  experimental: {
+    instrumentationHook: false,
   },
 };
 

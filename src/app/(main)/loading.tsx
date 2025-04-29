@@ -2,9 +2,8 @@ import Loader from '@/components/ui/loader';
 
 export default function Loading() {
   return (
-    <div className="fixed left-0 right-0 top-[40%] bottom-0 w-full h-[300px] bg-background z-50 transition-all ease-in flex-center">
+    <div className="fixed inset-0 flex items-center justify-center bg-background z-50 ease-in transition-all">
       <Loader />
     </div>
   );
 }
-

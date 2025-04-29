@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import FullCard from './FullCard';
 import { UpcomingEntriesType } from '../types/appointment.types';
+import { formattedDate } from '@/shared/utils/formattedDate';
 
 interface IListCardsProps {
   entries: UpcomingEntriesType[];
@@ -19,13 +20,6 @@ export default function ListCards({
     }))
   );
 
-  const formattedDate = (value: string) => {
-    const dateFormatted = dayjs(value, 'YYYY-MM-DD HH:mm:ss', 'ru');
-    return {
-      date: dateFormatted.format('D MMMM'),
-      time: dateFormatted.format('HH:mm'),
-    };
-  };
 
   const toggleCard = (id: string) => {
     setEntries((prevEntries) =>

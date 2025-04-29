@@ -1,5 +1,6 @@
 import { Text } from '@/components/ui/text';
 import type { IStatisticRecord } from '../types/statistic.types';
+import StatisticValue from './StatisticValue';
 
 interface IStatisticProps {
   label: string;
@@ -18,7 +19,7 @@ export default function Statistic({ label, recordCompleted }: IStatisticProps) {
         {label}
       </Text>
       <div className="flex items-center gap-2 w-full">
-        <div className="w-full bg-[#EBF3FF] h-5 rounded overflow-hidden flex gap-[1px] rounded">
+        <div className="w-full bg-[#EBF3FF] h-5 rounded overflow-hidden flex gap-[1px]">
           {recordCompleted.map((item) => (
             <div
               key={item.id}
@@ -31,7 +32,7 @@ export default function Statistic({ label, recordCompleted }: IStatisticProps) {
             ></div>
           ))}
         </div>
-        <p className="text-[#262626] font-medium text-lg">{sumValue}%</p>
+        <StatisticValue value={sumValue} />
       </div>
     </div>
   );

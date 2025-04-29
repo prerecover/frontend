@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import { UpcomingEntriesType } from '../types/appointment.types';
+import { Button } from '@/components/ui/button';
 
 interface IFullCardProps {
   appointment: UpcomingEntriesType;
@@ -8,7 +9,7 @@ interface IFullCardProps {
 }
 
 export default function FullCard({ appointment, onClose }: IFullCardProps) {
-  const { dateAppointment, name, doctor, price, priceCurrency, duration } =
+  const { dateAppointment, title, doctor, price, priceCurrency, duration } =
     appointment;
   const dateFormatted = dayjs(dateAppointment, 'YYYY-MM-DD HH:mm:ss', 'ru');
   const date = dateFormatted.format('D MMMM');
@@ -34,9 +35,9 @@ export default function FullCard({ appointment, onClose }: IFullCardProps) {
       </div>
 
       <p>
-        Название: <span className="text-white">{name}</span>
+        Название: <span className="text-white">{title}</span>
       </p>
-      <p>
+    <p>
         Врач: <span className="text-white">{doctor}</span>
       </p>
       <p>
@@ -48,10 +49,7 @@ export default function FullCard({ appointment, onClose }: IFullCardProps) {
       <p>
         Длительность: <span className="text-white">{duration}</span>
       </p>
-
-      <button className="w-full border border-white rounded-xl py-3 font-medium text-white  max-lg:p-2">
-        Перейти в запись
-      </button>
+      <Button variant='upcomingEntries'>Перейти в запись</Button>
     </div>
   );
 }

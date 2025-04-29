@@ -1,19 +1,19 @@
 export interface IWeekday {
-    monday: number;
-    tuesday: number;
-    wednesday: number;
-    thursday: number;
-    friday: number;
-    saturday: number;
-    sunday: number;
+  monday: number;
+  tuesday: number;
+  wednesday: number;
+  thursday: number;
+  friday: number;
+  saturday: number;
+  sunday: number;
 }
-  
+
 export enum EnumLabelsWeekday {
-    monday = 'Пн',
-    tuesday = 'Вт',
-    wednesday = 'Ср',
-    thursday = 'Чт',
-    friday = 'Пт',
-    saturday = 'Сб',
-    sunday = 'Вс',
-  }
+  MONDAY = 'Пн',
+  TUESDAY = 'Вт',
+  WEDNESDAY = 'Ср',
+  THURSDAY = 'Чт',
+  FRIDAY = 'Пт',
+  SATURDAY = 'Сб',
+  SUNDAY = 'Вс',
+}

@@ -8,9 +8,9 @@ interface ICardFileProps {
 export default function CardFile({ file }: ICardFileProps) {
   const { url, fileName, weight } = file;
   return (
-    <div className="p-4 relative border border-[#C8DBF6] rounded-xl">
-      <div className="w-16 h-16 overflow-hidden rounded-lg">
-        <img
+    <div className="p-4 relative border border-[#C8DBF6] rounded-xl overflow-hidden">
+        <div className="w-16 h-16 overflow-hidden rounded-lg">
+        <Image
           src={url}
           alt="card image"
           className="w-full"
@@ -18,7 +18,7 @@ export default function CardFile({ file }: ICardFileProps) {
           height={64}
         />
       </div>
-      <p className="font-semibold text-base text-[#262626]">{fileName}</p>
+      <p className="font-semibold text-base text-[#262626] pr-6 overflow-hidden">{fileName}</p>
       <p className="font-bold text-sm text-[#B1B2B4]">{weight}</p>
 
       <Image

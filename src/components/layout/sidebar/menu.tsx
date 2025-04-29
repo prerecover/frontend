@@ -1,7 +1,7 @@
 import { MenuItem } from './menuItem';
 
 import { ROUTES } from '@/shared/utils/paths';
-import {HistoryIcon, SavedIcon, SearchIcon} from '@/icons';
+import { HistoryIcon, SavedIcon, SearchIcon } from '@/icons';
 import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
 import { HeartIcon } from '@/icons/HeartIcon';

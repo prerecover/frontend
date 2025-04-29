@@ -4,7 +4,8 @@ interface ISkeletonProps {
   value: number;
 }
 
-export default function Skeleton({value}: ISkeletonProps) {
+export default function Skeleton({ value }: ISkeletonProps) {
+  value = 1;
   const skeletonRef = useRef<SVGSVGElement | null>(null);
   const [intersectionY, setIntersectionY] = useState(0);
 
@@ -33,8 +34,8 @@ export default function Skeleton({value}: ISkeletonProps) {
   }, []);
 
   return (
-    <div className="bg-white px-6 pb-3 pt-8 flex flex-col rounded-xl h-[80%] min-h-[250px] justify-center min-w-[294px]">
-      <p className="text-center mb-6 text-[#262626] font-medium text-lg">
+    <div className="bg-white px-6 pb-16 pt-8 flex flex-col rounded-xl h-[80%] min-h-64 justify-center min-w-72">
+      <p className="text-center mb-6 text-accent font-medium text-lg">
         Организм изучен на: <b>{value}%</b>
       </p>
       <div className="relative flex justify-center h-full overflow-hidden">
@@ -42,7 +43,7 @@ export default function Skeleton({value}: ISkeletonProps) {
           viewBox="0 0 131 366"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-full w-auto max-h-[585px] max-w-[330px] max-lg:max-h-[450px] max-lg:max-w-[280px] max-md:max-w-[150px]"
+          className="h-full w-auto  max-lg:max-h-[450px] max-lg:max-w-[280px] max-md:max-w-[150px]"
           preserveAspectRatio="xMidYMid meet"
           ref={skeletonRef}
         >
@@ -63,8 +64,8 @@ export default function Skeleton({value}: ISkeletonProps) {
           className="absolute"
           style={{ top: `${intersectionY - 5}px`, width: `${lineWidth}px` }}
         >
-          <p className="text-[#262626] font-medium text-3xl absolute -left-6 bottom-4 max-lg:-left-2 max-lg:text-2xl">
-            {value}%
+          <p className="text-[#262626] font-medium text-2xl absolute bottom-4 left-2 lg:text-3xl lg:left-6 xl:left-12">
+          {value}%
           </p>
           <svg
             height="12"

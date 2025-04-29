@@ -10,25 +10,30 @@ import LaptopMyHealth from '@/features/MyHealth/Screens/LaptopMyHealth';
 import MobileMyHealth from '@/features/MyHealth/Screens/MobileMyHealth';
 import { IAppointment } from './types/appointment.types';
 import { useUserStore } from '@/shared/store/userStore';
+import { IUser } from '@/shared/types';
+import { useEffect } from 'react';
 
 interface IMyHealthProps {
-  appointments: IAppointment[]
-  user: any
+  appointments: IAppointment[];
+  user: IUser;
 }
 
-export default  function MyHealth({appointments, user}: IMyHealthProps) {
+export default function MyHealth({ appointments, user }: IMyHealthProps) {
   const { setUser } = useUserStore();
 
-  setUser(user)
+  useEffect(() => {
+    setUser(user);
+  }, [setUser, user])
 
   const screenType = useScreenType();
-  
 
-  return (
-    <>
-      {screenType === 'desktop' && <DesktopMyHealth appointments={appointments}/>}
-      {screenType === 'laptop' && <LaptopMyHealth appointments={appointments}/>}
-      {screenType === 'mobile' && <MobileMyHealth appointments={appointments}/>}
-    </>
-  );
+  if (screenType === 'desktop') {
+    return <DesktopMyHealth appointments={appointments} />;
+  }
+
+  if (screenType === 'laptop') {
+    return <LaptopMyHealth appointments={appointments} />;
+  }
+
+  return <MobileMyHealth appointments={appointments} />;
 }

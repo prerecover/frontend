@@ -1,23 +1,11 @@
 'use client';
 import { IClinic } from '@/shared/types/clinic.interface';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { formatDate, parseWeekDay } from '@/shared/utils/formatDate';
 import { SearchInput } from '@/components/ui/search-input';
 import { useState } from 'react';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
 import { Text } from '@/components/ui/text';
-import BlueBox from '@/components/ui/blue-box'
-import { FaPlus } from "react-icons/fa6";
-import { CiLogout } from "react-icons/ci";
+import BlueBox from '@/components/ui/blue-box';
+import { FaPlus } from 'react-icons/fa6';
+import { CiLogout } from 'react-icons/ci';
 import { ICountry } from '@/shared/types/country.interface';
 import {
   Select,
@@ -26,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import Link from 'next/link';
 import Image from 'next/image';
 import { AppointmentIcon } from '@/icons/AppointmentIcon';
 import ClinicTable from './tables/ClinicTable';
@@ -34,8 +21,6 @@ import { IAppointment } from '@/shared/types/appointment.interface';
 import AppointmentsTable from './tables/AppointmentTable';
 
 export default function AdminBlock({
-  clinics,
-  countries,
   appointments,
 }: {
   clinics: IClinic[];
@@ -47,8 +32,6 @@ export default function AdminBlock({
 
   const [appointmentValue, setAppointmentValue] = useState('');
   const [smsValue, setSmsValue] = useState('');
-  const [country, setCountry] = useState('');
-  const [weekendWork, setWeekendWork] = useState(true);
   const handleValue = (
     key: 'appointment' | 'clinic' | 'sms',
     value: string
@@ -182,8 +165,8 @@ export default function AdminBlock({
             </SelectContent>
           </Select>
         </div>
-        
-        <div className='flex gap-3 w-1/2'>
+
+        <div className="flex gap-3 w-1/2">
           <BlueBox className="flex items-center gap-3 text-blue hover:bg-blue/10 cursor-pointer">
             <span>Добавить</span>
             <FaPlus />
@@ -198,9 +181,9 @@ export default function AdminBlock({
         </div>
       </div>
       {clinicValue ? (
-        <ClinicTable clinics={clinics} />
+        <ClinicTable />
       ) : appointmentValue ? (
-        <AppointmentsTable appointments={appointments} status='Pending' />
+        <AppointmentsTable appointments={appointments} status="Pending" />
       ) : (
         <></>
       )}

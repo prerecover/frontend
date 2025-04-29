@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const APPOINTMENTS_QUERY = gql`
   query Appointments {
@@ -15,10 +15,10 @@ export const APPOINTMENTS_QUERY = gql`
       online
       file
       doctor {
-        firstName 
+        firstName
         lastName
-        surname 
-      } 
+        surname
+      }
       duration
       service {
         priceMax

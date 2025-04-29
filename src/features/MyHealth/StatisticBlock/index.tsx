@@ -27,7 +27,9 @@ interface IStatisticBlockProps {
   recordCompletedData: IRecordCompleted[];
 }
 
-export default function StatisticBlock({recordCompletedData}: IStatisticBlockProps) {
+export default function StatisticBlock({
+  recordCompletedData,
+}: IStatisticBlockProps) {
   const [period, setPeriod] = useState<IPeriod>(periodData[0]);
   const recordsCompleted = 12;
   const successInTreatmentRecords: IStatisticRecord[] = recordCompletedData
@@ -38,8 +40,6 @@ export default function StatisticBlock({recordCompletedData}: IStatisticBlockPro
       value: item.successInTreatment,
     }));
 
-    
-
   const effectivenessRecords: IStatisticRecord[] = recordCompletedData
     .filter((item) => 'effectivity' in item)
     .map((item) => ({
@@ -48,11 +48,11 @@ export default function StatisticBlock({recordCompletedData}: IStatisticBlockPro
       value: item.effectivity,
     }));
   return (
-    <div className="flex flex-col items-start gap-8 bg-white pt-3 pb-6 px-6 rounded-xl w-full flex-1 overflow-hidden min-w-[543px]">
+    <div className="flex flex-col items-start gap-8 bg-white pt-3 pb-6 px-6 rounded-xl w-full flex-1 overflow-hidden min-w-110">
       <div className="flex items-center justify-between w-full">
-        <p className="text-[#7D7F82] font-medium text-base w-full">
+        <p className="text-gray-700 font-medium text-base w-full">
           Пройдено записей -{' '}
-          <span className="text-[#262626]">{recordsCompleted}</span>
+          <span className="text-accent">{recordsCompleted}</span>
         </p>
         <div className="relative">
           <Select
@@ -60,11 +60,11 @@ export default function StatisticBlock({recordCompletedData}: IStatisticBlockPro
               setPeriod(periodData.find((el: IPeriod) => el.id === e))
             }
           >
-            <SelectTrigger className="border border-[#C8DBF6] rounded-xl p-2.5 text-[#262626] text-base h-11 w-[117px]">
-              <Text className="text-base text-[##262626]">{period.title}</Text>
-              <SelectValue className="text-[20px]" />
+            <SelectTrigger className="border border-blue-200 rounded-xl p-2.5 text-accent text-base h-11 w-28">
+              <Text className="text-base text-accent">{period.title}</Text>
+              <SelectValue className="text-xl" />
             </SelectTrigger>
-            <SelectContent className="bg-white rounded-[12px] flex flex-col gap-4 !absolute z-50 mt-1 w-[var(--radix-select-trigger-width)]">
+            <SelectContent className="bg-white rounded-xl flex flex-col gap-4 !absolute z-50 mt-1 w-[var(--radix-select-trigger-width)]">
               {periodData.map((period: IPeriod) => (
                 <SelectItem
                   key={period.id}
@@ -92,9 +92,11 @@ export default function StatisticBlock({recordCompletedData}: IStatisticBlockPro
         />
       </div>
       <div className="flex items-center gap-4 w-full overflow-x-auto">
-        {recordCompletedData.map((item) => (
-          <Card key={item.id} record={item} />
-        ))}
+        {recordCompletedData.length && 
+          recordCompletedData.map((item) => (
+            <Card key={item.id} record={item} />
+          ))
+        }
       </div>
     </div>
   );

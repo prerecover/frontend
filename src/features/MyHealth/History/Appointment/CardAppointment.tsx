@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import Image from 'next/image';
 import { IAppointment } from '../../types/appointment.types';
+import { cn } from '@/lib/utils';
 
 interface ICardAppointmentProps {
   appointment: IAppointment;
@@ -28,27 +29,22 @@ export default function CardAppointment({
   const time = dateFormatted.format('HH:mm');
 
   return (
-    <div className="p-5 text-[#262626] font-bold relative border border-[#C8DBF6] rounded-xl max-sm:p-4 max-h-[292px]">
+    <div className="p-5 text-accent font-bold relative border border-[#C8DBF6] rounded-xl max-sm:p-4 max-h-[292px]">
       <p
-        className="absolute top-4 right-4 max-sm:text-base"
-        style={
-          status === 'Отменено' ? { color: '#D64657' } : { color: '00CC5E' }
-        }
+        className={cn("absolute top-4 right-4 max-sm:text-base", status === 'Отменено' ? 'red-400' : 'green')}
       >
         {status}
       </p>
       <ul className="flex flex-col text-sm gap-3">
         <li>
-          <p className="text-xs text-[#B1B2B4]">Название записи</p>
+          <p className="text-xs text-gray-500">Название записи</p>
           <h2 className="font-semibold text-xl">{title}</h2>
         </li>
         <li>
-          <p className="text-[#B1B2B4]">
+          <p className="text-gray-500">
             Формат:{' '}
             <span
-              style={
-                format === 'online' ? { color: '#00CC5E' } : { color: 'red' }
-              }
+              className={cn(format === 'online' ? 'green' : 'red')}
             >
               {format}
             </span>
