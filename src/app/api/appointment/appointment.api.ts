@@ -5,7 +5,6 @@ class AppointmentApi {
   public async findAppointment() {
     const { data } = await getClient().query({ query: APPOINTMENTS_QUERY });
     console.log(data);
-    
 
     return data.appointments.map((appointment) => ({
       id: appointment._id,

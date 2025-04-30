@@ -26,12 +26,9 @@ export default function ModalHistory({ appointments }: IModalHistoryProps) {
             <p className="text-gray-600 text-center">{item.duration}</p>
             <p
               className="font-medium text-center"
-              style={
-                item.benifest > 50 ? { color: 'green' } : { color: 'red' }
-              }
+              style={item.benifest > 50 ? { color: 'green' } : { color: 'red' }}
             >
               {item.benifest}%
-              
             </p>
           </div>
         ))}

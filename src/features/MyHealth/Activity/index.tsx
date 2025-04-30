@@ -25,7 +25,10 @@ export default function Activity() {
     .map((item) => {
       const days = Object.keys(item) as (keyof IWeekday)[];
       return days.map((day, index) => {
-        const label = EnumLabelsWeekday[day.toUpperCase() as keyof typeof EnumLabelsWeekday];
+        const label =
+          EnumLabelsWeekday[
+            day.toUpperCase() as keyof typeof EnumLabelsWeekday
+          ];
         const isCurrentDay = index === currentDayIndex;
         return {
           label,
@@ -44,7 +47,7 @@ export default function Activity() {
       <div className="flex justify-between h-full w-full gap-2 overflow-x-auto pb-6 min-h-[230px]">
         {formattedWeekday &&
           formattedWeekday.map((day) => (
-            <ActivityItem day={day}/>
+            <ActivityItem day={day} key={day.label} />
           ))}
       </div>
     </div>

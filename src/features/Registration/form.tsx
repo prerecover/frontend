@@ -21,9 +21,9 @@ import { useCredStore } from '@/shared/store/credStore';
 import { useRouteStore } from '@/shared/store/prevRouter';
 
 const REGISTRATION_MUTATION = gql(`
-    mutation RegistrationUser($email: String!, $password: String!, $city: String!, $country: String!){
+    mutation RegistrationUser($email: String!, $number: String!, $password: String!, $city: String!, $country: String!){
         registrationUser(
-            registrationInput: { email: $email, password: $password, city: $city, country: $country }
+            registrationInput: { email: $email, number: $number, password: $password, city: $city, country: $country }
     ) {
         _id
     }
@@ -67,6 +67,7 @@ export const RegistrationForm: FC = () => {
   const formSchema = z
     .object({
       email: z.string().email('No valid email'),
+      phone: z.string().min(8, { message: 'No valid phone number' }),
       password: z
         .string()
         .min(8, {
@@ -91,6 +92,7 @@ export const RegistrationForm: FC = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      phone: '',
       email: '',
       password: '',
       password2: '',
@@ -99,6 +101,7 @@ export const RegistrationForm: FC = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     mutate({
       variables: {
+        number: String(values.phone),
         email: values.email,
         password: values.password,
         city: location.city ?? '',
@@ -124,6 +127,22 @@ export const RegistrationForm: FC = () => {
                   <Input
                     placeholder="Введите эл.почту "
                     type="email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormControl>
+                  <Input
+                    placeholder="Введите номер телефона "
+                    type="tel"
                     {...field}
                   />
                 </FormControl>

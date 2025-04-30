@@ -52,7 +52,7 @@ export default function History({ appointemtns }: IHistoryProps) {
                         duration-200 ease-in-out hover:text-white"
           onClick={(e) => {
             e.stopPropagation();
-            setIsVisibleModal(prev => !prev)
+            setIsVisibleModal((prev) => !prev);
           }}
         >
           <p className="font-medium text-base max-xl:text-sm max-sm:text-xs">

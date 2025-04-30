@@ -23,7 +23,7 @@ export default function MyHealth({ appointments, user }: IMyHealthProps) {
 
   useEffect(() => {
     setUser(user);
-  }, [setUser, user])
+  }, [setUser, user]);
 
   const screenType = useScreenType();
 

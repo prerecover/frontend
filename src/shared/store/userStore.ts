@@ -2,16 +2,14 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { IUser } from '../types';
 
-
 interface IUsersStore {
   user: IUser;
   setUser: (user: IUser) => void;
   getUser: () => IUser;
 }
 
-
 const initialState: IUser = {
-  _id: "temp-id",
+  _id: 'temp-id',
   userId: '',
   isStaff: false,
   historyStudied: false,
@@ -19,7 +17,7 @@ const initialState: IUser = {
   sex: false,
   isVerified: false,
   appointments: [],
-  
+
   firstName: '',
   detail: {
     _id: 'temp-id',

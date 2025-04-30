@@ -92,11 +92,10 @@ export default function StatisticBlock({
         />
       </div>
       <div className="flex items-center gap-4 w-full overflow-x-auto">
-        {recordCompletedData.length && 
+        {recordCompletedData.length &&
           recordCompletedData.map((item) => (
             <Card key={item.id} record={item} />
-          ))
-        }
+          ))}
       </div>
     </div>
   );

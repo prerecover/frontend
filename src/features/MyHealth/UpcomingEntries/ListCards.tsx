@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -19,7 +18,6 @@ export default function ListCards({
       isVisible: false,
     }))
   );
-
 
   const toggleCard = (id: string) => {
     setEntries((prevEntries) =>

@@ -5,7 +5,6 @@ interface ISkeletonProps {
 }
 
 export default function Skeleton({ value }: ISkeletonProps) {
-  value = 1;
   const skeletonRef = useRef<SVGSVGElement | null>(null);
   const [intersectionY, setIntersectionY] = useState(0);
 
@@ -65,7 +64,7 @@ export default function Skeleton({ value }: ISkeletonProps) {
           style={{ top: `${intersectionY - 5}px`, width: `${lineWidth}px` }}
         >
           <p className="text-[#262626] font-medium text-2xl absolute bottom-4 left-2 lg:text-3xl lg:left-6 xl:left-12">
-          {value}%
+            {value}%
           </p>
           <svg
             height="12"

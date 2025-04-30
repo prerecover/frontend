@@ -37,7 +37,7 @@ export default function FullCard({ appointment, onClose }: IFullCardProps) {
       <p>
         Название: <span className="text-white">{title}</span>
       </p>
-    <p>
+      <p>
         Врач: <span className="text-white">{doctor}</span>
       </p>
       <p>
@@ -49,7 +49,7 @@ export default function FullCard({ appointment, onClose }: IFullCardProps) {
       <p>
         Длительность: <span className="text-white">{duration}</span>
       </p>
-      <Button variant='upcomingEntries'>Перейти в запись</Button>
+      <Button variant="upcomingEntries">Перейти в запись</Button>
     </div>
   );
 }

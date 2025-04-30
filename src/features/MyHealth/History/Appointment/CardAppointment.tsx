@@ -31,7 +31,10 @@ export default function CardAppointment({
   return (
     <div className="p-5 text-accent font-bold relative border border-[#C8DBF6] rounded-xl max-sm:p-4 max-h-[292px]">
       <p
-        className={cn("absolute top-4 right-4 max-sm:text-base", status === 'Отменено' ? 'red-400' : 'green')}
+        className={cn(
+          'absolute top-4 right-4 max-sm:text-base',
+          status === 'Отменено' ? 'red-400' : 'green'
+        )}
       >
         {status}
       </p>
@@ -43,9 +46,7 @@ export default function CardAppointment({
         <li>
           <p className="text-gray-500">
             Формат:{' '}
-            <span
-              className={cn(format === 'online' ? 'green' : 'red')}
-            >
+            <span className={cn(format === 'online' ? 'green' : 'red')}>
               {format}
             </span>
           </p>

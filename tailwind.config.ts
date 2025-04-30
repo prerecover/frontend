@@ -39,12 +39,12 @@ const config = {
       'max-xl': { max: '1919px' },
       'max-2xl': { max: '2500px' },
 
-      'xs': '480px',
-      'sm': '768px',
-      'md': '1024px',
-      'lg': '1440px',
-      'xl': '1920px',
-      '2xl': '2500px'
+      xs: '480px',
+      sm: '768px',
+      md: '1024px',
+      lg: '1440px',
+      xl: '1920px',
+      '2xl': '2500px',
     },
     fontFamily: {
       sans: ['var(--font-montserrat)'],
@@ -127,24 +127,23 @@ const config = {
         },
         activity: {
           DEFAULT: '#262626',
-          foreground: '#787B86'
-        }
+          foreground: '#787B86',
+        },
       },
       width: {
         modal: '540px',
         desktopRightBlock: '406px',
         100: '470px',
-        110: '540px'
+        110: '540px',
       },
       minHeight: {
-        history: '300px'
+        history: '300px',
       },
       backgroundColor: {
-        history: '#EBF3FF'
+        history: '#EBF3FF',
       },
       borderColor: {
-        history: '#C8DBF6'
-        
+        history: '#C8DBF6',
       },
       // 'max-xs': { max: '480px' },
       // 'max-sm': { max: '768px' },

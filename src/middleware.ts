@@ -19,7 +19,7 @@ query GetMe {
       context: { headers: { Authorization: `Bearer ${token}` } },
       fetchPolicy: 'no-cache',
     });
-
+    if (!data) return NextResponse.redirect(new URL('/login', req.nextUrl));
     return data.getMe.isStaff;
   } catch {
     req.cookies.delete('access_token');
@@ -31,6 +31,9 @@ export default async function middleware(req: NextRequest) {
   const userToken = req.cookies.get('access_token')?.value;
   const path = req.nextUrl.pathname;
   const checkError = await checkStaff(userToken || '', req);
+  if (!userToken && !['/login', '/register'].some((p) => path.startsWith(p))) {
+    return NextResponse.redirect(new URL('/login', req.nextUrl));
+  }
 
   if (path.includes('admin') && userToken) {
     const isStaff = await checkStaff(userToken, req);
