@@ -74,7 +74,7 @@ export default function History({ appointemtns }: IHistoryProps) {
       </header>
 
       <div className="w-full relative flex items-center mt-4 py-5 px-8">
-        <div className="p-6 rounded-xl border border-history mr-3.5 max-xl:p-4">
+        <div className="p-6 rounded-xl border border-history mr-3.5 max-xl:p-3">
           <Image
             src="/assets/search-blue.svg"
             alt="search"

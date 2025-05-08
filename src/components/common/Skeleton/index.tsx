@@ -33,7 +33,7 @@ export default function Skeleton({ value }: ISkeletonProps) {
   }, []);
 
   return (
-    <div className="bg-white px-6 pb-16 pt-8 flex flex-col rounded-xl h-[80%] min-h-64 justify-center min-w-72">
+    <div className="bg-white px-6 pb-16 pt-8 flex flex-col rounded-xl h-[80%] min-h-64 justify-center min-w-72 max-sm:min-w-max">
       <p className="text-center mb-6 text-accent font-medium text-lg">
         Организм изучен на: <b>{value}%</b>
       </p>

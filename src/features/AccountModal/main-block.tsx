@@ -33,6 +33,8 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import { ICountry } from '@/shared/types/country.interface';
 import { toast } from '@/components/ui/use-toast';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
+import Language from './language';
+import { MedBlock } from './med-block';
 
 const CHANGE_ME_MUTATION = gql(`
         mutation ChangeMe(
@@ -69,10 +71,8 @@ query Countries {
     }
 }
 `);
-export const MainBlock = ({
-  form,
-  medForm,
-}: {
+
+interface IMainBlockProps {
   form: UseFormReturn<{
     firstName?: string;
     lastName?: string;
@@ -97,7 +97,16 @@ export const MainBlock = ({
     sleepTime?: string;
     temperature?: string;
   }>;
-}) => {
+
+  language: string;
+  setLanguage: React.ComponentState;
+}
+export const MainBlock = ({
+  form,
+  medForm,
+  language,
+  setLanguage,
+}: IMainBlockProps) => {
   const { user, setUser } = useAuth();
   useEffect(() => {
     form.setValue('countryTitle', user.country?.title || '');
@@ -162,7 +171,7 @@ export const MainBlock = ({
     }
   }, [full]);
   return (
-    <div className="mobile:bg-white mobile:mt-4 mobile:px-4 mobile:rounded-[12px] tablet:mt-4 tablet:px-4 tablet:rounded-[12px] tablet:bg-white">
+    <div className="">
       <div
         className="flex-between items-center mt-3 mb-3"
         onClick={() => setFull(!full)}
@@ -391,6 +400,8 @@ export const MainBlock = ({
           </form>
         </Form>
       </div>
+      <MedBlock form={medForm} />
+      <Language language={language} setLanguage={setLanguage} />
     </div>
   );
 };

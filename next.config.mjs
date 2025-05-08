@@ -19,9 +19,6 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BACKEND: process.env.NEXT_PUBLIC_BACKEND,
   },
-  experimental: {
-    instrumentationHook: false,
-  },
 };
 
 export default nextConfig;

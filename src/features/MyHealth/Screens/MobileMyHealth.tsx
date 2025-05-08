@@ -17,7 +17,7 @@ export default function MobileMyHealth({ appointments }: IMobileMyHealthProps) {
   return (
     <div className="flex flex-col gap-3.5 p-4">
       <UpcomingEntries upcomingEntriesData={appointments} />
-      <div className="flex gap-3.5 max-sm:overflow-auto">
+      <div className="flex gap-3.5 max-sm:overflow-x-auto max-sm:whitespace-nowrap">
         <Skeleton value={user?.detail?.learning ?? 0} />
         <StatisticBlock
           recordCompletedData={appointments.map((appointment) => ({

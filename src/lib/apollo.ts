@@ -4,7 +4,6 @@ import createUploadLink from 'apollo-upload-client/createUploadLink.mjs';
 const link = createUploadLink({
   uri: `${process.env.NEXT_PUBLIC_BACKEND}/graphql`,
 });
-console.log(`${process.env.NEXT_PUBLIC_BACKEND}/graphql`);
 
 export const client = new ApolloClient({
   link,

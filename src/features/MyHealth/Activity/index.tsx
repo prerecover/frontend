@@ -40,7 +40,7 @@ export default function Activity() {
     .flat();
 
   return (
-    <div className="bg-white p-4 rounded-xl w-full pb-10">
+    <div className="bg-white p-4 rounded-xl w-full">
       <p className="text-center text-accent font-medium text-lg mb-4">
         Активность на сайте
       </p>
