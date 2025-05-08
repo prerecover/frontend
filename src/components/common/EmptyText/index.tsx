@@ -1,6 +1,5 @@
 import { HTMLAttributes } from 'react';
 import cn from 'clsx';
-import styles from './styles.module.scss';
 import { Text } from '@/components/ui/text';
 
 interface Props extends HTMLAttributes<HTMLParagraphElement> {
@@ -9,7 +8,13 @@ interface Props extends HTMLAttributes<HTMLParagraphElement> {
 
 export const EmptyText = ({ children, className }: Props) => {
   return (
-    <Text className={cn(styles.emptyText, className)} type="p">
+    <Text
+      className={cn(
+        'text-center italic flex-grow flex justify-center items-center',
+        className
+      )}
+      type="p"
+    >
       {children}
     </Text>
   );

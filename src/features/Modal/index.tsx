@@ -33,7 +33,9 @@ export const Modal: FC<PropsWithClassName<IModalProps>> = ({
     isOpen && (
       <Portal>
         <div
-          className={cn('w-full h-full fixed inset-0 z-[2] bg-dark/40 blur-xl')}
+          className={cn(
+            'w-full h-full fixed inset-0 z-[2] bg-dark/40 backdrop-blur-xl'
+          )}
           onClick={() => setIsOpenModal(false)}
         >
           <div

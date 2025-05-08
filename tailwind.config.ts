@@ -83,6 +83,7 @@ const config = {
       white: {
         DEFAULT: '#FFFFFF',
         background: '#F5F8FC',
+        '100': '#efefef',
       },
       dark: '#262626',
       grey: {

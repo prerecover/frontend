@@ -1,6 +1,5 @@
 import { ModalProps, PropsWithClassName } from '@/shared/types';
 import { FC } from 'react';
-import styles from './styles.module.scss';
 import { ConfirmModal } from '@/features/ConfirmModal';
 import { ConfirmModalContent } from '@/features/ConfirmModal/ConfirmModalContent';
 import { ConfirmModalIcon } from '@/features/ConfirmModal/ConfirmModalIcon';
@@ -17,7 +16,7 @@ export const AdminClinicExitModal: FC<PropsWithClassName<ModalProps>> = ({
 }) => {
   return (
     <ConfirmModal
-      className={cn(styles.modal, className)}
+      className={cn('lg:w-[550px]', className)}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
     >
@@ -29,12 +28,12 @@ export const AdminClinicExitModal: FC<PropsWithClassName<ModalProps>> = ({
         <ConfirmModalTitle>Вы уверены, что хотите выйти?</ConfirmModalTitle>
       </ConfirmModalContent>
       <ConfirmModalFooter>
-        <Button
-          title="Отменить"
-          size="default"
-          onClick={() => setIsOpen(false)}
-        />
-        <Button title="Выйти" size="default" onClick={() => setIsOpen(false)} />
+        <Button size="default" onClick={() => setIsOpen(false)}>
+          Отменить
+        </Button>
+        <Button size="default" onClick={() => setIsOpen(false)}>
+          Выйти
+        </Button>
       </ConfirmModalFooter>
     </ConfirmModal>
   );
