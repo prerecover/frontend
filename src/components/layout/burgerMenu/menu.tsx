@@ -1,7 +1,7 @@
 import { ROUTES } from '@/shared/utils/paths';
 import { ReactElement } from 'react';
 import styles from './styles.module.scss';
-import { SavedIcon, SearchIcon } from '@/icons';
+import { HomeIcon, SavedIcon, SearchIcon } from '@/icons';
 import { HeartIcon } from '@/icons/HeartIcon';
 interface MenuData {
   label: string;
@@ -20,11 +20,11 @@ export const menuData: MenuDataProps = {
     //     path: ROUTES.account.path,
     //     icon: <AccountIcon width={20} height={20} className={styles.icon} />,
     // },
-    // {
-    //     label: ROUTES.main.label,
-    //     path: ROUTES.main.path,
-    //     icon: <HomeIcon width={20} height={20} className={styles.icon} />,
-    // },
+    {
+      label: ROUTES.main.label,
+      path: ROUTES.main.path,
+      icon: <HomeIcon width={20} height={20} className={styles.icon} />,
+    },
     {
       label: ROUTES.main.label,
       path: ROUTES.main.path,

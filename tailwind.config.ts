@@ -31,6 +31,20 @@ const config = {
       burger_first: { max: '375px' },
       burger_second: { max: '320px' },
       mobile_header: { min: '576px', max: '768px' },
+
+      'max-xs': { max: '480px' },
+      'max-sm': { max: '768px' },
+      'max-md': { max: '1023px' },
+      'max-lg': { max: '1439px' },
+      'max-xl': { max: '1919px' },
+      'max-2xl': { max: '2500px' },
+
+      xs: '480px',
+      sm: '768px',
+      md: '1024px',
+      lg: '1440px',
+      xl: '1920px',
+      '2xl': '2500px',
     },
     fontFamily: {
       sans: ['var(--font-montserrat)'],
@@ -59,7 +73,7 @@ const config = {
         200: '#C8DBF6',
       },
       sky: {
-        DEFAULT: "#075985",
+        DEFAULT: '#075985',
       },
       red: {
         400: '#D64657',
@@ -111,7 +125,31 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        activity: {
+          DEFAULT: '#262626',
+          foreground: '#787B86',
+        },
       },
+      width: {
+        modal: '540px',
+        desktopRightBlock: '406px',
+        100: '470px',
+        110: '540px',
+      },
+      minHeight: {
+        history: '300px',
+      },
+      backgroundColor: {
+        history: '#EBF3FF',
+      },
+      borderColor: {
+        history: '#C8DBF6',
+      },
+      // 'max-xs': { max: '480px' },
+      // 'max-sm': { max: '768px' },
+      // 'max-md': { max: '1023px' },
+      // 'max-lg': { max: '1439px' },
+      // 'max-xl': { max: '1919px' },
       /*
       borderRadius: {
         lg: 'var(--radius)',

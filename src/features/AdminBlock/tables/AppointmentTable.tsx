@@ -7,19 +7,9 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table';
-import { Text } from '@/components/ui/text';
 import { IAppointment } from '@/shared/types/appointment.interface';
-import {
-  formatDate,
-  formatRelativeDate,
-  parseWeekDay,
-} from '@/shared/utils/formatDate';
-import Image from 'next/image';
 
-export default function AppointmentsTable({
-  appointments,
-  status,
-}: {
+export default function AppointmentsTable({}: {
   appointments: IAppointment[];
   status: 'In process' | 'Rejected' | 'Approoved' | 'Pending';
 }) {
@@ -95,45 +85,23 @@ export default function AppointmentsTable({
               <TableCell className="min-w-[180px] ">Выбрать</TableCell>
             </TableRow>
           ))*/}
-          <TableRow className="text-center">
-              <TableCell className="w-[40px]">1</TableCell>
-              <TableCell className="min-w-[180px] bg-white p-10">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] ">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] bg-white ">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] ">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] bg-white">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] ">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] bg-white">
-                ID 2
-              </TableCell>
-              <TableCell className="min-w-[180px] ">
-               1
-              </TableCell>
-              <TableCell className="min-w-[180px] bg-white">
-               1
-              </TableCell>
-              <TableCell className="min-w-[180px] ">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] ">
-                1
-              </TableCell>
-              <TableCell className="min-w-[180px] ">-</TableCell>
-              <TableCell className="min-w-[180px] ">-</TableCell>
-              <TableCell className="min-w-[180px] ">Выбрать</TableCell>
-            </TableRow>
+        <TableRow className="text-center">
+          <TableCell className="w-[40px]">1</TableCell>
+          <TableCell className="min-w-[180px] bg-white p-10">1</TableCell>
+          <TableCell className="min-w-[180px] ">1</TableCell>
+          <TableCell className="min-w-[180px] bg-white ">1</TableCell>
+          <TableCell className="min-w-[180px] ">1</TableCell>
+          <TableCell className="min-w-[180px] bg-white">1</TableCell>
+          <TableCell className="min-w-[180px] ">1</TableCell>
+          <TableCell className="min-w-[180px] bg-white">ID 2</TableCell>
+          <TableCell className="min-w-[180px] ">1</TableCell>
+          <TableCell className="min-w-[180px] bg-white">1</TableCell>
+          <TableCell className="min-w-[180px] ">1</TableCell>
+          <TableCell className="min-w-[180px] ">1</TableCell>
+          <TableCell className="min-w-[180px] ">-</TableCell>
+          <TableCell className="min-w-[180px] ">-</TableCell>
+          <TableCell className="min-w-[180px] ">Выбрать</TableCell>
+        </TableRow>
       </TableBody>
     </Table>
   );
