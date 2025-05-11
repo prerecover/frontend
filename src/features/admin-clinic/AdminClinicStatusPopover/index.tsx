@@ -17,7 +17,7 @@ export const AdminClinicStatusPopover = ({ className, children }: Props) => {
       <PopoverTrigger>{children}</PopoverTrigger>
       <PopoverContent
         className={cn(
-          'min-w-24 min-h-14 flex justify-center items-center gap-3.5',
+          'min-w-24 min-h-14 flex justify-center items-center gap-3.5 desktop:max-w-24 bg-white',
           className
         )}
       >

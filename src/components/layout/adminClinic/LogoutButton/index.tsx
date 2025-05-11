@@ -14,9 +14,14 @@ export const LogoutButton: FC<PropsWithClassName> = ({ className }) => {
     <>
       <Button
         className={cn('size-12', className)}
+        variant="error"
         onClick={() => setIsOpenModal(true)}
       >
-        <LogoutIcon width={24} height={24} />
+        <LogoutIcon
+          className="min-w-6 text-white [&>g>path]:fill-white"
+          width={24}
+          height={24}
+        />
       </Button>
 
       <AdminClinicExitModal

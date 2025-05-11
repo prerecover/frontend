@@ -157,6 +157,12 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      boxShadow: {
+        'cell-th':
+          'inset 0 1px 0 #aec2de, inset 0 -1px 0 #aec2de, inset 0.5px 0 0 #aec2de, inset -0.5px 0 0 #aec2de',
+        'cell-td':
+          'inset 0 0.5px 0 #ebf3ff, inset 0 -0.5px 0 #ebf3ff, inset 0.5px 0 0 #ebf3ff, inset -0.5px 0 0 #ebf3ff',
+      },
       keyframes: {
         'skeleton-loading': {
           '0%, 100%': {

@@ -17,9 +17,13 @@ export const ClinicRegistrationActionsPopover = ({
   return (
     <Popover>
       <PopoverTrigger>{children}</PopoverTrigger>
-      <PopoverContent className={cn(className)}>
-        <Button>Изменить</Button>
-        <Button>Отменить</Button>
+      <PopoverContent align="end" className={cn('bg-white', className)}>
+        <Button className="w-full bg-white text-dark text-left justify-start">
+          Изменить
+        </Button>
+        <Button className="w-full bg-white text-dark text-left justify-start">
+          Отменить
+        </Button>
       </PopoverContent>
     </Popover>
   );

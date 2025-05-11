@@ -1,5 +1,5 @@
-import { PropsWithClassName, PropsWithSize } from "@/shared/types";
-import { FC } from "react";
+import { PropsWithClassName, PropsWithSize } from '@/shared/types';
+import { FC } from 'react';
 
 export const LogoutIcon: FC<PropsWithClassName<PropsWithSize>> = ({
   className,

@@ -21,21 +21,24 @@ export const AdminClinicHeader: FC<PropsWithClassName<Props>> = ({
   return (
     <header
       className={cn(
-        'flex justify-between items-center gap-6 p-6 flex-wrap',
+        'flex flex-col desktop:flex-row justify-between items-start gap-6 p-6 ',
         className
       )}
     >
+      <LogoutButton className="w-full desktop:hidden" />
       <AdminClinicFilters />
 
-      <Button className="max-md:w-full ml-auto w-max">
-        Добавить клинику +
-      </Button>
-      <Search
-        className="min-w-[475px] max-md:min-w-wfull"
-        value={search}
-        onChange={onChangeSearch}
-      />
-      <LogoutButton className="max-md:-order-1 ml-auto" />
+      <div className="flex flex-col desktop:flex-row gap-6 w-full desktop:w-max">
+        <Button className="w-full  desktop:w-max h-12 text-nowrap">
+          Добавить клинику +
+        </Button>
+        <Search
+          className="desktop:min-w-[475px] max-md:min-w-full h-12"
+          value={search}
+          onChange={onChangeSearch}
+        />
+        <LogoutButton className="w-full hidden desktop:flex" />
+      </div>
     </header>
   );
 };
