@@ -31,7 +31,7 @@ export default function AccountFormNameField({
           e.currentTarget.value
         )
       }
-      className="border-blue h-[49px]"
+      className="border-blue h-12"
     />
   );
 }

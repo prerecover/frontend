@@ -6,7 +6,7 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "format": "prettier",
+    "format": "prettier --write ./src",
     "lint": "next lint",
     "eslint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "compile": "graphql-codegen --config codegen.yaml",
@@ -24,10 +24,10 @@
     "@hookform/resolvers": "^3.9.0",
     "@module-federation/nextjs-mf": "^8.4.10",
     "@mui/material": "^5.16.6",
-    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-checkbox": "^1.1.1",
-    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-dialog": "^1.1.11",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-progress": "^1.1.0",
@@ -76,6 +76,8 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "urql": "^4.1.0",
+    "use-debounce": "^10.0.4",
+    "vaul": "^1.1.2",
     "webpack": "^5.93.0",
     "zod": "^3.23.8",
     "zustand": "^4.5.4"
@@ -96,5 +98,5 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.7.2"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

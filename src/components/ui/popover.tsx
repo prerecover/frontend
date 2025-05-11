@@ -28,4 +28,21 @@ const PopoverContent = React.forwardRef<
 ));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
+interface PopoverButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  className?: string;
+}
+
+export const PopoverButton = ({ children, className }: PopoverButtonProps) => {
+  return (
+    <button
+      className={cn(
+        'cursor-pointer w-full flex items-center gap-2 px-3 py-3.5 text-base text-dark ease-linear duration-200 bg-white :hover:bg-blue-100 hover:opacity-80 active:opacity-100',
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
+};
+
 export { Popover, PopoverTrigger, PopoverContent };
