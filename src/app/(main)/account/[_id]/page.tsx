@@ -1,7 +1,7 @@
 import Header from '@/components/layout/header';
 import MobileHeader from '@/components/layout/mobileHeader';
 import AppointmentWarnList from '@/entities/Appointment/AppointmentWarnList';
-import AccountBlock from '@/entities/User/Account';
+import { AccountModal } from '@/features/AccountModal';
 
 export default async function Page() {
   return (
@@ -9,8 +9,7 @@ export default async function Page() {
       <MobileHeader title="Профиль" />
       <Header title={['Профиль']} />
       <AppointmentWarnList />
-
-      <AccountBlock />
+      <AccountModal />
     </>
   );
 }

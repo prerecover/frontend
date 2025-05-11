@@ -11,6 +11,8 @@ export const useProfileModal = create<IProfileModal>()(
     isOpen: false,
     setIsOpen: (bol: boolean) => {
       set((state) => {
+        console.log(state);
+
         state.isOpen = bol;
       });
     },

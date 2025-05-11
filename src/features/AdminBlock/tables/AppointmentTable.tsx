@@ -7,19 +7,9 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table';
-import { Text } from '@/components/ui/text';
 import { IAppointment } from '@/shared/types/appointment.interface';
-import {
-  formatDate,
-  formatRelativeDate,
-  parseWeekDay,
-} from '@/shared/utils/formatDate';
-import Image from 'next/image';
 
-export default function AppointmentsTable({
-  appointments,
-  status,
-}: {
+export default function AppointmentsTable({}: {
   appointments: IAppointment[];
   status: 'In process' | 'Rejected' | 'Approoved' | 'Pending';
 }) {

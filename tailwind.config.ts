@@ -11,70 +11,40 @@ const config = {
   prefix: '',
   theme: {
     screens: {
-      not_found: {
-        max: '576px',
-      },
-      reverse_not_found: {
-        min: '576px',
-      },
-      open_sidebar: {
-        min: '1024px',
-        max: '1280',
-      },
-      closed_sidebar: {
-        min: '1280px',
-      },
-      'layout-1024': {
-        min: '1023px',
-        max: '1279px',
-      },
-      mobile: {
-        max: '768px',
-      },
-      desktop: {
-        min: '1023px',
-        max: '1919px',
-      },
-      tablet: {
-        min: '769px',
-        max: '1023px',
-      },
-      small_laptop: {
-        min: '1024px',
-        max: '1439px',
-      },
-      laptop: {
-        min: '1440px',
-        max: '1919px',
-      },
-      pc: {
-        min: '1920px',
-      },
-      reverse_pc: {
-        max: '1919px',
-      },
-      slider: {
-        min: '768px',
-      },
-      reverse_slider: {
-        max: '768px',
-      },
-      logo: {
-        max: '1280px',
-      },
-      extra_desktop: {
-        min: '500px',
-      },
-      burger_first: {
-        max: '375px',
-      },
-      burger_second: {
-        max: '320px',
-      },
-      mobile_header: {
-        min: '576px',
-        max: '768px',
-      },
+      not_found: { max: '576px' },
+      reverse_not_found: { min: '576px' },
+      open_sidebar: { min: '1024px', max: '1280' },
+      closed_sidebar: { min: '1280px' },
+      'layout-1024': { min: '1023px', max: '1279px' },
+      mobile: { max: '768px' },
+      desktop: { min: '1023px', max: '1919px' },
+      tablet: { min: '769px', max: '1023px' },
+      small_laptop: { min: '1024px', max: '1439px' },
+      laptop: { min: '1440px', max: '1919px' },
+      pc: { min: '1920px' },
+      reverse_pc: { max: '1919px' },
+      slider: { min: '768px' },
+      reverse_slider: { max: '768px' },
+      logo: { max: '1280px' },
+
+      extra_desktop: { min: '500px' },
+      burger_first: { max: '375px' },
+      burger_second: { max: '320px' },
+      mobile_header: { min: '576px', max: '768px' },
+
+      'max-xs': { max: '480px' },
+      'max-sm': { max: '768px' },
+      'max-md': { max: '1023px' },
+      'max-lg': { max: '1439px' },
+      'max-xl': { max: '1919px' },
+      'max-2xl': { max: '2500px' },
+
+      xs: '480px',
+      sm: '768px',
+      md: '1024px',
+      lg: '1440px',
+      xl: '1920px',
+      '2xl': '2500px',
     },
     fontFamily: {
       sans: ['var(--font-montserrat)'],
@@ -156,12 +126,41 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        activity: {
+          DEFAULT: '#262626',
+          foreground: '#787B86',
+        },
       },
       boxShadow: {
         'cell-th':
           'inset 0 1px 0 #aec2de, inset 0 -1px 0 #aec2de, inset 0.5px 0 0 #aec2de, inset -0.5px 0 0 #aec2de',
         'cell-td':
           'inset 0 0.5px 0 #ebf3ff, inset 0 -0.5px 0 #ebf3ff, inset 0.5px 0 0 #ebf3ff, inset -0.5px 0 0 #ebf3ff',
+      width: {
+        modal: '540px',
+        desktopRightBlock: '406px',
+        100: '470px',
+        110: '540px',
+      },
+      minHeight: {
+        history: '300px',
+      },
+      backgroundColor: {
+        history: '#EBF3FF',
+      },
+      borderColor: {
+        history: '#C8DBF6',
+      },
+      // 'max-xs': { max: '480px' },
+      // 'max-sm': { max: '768px' },
+      // 'max-md': { max: '1023px' },
+      // 'max-lg': { max: '1439px' },
+      // 'max-xl': { max: '1919px' },
+      /*
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
         'skeleton-loading': {

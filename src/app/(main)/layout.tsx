@@ -13,6 +13,7 @@ export default function MainLayout({
 }>) {
   const pathname = usePathname();
   const noLayoutRoutes = ['/add-appointment', '/create-appointment'];
+
   return (
     <>
       <AuthProvider>

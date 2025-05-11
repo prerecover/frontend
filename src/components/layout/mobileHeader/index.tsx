@@ -13,6 +13,7 @@ import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
 import { useNotifyStore } from '@/shared/store/notifyStore';
 import Link from 'next/link';
+import { useProfileModal } from '@/shared/store/profileModal';
 
 export default function MobileHeader({
   className,
@@ -23,6 +24,12 @@ export default function MobileHeader({
   savedBtn?: boolean;
 }) {
   const { isOpen, setIsOpen } = useBurgerMenu();
+  const { setIsOpen: setIsProfielModal, isOpen: isOpenProfileModal } =
+    useProfileModal();
+
+  const handleProfile = () => {
+    setIsProfielModal(!isOpenProfileModal);
+  };
 
   const { notifications } = useNotifyStore();
   const haveUnread =
@@ -99,7 +106,7 @@ export default function MobileHeader({
               ) : (
                 <></>
               )}
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <div
                   className="relative mt-1"
                   onClick={() => setModalOpen(!modalOpen)}
@@ -115,12 +122,8 @@ export default function MobileHeader({
                   )}
                 </div>
                 <div
-                  className="w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden"
-                  onClick={() =>
-                    router.push(
-                      `${user?._id ? `/account/${user.userId}` : '/login'}`
-                    )
-                  }
+                  className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden"
+                  onClick={() => handleProfile()}
                 >
                   <Image
                     src={user?.avatar ? user?.avatar : userImg}

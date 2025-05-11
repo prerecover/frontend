@@ -21,9 +21,9 @@ import { useCredStore } from '@/shared/store/credStore';
 import { useRouteStore } from '@/shared/store/prevRouter';
 
 const REGISTRATION_MUTATION = gql(`
-    mutation RegistrationUser($email: String!, $password: String!, $city: String!, $country: String!){
+    mutation RegistrationUser($email: String, $number: String, $password: String!, $city: String!, $country: String!){
         registrationUser(
-            registrationInput: { email: $email, password: $password, city: $city, country: $country }
+            registrationInput: { email: $email, number: $number, password: $password, city: $city, country: $country }
     ) {
         _id
     }
@@ -45,6 +45,8 @@ export const RegistrationForm: FC = () => {
   const [mutate, { error, loading }] = useMutation(REGISTRATION_MUTATION, {
     onCompleted() {
       setRoute(path);
+      console.log('completed');
+
       router.replace('/confirmation');
     },
   });
@@ -66,7 +68,16 @@ export const RegistrationForm: FC = () => {
   }, []);
   const formSchema = z
     .object({
-      email: z.string().email('No valid email'),
+      emailOrNumber: z.string().refine(
+        (val) => {
+          const isEmail = val.includes('@');
+          const isPhone = /^[0-9+]+$/.test(val);
+          return isEmail || isPhone;
+        },
+        {
+          message: 'Введите email или номер телефона',
+        }
+      ),
       password: z
         .string()
         .min(8, {
@@ -91,21 +102,24 @@ export const RegistrationForm: FC = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      emailOrNumber: '',
       password: '',
       password2: '',
     },
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    const isEmail = values.emailOrNumber.includes('@');
+    const variables = {
+      [isEmail ? 'email' : 'number']: values.emailOrNumber,
+      password: values.password,
+      city: location?.city ?? '',
+      country: location?.country ?? '',
+    };
+
     mutate({
-      variables: {
-        email: values.email,
-        password: values.password,
-        city: location.city,
-        country: location.country,
-      },
+      variables,
     });
-    setEmail(values.email);
+    setEmail(values.emailOrNumber);
   }
   return (
     <>
@@ -115,7 +129,7 @@ export const RegistrationForm: FC = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-[10px]"
         >
-          <FormField
+          {/* <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -126,6 +140,18 @@ export const RegistrationForm: FC = () => {
                     type="email"
                     {...field}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          /> */}
+          <FormField
+            control={form.control}
+            name="emailOrNumber"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormControl>
+                  <Input placeholder="Введите номер или почту" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

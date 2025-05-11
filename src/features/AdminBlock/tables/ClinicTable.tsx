@@ -10,6 +10,7 @@ import {
   TableCell,
 } from '@/components/ui/table';
 import { Text } from '@/components/ui/text';
+<<<<<<< HEAD
 import { IClinic } from '@/shared/types/clinic.interface';
 import { FaPlus } from 'react-icons/fa6';
 import {
@@ -20,6 +21,12 @@ import {
 import Image from 'next/image';
 
 export default function ClinicTable({ clinics }: { clinics: IClinic[] }) {
+=======
+import { FaPlus } from 'react-icons/fa6';
+import Image from 'next/image';
+
+export default function ClinicTable() {
+>>>>>>> 7cad3eef509cf977b480c47716dfe1ba19bb678d
   const [visibleAction, setVisibleAction] = useState(false);
   const [visibleList, setVisibleList] = useState(false);
 
