@@ -136,82 +136,83 @@ const config = {
           'inset 0 1px 0 #aec2de, inset 0 -1px 0 #aec2de, inset 0.5px 0 0 #aec2de, inset -0.5px 0 0 #aec2de',
         'cell-td':
           'inset 0 0.5px 0 #ebf3ff, inset 0 -0.5px 0 #ebf3ff, inset 0.5px 0 0 #ebf3ff, inset -0.5px 0 0 #ebf3ff',
-      width: {
-        modal: '540px',
-        desktopRightBlock: '406px',
-        100: '470px',
-        110: '540px',
-      },
-      minHeight: {
-        history: '300px',
-      },
-      backgroundColor: {
-        history: '#EBF3FF',
-      },
-      borderColor: {
-        history: '#C8DBF6',
-      },
-      // 'max-xs': { max: '480px' },
-      // 'max-sm': { max: '768px' },
-      // 'max-md': { max: '1023px' },
-      // 'max-lg': { max: '1439px' },
-      // 'max-xl': { max: '1919px' },
-      /*
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      keyframes: {
-        'skeleton-loading': {
-          '0%, 100%': {
-            transform: '0.5',
+        width: {
+          modal: '540px',
+          desktopRightBlock: '406px',
+          100: '470px',
+          110: '540px',
+        },
+        minHeight: {
+          history: '300px',
+        },
+        backgroundColor: {
+          history: '#EBF3FF',
+        },
+        borderColor: {
+          history: '#C8DBF6',
+        },
+        'max-xs': { max: '480px' },
+        'max-sm': { max: '768px' },
+        'max-md': { max: '1023px' },
+        'max-lg': { max: '1439px' },
+        'max-xl': { max: '1919px' },
+
+        borderRadius: {
+          lg: 'var(--radius)',
+          md: 'calc(var(--radius) - 2px)',
+          sm: 'calc(var(--radius) - 4px)',
+        },
+        keyframes: {
+          'skeleton-loading': {
+            '0%, 100%': {
+              transform: '0.5',
+            },
+            '50%': {
+              transform: '1',
+            },
           },
-          '50%': {
-            transform: '1',
+          'accordion-down': {
+            from: {
+              height: '0',
+            },
+            to: {
+              height: 'var(--radix-accordion-content-height)',
+            },
+          },
+          'accordion-up': {
+            from: {
+              height: 'var(--radix-accordion-content-height)',
+            },
+            to: {
+              height: '0',
+            },
+          },
+          'caret-blink': {
+            '0%,70%,100%': {
+              opacity: '1',
+            },
+            '20%,50%': {
+              opacity: '0',
+            },
+          },
+          'end-menu-animate': {
+            from: {
+              bottom: '-60px',
+            },
+            to: {
+              bottom: '0px',
+            },
           },
         },
-        'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+        animation: {
+          'accordion-down': 'accordion-down 0.2s ease-out',
+          'accordion-up': 'accordion-up 0.2s ease-out',
+          'caret-blink': 'caret-blink 1.25s ease-out infinite',
         },
-        'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-        'caret-blink': {
-          '0%,70%,100%': {
-            opacity: '1',
-          },
-          '20%,50%': {
-            opacity: '0',
-          },
-        },
-        'end-menu-animate': {
-          from: {
-            bottom: '-60px',
-          },
-          to: {
-            bottom: '0px',
-          },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'caret-blink': 'caret-blink 1.25s ease-out infinite',
       },
     },
+    plugins: [require('tailwindcss-animate')],
   },
-  plugins: [require('tailwindcss-animate')],
 } satisfies Config;
 
 export default config;

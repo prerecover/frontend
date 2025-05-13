@@ -2,6 +2,8 @@ import { Cell } from '@/components/common/Table/ui/Cell';
 import { Row } from '@/components/common/Table/ui/Row';
 import { TBody } from '@/components/common/Table/ui/TBody';
 import { THead } from '@/components/common/Table/ui/THead';
+import { AdminClinicTypeText } from '@/components/layout/adminClinic/AdminClinicTypeText';
+import { Badge } from '@/components/ui/badge';
 import { Table } from '@/components/ui/table';
 
 export const ClinicSmsTable = () => {
@@ -37,11 +39,11 @@ export const ClinicSmsTable = () => {
           </Cell>
           <Cell tag="td">03.07 12:22</Cell>
           <Cell tag="td">
-            <Badge className={styles.badge}>Регистрация</Badge>
+            <Badge className="mx-auto">Регистрация</Badge>
           </Cell>
         </Row>
         <Row>
-          <Cell className={styles.numberTd} tag="td">
+          <Cell className="w-10 min-w-10 shadow-md odd:bg-blue-100" tag="td">
             1
           </Cell>
           <Cell tag="td">+777777777777</Cell>
@@ -55,11 +57,11 @@ export const ClinicSmsTable = () => {
           </Cell>
           <Cell tag="td">03.07 12:22</Cell>
           <Cell tag="td">
-            <Badge className={styles.badge}>Регистрация</Badge>
+            <Badge className="mx-auto">Регистрация</Badge>
           </Cell>
         </Row>
         <Row>
-          <Cell className={styles.numberTd} tag="td">
+          <Cell className="w-10 min-w-10 shadow-md odd:bg-blue-100" tag="td">
             1
           </Cell>
           <Cell tag="td">+777777777777</Cell>
@@ -73,7 +75,7 @@ export const ClinicSmsTable = () => {
           </Cell>
           <Cell tag="td">03.07 12:22</Cell>
           <Cell tag="td">
-            <Badge className={styles.badge}>Регистрация</Badge>
+            <Badge className="mx-auto">Регистрация</Badge>
           </Cell>
         </Row>
       </TBody>
