@@ -58,6 +58,7 @@ const config = {
       grey: {
         DEFAULT: '#B1B2B4',
         100: '#F2F4F5',
+        150: '#F4F8FB',
         200: '#E9EAEB',
         300: '#DFE0E1',
         400: '#D0D1D2',
@@ -133,11 +134,29 @@ const config = {
       width: {
         modal: '540px',
         desktopRightBlock: '406px',
+        73: '294px',
+        97: '400px',
         100: '470px',
+        150: '666px',
         110: '540px',
+        200: '773px',
+      },
+      maxWidth: {
+        150: '666px',
+        200: '773px',
+      },
+      height: {
+        97: '400px',
+      },
+      maxHeight: {
+        57: '230px',
+        97: '400px',
+        98: '432px',
+        100: '470px',
       },
       minHeight: {
         history: '300px',
+        97: '400px',
       },
       backgroundColor: {
         history: '#EBF3FF',

@@ -18,6 +18,7 @@ class AppointmentApi {
       successInTreatment: appointment.successInTreatment ?? 0,
       format: appointment.online ? 'online' : 'offline',
       file: appointment.file,
+      status: appointment.status,
     }));
   }
 }

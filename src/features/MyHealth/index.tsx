@@ -31,7 +31,7 @@ export default function MyHealth({ appointments, user }: IMyHealthProps) {
     return <DesktopMyHealth appointments={appointments} />;
   }
 
-  if (screenType === 'laptop') {
+  if (screenType === 'laptop' || screenType === 'tablet') {
     return <LaptopMyHealth appointments={appointments} />;
   }
 

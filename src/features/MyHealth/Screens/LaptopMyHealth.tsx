@@ -13,15 +13,15 @@ interface ILaptopMyHealthProps {
 export default function LaptopMyHealth({ appointments }: ILaptopMyHealthProps) {
   const { getUser } = useUserStore();
   const user = getUser();
-
+  // max-h-56 min-h-56
   return (
-    <div className="flex flex-col gap-3.5 p-4">
-      <div className="flex gap-3.5 max-h-56 min-h-56">
+    <div className="flex flex-col gap-3 px-4 pt-4 max-xl:gap-8 h-screen max-md:max-h-98 w-full">
+      <div className="flex gap-3.5 max-h-57 w-full">
         <UpcomingEntries upcomingEntriesData={appointments} />
         <Activity />
       </div>
 
-      <div className="flex gap-3.5 min-h-100">
+      <div className="flex gap-3.5 max-h-100">
         <Skeleton value={user?.detail?.learning ?? 0} />
         <StatisticBlock
           recordCompletedData={appointments.map((appointment) => ({

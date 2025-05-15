@@ -14,12 +14,12 @@ export default function ActivityItem({ day }: IActivityItemProps) {
   return (
     <div
       key={day.label}
-      className="flex-1 flex flex-col justify-end items-center"
+      className="flex-1 flex flex-col justify-end items-center h-44"
     >
       <div
         style={{ height: `${day.value}%` }}
         className={cn(
-          'bg-history w-16 rounded-lg',
+          'bg-history w-16 rounded-lg max-md:w-12',
           { 'bg-blue': day.isCurrentDay },
           { 'bg-blue-200': !day.isCurrentDay }
         )}

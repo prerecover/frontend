@@ -32,7 +32,7 @@ export default function History({ appointemtns }: IHistoryProps) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
 
   return (
-    <div className="h-full overflow-hidden flex flex-col bg-white rounded-xl flex-1 min-h-history">
+    <div className="h-full overflow-hidden flex flex-col bg-white rounded-xl min-h-history">
       <header className="flex items-center justify-between py-5 px-4 bg-history relative">
         <div className="flex items-center gap-4">
           <Image

@@ -33,7 +33,7 @@ export default function Skeleton({ value }: ISkeletonProps) {
   }, []);
 
   return (
-    <div className="bg-white px-6 pb-16 pt-8 flex flex-col rounded-xl h-[80%] min-h-64 justify-center min-w-72 max-sm:min-w-max">
+    <div className="bg-white px-10 pb-16 flex flex-col rounded-xl h-[80%] min-h-64 justify-center min-w-72 max-sm:min-w-max pt-3.5 max-xl:h-auto max-md:w-73 max-sm:w-64">
       <p className="text-center mb-6 text-accent font-medium text-lg">
         Организм изучен на: <b>{value}%</b>
       </p>
@@ -42,7 +42,7 @@ export default function Skeleton({ value }: ISkeletonProps) {
           viewBox="0 0 131 366"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-full w-auto  max-lg:max-h-[450px] max-lg:max-w-[280px] max-md:max-w-[150px]"
+          className="h-full w-auto max-lg:max-h-[450px] max-lg:max-w-[280px] max-md:max-w-[150px]"
           preserveAspectRatio="xMidYMid meet"
           ref={skeletonRef}
         >

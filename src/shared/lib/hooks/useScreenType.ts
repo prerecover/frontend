@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-type ScreenType = 'desktop' | 'laptop' | 'mobile';
+type ScreenType = 'desktop' | 'laptop' | 'tablet' | 'mobile';
 
 export default function useScreenType(): ScreenType {
   const [screenType, setScreenType] = useState<ScreenType>('desktop');
@@ -11,10 +11,12 @@ export default function useScreenType(): ScreenType {
     const checkScreenSize = () => {
       const width = window.innerWidth;
 
-      if (width >= 1200) {
+      if (width >= 1919) {
         setScreenType('desktop');
-      } else if (width >= 768) {
+      } else if (width >= 1023) {
         setScreenType('laptop');
+      } else if (width >= 769) {
+        setScreenType('tablet');
       } else {
         setScreenType('mobile');
       }

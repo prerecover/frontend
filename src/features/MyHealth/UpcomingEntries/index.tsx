@@ -10,12 +10,14 @@ export default async function UpcomingEntries({
   upcomingEntriesData,
 }: IUpcomingEntriesProps) {
   return (
-    <div className="overflow-y-auto flex flex-col min-w-72">
+    <>
       {upcomingEntriesData?.length ? (
-        <ListCards entries={upcomingEntriesData} />
+        <div className="overflow-y-auto w-80 max-sm:!w-full max-md:w-73 flex-shrink-0 max-sm:shrink">
+          <ListCards entries={upcomingEntriesData} />
+        </div>
       ) : (
         <EmptyWindow />
       )}
-    </div>
+    </>
   );
 }

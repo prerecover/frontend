@@ -18,7 +18,7 @@ export default function MainLayout({
   return (
     <>
       <AuthProvider>
-        <section>
+        <section className="relative">
           <div
             className={
               noLayoutRoutes.includes(pathname)

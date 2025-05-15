@@ -34,7 +34,6 @@ import { toast } from '@/components/ui/use-toast';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
 import AccountFormNameField from '@/features/AccountBlock/fields/name';
 import Language from '../language';
-import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 const CHANGE_ME_MUTATION = gql(`
         mutation ChangeMe(
@@ -122,7 +121,6 @@ export const MainBlockMobile = ({
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [token, setToken] = useState<string | undefined>();
 
-  const { logout } = useLogout();
   const [mutate] = useMutation(CHANGE_ME_MUTATION, {
     context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
     onCompleted(data) {
@@ -402,14 +400,6 @@ export const MainBlockMobile = ({
             </form>
           </Form>
         </div>
-      </div>
-
-      <div
-        className="w-full flex justify-start items-center p-4 border border-blue-100 rounded-xl bg-white mt-3.5 gap-4 text-dark font-medium text-base cursor-pointer"
-        onClick={() => logout()}
-      >
-        <Image src="/assets/logout.svg" width={20} height={20} alt="logout" />
-        <p>Выход</p>
       </div>
     </div>
   );

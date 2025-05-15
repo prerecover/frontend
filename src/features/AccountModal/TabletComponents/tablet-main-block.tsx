@@ -34,7 +34,6 @@ import { toast } from '@/components/ui/use-toast';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
 import AccountFormNameField from '@/features/AccountBlock/fields/name';
 import Language from '../language';
-import { useLogout } from '@/shared/lib/hooks/useLogout';
 
 const CHANGE_ME_MUTATION = gql(`
         mutation ChangeMe(
@@ -100,7 +99,7 @@ interface IMainBlockProps {
   language: string;
   setLanguage: React.ComponentState;
 }
-export const MainBlockLaptop = ({
+export const MainBlockTablet = ({
   form,
   medForm,
   language,
@@ -121,8 +120,6 @@ export const MainBlockLaptop = ({
     setToken(getCookie('access_token'));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [token, setToken] = useState<string | undefined>();
-
-  const { logout } = useLogout();
   const [mutate] = useMutation(CHANGE_ME_MUTATION, {
     context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
     onCompleted(data) {
@@ -325,19 +322,19 @@ export const MainBlockLaptop = ({
               onSubmit={form.handleSubmit(onSubmit)}
               className="relative"
             >
-              <div className='w-full py-6 px-5'>
+              <div className="w-full py-6 px-5">
                 <Text
                   type="p"
                   className="text-grey-700 text-[14px] font-medium mobile:mt-7 desktop:col-span-2"
                 >
                   Защита профиля
                 </Text>
-                <div className='flex w-full justify-between content-between gap-4'>
+                <div className="flex w-full justify-between content-between gap-4">
                   <FormField
                     control={form.control}
                     name="number"
                     render={({ field }) => (
-                      <FormItem className='w-full'>
+                      <FormItem className="w-full">
                         <FormControl>
                           <div
                             className={cn(
@@ -371,7 +368,7 @@ export const MainBlockLaptop = ({
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                      <FormItem className='w-full'>
+                      <FormItem className="w-full">
                         <FormControl>
                           <div
                             className={cn(
@@ -406,14 +403,6 @@ export const MainBlockLaptop = ({
             </form>
           </Form>
         </div>
-      </div>
-
-      <div
-        className="w-full flex justify-start items-center p-4 border border-blue-100 rounded-xl bg-white mt-3.5 gap-4 text-dark font-medium text-base cursor-pointer"
-        onClick={() => logout()}
-      >
-        <Image src="/assets/logout.svg" width={20} height={20} alt="logout" />
-        <p>Выход</p>
       </div>
     </div>
   );

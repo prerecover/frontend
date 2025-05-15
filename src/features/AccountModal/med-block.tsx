@@ -50,7 +50,7 @@ export const MedBlock = ({
     form.setValue('temperature', user.detail?.temperature?.toString() || '');
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div className="mobile:bg-white mobile:px-4 mobile:mt-4 mobile:py-4 mobile:rounded-[12px]">
+    <div className="mobile:bg-white mobile:px-4 mobile:mt-4 mobile:py-4 mobile:rounded-[12px] px-7">
       <div
         className="flex-between items-center cursor-pointer"
         onClick={() => setFull(!full)}

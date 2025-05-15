@@ -48,7 +48,7 @@ export default function StatisticBlock({
       value: item.effectivity,
     }));
   return (
-    <div className="flex flex-col items-start gap-8 bg-white pt-3 pb-6 px-6 rounded-xl w-full flex-1 overflow-hidden min-w-110 max-sm:min-w-max">
+    <div className="flex flex-col items-start gap-8 bg-white pt-3 pb-6 px-6 rounded-xl flex-1">
       <div className="flex items-center justify-between w-full">
         <p className="text-gray-700 font-medium text-base w-full">
           Пройдено записей -{' '}
@@ -92,7 +92,7 @@ export default function StatisticBlock({
         />
       </div>
       <div className="flex items-center gap-4 w-full overflow-x-auto">
-        {recordCompletedData.length &&
+        {recordCompletedData.length > 0 &&
           recordCompletedData.map((item) => (
             <Card key={item.id} record={item} />
           ))}

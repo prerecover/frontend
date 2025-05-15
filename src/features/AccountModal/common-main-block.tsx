@@ -34,7 +34,7 @@ import { ICountry } from '@/shared/types/country.interface';
 import { toast } from '@/components/ui/use-toast';
 import { getCookie } from '@/shared/lib/hooks/useCookie';
 import Language from './language';
-import ProfileProtection from './profile-protection';
+import { MedBlock } from './med-block';
 
 const CHANGE_ME_MUTATION = gql(`
         mutation ChangeMe(
@@ -101,7 +101,7 @@ interface IMainBlockProps {
   language: string;
   setLanguage: React.ComponentState;
 }
-export const MainBlock = ({
+export const MainBlockCommon = ({
   form,
   medForm,
   language,
@@ -114,11 +114,13 @@ export const MainBlock = ({
     form.setValue('lastName', user.lastName || '');
     form.setValue('birthday', new Date(user.birthday || 0));
     form.setValue('login', user.login || '');
+    form.setValue('number', user.number || '');
+    form.setValue('email', user.email || '');
     form.setValue('sex', user.sex || false);
     form.setValue('address', user.address || '');
     form.setValue('city', user.city || '');
     setToken(getCookie('access_token'));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [token, setToken] = useState<string | undefined>();
   const [mutate] = useMutation(CHANGE_ME_MUTATION, {
     context: { headers: { Authorization: token ? `Bearer ${token}` : '' } },
@@ -171,7 +173,7 @@ export const MainBlock = ({
   return (
     <div className="">
       <div
-        className="flex-between items-center mt-3 mb-3 bg-grey-150 py-5 px-7"
+        className="flex-between items-center mt-3 mb-3"
         onClick={() => setFull(!full)}
       >
         <Text type="p" className="text-[16px] font-medium">
@@ -321,12 +323,85 @@ export const MainBlock = ({
                 </FormItem>
               )}
             />
+            <Text
+              type="p"
+              className="text-grey-700 text-[14px] font-medium mobile:mt-7 desktop:col-span-2"
+            >
+              Защита профиля
+            </Text>
+            <FormField
+              control={form.control}
+              name="number"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <div
+                      className={cn(
+                        'bg-white rounded-[12px] border-solid border-[1px] border-blue flex justify-between relative',
+                        field.value && 'border-green'
+                      )}
+                    >
+                      <div className="flex flex-col w-full p-4">
+                        <Text
+                          type="p"
+                          className="text-[14px] font-medium text-grey-700"
+                        >
+                          Номер
+                        </Text>
+                        <input {...field} />
+                      </div>
+                      <Image
+                        src={'/assets/tick-circle.svg'}
+                        width={20}
+                        height={20}
+                        alt="success"
+                        className={cn('mx-4', !field.value && 'hidden')}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <div
+                      className={cn(
+                        'bg-white rounded-[12px] border-solid border-[1px] border-blue flex justify-between relative',
+                        field.value && 'border-green'
+                      )}
+                    >
+                      <div className="flex flex-col w-full p-4">
+                        <Text
+                          type="p"
+                          className="text-[14px] font-medium text-grey-700"
+                        >
+                          Эл.почта
+                        </Text>
+                        <input {...field} />
+                      </div>
+                      <Image
+                        src={'/assets/tick-circle.svg'}
+                        width={20}
+                        height={20}
+                        alt="success"
+                        className={cn('mx-4', !field.value && 'hidden')}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </form>
         </Form>
       </div>
-      {/* <MedBlock form={medForm} /> */}
+      <MedBlock form={medForm} />
       <Language language={language} setLanguage={setLanguage} />
-      <ProfileProtection form={form} user={user} />
     </div>
   );
 };

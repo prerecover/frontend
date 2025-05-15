@@ -40,11 +40,11 @@ export default function Activity() {
     .flat();
 
   return (
-    <div className="bg-white p-4 rounded-xl w-full">
-      <p className="text-center text-accent font-medium text-lg mb-4">
+    <div className="bg-white p-4 rounded-xl h-1/4 max-xl:h-full max-xl:min-h-56 flex-1">
+      <p className="text-center text-accent font-medium text-lg">
         Активность на сайте
       </p>
-      <div className="flex justify-between h-full w-full gap-2 overflow-x-auto pb-6 min-h-[230px]">
+      <div className="flex justify-between w-full gap-2 overflow-x-auto pb-10 h-full max-xl:h-56 max-xl:pb-0">
         {formattedWeekday &&
           formattedWeekday.map((day) => (
             <ActivityItem day={day} key={day.label} />

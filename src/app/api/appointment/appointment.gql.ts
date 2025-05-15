@@ -23,6 +23,7 @@ export const APPOINTMENTS_QUERY = gql`
       service {
         priceMax
       }
+      status
     }
   }
 `;

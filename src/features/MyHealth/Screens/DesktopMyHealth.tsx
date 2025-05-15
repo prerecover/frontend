@@ -36,7 +36,7 @@ export default function DesktopMyHealth({
         <History appointemtns={appointments} />
       </div>
 
-      <div className="flex flex-col gap-3.5 w-desktopRightBlock flex-shrink-0 ml-3.5 overflow-hidden h-full py-4">
+      <div className="flex flex-col gap-3.5 w-desktopRightBlock flex-shrink-0 ml-3.5 overflow-hidden h-full max-xl:max-h-60">
         <Skeleton value={user?.detail?.learning ?? 0} />
         <Activity />
       </div>
