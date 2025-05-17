@@ -25,7 +25,7 @@ export default function LocationBlock({
   const { country, setCountry, city, setCity, address, setAddress } =
     useClinicRegStore();
   useEffect(() => {
-    setCountry(countryEdit.title);
+    setCountry(countryEdit?.title);
 
     setCity(cityEdit);
     setAddress(addressEdit);
@@ -37,7 +37,7 @@ export default function LocationBlock({
       <div className="flex-between gap-4">
         <Select
           onValueChange={(e) => setCountry(e)}
-          defaultValue={countryEdit.title}
+          defaultValue={countryEdit?.title}
         >
           <SelectTrigger className="w-full py-7 pr-5 pl-6 border-[1px] border-blue-100 bg-[#fff] rounded-[12px]">
             {country === '' && <Text className="text-grey">Страна*</Text>}
@@ -47,8 +47,8 @@ export default function LocationBlock({
           <SelectContent className="bg-white rounded-[12px] flex flex-col gap-4">
             {countries.map((country: ICountry) => (
               <SelectItem
-                key={country._id}
-                value={country.title}
+                key={country?._id}
+                value={country?.title}
                 className="cursor-pointer"
               >
                 {country.title}

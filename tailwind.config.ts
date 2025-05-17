@@ -145,16 +145,22 @@ const config = {
         150: '666px',
         200: '773px',
       },
+      minWidth: {
+        120: '540px',
+      },
       height: {
         97: '400px',
       },
       maxHeight: {
+        18: '72px',
         57: '230px',
         97: '400px',
         98: '432px',
         100: '470px',
+        200: '635px'
       },
       minHeight: {
+        18: '72px',
         history: '300px',
         97: '400px',
       },

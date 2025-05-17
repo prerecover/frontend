@@ -18,11 +18,11 @@ query Clinic($clinicId: String!){
         email
         employees
         isVerfied
-        specialization
         title
         treated
         typeTitle
         updatedAt
+				specialization
         country {
             _id
             slug
@@ -58,11 +58,10 @@ query Clinic($clinicId: String!){
             _id
             createdAt
             description
-            duration
-            img
+            durationMax
             offline
             online
-            price
+            priceMax
             title
             treated
             updatedAt
@@ -76,10 +75,12 @@ query Clinic($clinicId: String!){
                 mainStatus
                 number
                 online
-                specialization
                 surname
                 updatedAt
                 workExp
+								specialization {
+									title
+								}
             }
         }
     }
@@ -90,6 +91,7 @@ query Clinic($clinicId: String!){
     query: CLINIC_QUERY,
     variables: { clinicId: _id },
   });
+
   return data.clinic;
 }
 const GET_COUNTRIES = gql(`
@@ -114,6 +116,8 @@ export default async function Page({ params }: { params: { _id: string } }) {
   const { data: countries } = await getClient().query({ query: GET_COUNTRIES });
   // const { data: serviceCategories } = await getClient().query({ query: GET_CATEGORIES });
   const clinic = await getClinic(params._id);
+
+
   return (
     <div className="mx-auto">
       <ModificationClinic

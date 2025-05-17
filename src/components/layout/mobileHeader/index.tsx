@@ -24,17 +24,13 @@ export default function MobileHeader({
   savedBtn?: boolean;
 }) {
   const { isOpen, setIsOpen } = useBurgerMenu();
-  const { setIsOpen: setIsProfielModal, isOpen: isOpenProfileModal } =
-    useProfileModal();
 
-  const handleProfile = () => {
-    setIsProfielModal(!isOpenProfileModal);
-  };
 
   const { notifications } = useNotifyStore();
   const haveUnread =
     notifications.filter((el) => el.isRead === false).length > 0;
   const router = useRouter();
+  const { push } = router
   const { user } = useAuth();
   const blockLocation = [
     '/',
@@ -122,8 +118,9 @@ export default function MobileHeader({
                   )}
                 </div>
                 <div
-                  className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden"
-                  onClick={() => handleProfile()}
+                //  slider:hidden
+                  className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer"
+                  onClick={() => push(`/account/${user._id}`)}
                 >
                   <Image
                     src={user?.avatar ? user?.avatar : userImg}
