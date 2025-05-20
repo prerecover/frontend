@@ -9,7 +9,7 @@ const AddClinicButton: FC<Props> = ({ className, ...props }) => {
     <Button
       variant="outline"
       {...props}
-      className={cn('rounded-xl', className)}
+      className={cn('h-auto rounded-xl px-6', className)}
     >
       <p>Добавить клинику +</p>
     </Button>

@@ -6,7 +6,7 @@ interface Props {}
 
 const ClinicButton: FC<Props> = ({}) => {
   return (
-    <Button variant="outline" className="gap-x-3 rounded-md">
+    <Button variant="outline" className="gap-x-3 rounded-md h-auto">
       <Image
         src={'/assets/clinic.svg'}
         width={24}

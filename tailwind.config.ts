@@ -55,6 +55,7 @@ const config = {
       },
       blue: {
         DEFAULT: '#0064FA',
+        A10: '#0064fa1a',
         100: '#EBF3FF',
         200: '#C8DBF6',
         300: '#F4F8FB',

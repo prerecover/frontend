@@ -16,7 +16,7 @@ const AppointmentSelect: FC<Props> = ({}) => {
   return (
     <Select>
       <SelectTrigger
-        className="gap-x-3 text-blue font-medium px-4 rounded-md max-w-[220px]"
+        className="gap-x-3 text-blue font-medium px-4 h-auto rounded-md max-w-[220px]"
         iconClassName="w-6 h-6"
       >
         <Image

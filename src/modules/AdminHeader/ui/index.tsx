@@ -4,6 +4,8 @@ import { AppointmentSelect } from './AppointmentSelect';
 import { ClinicButton } from './ClinicButton';
 import { AddClinicButton } from './AddClinicButton';
 import { Input } from '@/components/ui/input';
+import { SearchInput } from '@/components/ui/search-input';
+import { ExitButton } from './ExitButton';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
@@ -14,8 +16,11 @@ const AdminHeader: FC<Props> = ({ className, ...props }) => {
         <ClinicButton />
         <AppointmentSelect />
       </div>
-      <AddClinicButton />
-      <Input />
+      <div className="flex gap-x-6">
+        <AddClinicButton />
+        <SearchInput value="1" className="w-[475px]" />
+        <ExitButton />
+      </div>
     </header>
   );
 };
