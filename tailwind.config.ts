@@ -57,9 +57,10 @@ const config = {
         DEFAULT: '#0064FA',
         100: '#EBF3FF',
         200: '#C8DBF6',
+        300: '#F4F8FB',
       },
       sky: {
-        DEFAULT: "#075985",
+        DEFAULT: '#075985',
       },
       red: {
         400: '#D64657',
