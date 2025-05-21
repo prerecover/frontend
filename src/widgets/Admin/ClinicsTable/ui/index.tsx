@@ -1,6 +1,9 @@
 import { FC, HTMLAttributes } from 'react';
-import { EnMode, MainTable } from '@/segments/Admin/MainTable';
+import { EnBodyType, EnMode, MainTable } from '@/segments/Admin/MainTable';
 import { cn } from '@/lib/utils';
+import { TABLE_DATA } from '../constants/tableData';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -9,7 +12,29 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
     <div className={cn('overflow-auto grow', className)}>
       <MainTable
         mode={EnMode.view}
-        bodyItems={[['1', '2', '3']]}
+        bodyItems={TABLE_DATA.map(({ id, data }) => {
+          return data.map(({ data, type }) => {
+            switch (type) {
+              case EnBodyType.inline:
+                return <p>{data}</p>;
+              case EnBodyType.has:
+                return (
+                  <Image
+                    src={`/assets/${data ? 'true-mark.svg' : 'false-mark.svg'}`}
+                    alt={data ? 'Имеется' : 'Не оборудовано'}
+                    width={24}
+                    height={24}
+                  />
+                );
+              case EnBodyType.link:
+                return <Link href={data.href}>{data.content}</Link>;
+              case EnBodyType.viewAction:
+                return <p>Действие</p>;
+              default:
+                return null;
+            }
+          });
+        })}
         headItems={[
           'Название',
           'Тип учреждения',
