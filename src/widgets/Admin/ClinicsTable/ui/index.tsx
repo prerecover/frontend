@@ -29,7 +29,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
               case EnBodyType.link:
                 return <Link href={data.href}>{data.content}</Link>;
               case EnBodyType.viewAction:
-                return <></>;
+                return <p>Выбрать</p>;
               default:
                 return null;
             }
