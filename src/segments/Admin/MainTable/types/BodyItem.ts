@@ -1,11 +1,14 @@
 export enum EnBodyType {
   inline = 'inline',
   has = 'has',
-  dropdown = 'dropdown',
-  checkDropdown = 'check-dropdown',
-  searchCheckDropdown = 'search-check-dropdown',
+  dropdownActions = 'dropdown-actions',
+  consultationType = 'consultation-type',
+  multiselect = 'multiselect',
+  multiselectSearch = 'multiselect-search',
+  multiselectSearchAdd = 'multiselect-search-add',
   viewAction = 'view-action',
   editAction = 'edit-action',
+  addAction = 'add-action',
   link = 'link',
 }
 

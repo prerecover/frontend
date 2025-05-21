@@ -112,8 +112,11 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
       },
       {
         description: 'Сеть клиник',
-        type: EnBodyType.inline,
-        data: 'Сеть клиник',
+        type: EnBodyType.link,
+        data: {
+          href: '/admin',
+          content: '5',
+        },
       },
       {
         description: 'Действия',
@@ -151,7 +154,7 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
         data: '+ 7 (999) 03-20-911',
       },
       {
-        description: 'Телефон для\nотправки отчета в тг',
+        description: 'Телефон для отправки отчета в тг',
         type: EnBodyType.inline,
         data: '+ 7 (999) 03-20-911',
       },
@@ -233,8 +236,11 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
       },
       {
         description: 'Сеть клиник',
-        type: EnBodyType.inline,
-        data: 'Сеть клиник',
+        type: EnBodyType.link,
+        data: {
+          href: '/admin',
+          content: '5',
+        },
       },
       {
         description: 'Действия',
