@@ -29,7 +29,7 @@ const MainTable: FC<Props> = ({
                 </th>
               ) : null}
               <th
-                className="text-sm min-w-48 font-medium bg-blue-100 border-blue-400 border whitespace-pre-wrap"
+                className="text-sm min-w-48 max-w-48 font-medium bg-blue-100 border-blue-400 border whitespace-pre-wrap"
                 key={index}
               >
                 <div>{header}</div>
@@ -48,14 +48,16 @@ const MainTable: FC<Props> = ({
                     key={cellIndex - 1}
                     className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24"
                   >
-                    <p className="w-max mx-auto">{cellIndex + 1}</p>
+                    <p className="w-max mx-auto">{rowIndex + 1}</p>
                   </td>
                 ) : null}
                 <td
                   key={cellIndex}
-                  className="border-blue-100 border font-normal"
+                  className="border-blue-100 min-w-48 max-w-48 border font-normal p-1 text-center"
                 >
-                  <div className="w-max mx-auto">{cell}</div>
+                  <div className="inline-block whitespace-pre-wrap text-center max-h-24 overflow-auto">
+                    {cell}
+                  </div>
                 </td>
               </>
             ))}
