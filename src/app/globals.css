@@ -45,4 +45,26 @@ button:focus {
   .flex-between {
     @apply flex justify-between items-center;
   }
+
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-main-y::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  .scroll-main-y::-webkit-scrollbar-thumb {
+    background-color: #aec2de;
+    cursor: grab;
+  }
+
+  .scroll-main-x::-webkit-scrollbar {
+    height: 10px;
+    background-color: transparent;
+  }
+  .scroll-main-x::-webkit-scrollbar-thumb {
+    cursor: grab;
+    background-color: #aec2de;
+  }
 }

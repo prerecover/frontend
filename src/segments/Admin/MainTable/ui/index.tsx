@@ -55,7 +55,7 @@ const MainTable: FC<Props> = ({
                   key={cellIndex}
                   className="border-blue-100 min-w-48 max-w-48 border font-normal p-1 text-center"
                 >
-                  <div className="inline-block whitespace-pre-wrap text-center max-h-24 overflow-auto">
+                  <div className="inline-block whitespace-pre-wrap text-center max-h-24 overflow-auto scroll-hide">
                     {cell}
                   </div>
                 </td>

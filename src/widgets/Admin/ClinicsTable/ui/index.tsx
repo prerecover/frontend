@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<HTMLTableElement> {}
 
 const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   return (
-    <div className={cn('overflow-auto grow', className)}>
+    <div className={cn('overflow-auto grow scroll-main-x', className)}>
       <MainTable
         mode={EnMode.view}
         bodyItems={TABLE_DATA.map(({ id, data }) => {
