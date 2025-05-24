@@ -7,7 +7,6 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { FC } from 'react';
-import { DeleteConfirmationModal } from '../DeleteConfirmationModal';
 import { TTableDataItem } from '../..';
 import {
   switchModeSelector,
@@ -19,7 +18,7 @@ interface Props {
   id: TTableDataItem['id'];
 }
 
-const ViewActionDropdown: FC<Props> = ({ id }) => {
+const DeleteActionDropdown: FC<Props> = ({ id }) => {
   const switchMode = useClinicStore(switchModeSelector);
 
   return (
@@ -32,17 +31,21 @@ const ViewActionDropdown: FC<Props> = ({ id }) => {
       <DropdownMenuContent className="w-56">
         <DropdownMenuItem
           onClick={() => {
-            switchMode({ id, mode: EnMode.edit });
+            switchMode({ id, mode: EnMode.view });
           }}
         >
-          Изменить
+          Зарегистрировать
         </DropdownMenuItem>
-        <DeleteConfirmationModal>
-          <DropdownMenuItem>Удалить</DropdownMenuItem>
-        </DeleteConfirmationModal>
+        <DropdownMenuItem
+          onClick={() => {
+            switchMode({ id, mode: EnMode.view });
+          }}
+        >
+          Отменить
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-export { ViewActionDropdown };
+export { DeleteActionDropdown };

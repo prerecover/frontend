@@ -11,6 +11,8 @@ import {
   cellsSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
+import { EditActionDropdown } from './EditActionDropdown';
+import { DeleteActionDropdown } from './DeleteActionDropdown';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -54,7 +56,25 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                   mode: MODE,
                 };
               case EnBodyType.action:
-                return { children: <ViewActionDropdown />, mode: MODE };
+                if (mode === EnMode.view)
+                  return {
+                    children: <ViewActionDropdown id={id} />,
+                    mode: MODE,
+                  };
+                else if (mode === EnMode.edit)
+                  return {
+                    children: <EditActionDropdown id={id} />,
+                    mode: MODE,
+                  };
+                else if (mode === EnMode.add)
+                  return {
+                    children: <DeleteActionDropdown id={id} />,
+                    mode: MODE,
+                  };
+                else
+                  throw new Error(
+                    'Некорректный mode для поля "Действия" строки таблицы. Использовать enum EnMode для mode'
+                  );
               default:
                 return null;
             }

@@ -1,4 +1,5 @@
 import { EnBodyType, EnMode, TViewBodyItem } from '@/segments/Admin/MainTable';
+import { TTableDataItem } from '@/widgets/Admin/ClinicsTable';
 import { TABLE_DATA } from '@/widgets/Admin/ClinicsTable/constants/tableData';
 import { create } from 'zustand';
 
@@ -22,6 +23,13 @@ type TCell =
 interface State {
   cells: TCell[];
 
+  switchMode: ({
+    id,
+    mode,
+  }: {
+    id: TTableDataItem['id'];
+    mode: EnMode.edit | EnMode.view;
+  }) => void;
   addCell: () => void;
 }
 
@@ -159,13 +167,31 @@ export const useClinicStore = create<State>()((set, get) => ({
               },
             ],
           },
-          ,
           ...cells,
         ],
+      };
+    });
+  },
+  switchMode: ({ mode, id }) => {
+    // @ts-expect-error: TODO Сложная типизация
+    set(({ cells }) => {
+      return {
+        cells: cells.map((props) => {
+          if (props.id === id) {
+            return {
+              id: props.data,
+              mode,
+              data: props.data,
+            };
+          } else {
+            return props;
+          }
+        }),
       };
     });
   },
 }));
 
 export const cellsSelector = (state: State) => state.cells;
+export const switchModeSelector = (state: State) => state.switchMode;
 export const addCellSelector = (state: State) => state.addCell;

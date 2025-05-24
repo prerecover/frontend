@@ -1,10 +1,7 @@
-import { EnBodyType, EnMode, TViewBodyItem } from '@/segments/Admin/MainTable';
+import { EnBodyType, EnMode } from '@/segments/Admin/MainTable';
+import { TTableDataItem } from '../types/TableDataItem';
 
-export const TABLE_DATA: {
-  id: number;
-  mode: EnMode.view;
-  data: TViewBodyItem<EnMode.view>[];
-}[] = [
+export const TABLE_DATA: TTableDataItem[] = [
   {
     id: 1,
     mode: EnMode.view,

@@ -18,13 +18,11 @@ export enum EnBodyType {
 export type TViewBodyItem<M extends EnMode> = (
   | {
       type: EnBodyType.inline | EnBodyType.inlineArea;
-      data: M extends EnMode.view
-        ? number | string
-        : M extends EnMode.edit
-          ? string | number
-          : M extends EnMode.add
-            ? null
-            : never;
+      data: M extends EnMode.view | EnMode.edit
+        ? string | number
+        : M extends EnMode.add
+          ? null
+          : never;
     }
   | {
       type: EnBodyType.has;
