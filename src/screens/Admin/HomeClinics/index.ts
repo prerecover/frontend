@@ -1,0 +1,1 @@
+export { HomeClinicsScreen } from './ui';

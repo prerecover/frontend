@@ -1,10 +1,10 @@
-import { AdminScreen } from '@/screens/Admin';
+import { HomeClinicsScreen } from '@/screens/Admin/HomeClinics';
 import { FC } from 'react';
 
 interface Props {}
 
 const AdminPage: FC<Props> = ({}) => {
-  return <AdminScreen />;
+  return <HomeClinicsScreen />;
 };
 
 export default AdminPage;

@@ -3,7 +3,7 @@ import { FC, HTMLAttributes } from 'react';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
-const AdminScreen: FC<Props> = (props) => {
+const HomeClinicsScreen: FC<Props> = (props) => {
   return (
     <main className="grow flex flex-col" {...props}>
       <h2 className="ml-6 mb-5">Всего клиник: 52</h2>
@@ -12,4 +12,4 @@ const AdminScreen: FC<Props> = (props) => {
   );
 };
 
-export { AdminScreen };
+export { HomeClinicsScreen };
