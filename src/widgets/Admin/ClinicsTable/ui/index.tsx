@@ -2,11 +2,11 @@ import { FC, HTMLAttributes } from 'react';
 import { EnBodyType, EnMode, MainTable } from '@/segments/Admin/MainTable';
 import { cn } from '@/lib/utils';
 import { TABLE_DATA } from '../constants/tableData';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ViewActionDropdown } from './ViewActionDropdown';
 import { InlineCell } from '@/entities/Admin/InlineCell';
 import { HasCell } from '@/entities/Admin/HasCell';
+import { InlineAreaCell } from '@/entities/Admin/InlineAreaCell';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -22,6 +22,11 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
               case EnBodyType.inline:
                 return {
                   children: <InlineCell mode={MODE}>{data}</InlineCell>,
+                  mode: MODE,
+                };
+              case EnBodyType.inlineArea:
+                return {
+                  children: <InlineAreaCell mode={MODE}>{data}</InlineAreaCell>,
                   mode: MODE,
                 };
               case EnBodyType.has:

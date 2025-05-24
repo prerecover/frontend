@@ -1,0 +1,1 @@
+export { InlineAreaCell } from './ui';

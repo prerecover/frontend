@@ -1,5 +1,6 @@
 export enum EnBodyType {
   inline = 'inline',
+  inlineArea = 'inlineArea',
   has = 'has',
   dropdownActions = 'dropdown-actions',
   consultationType = 'consultation-type',
@@ -14,7 +15,7 @@ export enum EnBodyType {
 
 export type TViewBodyItem = (
   | {
-      type: EnBodyType.inline;
+      type: EnBodyType.inline | EnBodyType.inlineArea;
       data: number | string;
     }
   | {

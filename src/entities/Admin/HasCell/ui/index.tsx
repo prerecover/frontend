@@ -30,7 +30,7 @@ const HasCell: FC<Props> = ({ children, mode }) => {
         />
       ) : mode === EnMode.edit || mode === EnMode.add ? (
         <div className=" flex items-center shadow-mainShadow rounded-xl bg-white-background overflow-hidden">
-          <button className={btnsCls}>
+          <button type="button" className={btnsCls}>
             <Image
               src={'/assets/true-mark.svg'}
               alt="Имеется"
@@ -39,7 +39,7 @@ const HasCell: FC<Props> = ({ children, mode }) => {
             />
           </button>
           <div className="w-[1px] h-9 bg-white-100" />
-          <button className={btnsCls}>
+          <button type="button" className={btnsCls}>
             <Image
               src={'/assets/false-mark.svg'}
               alt="Не оборудовано"

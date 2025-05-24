@@ -46,7 +46,7 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
       },
       {
         description: 'Адрес',
-        type: EnBodyType.inline,
+        type: EnBodyType.inlineArea,
         data: 'ул: Чурки 12',
       },
       {
@@ -66,7 +66,7 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
       },
       {
         description: 'Дни и время работы',
-        type: EnBodyType.inline,
+        type: EnBodyType.inlineArea,
         data: 'пн 8:00 -17:00\nсб-вс 8:00 -14:00',
       },
       {
@@ -89,7 +89,7 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
       },
       {
         description: 'Язык клиники',
-        type: EnBodyType.inline,
+        type: EnBodyType.inlineArea,
         data: 'Английский Русский',
       },
       {
