@@ -29,7 +29,7 @@ const AppointmentSelect: FC<Props> = ({}) => {
           <SelectValue placeholder="Записи" />
         </div>
       </SelectTrigger>
-      <SelectContent className="rounded-none rounded-br-xl rounded-bl-xl border-none">
+      <SelectContent className="rounded-none rounded-br-xl bg-white-background rounded-bl-xl border-none">
         <SelectItem visibleCheck={false} className={itemCls} value="process">
           <span>В процессе</span>
           <span>12</span>

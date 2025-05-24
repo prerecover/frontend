@@ -6,6 +6,7 @@ import { AddClinicButton } from './AddClinicButton';
 import { Input } from '@/components/ui/input';
 import { SearchInput } from '@/components/ui/search-input';
 import { ExitButton } from './ExitButton';
+import { SMSButton } from './SMSButton';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
@@ -15,6 +16,7 @@ const AdminHeader: FC<Props> = ({ className, ...props }) => {
       <div className="flex gap-x-6 flex-1">
         <ClinicButton />
         <AppointmentSelect />
+        <SMSButton />
       </div>
       <div className="flex gap-x-6">
         <AddClinicButton />
