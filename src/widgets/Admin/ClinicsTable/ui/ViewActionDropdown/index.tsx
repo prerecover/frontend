@@ -1,19 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { DropdownMenuShortcut } from '@/components/ui/dropdown-menu';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuPortal,
-  DropdownMenuSubContent,
 } from '@/components/ui/dropdown-menu';
 import { FC } from 'react';
+import { DeleteConfirmationModal } from '../DeleteConfirmationModal';
 
 interface Props {}
 
@@ -27,7 +20,9 @@ const ViewActionDropdown: FC<Props> = ({}) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuItem>Изменить</DropdownMenuItem>
-        <DropdownMenuItem>Удалить</DropdownMenuItem>
+        <DeleteConfirmationModal>
+          <DropdownMenuItem>Удалить</DropdownMenuItem>
+        </DeleteConfirmationModal>
       </DropdownMenuContent>
     </DropdownMenu>
   );
