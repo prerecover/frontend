@@ -32,7 +32,7 @@ export const useClinicStore = create<State>()((set, get) => ({
       return {
         cells: [
           {
-            id: -1,
+            id: cells[0].id - 1,
             mode: EnMode.add,
             data: [
               {

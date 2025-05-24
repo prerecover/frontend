@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { FC, HTMLAttributes, ReactNode } from 'react';
+import { FC, Fragment, HTMLAttributes, ReactNode } from 'react';
 import { EnMode } from '../types/Mode';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {
@@ -22,22 +22,16 @@ const MainTable: FC<Props> = ({
       <thead className="font-medium">
         <tr>
           {headItems.map((header, index) => (
-            <>
+            <Fragment key={index}>
               {index === 0 ? (
-                <th
-                  className="bg-blue-100 border-blue-400 border min-w-10 h-16 font-normal text-xs text-blue-500"
-                  key={index - 1}
-                >
+                <th className="bg-blue-100 border-blue-400 border min-w-10 h-16 font-normal text-xs text-blue-500">
                   <p>No</p>
                 </th>
               ) : null}
-              <th
-                className="text-sm min-w-48 max-w-48 font-medium bg-blue-100 border-blue-400 border whitespace-pre-wrap"
-                key={index}
-              >
+              <th className="text-sm min-w-48 max-w-48 font-medium bg-blue-100 border-blue-400 border whitespace-pre-wrap">
                 <div>{header}</div>
               </th>
-            </>
+            </Fragment>
           ))}
         </tr>
       </thead>
@@ -45,18 +39,14 @@ const MainTable: FC<Props> = ({
         {bodyItems.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((cell, cellIndex) => (
-              <>
+              <Fragment key={cellIndex}>
                 {cellIndex === 0 ? (
-                  <td
-                    key={cellIndex - 1}
-                    className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24"
-                  >
+                  <td className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24">
                     <p className="w-max mx-auto">{rowIndex + 1}</p>
                   </td>
                 ) : null}
                 {cell !== null ? (
                   <td
-                    key={cellIndex}
                     className={cn(
                       'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
                       cell.className
@@ -67,7 +57,7 @@ const MainTable: FC<Props> = ({
                     </div>
                   </td>
                 ) : null}
-              </>
+              </Fragment>
             ))}
           </tr>
         ))}

@@ -20,9 +20,9 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
       <MainTable
-        bodyItems={cells.map(({ id, data }) => {
+        bodyItems={cells.map(({ id, data, mode }) => {
           return data.map(({ data, type }) => {
-            const MODE = EnMode.edit;
+            const MODE = mode;
 
             switch (type) {
               case EnBodyType.inline:
