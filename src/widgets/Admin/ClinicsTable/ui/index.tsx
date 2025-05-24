@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { TABLE_DATA } from '../constants/tableData';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ViewActionDropdown } from './ViewActionDropdown';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -27,9 +28,16 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                   />
                 );
               case EnBodyType.link:
-                return <Link href={data.href}>{data.content}</Link>;
+                return (
+                  <Link
+                    href={data.href}
+                    className="text-base font-normal text-blue"
+                  >
+                    {data.content}
+                  </Link>
+                );
               case EnBodyType.viewAction:
-                return <p>Выбрать</p>;
+                return <ViewActionDropdown />;
               default:
                 return null;
             }

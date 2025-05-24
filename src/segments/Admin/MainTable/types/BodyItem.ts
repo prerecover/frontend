@@ -15,7 +15,7 @@ export enum EnBodyType {
 export type TViewBodyItem = (
   | {
       type: EnBodyType.inline;
-      data: string;
+      data: number | string;
     }
   | {
       type: EnBodyType.has;
@@ -23,7 +23,7 @@ export type TViewBodyItem = (
     }
   | {
       type: EnBodyType.link;
-      data: { href: string; content: string };
+      data: { href: string; content: string | number };
     }
   | {
       type: EnBodyType.viewAction;
