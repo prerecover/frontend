@@ -1,3 +1,5 @@
+import { EnMode } from '..';
+
 export enum EnBodyType {
   inline = 'inline',
   inlineArea = 'inlineArea',
@@ -7,27 +9,35 @@ export enum EnBodyType {
   multiselect = 'multiselect',
   multiselectSearch = 'multiselect-search',
   multiselectSearchAdd = 'multiselect-search-add',
-  viewAction = 'view-action',
+  action = 'action',
   editAction = 'edit-action',
   addAction = 'add-action',
   link = 'link',
 }
 
-export type TViewBodyItem = (
+export type TViewBodyItem<M extends EnMode> = (
   | {
       type: EnBodyType.inline | EnBodyType.inlineArea;
-      data: number | string;
+      data: M extends EnMode.view
+        ? number | string
+        : M extends EnMode.edit
+          ? string | number
+          : M extends EnMode.add
+            ? null
+            : never;
     }
   | {
       type: EnBodyType.has;
-      data: boolean;
+      data: M extends EnMode.view ? boolean : null;
     }
   | {
       type: EnBodyType.link;
-      data: { href: string; content: string | number };
+      data: M extends EnMode.add
+        ? { href: string; content: null }
+        : { href: string; content: string | number };
     }
   | {
-      type: EnBodyType.viewAction;
+      type: EnBodyType.action;
       data: null;
     }
 ) & {

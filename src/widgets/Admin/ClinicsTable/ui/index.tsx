@@ -1,20 +1,26 @@
+'use client';
 import { FC, HTMLAttributes } from 'react';
 import { EnBodyType, EnMode, MainTable } from '@/segments/Admin/MainTable';
 import { cn } from '@/lib/utils';
-import { TABLE_DATA } from '../constants/tableData';
 import Link from 'next/link';
 import { ViewActionDropdown } from './ViewActionDropdown';
 import { InlineCell } from '@/entities/Admin/InlineCell';
 import { HasCell } from '@/entities/Admin/HasCell';
 import { InlineAreaCell } from '@/entities/Admin/InlineAreaCell';
+import {
+  cellsSelector,
+  useClinicStore,
+} from '@/shared/store/Admin/clinicStore';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
 const ClinicsTable: FC<Props> = ({ className, ...props }) => {
+  const cells = useClinicStore(cellsSelector);
+
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
       <MainTable
-        bodyItems={TABLE_DATA.map(({ id, data }) => {
+        bodyItems={cells.map(({ id, data }) => {
           return data.map(({ data, type }) => {
             const MODE = EnMode.edit;
 
@@ -47,7 +53,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                   ),
                   mode: MODE,
                 };
-              case EnBodyType.viewAction:
+              case EnBodyType.action:
                 return { children: <ViewActionDropdown />, mode: MODE };
               default:
                 return null;

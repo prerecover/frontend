@@ -1,8 +1,13 @@
-import { EnBodyType, TViewBodyItem } from '@/segments/Admin/MainTable';
+import { EnBodyType, EnMode, TViewBodyItem } from '@/segments/Admin/MainTable';
 
-export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
+export const TABLE_DATA: {
+  id: number;
+  mode: EnMode.view;
+  data: TViewBodyItem<EnMode.view>[];
+}[] = [
   {
     id: 1,
+    mode: EnMode.view,
     data: [
       {
         description: 'Название',
@@ -123,7 +128,7 @@ export const TABLE_DATA: { id: number; data: TViewBodyItem[] }[] = [
       },
       {
         description: 'Действия',
-        type: EnBodyType.viewAction,
+        type: EnBodyType.action,
         data: null,
       },
     ],
