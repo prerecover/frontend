@@ -50,7 +50,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                       href={data.href}
                       className="text-base font-normal text-blue"
                     >
-                      {data.content}
+                      {data.content !== null ? data.content : 'Выбрать'}
                     </Link>
                   ),
                   mode: MODE,

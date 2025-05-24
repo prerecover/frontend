@@ -3,7 +3,7 @@ import { TTableDataItem } from '@/widgets/Admin/ClinicsTable';
 import { TABLE_DATA } from '@/widgets/Admin/ClinicsTable/constants/tableData';
 import { create } from 'zustand';
 
-type TCell =
+export type TCell =
   | {
       id: number;
       mode: EnMode.view;
