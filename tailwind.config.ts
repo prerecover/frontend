@@ -40,7 +40,7 @@ const config = {
         DEFAULT: '#FFFFFF',
         background: '#F5F8FC',
       },
-      dark: '#262626',
+      dark: { DEFAULT: '#262626', A55: '#2626268c' },
       grey: {
         DEFAULT: '#B1B2B4',
         100: '#F2F4F5',
