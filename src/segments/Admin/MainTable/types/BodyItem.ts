@@ -26,7 +26,7 @@ export type TViewBodyItem<M extends EnMode> = (
     }
   | {
       type: EnBodyType.has;
-      data: M extends EnMode.view ? boolean : null;
+      data: M extends EnMode.view | EnMode.edit ? boolean : null;
     }
   | {
       type: EnBodyType.link;

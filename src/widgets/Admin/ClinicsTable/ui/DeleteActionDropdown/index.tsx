@@ -9,17 +9,16 @@ import {
 import { FC } from 'react';
 import { TTableDataItem } from '../..';
 import {
-  switchModeSelector,
+  deleteCellSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
-import { EnMode } from '@/segments/Admin/MainTable';
 
 interface Props {
   id: TTableDataItem['id'];
 }
 
 const DeleteActionDropdown: FC<Props> = ({ id }) => {
-  const switchMode = useClinicStore(switchModeSelector);
+  const deleteCell = useClinicStore(deleteCellSelector);
 
   return (
     <DropdownMenu>
@@ -29,16 +28,10 @@ const DeleteActionDropdown: FC<Props> = ({ id }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
+        <DropdownMenuItem>Зарегистрировать</DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            switchMode({ id, mode: EnMode.view });
-          }}
-        >
-          Зарегистрировать
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => {
-            switchMode({ id, mode: EnMode.view });
+            deleteCell({ id });
           }}
         >
           Отменить

@@ -39,7 +39,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 };
               case EnBodyType.has:
                 return {
-                  children: <HasCell children={null} mode={MODE} />,
+                  children: <HasCell children={data} mode={MODE} />,
                   mode: MODE,
                   className: '[&>div]:overflow-visible',
                 };

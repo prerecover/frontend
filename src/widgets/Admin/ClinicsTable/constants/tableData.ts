@@ -59,7 +59,7 @@ export const TABLE_DATA: TTableDataItem[] = [
       {
         description: 'Компьютер',
         type: EnBodyType.has,
-        data: true,
+        data: false,
       },
       {
         description: 'Интернет',

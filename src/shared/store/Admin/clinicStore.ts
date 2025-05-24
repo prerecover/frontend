@@ -23,14 +23,12 @@ type TCell =
 interface State {
   cells: TCell[];
 
-  switchMode: ({
-    id,
-    mode,
-  }: {
+  switchMode: (params: {
     id: TTableDataItem['id'];
     mode: EnMode.edit | EnMode.view;
   }) => void;
   addCell: () => void;
+  deleteCell: (params: { id: TTableDataItem['id'] }) => void;
 }
 
 export const useClinicStore = create<State>()((set, get) => ({
@@ -190,8 +188,18 @@ export const useClinicStore = create<State>()((set, get) => ({
       };
     });
   },
+  deleteCell: ({ id }) => {
+    set(({ cells }) => {
+      return {
+        cells: cells.filter((props) => {
+          return id !== props.id;
+        }),
+      };
+    });
+  },
 }));
 
 export const cellsSelector = (state: State) => state.cells;
 export const switchModeSelector = (state: State) => state.switchMode;
 export const addCellSelector = (state: State) => state.addCell;
+export const deleteCellSelector = (state: State) => state.deleteCell;
