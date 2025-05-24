@@ -4,8 +4,11 @@ import { EnMode } from '../types/Mode';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {
   headItems: string[];
-  bodyItems: ReactNode[][];
-  mode: EnMode;
+  bodyItems: ({
+    children: ReactNode;
+    mode: EnMode;
+    className?: string;
+  } | null)[][];
 }
 
 const MainTable: FC<Props> = ({
@@ -51,14 +54,19 @@ const MainTable: FC<Props> = ({
                     <p className="w-max mx-auto">{rowIndex + 1}</p>
                   </td>
                 ) : null}
-                <td
-                  key={cellIndex}
-                  className="border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center"
-                >
-                  <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
-                    {cell}
-                  </div>
-                </td>
+                {cell !== null ? (
+                  <td
+                    key={cellIndex}
+                    className={cn(
+                      'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
+                      cell.className
+                    )}
+                  >
+                    <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
+                      {cell.children}
+                    </div>
+                  </td>
+                ) : null}
               </>
             ))}
           </tr>

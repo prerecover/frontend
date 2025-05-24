@@ -5,6 +5,8 @@ import { TABLE_DATA } from '../constants/tableData';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ViewActionDropdown } from './ViewActionDropdown';
+import { InlineCell } from '@/entities/Admin/InlineCell';
+import { HasCell } from '@/entities/Admin/HasCell';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -12,32 +14,36 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
       <MainTable
-        mode={EnMode.view}
         bodyItems={TABLE_DATA.map(({ id, data }) => {
           return data.map(({ data, type }) => {
+            const MODE = EnMode.edit;
+
             switch (type) {
               case EnBodyType.inline:
-                return <p>{data}</p>;
+                return {
+                  children: <InlineCell mode={MODE}>{data}</InlineCell>,
+                  mode: MODE,
+                };
               case EnBodyType.has:
-                return (
-                  <Image
-                    src={`/assets/${data ? 'true-mark.svg' : 'false-mark.svg'}`}
-                    alt={data ? 'Имеется' : 'Не оборудовано'}
-                    width={24}
-                    height={24}
-                  />
-                );
+                return {
+                  children: <HasCell children={null} mode={MODE} />,
+                  mode: MODE,
+                  className: '[&>div]:overflow-visible',
+                };
               case EnBodyType.link:
-                return (
-                  <Link
-                    href={data.href}
-                    className="text-base font-normal text-blue"
-                  >
-                    {data.content}
-                  </Link>
-                );
+                return {
+                  children: (
+                    <Link
+                      href={data.href}
+                      className="text-base font-normal text-blue"
+                    >
+                      {data.content}
+                    </Link>
+                  ),
+                  mode: MODE,
+                };
               case EnBodyType.viewAction:
-                return <ViewActionDropdown />;
+                return { children: <ViewActionDropdown />, mode: MODE };
               default:
                 return null;
             }

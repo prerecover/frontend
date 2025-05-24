@@ -1,0 +1,1 @@
+export { HasCell } from './ui';

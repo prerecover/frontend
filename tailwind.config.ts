@@ -38,6 +38,7 @@ const config = {
     colors: {
       white: {
         DEFAULT: '#FFFFFF',
+        100: '#EFEFEF',
         background: '#F5F8FC',
       },
       dark: { DEFAULT: '#262626', A55: '#2626268c' },
@@ -79,6 +80,9 @@ const config = {
       screens: {
         '2xl': '1400px',
       },
+    },
+    boxShadow: {
+      mainShadow: '0 4px 10px 0 rgba(0,0,0,10%)',
     },
     extend: {
       colors: {

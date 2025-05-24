@@ -3,7 +3,6 @@ import { FC, HTMLAttributes } from 'react';
 import { AppointmentSelect } from './AppointmentSelect';
 import { ClinicButton } from './ClinicButton';
 import { AddClinicButton } from './AddClinicButton';
-import { Input } from '@/components/ui/input';
 import { SearchInput } from '@/components/ui/search-input';
 import { ExitButton } from './ExitButton';
 import { SMSButton } from './SMSButton';
