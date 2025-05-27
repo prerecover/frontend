@@ -17,7 +17,7 @@ import { ViewActionDropdown } from '@/features/Admin/ViewActionDropdown';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
-const ClinicsTable: FC<Props> = ({ className, ...props }) => {
+const ServicesTable: FC<Props> = ({ className, ...props }) => {
   const addCells = useClinicStore(cellsAddSelector);
   const cells = useClinicStore(cellsSelector);
 
@@ -117,4 +117,4 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   );
 };
 
-export { ClinicsTable };
+export { ServicesTable };

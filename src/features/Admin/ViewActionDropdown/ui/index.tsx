@@ -7,18 +7,21 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { FC } from 'react';
-import { TTableDataItem } from '../..';
+
 import {
-  deleteCellAddSelector,
+  switchModeSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
+import { EnMode } from '@/segments/Admin/MainTable';
+import { TTableDataItem } from '@/shared/types/Admin/Tables';
+import { DeleteConfirmationModal } from '@/widgets/Admin/ClinicsTable';
 
 interface Props {
   id: TTableDataItem['id'];
 }
 
-const AddActionDropdown: FC<Props> = ({ id }) => {
-  const deleteCell = useClinicStore(deleteCellAddSelector);
+const ViewActionDropdown: FC<Props> = ({ id }) => {
+  const switchMode = useClinicStore(switchModeSelector);
 
   return (
     <DropdownMenu>
@@ -28,17 +31,19 @@ const AddActionDropdown: FC<Props> = ({ id }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuItem>Зарегистрировать</DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            deleteCell({ id });
+            switchMode({ id, mode: EnMode.edit });
           }}
         >
-          Отменить
+          Изменить
         </DropdownMenuItem>
+        <DeleteConfirmationModal>
+          <DropdownMenuItem>Удалить</DropdownMenuItem>
+        </DeleteConfirmationModal>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-export { AddActionDropdown };
+export { ViewActionDropdown };

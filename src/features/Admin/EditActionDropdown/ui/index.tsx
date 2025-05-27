@@ -7,12 +7,12 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { FC } from 'react';
-import { TTableDataItem } from '../..';
 import {
   switchModeSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
 import { EnMode } from '@/segments/Admin/MainTable';
+import { TTableDataItem } from '@/shared/types/Admin/Tables';
 
 interface Props {
   id: TTableDataItem['id'];
