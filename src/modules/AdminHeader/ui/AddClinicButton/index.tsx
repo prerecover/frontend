@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
-  addCellSelector,
+  addCellAddSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
 import { FC, HTMLAttributes } from 'react';
@@ -10,7 +10,7 @@ import { FC, HTMLAttributes } from 'react';
 interface Props extends HTMLAttributes<HTMLButtonElement> {}
 
 const AddClinicButton: FC<Props> = ({ className, onClick, ...props }) => {
-  const addClinic = useClinicStore(addCellSelector);
+  const addClinic = useClinicStore(addCellAddSelector);
 
   return (
     <Button

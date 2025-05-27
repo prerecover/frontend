@@ -9,7 +9,7 @@ import {
 import { FC } from 'react';
 import { TTableDataItem } from '../..';
 import {
-  deleteCellSelector,
+  deleteCellAddSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
 
@@ -17,8 +17,8 @@ interface Props {
   id: TTableDataItem['id'];
 }
 
-const DeleteActionDropdown: FC<Props> = ({ id }) => {
-  const deleteCell = useClinicStore(deleteCellSelector);
+const AddActionDropdown: FC<Props> = ({ id }) => {
+  const deleteCell = useClinicStore(deleteCellAddSelector);
 
   return (
     <DropdownMenu>
@@ -41,4 +41,4 @@ const DeleteActionDropdown: FC<Props> = ({ id }) => {
   );
 };
 
-export { DeleteActionDropdown };
+export { AddActionDropdown };

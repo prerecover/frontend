@@ -4,11 +4,14 @@ import { EnMode } from '../types/Mode';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {
   headItems: string[];
-  bodyItems: ({
-    children: ReactNode;
-    mode: EnMode;
-    className?: string;
-  } | null)[][];
+  bodyItems: {
+    id: number | string;
+    data: ({
+      children: ReactNode;
+      mode: EnMode;
+      className?: string;
+    } | null)[];
+  }[];
 }
 
 const MainTable: FC<Props> = ({
@@ -36,31 +39,35 @@ const MainTable: FC<Props> = ({
         </tr>
       </thead>
       <tbody className="">
-        {bodyItems.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <Fragment key={cellIndex}>
-                {cellIndex === 0 ? (
-                  <td className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24">
-                    <p className="w-max mx-auto">{rowIndex + 1}</p>
-                  </td>
-                ) : null}
-                {cell !== null ? (
-                  <td
-                    className={cn(
-                      'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
-                      cell.className
-                    )}
-                  >
-                    <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
-                      {cell.children}
-                    </div>
-                  </td>
-                ) : null}
-              </Fragment>
-            ))}
-          </tr>
-        ))}
+        {bodyItems.map((row, rowIndex) => {
+          return (
+            <tr key={row.id}>
+              {row.data.map((cell, cellIndex) => {
+                return (
+                  <Fragment key={cellIndex}>
+                    {cellIndex === 0 ? (
+                      <td className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24">
+                        <p className="w-max mx-auto">{rowIndex + 1}</p>
+                      </td>
+                    ) : null}
+                    {cell !== null ? (
+                      <td
+                        className={cn(
+                          'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
+                          cell.className
+                        )}
+                      >
+                        <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
+                          {cell.children}
+                        </div>
+                      </td>
+                    ) : null}
+                  </Fragment>
+                );
+              })}
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

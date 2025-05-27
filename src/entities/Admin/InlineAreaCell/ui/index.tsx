@@ -22,11 +22,11 @@ const InlineAreaCell: FC<Props> = ({ children, mode }) => {
         <p>{children}</p>
       ) : mode === EnMode.edit ? (
         <textarea
-          className="w-full bg-[transparent] text-center resize-none scroll-hide"
+          className="w-full translate-y-1 bg-[transparent] text-center resize-none scroll-hide"
           defaultValue={children}
         />
       ) : (
-        <textarea className="w-full bg-[transparent] text-center resize-none scroll-hide" />
+        <textarea className="w-full translate-y-1 bg-[transparent] text-center resize-none scroll-hide" />
       )}
     </>
   );

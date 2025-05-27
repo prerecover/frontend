@@ -7,11 +7,7 @@ import { FC, useState } from 'react';
 type Props =
   | {
       children: boolean;
-      mode: EnMode.view;
-    }
-  | {
-      children: null;
-      mode: EnMode.edit;
+      mode: EnMode.view | EnMode.edit;
     }
   | {
       children: null;
