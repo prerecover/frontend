@@ -1,5 +1,7 @@
 import { EnMode } from '..';
 
+export type TConsultationType = 'online' | 'offline';
+
 export enum EnBodyType {
   inline = 'inline',
   inlineArea = 'inlineArea',
@@ -31,12 +33,31 @@ export type TViewBodyItem<M extends EnMode> = (
   | {
       type: EnBodyType.link;
       data: M extends EnMode.add
-        ? { href: string; content: null }
-        : { href: string; content: string | number };
+        ? { href: string; content: null; placeholder?: string }
+        : { href: string; content: string | number; placeholder?: string };
     }
   | {
       type: EnBodyType.action;
       data: null;
+    }
+  | {
+      type: EnBodyType.consultationType;
+      data: M extends EnMode.view | EnMode.edit ? TConsultationType : null;
+    }
+  | {
+      type:
+        | EnBodyType.multiselect
+        | EnBodyType.multiselectSearch
+        | EnBodyType.multiselectSearchAdd;
+      data: M extends EnMode.view
+        ? unknown
+        : M extends EnMode.edit
+          ? {
+              content: unknown;
+              value: unknown;
+              isChecked?: boolean;
+            }[]
+          : null;
     }
 ) & {
   description?: string;

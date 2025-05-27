@@ -4,22 +4,23 @@ import { EnBodyType, EnMode, MainTable } from '@/segments/Admin/MainTable';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { InlineCell } from '@/entities/Admin/InlineCell';
-import { HasCell } from '@/entities/Admin/HasCell';
 import { InlineAreaCell } from '@/entities/Admin/InlineAreaCell';
-import {
-  cellsAddSelector,
-  cellsSelector,
-  useClinicStore,
-} from '@/shared/store/Admin/clinicStore';
 import { AddActionDropdown } from '@/features/Admin/AddActionDropdown';
 import { EditActionDropdown } from '@/features/Admin/EditActionDropdown';
 import { ViewActionDropdown } from '@/features/Admin/ViewActionDropdown';
+import {
+  useServicesStore,
+  cellsAddSelector,
+  cellsSelector,
+} from '@/shared/store/Admin/servicesStore';
+import { ConsultationTypeCell } from '@/entities/Admin/ConsultationTypeCell';
+import { MultiselectCell } from '@/entities/Admin/MultiselectCell';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
 const ServicesTable: FC<Props> = ({ className, ...props }) => {
-  const addCells = useClinicStore(cellsAddSelector);
-  const cells = useClinicStore(cellsSelector);
+  const addCells = useServicesStore(cellsAddSelector);
+  const cells = useServicesStore(cellsSelector);
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
@@ -31,6 +32,20 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
               const MODE = mode;
 
               switch (type) {
+                case EnBodyType.multiselect:
+                  return {
+                    children: <MultiselectCell></MultiselectCell>,
+                    mode: MODE,
+                  };
+                case EnBodyType.inline:
+                  return {
+                    children: (
+                      <ConsultationTypeCell mode={MODE}>
+                        {data}
+                      </ConsultationTypeCell>
+                    ),
+                    mode: MODE,
+                  };
                 case EnBodyType.inline:
                   return {
                     children: <InlineCell mode={MODE}>{data}</InlineCell>,
@@ -42,12 +57,6 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
                       <InlineAreaCell mode={MODE}>{data}</InlineAreaCell>
                     ),
                     mode: MODE,
-                  };
-                case EnBodyType.has:
-                  return {
-                    children: <HasCell children={data} mode={MODE} />,
-                    mode: MODE,
-                    className: '[&>div]:overflow-visible',
                   };
                 case EnBodyType.link:
                   return {
@@ -88,27 +97,15 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
           };
         })}
         headItems={[
-          'Название',
-          'Тип учреждения',
-          'Начало работы',
-          'Площадь, м²',
-          'Телефон',
-          'Телефон для\nотправки отчета в тг',
-          'Страна',
-          'Город',
-          'Адрес',
-          'Количество этажей',
-          'Компьютер',
-          'Интернет',
-          'Дни и время работы',
-          'Категорий',
-          'Всего медиафайлов',
-          'Фото клиники',
-          'Язык клиники',
-          'Лифт',
-          'Всего услуг',
-          'Всего врачей',
-          'Сеть клиник',
+          'Услуга',
+          'Категория',
+          'Онлайн/Офлайн',
+          'Описание',
+          'Цена',
+          'Как\nоплачивать услугу?',
+          'Длительность',
+          'Врачи',
+          'Медиафайлов',
           'Действия',
         ]}
         {...props}

@@ -1,6 +1,7 @@
 import { EnBodyType, EnMode } from '@/segments/Admin/MainTable';
-import { TTableDataItem } from '../types/TableDataItem';
+import { TTableDataItem } from '@/shared/types/Admin/Tables';
 import { ADMIN_ROUTES } from '@/shared/utils/paths';
+import { EnPayServiceType } from '../types/PayService';
 
 export const TABLE_DATA: TTableDataItem[] = [
   {
@@ -8,120 +9,103 @@ export const TABLE_DATA: TTableDataItem[] = [
     mode: EnMode.view,
     data: [
       {
-        description: 'Название',
+        description: 'Услуга',
         type: EnBodyType.inline,
-        data: 'Хелликс',
+        data: 'ЛОР',
       },
       {
-        description: 'Тип учреждения',
+        description: 'Категория',
         type: EnBodyType.inline,
-        data: 'Клиника',
+        data: 'Консультация',
       },
       {
-        description: 'Начало работы',
-        type: EnBodyType.inline,
-        data: 'Август 2012 г.',
+        description: 'Онлайн/Офлайн',
+        type: EnBodyType.consultationType,
+        data: 'online',
       },
       {
-        description: 'Площадь, м²',
-        type: EnBodyType.inline,
-        data: 36,
-      },
-      {
-        description: 'Телефон',
-        type: EnBodyType.inline,
-        data: '+ 7 (999) 03-20-911',
-      },
-      {
-        description: 'Телефон для\nотправки отчета в тг',
-        type: EnBodyType.inline,
-        data: '+ 7 (999) 03-20-911',
-      },
-      {
-        description: 'Страна',
-        type: EnBodyType.inline,
-        data: 'Палестина',
-      },
-      {
-        description: 'Город',
-        type: EnBodyType.inline,
-        data: 'Абу-Даби',
-      },
-      {
-        description: 'Адрес',
+        description: 'Описание',
         type: EnBodyType.inlineArea,
-        data: 'ул: Чурки 12',
+        data: 'Покупаешь мозги и все дальше легче будет жить....',
       },
       {
-        description: 'Количество этажей',
+        description: 'Цена',
         type: EnBodyType.inline,
-        data: 12,
+        data: 'от 18 000 до 22 0000',
       },
       {
-        description: 'Компьютер',
-        type: EnBodyType.has,
-        data: false,
+        description: 'Как\nоплачивать услугу?',
+        type: EnBodyType.multiselect,
+        data: [
+          {
+            content: 'Онлайн',
+            value: EnPayServiceType.online,
+            isChecked: false,
+          },
+          {
+            content: 'В кассу',
+            value: EnPayServiceType.cashier,
+            isChecked: false,
+          },
+          {
+            content: 'Врачу',
+            value: EnPayServiceType.doctor,
+            isChecked: false,
+          },
+          {
+            content: 'Оплата в рассрочку',
+            value: EnPayServiceType.installmentsPlan,
+            isChecked: false,
+          },
+          {
+            content: 'Оплата в кредит',
+            value: EnPayServiceType.credit,
+            isChecked: false,
+          },
+        ],
       },
       {
-        description: 'Интернет',
-        type: EnBodyType.has,
-        data: true,
-      },
-      {
-        description: 'Дни и время работы',
-        type: EnBodyType.inlineArea,
-        data: 'пн 8:00 -17:00\nсб-вс 8:00 -14:00',
-      },
-      {
-        description: 'Категорий',
+        description: 'Длительность',
         type: EnBodyType.inline,
-        data: 3,
+        data: '2 часа 30 минут',
       },
       {
-        description: 'Всего медиафайлов',
-        type: EnBodyType.inline,
-        data: 24,
+        description: 'Врачи',
+        type: EnBodyType.multiselectSearch,
+        data: [
+          {
+            content: {
+              name: 'Сергей Сергеев',
+              speciality: 'Невролог',
+            },
+            value: 1,
+            isChecked: false,
+          },
+          {
+            content: {
+              name: 'Максим Максимов',
+              speciality: 'Уролог',
+            },
+            value: 2,
+            isChecked: false,
+          },
+          {
+            content: {
+              name: 'Темур Темуров',
+              speciality: 'Хирург',
+            },
+            value: 3,
+            isChecked: false,
+          },
+        ],
       },
       {
-        description: 'Фото клиники',
+        description: 'Медиафайлов',
         type: EnBodyType.link,
         data: {
+          content: '2',
+          placeholder: 'Загрузить',
           href: '#',
-          content: 4,
-        },
-      },
-      {
-        description: 'Язык клиники',
-        type: EnBodyType.inlineArea,
-        data: 'Английский Русский',
-      },
-      {
-        description: 'Лифт',
-        type: EnBodyType.has,
-        data: true,
-      },
-      {
-        description: 'Всего услуг',
-        type: EnBodyType.link,
-        data: {
-          href: ADMIN_ROUTES.ADMIN.CLINICS.SERVICES('test').INDEX,
-          content: 5,
-        },
-      },
-      {
-        description: 'Всего врачей',
-        type: EnBodyType.link,
-        data: {
-          href: ADMIN_ROUTES.ADMIN.CLINICS.DOCTORS('test').INDEX,
-          content: 5,
-        },
-      },
-      {
-        description: 'Сеть клиник',
-        type: EnBodyType.link,
-        data: {
-          href: ADMIN_ROUTES.ADMIN.CLINICS.CLINICS_NET('test').INDEX,
-          content: 5,
         },
       },
       {
