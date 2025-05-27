@@ -23,7 +23,7 @@ const AddActionDropdown: FC<Props> = ({ id }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="text-sm font-normal text-blue">
+        <Button variant="ghost" className="text-base font-normal text-blue">
           Выбрать
         </Button>
       </DropdownMenuTrigger>
