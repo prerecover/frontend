@@ -138,3 +138,19 @@ export const ROUTES = {
     label: 'Статистика',
   },
 };
+export const ADMIN_ROUTES = {
+  ADMIN: {
+    CLINICS: {
+      INDEX: '/admin',
+      SERVICES: (clinicId: string) => ({
+        INDEX: `/admin/services/${clinicId}`,
+      }),
+      CLINICS_NET: (clinicId: string) => ({
+        INDEX: `/admin/clinics-net/${clinicId}`,
+      }),
+      DOCTORS: (clinicId: string) => ({
+        INDEX: `/admin/doctors/${clinicId}`,
+      }),
+    },
+  },
+};

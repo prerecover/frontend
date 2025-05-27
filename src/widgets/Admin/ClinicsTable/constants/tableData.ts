@@ -1,5 +1,6 @@
 import { EnBodyType, EnMode } from '@/segments/Admin/MainTable';
 import { TTableDataItem } from '../types/TableDataItem';
+import { ADMIN_ROUTES } from '@/shared/utils/paths';
 
 export const TABLE_DATA: TTableDataItem[] = [
   {
@@ -103,7 +104,7 @@ export const TABLE_DATA: TTableDataItem[] = [
         description: 'Всего услуг',
         type: EnBodyType.link,
         data: {
-          href: '#',
+          href: ADMIN_ROUTES.ADMIN.CLINICS.SERVICES('test').INDEX,
           content: 5,
         },
       },
@@ -111,7 +112,7 @@ export const TABLE_DATA: TTableDataItem[] = [
         description: 'Всего врачей',
         type: EnBodyType.link,
         data: {
-          href: '#',
+          href: ADMIN_ROUTES.ADMIN.CLINICS.DOCTORS('test').INDEX,
           content: 5,
         },
       },
@@ -119,7 +120,7 @@ export const TABLE_DATA: TTableDataItem[] = [
         description: 'Сеть клиник',
         type: EnBodyType.link,
         data: {
-          href: '#',
+          href: ADMIN_ROUTES.ADMIN.CLINICS.CLINICS_NET('test').INDEX,
           content: 5,
         },
       },
