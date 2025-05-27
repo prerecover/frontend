@@ -21,6 +21,13 @@ interface Props extends HTMLAttributes<HTMLTableElement> {}
 const ServicesTable: FC<Props> = ({ className, ...props }) => {
   const addCells = useServicesStore(cellsAddSelector);
   const cells = useServicesStore(cellsSelector);
+  const options = [
+    { value: 1, content: <span>React</span> },
+    { value: 2, content: <span>Vue</span> },
+    { value: '3angular', content: <span>Angular</span> },
+    { value: '2angular', content: <span>Angular</span> },
+    { value: '1angular', content: <span>Angular</span> },
+  ];
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
@@ -28,16 +35,39 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
         bodyItems={[...addCells, ...cells].map(({ id, data, mode }) => {
           return {
             id,
-            data: data.map(({ data, type }) => {
+            data: data.map(({ data, type, description }) => {
               const MODE = mode;
 
               switch (type) {
                 case EnBodyType.multiselect:
                   return {
-                    children: <MultiselectCell></MultiselectCell>,
+                    children: (
+                      <MultiselectCell
+                        options={options}
+                        placeholder="Выберите"
+                        maxDisplayedItems={2}
+                        className="justify-center"
+                        contentClassName="w-[250px] -translate-x-[calc((250px-var(--radix-select-trigger-width))/2)]"
+                      />
+                    ),
+                    mode: MODE,
+                    className: '[&>div]:w-full',
+                  };
+                case EnBodyType.multiselectSearch:
+                  return {
+                    children: (
+                      <MultiselectCell
+                        type="search"
+                        options={options}
+                        placeholder="Выберите технологии..."
+                        maxDisplayedItems={2}
+                        contentClassName="w-[365px] -translate-x-[calc((365px-var(--radix-select-trigger-width))/2)]"
+                        className="w-full"
+                      />
+                    ),
                     mode: MODE,
                   };
-                case EnBodyType.inline:
+                case EnBodyType.consultationType:
                   return {
                     children: (
                       <ConsultationTypeCell mode={MODE}>

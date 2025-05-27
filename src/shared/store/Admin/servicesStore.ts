@@ -3,7 +3,6 @@ import { EnBodyType, EnMode, TViewBodyItem } from '@/segments/Admin/MainTable';
 import { create } from 'zustand';
 import { TTableDataItem } from '@/shared/types/Admin/Tables';
 import { TABLE_DATA } from '@/widgets/Admin/ServicesTable/constants/tableData';
-import { EnPayServiceType } from '@/widgets/Admin/ServicesTable/types/PayService';
 
 export type TCell =
   | {
@@ -74,33 +73,7 @@ export const useServicesStore = create<State>()(
                 {
                   description: 'Как\nоплачивать услугу?',
                   type: EnBodyType.multiselect,
-                  data: [
-                    {
-                      content: 'Онлайн',
-                      value: EnPayServiceType.online,
-                      isChecked: false,
-                    },
-                    {
-                      content: 'В кассу',
-                      value: EnPayServiceType.cashier,
-                      isChecked: false,
-                    },
-                    {
-                      content: 'Врачу',
-                      value: EnPayServiceType.doctor,
-                      isChecked: false,
-                    },
-                    {
-                      content: 'Оплата в рассрочку',
-                      value: EnPayServiceType.installmentsPlan,
-                      isChecked: false,
-                    },
-                    {
-                      content: 'Оплата в кредит',
-                      value: EnPayServiceType.credit,
-                      isChecked: false,
-                    },
-                  ],
+                  data: null,
                 },
                 {
                   description: 'Длительность',
@@ -110,32 +83,7 @@ export const useServicesStore = create<State>()(
                 {
                   description: 'Врачи',
                   type: EnBodyType.multiselectSearch,
-                  data: [
-                    {
-                      content: {
-                        name: 'Сергей Сергеев',
-                        speciality: 'Невролог',
-                      },
-                      value: 1,
-                      isChecked: false,
-                    },
-                    {
-                      content: {
-                        name: 'Максим Максимов',
-                        speciality: 'Уролог',
-                      },
-                      value: 2,
-                      isChecked: false,
-                    },
-                    {
-                      content: {
-                        name: 'Темур Темуров',
-                        speciality: 'Хирург',
-                      },
-                      value: 3,
-                      isChecked: false,
-                    },
-                  ],
+                  data: null,
                 },
                 {
                   description: 'Медиафайлов',
