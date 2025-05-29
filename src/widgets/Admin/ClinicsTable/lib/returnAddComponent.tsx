@@ -1,6 +1,7 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
@@ -36,20 +37,22 @@ export const returnAddComponent = ({
   switch (cellType) {
     case EnCellTypes.inline:
       return (
-        <InlineCell<EnModes.add>
+        <InlineCell<EnModes.add, EnTableTypes.clinics>
           cellIndex={cellIndex}
           data={data as TInlineAdd}
           mode={mode}
+          id={id}
         />
       );
     case EnCellTypes.action:
       return <ClinicsActionsCell<EnModes.add> id={id} mode={mode} />;
     case EnCellTypes.has:
       return (
-        <HasCell<EnModes.add>
+        <HasCell<EnModes.add, EnTableTypes.clinics>
           cellIndex={cellIndex}
           data={data as THasAdd}
           mode={mode}
+          id={id}
         />
       );
     case EnCellTypes.inlineArea:
