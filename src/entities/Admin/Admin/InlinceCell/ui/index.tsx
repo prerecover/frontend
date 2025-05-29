@@ -8,14 +8,7 @@ import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
-
-type OmitForViewMode<
-  M extends EnModes,
-  T extends EnTableTypes,
-> = M extends EnModes.view
-  ? Omit<TCellDataUpdate<M, T, string>, 'updateFunc'>
-  : TCellDataUpdate<M, T, string>;
+import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
 
 type Props<M extends EnModes, T extends EnTableTypes> = {
   mode: M;
@@ -32,7 +25,6 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
   mode,
   data,
   cellIndex,
-  id,
   ...props
 }: Props<M, T>) => {
   if (mode === undefined) {
@@ -47,6 +39,7 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
         <View data={data as TInlineView} />
       ) : mode === EnModes.edit ? (
         <Edit
+          //@ts-ignore
           id={id}
           cellIndex={cellIndex}
           // @ts-ignore
@@ -55,6 +48,7 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
         />
       ) : mode === EnModes.add ? (
         <Add
+          //@ts-ignore
           id={id}
           cellIndex={cellIndex}
           // @ts-ignore

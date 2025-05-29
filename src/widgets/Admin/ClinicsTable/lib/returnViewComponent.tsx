@@ -2,12 +2,12 @@ import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasView } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
@@ -24,7 +24,7 @@ interface Params extends TCellIndexField {
     | EnLinks.doctors
     | EnLinks.services;
   data: unknown;
-  id: TClinicsBody<EnModes.view>[0]['id'];
+  id: TBodyItemId<EnModes.view, EnTableTypes.clinics>;
 }
 
 export const returnViewComponent = ({
@@ -41,7 +41,6 @@ export const returnViewComponent = ({
           cellIndex={cellIndex}
           data={data as TInlineView}
           mode={mode}
-          id={id}
         />
       );
     case EnCellTypes.action:
@@ -52,7 +51,6 @@ export const returnViewComponent = ({
           cellIndex={cellIndex}
           data={data as THasView}
           mode={mode}
-          id={id}
         />
       );
     case EnCellTypes.inlineArea:

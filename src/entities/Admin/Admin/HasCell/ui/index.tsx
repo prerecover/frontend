@@ -7,13 +7,10 @@ import {
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
-import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
+import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
 
-interface Props<
-  M extends EnModes | never = never,
-  T extends EnTableTypes | never = never,
-> extends TCellDataUpdate<M, T> {
+type Props<M extends EnModes, T extends EnTableTypes> = {
   mode: M;
   data: M extends EnModes.view
     ? THasView
@@ -22,12 +19,13 @@ interface Props<
       : M extends EnModes.add
         ? THasAdd
         : never;
-}
+} & OmitForViewMode<M, T>;
 
 const HasCell = <M extends EnModes, T extends EnTableTypes>({
   mode,
   data,
   cellIndex,
+  ...props
 }: Props<M, T>) => {
   if (mode === undefined) {
     throw new Error(
@@ -40,9 +38,23 @@ const HasCell = <M extends EnModes, T extends EnTableTypes>({
       {mode === EnModes.view ? (
         <View data={data as THasView} />
       ) : mode === EnModes.edit ? (
-        <Edit data={data as THasEdit} />
+        <Edit<M, T>
+          //@ts-ignore
+          updateFunc={props.updateFunc}
+          //@ts-ignore
+          id={props.id}
+          cellIndex={cellIndex}
+          data={data as THasEdit}
+        />
       ) : mode === EnModes.add ? (
-        <Add cellIndex={cellIndex} data={data as THasAdd} />
+        <Add<M, T>
+          //@ts-ignore
+          updateFunc={props.updateFunc}
+          //@ts-ignore
+          id={props.id}
+          cellIndex={cellIndex}
+          data={data as THasAdd}
+        />
       ) : null}
     </>
   );

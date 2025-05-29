@@ -1,30 +1,24 @@
-import { FC } from 'react';
 import { THasAdd } from '@/shared/types/Admin/shared/cells/Has';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 
-interface Props<
-  M extends EnModes | never = never,
-  T extends EnTableTypes | never = never,
-> extends TCellDataUpdate<M, T, boolean> {
+interface Props<M extends EnModes, T extends EnTableTypes>
+  extends TCellDataUpdate<M, T, boolean> {
   data: THasAdd;
 }
 
 const buttonCls =
   'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
 
-const Add = <
-  M extends EnModes | never = never,
-  T extends EnTableTypes | never = never,
->({
+const Add = <M extends EnModes, T extends EnTableTypes>({
   data,
   cellIndex,
   id,
+  updateFunc,
 }: Props<M, T>) => {
   return (
     <div className="flex rounded-xl shadow-mainShadow">

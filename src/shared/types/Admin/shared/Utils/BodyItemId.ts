@@ -6,7 +6,7 @@ import { EnModes } from '../Entities/Modes';
 
 export type TBodyItemId<
   M extends EnModes,
-  T extends EnTableTypes | never = never,
+  T extends EnTableTypes,
 > = T extends EnTableTypes.clinics
   ? TClinicsBody<M>[0]['id']
   : T extends EnTableTypes.doctors
@@ -15,7 +15,6 @@ export type TBodyItemId<
       ? TServicesBody<M>[0]['id']
       : never;
 
-export type TBodyItemIdField<
-  M extends EnModes,
-  T extends EnTableTypes | never = never,
-> = { id: TBodyItemId<M, T> };
+export type TBodyItemIdField<M extends EnModes, T extends EnTableTypes> = {
+  id: TBodyItemId<M, T>;
+};

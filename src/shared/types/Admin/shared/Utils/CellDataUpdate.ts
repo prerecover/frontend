@@ -6,7 +6,7 @@ import { TClinicsDataStructure } from '../../Clinics/data-structure';
 import { TDoctorsDataStructure } from '../../Doctors/data-structure';
 import { TServicesDataStructure } from '../../services/data-structure';
 
-export type TUpdateFuncParams<D, T extends EnTableTypes | never = never> = {
+export type TUpdateFuncParams<D, T extends EnTableTypes> = {
   id: T extends EnTableTypes.clinics
     ? TClinicsDataStructure['id']
     : T extends EnTableTypes.doctors

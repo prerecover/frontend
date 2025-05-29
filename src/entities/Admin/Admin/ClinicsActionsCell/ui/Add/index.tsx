@@ -12,7 +12,7 @@ const itemCls = 'rounded-[inherit]';
 const itemContentCls =
   'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
 
-interface Props<M extends EnModes | never = never>
+interface Props<M extends EnModes>
   extends TBodyItemIdField<M, EnTableTypes.clinics> {}
 
 const Add = <M extends EnModes>({ id }: Props<M>) => {
