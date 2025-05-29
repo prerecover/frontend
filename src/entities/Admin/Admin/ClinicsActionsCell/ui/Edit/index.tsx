@@ -8,7 +8,8 @@ import {
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import {
-  toggleCellModeModeSetter,
+  transformEditToViewCancelSetter,
+  transformEditToViewSaveSetter,
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
 
@@ -16,12 +17,15 @@ const itemCls = 'rounded-[inherit]';
 const itemContentCls =
   'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
 
-interface Props<M extends EnModes> {
-  id: TBodyItemIdField<M, EnTableTypes.clinics>;
-}
+interface Props extends TBodyItemIdField<EnModes.edit, EnTableTypes.clinics> {}
 
-const Edit = <M extends EnModes>({ id }: Props<M>) => {
-  const toggleCellMode = useClinicsStore(toggleCellModeModeSetter);
+const Edit = ({ id }: Props) => {
+  const transformEditToViewSave = useClinicsStore(
+    transformEditToViewSaveSetter
+  );
+  const transformEditToViewCancel = useClinicsStore(
+    transformEditToViewCancelSetter
+  );
 
   return (
     <DropdownMenu>
@@ -29,10 +33,20 @@ const Edit = <M extends EnModes>({ id }: Props<M>) => {
         <p className="text-blue">Выбрать</p>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-0 bg-white-background">
-        <DropdownMenuItem className={itemCls}>
+        <DropdownMenuItem
+          className={itemCls}
+          onClick={() => {
+            transformEditToViewSave({ id });
+          }}
+        >
           <p className={itemContentCls}>Сохранить</p>
         </DropdownMenuItem>
-        <DropdownMenuItem className={itemCls}>
+        <DropdownMenuItem
+          className={itemCls}
+          onClick={() => {
+            transformEditToViewCancel({ id });
+          }}
+        >
           <p className={itemContentCls}>Отменить</p>
         </DropdownMenuItem>
       </DropdownMenuContent>

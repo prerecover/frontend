@@ -27,23 +27,22 @@ interface State {
   ) => T | null;
 
   addCell_S: (data: TViewEditBody) => void;
-  toggleCellMode_S: (params: { id: TClinicsDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
   updateCell_S: <T>(params: TCellFuncParams<T, EnTableTypes.clinics>) => void;
   getCellData_S: <T>(
     params: Omit<TCellFuncParams<T, EnTableTypes.clinics>, 'data'>
   ) => T | null;
 
-  transformAddToView: (params: {
+  transformAddToView_S: (params: {
     id: TBodyItemId<EnModes.add, EnTableTypes.clinics>;
   }) => void;
-  transformViewToEdit: (params: {
+  transformViewToEdit_S: (params: {
     id: TBodyItemId<EnModes.view, EnTableTypes.clinics>;
   }) => void;
-  transformEditToViewSave: (params: {
+  transformEditToViewSave_S: (params: {
     id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
   }) => void;
-  transformEditToViewCancel: (params: {
+  transformEditToViewCancel_S: (params: {
     id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
   }) => void;
 }
@@ -93,24 +92,6 @@ export const useClinicsStore = create<State>()(
       set(({ cells }) => {
         return {
           cells: [...cells, ...data],
-        };
-      });
-    },
-    toggleCellMode_S: ({ id }) => {
-      set(({ cells }) => {
-        return {
-          cells: cells.map((props) => {
-            if (props.id === id) {
-              const newMode =
-                props.mode === EnModes.edit ? EnModes.view : EnModes.edit;
-
-              return {
-                ...props,
-                mode: newMode,
-              };
-            }
-            return props;
-          }),
         };
       });
     },
@@ -195,7 +176,7 @@ export const useClinicsStore = create<State>()(
       });
       return result.data[cellIndex];
     },
-    transformAddToView: ({ id }) => {
+    transformAddToView_S: ({ id }) => {
       const removeAddCell = get().removeAddCell_S;
 
       set(({ cells, addCells }) => {
@@ -216,7 +197,7 @@ export const useClinicsStore = create<State>()(
         }
       });
     },
-    transformViewToEdit: ({ id }) => {
+    transformViewToEdit_S: ({ id }) => {
       const addEditableCell = get().addEditableCell_S;
 
       set(({ cells }) => {
@@ -231,7 +212,7 @@ export const useClinicsStore = create<State>()(
         };
       });
     },
-    transformEditToViewSave: ({ id }) => {
+    transformEditToViewSave_S: ({ id }) => {
       const removeEditableCell = get().removeEditableCell_S;
 
       set(({ cells }) => {
@@ -246,7 +227,7 @@ export const useClinicsStore = create<State>()(
         };
       });
     },
-    transformEditToViewCancel: ({ id }) => {
+    transformEditToViewCancel_S: ({ id }) => {
       const removeEditableCell = get().removeEditableCell_S;
 
       set(({ editableCells, cells }) => {
@@ -276,10 +257,14 @@ export const getAddCellDataGetter = (state: State) => state.getAddCellData_S;
 
 export const addCellSetter = (state: State) => state.addCell_S;
 export const removeCellSetter = (state: State) => state.removeCell_S;
-export const toggleCellModeModeSetter = (state: State) =>
-  state.toggleCellMode_S;
 export const updateCellSetter = (state: State) => state.updateCell_S;
 export const getCellDataGetter = (state: State) => state.getCellData_S;
 
 export const transformAddToViewSetter = (state: State) =>
-  state.transformAddToView;
+  state.transformAddToView_S;
+export const transformViewToEditSetter = (state: State) =>
+  state.transformViewToEdit_S;
+export const transformEditToViewSaveSetter = (state: State) =>
+  state.transformEditToViewSave_S;
+export const transformEditToViewCancelSetter = (state: State) =>
+  state.transformEditToViewCancel_S;

@@ -18,10 +18,9 @@ const itemCls = 'rounded-[inherit]';
 const itemContentCls =
   'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
 
-interface Props<M extends EnModes>
-  extends TBodyItemIdField<M, EnTableTypes.clinics> {}
+interface Props extends TBodyItemIdField<EnModes.add, EnTableTypes.clinics> {}
 
-const Add = <M extends EnModes>({ id }: Props<M>) => {
+const Add = ({ id }: Props) => {
   const removeAddCell = useClinicsStore(removeAddCellSetter);
   const transformAddToView = useClinicsStore(transformAddToViewSetter);
 

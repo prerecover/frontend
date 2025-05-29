@@ -9,20 +9,20 @@ import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { useState } from 'react';
 
-interface Props<M extends EnModes, T extends EnTableTypes>
-  extends TCellDataUpdate<M, T, boolean> {
+interface Props<T extends EnTableTypes>
+  extends TCellDataUpdate<EnModes.add, T, boolean> {
   data: THasAdd;
 }
 
 const buttonCls =
   'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
 
-const Add = <M extends EnModes, T extends EnTableTypes>({
+const Add = <T extends EnTableTypes>({
   data,
   cellIndex,
   id,
   updateFunc,
-}: Props<M, T>) => {
+}: Props<T>) => {
   const [state, setState] = useState<boolean>(data);
 
   const debounceUpdate = useDebounce(() => {

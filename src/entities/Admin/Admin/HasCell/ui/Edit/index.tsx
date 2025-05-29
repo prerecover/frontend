@@ -12,17 +12,17 @@ import { useState } from 'react';
 const buttonCls =
   'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
 
-interface Props<M extends EnModes, T extends EnTableTypes>
-  extends TCellDataUpdate<M, T, boolean> {
+interface Props<T extends EnTableTypes>
+  extends TCellDataUpdate<EnModes.edit, T, boolean> {
   data: THasEdit;
 }
 
-const Edit = <M extends EnModes, T extends EnTableTypes>({
+const Edit = <T extends EnTableTypes>({
   data,
   cellIndex,
   id,
   updateFunc,
-}: Props<M, T>) => {
+}: Props<T>) => {
   const [state, setState] = useState<boolean>(data);
 
   const debounceUpdate = useDebounce(() => {

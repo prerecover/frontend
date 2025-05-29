@@ -5,17 +5,17 @@ import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 
-interface Props<M extends EnModes, T extends EnTableTypes>
-  extends TCellDataUpdate<M, T, string> {
+interface Props<T extends EnTableTypes>
+  extends TCellDataUpdate<EnModes.add, T, string> {
   data: TInlineAdd;
 }
 
-const Add = <M extends EnModes, T extends EnTableTypes>({
+const Add = <T extends EnTableTypes>({
   data,
   cellIndex,
   id,
   updateFunc,
-}: Props<M, T>) => {
+}: Props<T>) => {
   const debounceUpdate = useDebounce((inputValue: string) => {
     updateFunc({ cellIndex, data: inputValue, id });
   }, 200);

@@ -20,11 +20,11 @@ const ClinicsActionsCell = <M extends EnModes>({ mode, id }: Props<M>) => {
   return (
     <>
       {mode === EnModes.view ? (
-        <View<M> id={id} />
+        <View id={id} />
       ) : mode === EnModes.edit ? (
-        <Edit<M> id={id} />
+        <Edit id={id} />
       ) : mode === EnModes.add ? (
-        <Add<M> id={id} />
+        <Add id={id} />
       ) : null}
     </>
   );

@@ -12,11 +12,9 @@ const itemCls = 'rounded-[inherit]';
 const itemContentCls =
   'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
 
-interface Props<M extends EnModes> {
-  id: TBodyItemIdField<M, EnTableTypes.clinics>;
-}
+interface Props extends TBodyItemIdField<EnModes.view, EnTableTypes.clinics> {}
 
-const View = <M extends EnModes>({ id }: Props<M>) => {
+const View = ({ id }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
