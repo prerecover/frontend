@@ -12,7 +12,7 @@ interface Props extends TCellIndex {
 const buttonCls =
   'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
 
-const Add: FC<Props> = ({ data }) => {
+const Add: FC<Props> = ({ data, cellIndex }) => {
   return (
     <div className="flex rounded-xl shadow-mainShadow">
       <Button
