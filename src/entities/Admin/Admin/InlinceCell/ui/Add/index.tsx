@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Add: FC<Props> = ({ data }) => {
-  return <p>{data}</p>;
+  return <input className="w-full bg-[transparent] text-center" />;
 };
 
 export { Add };

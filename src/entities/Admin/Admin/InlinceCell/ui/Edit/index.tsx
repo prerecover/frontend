@@ -6,7 +6,12 @@ interface Props {
 }
 
 const Edit: FC<Props> = ({ data }) => {
-  return <p>{data}</p>;
+  return (
+    <input
+      defaultValue={data}
+      className="w-full bg-[transparent] text-center"
+    />
+  );
 };
 
 export { Edit };
