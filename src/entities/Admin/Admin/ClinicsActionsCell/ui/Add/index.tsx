@@ -1,4 +1,3 @@
-import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   DropdownMenu,
@@ -6,14 +5,15 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
+import { EnTableTypes } from '@/segments/Admin/MainTable';
+import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
   'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
 
-interface Props<M extends EnModes> {
-  id: TClinicsBody<M>[0]['id'];
-}
+interface Props<M extends EnModes | never = never>
+  extends TBodyItemIdField<M, EnTableTypes.clinics> {}
 
 const Add = <M extends EnModes>({ id }: Props<M>) => {
   return (

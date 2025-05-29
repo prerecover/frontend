@@ -4,15 +4,28 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 
-interface Props extends TCellIndexField {
+interface Props<
+  M extends EnModes | never = never,
+  T extends EnTableTypes | never = never,
+> extends TCellDataUpdate<M, T> {
   data: THasAdd;
 }
 
 const buttonCls =
   'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
 
-const Add: FC<Props> = ({ data, cellIndex }) => {
+const Add = <
+  M extends EnModes | never = never,
+  T extends EnTableTypes | never = never,
+>({
+  data,
+  cellIndex,
+  id,
+}: Props<M, T>) => {
   return (
     <div className="flex rounded-xl shadow-mainShadow">
       <Button
