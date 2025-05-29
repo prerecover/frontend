@@ -113,16 +113,17 @@ export const useClinicsStore = create<State>()(
 
               if (props.data.length - 1 >= cellIndex) {
                 newData = {
-                  data: props.data.map((currentData, index) => {
+                  ...props,
+                  data: props.data.map((props, index) => {
                     if (index === cellIndex) {
-                      return data;
+                      return { ...props, data };
                     }
-                    return currentData;
+                    return props;
                   }),
                 };
               }
 
-              return newData || props.data[index];
+              return newData || props;
             }
             return props;
           }),
