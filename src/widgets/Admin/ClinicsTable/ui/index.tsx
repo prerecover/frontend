@@ -9,6 +9,8 @@ import {
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
 import { returnViewComponent } from '../lib/returnViewComponent';
+import { returnAddComponent } from '../lib/returnAddComponent';
+import { returnEditComponent } from '../lib/returnEditComponent';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -24,7 +26,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
             return {
               render: data.map(({ cellType, data }) => {
                 return {
-                  node: returnViewComponent({ cellType, mode }),
+                  node: returnViewComponent({ cellType, mode, data }),
                   cellClassName: undefined,
                 };
               }),
@@ -34,7 +36,17 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
             return {
               render: data.map(({ cellType, data }) => {
                 return {
-                  node: 1,
+                  node: returnAddComponent({ cellType, mode, data }),
+                  cellClassName: undefined,
+                };
+              }),
+              id,
+            };
+          } else if (mode === EnModes.edit) {
+            return {
+              render: data.map(({ cellType, data }) => {
+                return {
+                  node: returnEditComponent({ cellType, mode, data }),
                   cellClassName: undefined,
                 };
               }),

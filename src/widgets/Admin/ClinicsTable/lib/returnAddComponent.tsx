@@ -4,10 +4,10 @@ import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
+import { TInlineAdd } from '@/shared/types/Admin/shared/cells/Inline';
 
 interface Params {
-  mode: EnModes.view;
+  mode: EnModes.add;
   cellType:
     | EnCellTypes.inline
     | EnCellTypes.action
@@ -20,12 +20,10 @@ interface Params {
   data: unknown;
 }
 
-export const returnViewComponent = ({ cellType, mode, data }: Params) => {
+export const returnAddComponent = ({ cellType, mode, data }: Params) => {
   switch (cellType) {
     case EnCellTypes.inline:
-      return (
-        <InlineCell<EnModes.view> data={data as TInlineView} mode={mode} />
-      );
+      return <InlineCell<EnModes.add> data={data as TInlineAdd} mode={mode} />;
     case EnCellTypes.action:
       return 1;
     case EnCellTypes.has:
