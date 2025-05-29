@@ -1,3 +1,3 @@
-export type TCellIndex = {
+export type TCellIndexField = {
   cellIndex: number;
 };

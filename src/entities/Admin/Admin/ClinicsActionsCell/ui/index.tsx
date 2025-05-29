@@ -2,11 +2,12 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
-import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
+import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 
-interface Props<M extends EnModes> {
+interface Props<M extends EnModes>
+  extends TBodyItemIdField<M, EnTableTypes.clinics> {
   mode: M;
-  id: TClinicsBody<M>[0]['id'];
 }
 
 const ClinicsActionsCell = <M extends EnModes>({ mode, id }: Props<M>) => {

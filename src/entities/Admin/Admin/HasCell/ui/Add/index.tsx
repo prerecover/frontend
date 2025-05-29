@@ -3,9 +3,9 @@ import { THasAdd } from '@/shared/types/Admin/shared/cells/Has';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 
-interface Props extends TCellIndex {
+interface Props extends TCellIndexField {
   data: THasAdd;
 }
 

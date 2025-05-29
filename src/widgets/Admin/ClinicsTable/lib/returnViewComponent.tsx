@@ -7,11 +7,11 @@ import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasView } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
 
-interface Params extends TCellIndex {
+interface Params extends TCellIndexField {
   mode: EnModes.view;
   cellType:
     | EnCellTypes.inline

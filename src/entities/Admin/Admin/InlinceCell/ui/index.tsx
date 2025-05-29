@@ -7,9 +7,13 @@ import {
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
-import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { EnTableTypes } from '@/segments/Admin/MainTable';
+import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 
-interface Props<M extends EnModes | never = never> extends TCellIndex {
+interface Props<
+  M extends EnModes | never = never,
+  T extends EnTableTypes | never = never,
+> extends TCellDataUpdate<M, T> {
   mode: M;
   data: M extends EnModes.view
     ? TInlineView
@@ -20,7 +24,10 @@ interface Props<M extends EnModes | never = never> extends TCellIndex {
         : never;
 }
 
-const InlineCell = <M extends EnModes>({ mode, data }: Props<M>) => {
+const InlineCell = <M extends EnModes, T extends EnTableTypes>({
+  mode,
+  data,
+}: Props<M, T>) => {
   if (mode === undefined) {
     throw new Error(
       `Некорректный мод для InlineCell. Было получение ${mode}, а ожидалось одно из значений EnModes`

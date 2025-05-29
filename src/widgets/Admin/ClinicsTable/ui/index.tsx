@@ -11,6 +11,7 @@ import {
 import { returnViewComponent } from '../lib/returnViewComponent';
 import { returnAddComponent } from '../lib/returnAddComponent';
 import { returnEditComponent } from '../lib/returnEditComponent';
+import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -21,44 +22,73 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
       <MainTable<EnTableTypes.clinics, EnModes.view>
-        bodyItems={[...addCells, ...cells].map(({ id, data, mode }) => {
-          if (mode === EnModes.view)
-            return {
-              render: data.map(({ cellType, data }) => {
-                return {
-                  node: returnViewComponent({ cellType, mode, data, id }),
-                  cellClassName: undefined,
-                };
-              }),
-              id,
-            };
-          else if (mode === EnModes.add) {
-            return {
-              render: data.map(({ cellType, data }) => {
-                return {
-                  node: returnAddComponent({ cellType, mode, data, id }),
-                  cellClassName: undefined,
-                };
-              }),
-              id,
-            };
-          } else if (mode === EnModes.edit) {
-            return {
-              render: data.map(({ cellType, data }) => {
-                return {
-                  node: returnEditComponent({ cellType, mode, data, id }),
-                  cellClassName: undefined,
-                };
-              }),
-              id,
-            };
-          }
+        bodyItems={[...addCells, ...cells].map(
+          ({ id, data, mode }, cellIndex) => {
+            if (mode === EnModes.view)
+              return {
+                render: data.map(({ cellType, data }) => {
+                  return {
+                    node: returnViewComponent({
+                      cellType,
+                      mode,
+                      data,
+                      id,
+                      cellIndex,
+                    }),
+                    cellClassName:
+                      cellType === EnCellTypes.has
+                        ? '[&>div]:overflow-visible'
+                        : undefined,
+                  };
+                }),
+                id,
+              };
+            else if (mode === EnModes.add) {
+              return {
+                render: data.map(({ cellType, data }, cellIndex) => {
+                  return {
+                    node: returnAddComponent({
+                      cellType,
+                      mode,
+                      data,
+                      id,
+                      cellIndex,
+                    }),
+                    cellClassName:
+                      cellType === EnCellTypes.has
+                        ? '[&>div]:overflow-visible'
+                        : undefined,
+                  };
+                }),
+                id,
+              };
+            } else if (mode === EnModes.edit) {
+              return {
+                render: data.map(({ cellType, data }, cellIndex) => {
+                  return {
+                    node: returnEditComponent({
+                      cellType,
+                      mode,
+                      data,
+                      id,
+                      cellIndex,
+                    }),
+                    cellClassName:
+                      cellType === EnCellTypes.has
+                        ? '[&>div]:overflow-visible'
+                        : undefined,
+                  };
+                }),
+                id,
+              };
+            }
 
-          throw new Error(`Некорректный mode для ClinicsTable. Был получен ${mode}. Поле mode может быть только следующими данными: cellType:
+            throw new Error(`Некорректный mode для ClinicsTable. Был получен ${mode}. Поле mode может быть только следующими данными: cellType:
 		| EnModes.view
 		| EnModes.edit
 		| EnModes.add`);
-        })}
+          }
+        )}
         headItems={[
           'Название',
           'Тип учреждения',

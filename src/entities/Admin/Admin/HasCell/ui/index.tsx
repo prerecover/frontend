@@ -7,9 +7,13 @@ import {
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
-import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 
-interface Props<M extends EnModes | never = never> extends TCellIndex {
+interface Props<
+  M extends EnModes | never = never,
+  T extends EnTableTypes | never = never,
+> extends TCellDataUpdate<M, T> {
   mode: M;
   data: M extends EnModes.view
     ? THasView
@@ -20,7 +24,11 @@ interface Props<M extends EnModes | never = never> extends TCellIndex {
         : never;
 }
 
-const HasCell = <M extends EnModes>({ mode, data, cellIndex }: Props<M>) => {
+const HasCell = <M extends EnModes, T extends EnTableTypes>({
+  mode,
+  data,
+  cellIndex,
+}: Props<M, T>) => {
   if (mode === undefined) {
     throw new Error(
       `Некорректный мод для HasCell. Было получение ${mode}, а ожидалось одно из значений EnModes`
