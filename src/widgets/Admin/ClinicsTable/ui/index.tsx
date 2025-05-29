@@ -26,7 +26,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
             return {
               render: data.map(({ cellType, data }) => {
                 return {
-                  node: returnViewComponent({ cellType, mode, data }),
+                  node: returnViewComponent({ cellType, mode, data, id }),
                   cellClassName: undefined,
                 };
               }),
@@ -36,7 +36,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
             return {
               render: data.map(({ cellType, data }) => {
                 return {
-                  node: returnAddComponent({ cellType, mode, data }),
+                  node: returnAddComponent({ cellType, mode, data, id }),
                   cellClassName: undefined,
                 };
               }),
@@ -46,7 +46,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
             return {
               render: data.map(({ cellType, data }) => {
                 return {
-                  node: returnEditComponent({ cellType, mode, data }),
+                  node: returnEditComponent({ cellType, mode, data, id }),
                   cellClassName: undefined,
                 };
               }),

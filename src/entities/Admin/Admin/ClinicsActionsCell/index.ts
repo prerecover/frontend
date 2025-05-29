@@ -1,0 +1,1 @@
+export { ClinicsActionsCell } from './ui';

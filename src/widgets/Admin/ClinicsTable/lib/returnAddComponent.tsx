@@ -1,4 +1,6 @@
+import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
+import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
@@ -18,14 +20,15 @@ interface Params {
     | EnLinks.doctors
     | EnLinks.services;
   data: unknown;
+  id: TClinicsBody<EnModes.add>[0]['id'];
 }
 
-export const returnAddComponent = ({ cellType, mode, data }: Params) => {
+export const returnAddComponent = ({ cellType, mode, data, id }: Params) => {
   switch (cellType) {
     case EnCellTypes.inline:
       return <InlineCell<EnModes.add> data={data as TInlineAdd} mode={mode} />;
     case EnCellTypes.action:
-      return 1;
+      return <ClinicsActionsCell<EnModes.add> id={id} mode={mode} />;
     case EnCellTypes.has:
       return 1;
     case EnCellTypes.inlineArea:
