@@ -2,15 +2,15 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
-  addCellAddSelector,
-  useClinicStore,
-} from '@/shared/store/Admin/clinicStore';
+  addAddCellSetter,
+  useClinicsStore,
+} from '@/shared/store/Admin/useClinicsStore';
 import { FC, HTMLAttributes } from 'react';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {}
 
 const AddClinicButton: FC<Props> = ({ className, onClick, ...props }) => {
-  const addClinic = useClinicStore(addCellAddSelector);
+  const addClinicSetter = useClinicsStore(addAddCellSetter);
 
   return (
     <Button
@@ -18,7 +18,7 @@ const AddClinicButton: FC<Props> = ({ className, onClick, ...props }) => {
       variant="outline"
       onClick={(e) => {
         onClick && onClick(e);
-        addClinic();
+        addClinicSetter();
       }}
       className={cn('h-auto rounded-xl px-6', className)}
     >

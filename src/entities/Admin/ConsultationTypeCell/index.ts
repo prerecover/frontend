@@ -1,1 +1,0 @@
-export { ConsultationTypeCell } from './ui';

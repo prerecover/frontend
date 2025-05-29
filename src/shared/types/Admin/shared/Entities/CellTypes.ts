@@ -1,8 +1,7 @@
 export enum EnCellTypes {
-	inline = 'inline',
-	inlineArea = 'inline-area',
-	has = 'has',
-	accumulator = 'accumulator',
-	action = 'action',
-	net = 'net',
+  inline = 'inline',
+  inlineArea = 'inline-area',
+  has = 'has',
+  action = 'action',
+  net = 'net',
 }

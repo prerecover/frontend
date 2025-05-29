@@ -8,6 +8,7 @@ import {
   cellsSelector,
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
+import { returnViewComponent } from '../lib/returnViewComponent';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -21,9 +22,30 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
         bodyItems={[...addCells, ...cells].map(({ id, data, mode }) => {
           if (mode === EnModes.view)
             return {
+              render: data.map(({ cellType, data }) => {
+                return {
+                  node: returnViewComponent({ cellType, mode }),
+                  cellClassName: undefined,
+                };
+              }),
               id,
-              data: data.map(({ cellType, data }) => {}),
             };
+          else if (mode === EnModes.add) {
+            return {
+              render: data.map(({ cellType, data }) => {
+                return {
+                  node: 1,
+                  cellClassName: undefined,
+                };
+              }),
+              id,
+            };
+          }
+
+          throw new Error(`Некорректный mode для ClinicsTable. Был получен ${mode}. Поле mode может быть только следующими данными: cellType:
+		| EnModes.view
+		| EnModes.edit
+		| EnModes.add`);
         })}
         headItems={[
           'Название',

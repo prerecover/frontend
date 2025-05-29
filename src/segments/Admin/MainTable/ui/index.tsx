@@ -5,17 +5,18 @@ import { TServicesBody } from '@/shared/types/Admin/Services/Bodies';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { Fragment, HTMLAttributes } from 'react';
 import { EnTableTypes } from '../types/TableTypes';
+import { TBodyItem } from '../types/Body';
 
 interface Props<T extends EnTableTypes, M extends EnModes>
   extends HTMLAttributes<HTMLTableElement> {
   headItems: string[];
-  bodyItems: T extends EnTableTypes.clinics
-    ? TClinicsBody<M>
+  bodyItems: (T extends EnTableTypes.clinics
+    ? TBodyItem<TClinicsBody<M>[0]['id']>
     : T extends EnTableTypes.services
-      ? TServicesBody<M>
+      ? TBodyItem<TServicesBody<M>[0]['id']>
       : T extends EnTableTypes.doctors
-        ? TDoctorsBody<M>
-        : never;
+        ? TBodyItem<TDoctorsBody<M>[0]['id']>
+        : never)[];
 }
 
 const MainTable = <T extends EnTableTypes, M extends EnModes>({
@@ -46,7 +47,7 @@ const MainTable = <T extends EnTableTypes, M extends EnModes>({
         {bodyItems.map((row, rowIndex) => {
           return (
             <tr key={row.id}>
-              {row.data.map((cell, cellIndex) => {
+              {row?.render?.map(({ node, cellClassName }, cellIndex) => {
                 return (
                   <Fragment key={cellIndex}>
                     {cellIndex === 0 ? (
@@ -54,18 +55,16 @@ const MainTable = <T extends EnTableTypes, M extends EnModes>({
                         <p className="w-max mx-auto">{rowIndex + 1}</p>
                       </td>
                     ) : null}
-                    {cell !== null ? (
-                      <td
-                        className={cn(
-                          'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
-                          cell.className
-                        )}
-                      >
-                        <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
-                          {cell.children}
-                        </div>
-                      </td>
-                    ) : null}
+                    <td
+                      className={cn(
+                        'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
+                        cellClassName
+                      )}
+                    >
+                      <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
+                        {node}
+                      </div>
+                    </td>
                   </Fragment>
                 );
               })}
