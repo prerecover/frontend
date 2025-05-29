@@ -1,3 +1,4 @@
+'use client';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';

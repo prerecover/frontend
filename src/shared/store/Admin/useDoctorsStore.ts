@@ -4,7 +4,7 @@ import { TAddBody } from '@/shared/types/Admin/Doctors/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Doctors/Bodies/ViewEdit';
 import { TDoctorsDataStructure } from '@/shared/types/Admin/Doctors/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TUpdateFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
 
 interface State {
@@ -17,9 +17,9 @@ interface State {
   toggleCellMode_S: (params: { id: TDoctorsDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TDoctorsDataStructure['id'] }) => void;
 
-  updateCell_S: <T>(params: TUpdateFuncParams<T, EnTableTypes.doctors>) => void;
+  updateCell_S: <T>(params: TCellFuncParams<T, EnTableTypes.doctors>) => void;
   updateAddCell_S: <T>(
-    params: TUpdateFuncParams<T, EnTableTypes.doctors>
+    params: TCellFuncParams<T, EnTableTypes.doctors>
   ) => void;
 }
 

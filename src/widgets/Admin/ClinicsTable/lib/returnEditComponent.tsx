@@ -2,6 +2,7 @@ import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
+import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
@@ -17,15 +18,7 @@ interface Params
   extends TCellIndexField,
     TUpdateFuncField<EnTableTypes.clinics, unknown> {
   mode: EnModes.edit;
-  cellType:
-    | EnCellTypes.inline
-    | EnCellTypes.action
-    | EnCellTypes.has
-    | EnCellTypes.inlineArea
-    | EnMultiselectTypes.language
-    | EnAccumulator.clinicsNet
-    | EnLinks.doctors
-    | EnLinks.services;
+  cellType: TClinicsAllCellTypes;
   data: unknown;
   id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
 }

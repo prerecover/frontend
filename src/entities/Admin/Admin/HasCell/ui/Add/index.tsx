@@ -1,3 +1,4 @@
+'use client';
 import { THasAdd } from '@/shared/types/Admin/shared/cells/Has';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -5,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 interface Props<M extends EnModes, T extends EnTableTypes>
   extends TCellDataUpdate<M, T, boolean> {
@@ -20,6 +22,10 @@ const Add = <M extends EnModes, T extends EnTableTypes>({
   id,
   updateFunc,
 }: Props<M, T>) => {
+  const debounceUpdate = useDebounce((value: boolean) => {
+    updateFunc({ cellIndex, data: value, id });
+  }, 200);
+
   return (
     <div className="flex rounded-xl shadow-mainShadow">
       <Button

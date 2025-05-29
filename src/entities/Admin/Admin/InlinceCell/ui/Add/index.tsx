@@ -1,3 +1,4 @@
+'use client';
 import { TInlineAdd } from '@/shared/types/Admin/shared/cells/Inline';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';

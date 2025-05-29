@@ -6,7 +6,7 @@ import { TClinicsDataStructure } from '../../Clinics/data-structure';
 import { TDoctorsDataStructure } from '../../Doctors/data-structure';
 import { TServicesDataStructure } from '../../services/data-structure';
 
-export type TUpdateFuncParams<D, T extends EnTableTypes> = {
+export type TCellFuncParams<D, T extends EnTableTypes> = {
   id: T extends EnTableTypes.clinics
     ? TClinicsDataStructure['id']
     : T extends EnTableTypes.doctors
@@ -19,10 +19,10 @@ export type TUpdateFuncParams<D, T extends EnTableTypes> = {
 };
 
 export type TUpdateFuncField<T extends EnTableTypes, D> = {
-  updateFunc: (params: TUpdateFuncParams<D, T>) => void;
+  updateFunc: (params: TCellFuncParams<D, T>) => void;
 };
 
 export type TCellDataUpdate<M extends EnModes, T extends EnTableTypes, D> = {
-  updateFunc: (params: TUpdateFuncParams<D, T>) => void;
+  updateFunc: (params: TCellFuncParams<D, T>) => void;
 } & TBodyItemIdField<M, T> &
   TCellIndexField;

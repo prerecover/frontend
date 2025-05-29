@@ -4,7 +4,7 @@ import { TAddBody } from '@/shared/types/Admin/Clinics/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Clinics/Bodies/ViewEdit';
 import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TUpdateFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -14,13 +14,20 @@ interface State {
 
   addAddCell_S: () => void;
   removeAddCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
+  updateAddCell_S: <T>(
+    params: TCellFuncParams<T, EnTableTypes.clinics>
+  ) => void;
+  getAddCellData_S: <T>(
+    params: Omit<TCellFuncParams<T, EnTableTypes.clinics>, 'data'>
+  ) => T | null;
+
   addCell_S: (data: TViewEditBody) => void;
   toggleCellMode_S: (params: { id: TClinicsDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
-  updateCell_S: <T>(params: TUpdateFuncParams<T, EnTableTypes.clinics>) => void;
-  updateAddCell_S: <T>(
-    params: TUpdateFuncParams<T, EnTableTypes.clinics>
-  ) => void;
+  updateCell_S: <T>(params: TCellFuncParams<T, EnTableTypes.clinics>) => void;
+  getCellData_S: <T>(
+    params: Omit<TCellFuncParams<T, EnTableTypes.clinics>, 'data'>
+  ) => T | null;
 }
 
 export const useClinicsStore = create<State>()(
@@ -130,6 +137,28 @@ export const useClinicsStore = create<State>()(
         };
       });
     },
+    getAddCellData_S: <T>({ id, cellIndex }) => {
+      const addCells = get().addCells;
+
+      // @ts-ignore
+      const result: { data: T } = addCells.find((props) => {
+        if (props.id === id) {
+          return props;
+        }
+      });
+      return result.data[cellIndex];
+    },
+    getCellData_S: ({ id, cellIndex }) => {
+      const addCells = get().cells;
+
+      // @ts-ignore
+      const result: { data: T } = addCells.find((props) => {
+        if (props.id === id) {
+          return props;
+        }
+      });
+      return result.data[cellIndex];
+    },
   }))
 );
 
@@ -139,9 +168,11 @@ export const cellsSelector = (state: State) => state.cells;
 export const addAddCellSetter = (state: State) => state.addAddCell_S;
 export const removeAddCellSetter = (state: State) => state.removeAddCell_S;
 export const updateAddCellSetter = (state: State) => state.updateAddCell_S;
+export const getAddCellDataGetter = (state: State) => state.getAddCellData_S;
 
 export const addCellSetter = (state: State) => state.addCell_S;
 export const removeCellSetter = (state: State) => state.removeCell_S;
 export const toggleCellModeModeSetter = (state: State) =>
   state.toggleCellMode_S;
 export const updateCellSetter = (state: State) => state.updateCell_S;
+export const getCellDataGetter = (state: State) => state.getCellData_S;

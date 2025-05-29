@@ -4,7 +4,7 @@ import { TAddBody } from '@/shared/types/Admin/Services/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Services/Bodies/ViewEdit';
 import { TServicesDataStructure } from '@/shared/types/Admin/services/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TUpdateFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
 
 interface State {
@@ -16,11 +16,9 @@ interface State {
   addCell_S: (data: TViewEditBody) => void;
   toggleCellMode_S: (params: { id: TServicesDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TServicesDataStructure['id'] }) => void;
-  updateCell_S: <T>(
-    params: TUpdateFuncParams<T, EnTableTypes.services>
-  ) => void;
+  updateCell_S: <T>(params: TCellFuncParams<T, EnTableTypes.services>) => void;
   updateAddCell_S: <T>(
-    params: TUpdateFuncParams<T, EnTableTypes.services>
+    params: TCellFuncParams<T, EnTableTypes.services>
   ) => void;
 }
 
