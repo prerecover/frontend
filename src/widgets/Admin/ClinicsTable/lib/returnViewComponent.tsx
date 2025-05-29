@@ -1,4 +1,5 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
+import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
 import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
@@ -6,6 +7,7 @@ import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { THasView } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
 
 interface Params {
@@ -32,7 +34,7 @@ export const returnViewComponent = ({ cellType, mode, data, id }: Params) => {
     case EnCellTypes.action:
       return <ClinicsActionsCell<EnModes.view> id={id} mode={mode} />;
     case EnCellTypes.has:
-      return 1;
+      return <HasCell<EnModes.view> data={data as THasView} mode={mode} />;
     case EnCellTypes.inlineArea:
       return 1;
     case EnMultiselectTypes.language:

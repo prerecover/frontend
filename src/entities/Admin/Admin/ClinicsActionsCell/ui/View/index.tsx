@@ -19,7 +19,7 @@ const View = <M extends EnModes>({ id }: Props<M>) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <p>Выбрать</p>
+        <p className="text-blue">Выбрать</p>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-0 bg-white-background">
         <DropdownMenuItem className={itemCls}>
