@@ -7,10 +7,11 @@ import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 
-interface Params {
+interface Params extends TCellIndex {
   mode: EnModes.edit;
   cellType:
     | EnCellTypes.inline
@@ -25,16 +26,32 @@ interface Params {
   id: TClinicsBody<EnModes.edit>[0]['id'];
 }
 
-export const returnEditComponent = ({ cellType, mode, data, id }: Params) => {
+export const returnEditComponent = ({
+  cellIndex,
+  cellType,
+  mode,
+  data,
+  id,
+}: Params) => {
   switch (cellType) {
     case EnCellTypes.inline:
       return (
-        <InlineCell<EnModes.edit> data={data as TInlineEdit} mode={mode} />
+        <InlineCell<EnModes.edit>
+          cellIndex={cellIndex}
+          data={data as TInlineEdit}
+          mode={mode}
+        />
       );
     case EnCellTypes.action:
       return <ClinicsActionsCell<EnModes.edit> id={id} mode={mode} />;
     case EnCellTypes.has:
-      return <HasCell<EnModes.edit> data={data as THasEdit} mode={mode} />;
+      return (
+        <HasCell<EnModes.edit>
+          cellIndex={cellIndex}
+          data={data as THasEdit}
+          mode={mode}
+        />
+      );
     case EnCellTypes.inlineArea:
       return 1;
     case EnMultiselectTypes.language:

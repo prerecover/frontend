@@ -7,8 +7,9 @@ import {
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
+import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
 
-interface Props<M extends EnModes | never = never> {
+interface Props<M extends EnModes | never = never> extends TCellIndex {
   mode: M;
   data: M extends EnModes.view
     ? TInlineView

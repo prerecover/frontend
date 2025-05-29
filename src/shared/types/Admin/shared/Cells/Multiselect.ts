@@ -1,4 +1,4 @@
-import { TValue } from '../Entities/Value';
+import { TValue } from '../Utils/Value';
 
 export type TMultiselectView<T = null, V = TValue> = {
   data: T;

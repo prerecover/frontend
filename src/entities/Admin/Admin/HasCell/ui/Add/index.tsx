@@ -3,10 +3,10 @@ import { THasAdd } from '@/shared/types/Admin/shared/cells/Has';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { TCellIndex } from '@/shared/types/Admin/shared/Utils/CellIndex';
 
-interface Props {
+interface Props extends TCellIndex {
   data: THasAdd;
-  cellIndex: number;
 }
 
 const buttonCls =
