@@ -7,6 +7,10 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 
+const itemCls = 'rounded-[inherit]';
+const itemContentCls =
+  'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
+
 interface Props<M extends EnModes> {
   id: TClinicsBody<M>[0]['id'];
 }
@@ -17,12 +21,12 @@ const View = <M extends EnModes>({ id }: Props<M>) => {
       <DropdownMenuTrigger>
         <p>Выбрать</p>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem>
-          <p>Изменить</p>
+      <DropdownMenuContent className="p-0 bg-white-background">
+        <DropdownMenuItem className={itemCls}>
+          <p className={itemContentCls}>Изменить</p>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <p>Удалить</p>
+        <DropdownMenuItem className={itemCls}>
+          <p className={itemContentCls}>Удалить</p>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
