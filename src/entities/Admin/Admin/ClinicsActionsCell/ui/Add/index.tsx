@@ -1,3 +1,4 @@
+'use client';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   DropdownMenu,
@@ -7,6 +8,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
+import {
+  removeAddCellSetter,
+  transformAddToViewSetter,
+  useClinicsStore,
+} from '@/shared/store/Admin/useClinicsStore';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -16,16 +22,29 @@ interface Props<M extends EnModes>
   extends TBodyItemIdField<M, EnTableTypes.clinics> {}
 
 const Add = <M extends EnModes>({ id }: Props<M>) => {
+  const removeAddCell = useClinicsStore(removeAddCellSetter);
+  const transformAddToView = useClinicsStore(transformAddToViewSetter);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <p className="text-blue">Выбрать</p>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-0 bg-white-background">
-        <DropdownMenuItem className={itemCls}>
+        <DropdownMenuItem
+          className={itemCls}
+          onClick={() => {
+            transformAddToView({ id });
+          }}
+        >
           <p className={itemContentCls}>Зарегистрировать</p>
         </DropdownMenuItem>
-        <DropdownMenuItem className={itemCls}>
+        <DropdownMenuItem
+          className={itemCls}
+          onClick={() => {
+            removeAddCell({ id });
+          }}
+        >
           <p className={itemContentCls}>Отменить</p>
         </DropdownMenuItem>
       </DropdownMenuContent>

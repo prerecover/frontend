@@ -4,6 +4,7 @@ import { TAddBody } from '@/shared/types/Admin/Clinics/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Clinics/Bodies/ViewEdit';
 import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
@@ -28,6 +29,10 @@ interface State {
   getCellData_S: <T>(
     params: Omit<TCellFuncParams<T, EnTableTypes.clinics>, 'data'>
   ) => T | null;
+
+  transformAddToView: (params: {
+    id: TBodyItemId<EnModes.add, EnTableTypes.clinics>;
+  }) => void;
 }
 
 export const useClinicsStore = create<State>()(
@@ -159,6 +164,27 @@ export const useClinicsStore = create<State>()(
       });
       return result.data[cellIndex];
     },
+    transformAddToView: ({ id }) => {
+      const removeAddCell = get().removeAddCell_S;
+
+      set(({ cells, addCells }) => {
+        const transformAddCell = addCells.find((props) => props.id === id);
+
+        if (transformAddCell) {
+          removeAddCell({ id });
+          return {
+            cells: [
+              {
+                ...transformAddCell,
+                mode: EnModes.view,
+                id: `added-${id}`,
+              } as unknown as TViewEditBody[0],
+              ...cells,
+            ],
+          };
+        }
+      });
+    },
   }))
 );
 
@@ -176,3 +202,6 @@ export const toggleCellModeModeSetter = (state: State) =>
   state.toggleCellMode_S;
 export const updateCellSetter = (state: State) => state.updateCell_S;
 export const getCellDataGetter = (state: State) => state.getCellData_S;
+
+export const transformAddToViewSetter = (state: State) =>
+  state.transformAddToView;
