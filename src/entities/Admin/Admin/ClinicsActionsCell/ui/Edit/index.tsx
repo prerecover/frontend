@@ -7,6 +7,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
+import {
+  toggleCellModeModeSetter,
+  useClinicsStore,
+} from '@/shared/store/Admin/useClinicsStore';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -17,6 +21,8 @@ interface Props<M extends EnModes> {
 }
 
 const Edit = <M extends EnModes>({ id }: Props<M>) => {
+  const toggleCellMode = useClinicsStore(toggleCellModeModeSetter);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

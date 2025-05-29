@@ -12,6 +12,10 @@ import { devtools } from 'zustand/middleware';
 interface State {
   addCells: TAddBody;
   cells: TViewEditBody;
+  editableCells: TViewEditBody;
+
+  addEditableCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
+  removeEditableCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
 
   addAddCell_S: () => void;
   removeAddCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
@@ -33,12 +37,22 @@ interface State {
   transformAddToView: (params: {
     id: TBodyItemId<EnModes.add, EnTableTypes.clinics>;
   }) => void;
+  transformViewToEdit: (params: {
+    id: TBodyItemId<EnModes.view, EnTableTypes.clinics>;
+  }) => void;
+  transformEditToViewSave: (params: {
+    id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
+  }) => void;
+  transformEditToViewCancel: (params: {
+    id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
+  }) => void;
 }
 
 export const useClinicsStore = create<State>()(
   devtools((set, get) => ({
     addCells: [],
     cells: [],
+    editableCells: [],
     addAddCell_S: () => {
       set(({ addCells }) => {
         return {
@@ -55,6 +69,23 @@ export const useClinicsStore = create<State>()(
       set(({ addCells }) => {
         return {
           addCells: addCells.filter((props) => props.id !== id),
+        };
+      });
+    },
+    addEditableCell_S: ({ id }) => {
+      set(({ editableCells, cells }) => {
+        const editableCell = cells.find((props) => props.id === id);
+
+        if (editableCell)
+          return {
+            editableCells: [...editableCells, editableCell],
+          };
+      });
+    },
+    removeEditableCell_S: ({ id }) => {
+      set(({ editableCells }) => {
+        return {
+          editableCells: editableCells.filter((props) => props.id !== id),
         };
       });
     },
@@ -183,6 +214,53 @@ export const useClinicsStore = create<State>()(
             ],
           };
         }
+      });
+    },
+    transformViewToEdit: ({ id }) => {
+      const addEditableCell = get().addEditableCell_S;
+
+      set(({ cells }) => {
+        addEditableCell({ id });
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              return { ...props, mode: EnModes.edit };
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    transformEditToViewSave: ({ id }) => {
+      const removeEditableCell = get().removeEditableCell_S;
+
+      set(({ cells }) => {
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              removeEditableCell({ id });
+              return { ...props, mode: EnModes.view };
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    transformEditToViewCancel: ({ id }) => {
+      const removeEditableCell = get().removeEditableCell_S;
+
+      set(({ editableCells, cells }) => {
+        const editableCell = editableCells.find((props) => props.id === id);
+
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              removeEditableCell({ id });
+              return editableCell;
+            }
+            return props;
+          }),
+        };
       });
     },
   }))
