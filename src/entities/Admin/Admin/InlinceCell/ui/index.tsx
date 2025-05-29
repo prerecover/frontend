@@ -40,7 +40,7 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
       ) : mode === EnModes.edit ? (
         <Edit
           //@ts-ignore
-          id={id}
+          id={props.id}
           cellIndex={cellIndex}
           // @ts-ignore
           updateFunc={props.updateFunc}
@@ -49,7 +49,7 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
       ) : mode === EnModes.add ? (
         <Add
           //@ts-ignore
-          id={id}
+          id={props.id}
           cellIndex={cellIndex}
           // @ts-ignore
           updateFunc={props.updateFunc}
