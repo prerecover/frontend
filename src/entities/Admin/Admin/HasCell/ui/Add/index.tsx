@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 
 interface Props {
   data: THasAdd;
+  cellIndex: number;
 }
 
 const buttonCls =
