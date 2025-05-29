@@ -1,3 +1,4 @@
+'use client';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   DropdownMenu,
@@ -7,6 +8,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
+import {
+  transformViewToEditSetter,
+  useClinicsStore,
+} from '@/shared/store/Admin/useClinicsStore';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -15,12 +20,19 @@ const itemContentCls =
 interface Props extends TBodyItemIdField<EnModes.view, EnTableTypes.clinics> {}
 
 const View = ({ id }: Props) => {
+  const transformViewToEdit = useClinicsStore(transformViewToEditSetter);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <p className="text-blue">Выбрать</p>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-0 bg-white-background">
+      <DropdownMenuContent
+        className="p-0 bg-white-background"
+        onClick={() => {
+          transformViewToEdit({ id });
+        }}
+      >
         <DropdownMenuItem className={itemCls}>
           <p className={itemContentCls}>Изменить</p>
         </DropdownMenuItem>

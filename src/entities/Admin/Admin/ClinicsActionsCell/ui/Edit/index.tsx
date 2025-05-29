@@ -1,3 +1,4 @@
+'use client';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   DropdownMenu,
