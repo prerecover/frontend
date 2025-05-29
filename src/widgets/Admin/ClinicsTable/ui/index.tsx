@@ -6,6 +6,8 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   addCellsSelector,
   cellsSelector,
+  updateAddCellSetter,
+  updateCellSetter,
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
 import { returnViewComponent } from '../lib/returnViewComponent';
@@ -18,6 +20,8 @@ interface Props extends HTMLAttributes<HTMLTableElement> {}
 const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   const cells = useClinicsStore(cellsSelector);
   const addCells = useClinicsStore(addCellsSelector);
+  const updateAddCell = useClinicsStore(updateAddCellSetter);
+  const updateCell = useClinicsStore(updateCellSetter);
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
@@ -53,6 +57,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                       data,
                       id,
                       cellIndex,
+                      updateFunc: updateAddCell,
                     }),
                     cellClassName:
                       cellType === EnCellTypes.has
@@ -72,6 +77,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                       data,
                       id,
                       cellIndex,
+                      updateFunc: updateCell,
                     }),
                     cellClassName:
                       cellType === EnCellTypes.has

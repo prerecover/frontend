@@ -10,10 +10,14 @@ import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 
-interface Props<
-  M extends EnModes | never = never,
-  T extends EnTableTypes | never = never,
-> extends TCellDataUpdate<M, T> {
+type OmitForViewMode<
+  M extends EnModes,
+  T extends EnTableTypes,
+> = M extends EnModes.view
+  ? Omit<TCellDataUpdate<M, T, string>, 'updateFunc'>
+  : TCellDataUpdate<M, T, string>;
+
+type Props<M extends EnModes, T extends EnTableTypes> = {
   mode: M;
   data: M extends EnModes.view
     ? TInlineView
@@ -22,11 +26,14 @@ interface Props<
       : M extends EnModes.add
         ? TInlineAdd
         : never;
-}
+} & OmitForViewMode<M, T>;
 
 const InlineCell = <M extends EnModes, T extends EnTableTypes>({
   mode,
   data,
+  cellIndex,
+  id,
+  ...props
 }: Props<M, T>) => {
   if (mode === undefined) {
     throw new Error(
@@ -39,9 +46,21 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
       {mode === EnModes.view ? (
         <View data={data as TInlineView} />
       ) : mode === EnModes.edit ? (
-        <Edit data={data as TInlineEdit} />
+        <Edit
+          id={id}
+          cellIndex={cellIndex}
+          // @ts-ignore
+          updateFunc={props.updateFunc}
+          data={data as TInlineEdit}
+        />
       ) : mode === EnModes.add ? (
-        <Add data={data as TInlineAdd} />
+        <Add
+          id={id}
+          cellIndex={cellIndex}
+          // @ts-ignore
+          updateFunc={props.updateFunc}
+          data={data as TInlineAdd}
+        />
       ) : null}
     </>
   );

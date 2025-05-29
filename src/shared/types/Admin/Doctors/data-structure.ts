@@ -1,20 +1,21 @@
-import { EnNetType } from '../shared/entities/NetType'
-import { EnWorkDays } from './entities/WorkDays'
-import { TServicesDataStructure } from '../services/data-structure'
+import { EnNetType } from '../shared/entities/NetType';
+import { EnWorkDays } from './entities/WorkDays';
+import { TServicesDataStructure } from '../services/data-structure';
+import { TPrevPage } from '../shared/Utils/PrevPage';
 
 export type TServiceItem = {
-	id: TServicesDataStructure['id']
-	name: TServicesDataStructure['name']
-	category: TServicesDataStructure['category']
-}
+  id: TServicesDataStructure['id'];
+  name: TServicesDataStructure['name'];
+  category: TServicesDataStructure['category'];
+} & TPrevPage;
 
 export type TDoctorsDataStructure = {
-	id: string
-	name: string
-	speciality: string
-	consultationType: EnNetType
-	experience: string
-	workDays: EnWorkDays[]
-	workTime: string
-	services: TServiceItem
-}
+  id: string;
+  name: string;
+  speciality: string;
+  consultationType: EnNetType;
+  experience: string;
+  workDays: EnWorkDays[];
+  workTime: string;
+  services: TServiceItem;
+} & TPrevPage;

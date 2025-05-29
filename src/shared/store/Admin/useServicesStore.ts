@@ -1,8 +1,10 @@
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { ADD_SERVICES_CELL_BASE_STRUCTURE } from '@/shared/constants/Admin/AddBaseCells/services';
 import { TAddBody } from '@/shared/types/Admin/Services/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Services/Bodies/ViewEdit';
 import { TServicesDataStructure } from '@/shared/types/Admin/services/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TUpdateFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
 
 interface State {
@@ -14,16 +16,12 @@ interface State {
   addCell_S: (data: TViewEditBody) => void;
   toggleCellMode_S: (params: { id: TServicesDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TServicesDataStructure['id'] }) => void;
-  updateCell_S: <T>(params: {
-    id: TServicesDataStructure['id'];
-    cellIndex: number;
-    data: T;
-  }) => void;
-  updateAddCell_S: <T>(params: {
-    id: TServicesDataStructure['id'];
-    cellIndex: number;
-    data: T;
-  }) => void;
+  updateCell_S: <T>(
+    params: TUpdateFuncParams<T, EnTableTypes.services>
+  ) => void;
+  updateAddCell_S: <T>(
+    params: TUpdateFuncParams<T, EnTableTypes.services>
+  ) => void;
 }
 
 export const useServicesStore = create<State>()((set, get) => ({

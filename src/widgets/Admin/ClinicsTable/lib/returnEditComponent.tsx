@@ -8,11 +8,14 @@ import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TUpdateFuncField } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 
-interface Params extends TCellIndexField {
+interface Params
+  extends TCellIndexField,
+    TUpdateFuncField<EnTableTypes.clinics, unknown> {
   mode: EnModes.edit;
   cellType:
     | EnCellTypes.inline
@@ -33,11 +36,13 @@ export const returnEditComponent = ({
   mode,
   data,
   id,
+  updateFunc,
 }: Params) => {
   switch (cellType) {
     case EnCellTypes.inline:
       return (
         <InlineCell<EnModes.edit, EnTableTypes.clinics>
+          updateFunc={updateFunc}
           cellIndex={cellIndex}
           data={data as TInlineEdit}
           mode={mode}
@@ -49,6 +54,7 @@ export const returnEditComponent = ({
     case EnCellTypes.has:
       return (
         <HasCell<EnModes.edit, EnTableTypes.clinics>
+          updateFunc={updateFunc}
           cellIndex={cellIndex}
           data={data as THasEdit}
           mode={mode}

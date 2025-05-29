@@ -1,8 +1,10 @@
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { ADD_DOCTORS_CELL_BASE_STRUCTURE } from '@/shared/constants/Admin/AddBaseCells/doctors';
 import { TAddBody } from '@/shared/types/Admin/Doctors/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Doctors/Bodies/ViewEdit';
 import { TDoctorsDataStructure } from '@/shared/types/Admin/Doctors/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TUpdateFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
 
 interface State {
@@ -15,16 +17,10 @@ interface State {
   toggleCellMode_S: (params: { id: TDoctorsDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TDoctorsDataStructure['id'] }) => void;
 
-  updateCell_S: <T>(params: {
-    id: TDoctorsDataStructure['id'];
-    cellIndex: number;
-    data: T;
-  }) => void;
-  updateAddCell_S: <T>(params: {
-    id: TDoctorsDataStructure['id'];
-    cellIndex: number;
-    data: T;
-  }) => void;
+  updateCell_S: <T>(params: TUpdateFuncParams<T, EnTableTypes.doctors>) => void;
+  updateAddCell_S: <T>(
+    params: TUpdateFuncParams<T, EnTableTypes.doctors>
+  ) => void;
 }
 
 export const useDoctorsStore = create<State>()((set, get) => ({

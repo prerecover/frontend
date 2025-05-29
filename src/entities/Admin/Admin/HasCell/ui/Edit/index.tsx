@@ -7,7 +7,7 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 interface Props<
   M extends EnModes | never = never,
   T extends EnTableTypes | never = never,
-> extends TCellDataUpdate<M, T> {
+> extends TCellDataUpdate<M, T, boolean> {
   data: THasEdit;
 }
 

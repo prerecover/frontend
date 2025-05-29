@@ -11,7 +11,7 @@ import { EnTableTypes } from '@/segments/Admin/MainTable';
 interface Props<
   M extends EnModes | never = never,
   T extends EnTableTypes | never = never,
-> extends TCellDataUpdate<M, T> {
+> extends TCellDataUpdate<M, T, boolean> {
   data: THasAdd;
 }
 

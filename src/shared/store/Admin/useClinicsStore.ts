@@ -1,9 +1,12 @@
+import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { ADD_CLINICS_CELL_BASE_STRUCTURE } from '@/shared/constants/Admin/AddBaseCells/clinics';
 import { TAddBody } from '@/shared/types/Admin/Clinics/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Clinics/Bodies/ViewEdit';
 import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structure';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { TUpdateFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 interface State {
   addCells: TAddBody;
@@ -14,123 +17,121 @@ interface State {
   addCell_S: (data: TViewEditBody) => void;
   toggleCellMode_S: (params: { id: TClinicsDataStructure['id'] }) => void;
   removeCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
-  updateCell_S: <T>(params: {
-    id: TClinicsDataStructure['id'];
-    cellIndex: number;
-    data: T;
-  }) => void;
-  updateAddCell_S: <T>(params: {
-    id: TClinicsDataStructure['id'];
-    cellIndex: number;
-    data: T;
-  }) => void;
+  updateCell_S: <T>(params: TUpdateFuncParams<T, EnTableTypes.clinics>) => void;
+  updateAddCell_S: <T>(
+    params: TUpdateFuncParams<T, EnTableTypes.clinics>
+  ) => void;
 }
 
-export const useClinicsStore = create<State>()((set, get) => ({
-  addCells: [],
-  cells: [],
-  addAddCell_S: () => {
-    set(({ addCells }) => {
-      return {
-        addCells: [
-          ADD_CLINICS_CELL_BASE_STRUCTURE(`add-cell-id-${addCells.length - 1}`),
-          ...addCells,
-        ],
-      };
-    });
-  },
-  removeAddCell_S: ({ id }) => {
-    set(({ addCells }) => {
-      return {
-        addCells: addCells.filter((props) => props.id !== id),
-      };
-    });
-  },
-  addCell_S: (data) => {
-    set(({ cells }) => {
-      return {
-        cells: [...cells, ...data],
-      };
-    });
-  },
-  toggleCellMode_S: ({ id }) => {
-    set(({ cells }) => {
-      return {
-        cells: cells.map((props) => {
-          if (props.id === id) {
-            const newMode =
-              props.mode === EnModes.edit ? EnModes.view : EnModes.edit;
+export const useClinicsStore = create<State>()(
+  devtools((set, get) => ({
+    addCells: [],
+    cells: [],
+    addAddCell_S: () => {
+      set(({ addCells }) => {
+        return {
+          addCells: [
+            ADD_CLINICS_CELL_BASE_STRUCTURE(
+              `add-cell-id-${addCells.length - 1}`
+            ),
+            ...addCells,
+          ],
+        };
+      });
+    },
+    removeAddCell_S: ({ id }) => {
+      set(({ addCells }) => {
+        return {
+          addCells: addCells.filter((props) => props.id !== id),
+        };
+      });
+    },
+    addCell_S: (data) => {
+      set(({ cells }) => {
+        return {
+          cells: [...cells, ...data],
+        };
+      });
+    },
+    toggleCellMode_S: ({ id }) => {
+      set(({ cells }) => {
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              const newMode =
+                props.mode === EnModes.edit ? EnModes.view : EnModes.edit;
 
-            return {
-              ...props,
-              mode: newMode,
-            };
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  removeCell_S: ({ id }) => {
-    set(({ cells }) => {
-      return {
-        cells: cells.filter((props) => props.id !== id),
-      };
-    });
-  },
-  updateAddCell_S: ({ cellIndex, data, id }) => {
-    set(({ addCells }) => {
-      return {
-        addCells: addCells.map((props) => {
-          if (props.id === id) {
-            let newData;
-
-            if (props.data.length - 1 <= cellIndex) {
-              newData = {
+              return {
                 ...props,
-                data: props.data.map((currentData, index) => {
-                  if (index === cellIndex) {
-                    return data;
-                  }
-                  return currentData;
-                }),
+                mode: newMode,
               };
             }
+            return props;
+          }),
+        };
+      });
+    },
+    removeCell_S: ({ id }) => {
+      set(({ cells }) => {
+        return {
+          cells: cells.filter((props) => props.id !== id),
+        };
+      });
+    },
+    updateAddCell_S: ({ cellIndex, data, id }) => {
+      set(({ addCells }) => {
+        return {
+          addCells: addCells.map((props) => {
+            if (props.id === id) {
+              let newData;
 
-            return newData || props;
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  updateCell_S: ({ cellIndex, data, id }) => {
-    set(({ cells }) => {
-      return {
-        cells: cells.map((props) => {
-          if (props.id === id) {
-            let newData;
+              if (props.data.length - 1 <= cellIndex) {
+                newData = {
+                  ...props,
+                  data: props.data.map((currentData, index) => {
+                    if (index === cellIndex) {
+                      return data;
+                    }
+                    return currentData;
+                  }),
+                };
+              }
 
-            if (props.data.length - 1 <= cellIndex) {
-              newData = {
-                ...props,
-                data: props.data.map((currentData, index) => {
-                  if (index === cellIndex) {
-                    return data;
-                  }
-                  return currentData;
-                }),
-              };
+              return newData || props;
             }
+            return props;
+          }),
+        };
+      });
+    },
+    updateCell_S: ({ cellIndex, data, id }) => {
+      set(({ cells }) => {
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              let newData;
 
-            return newData || props;
-          }
-          return props;
-        }),
-      };
-    });
-  },
-}));
+              if (props.data.length - 1 <= cellIndex) {
+                newData = {
+                  ...props,
+                  data: props.data.map((currentData, index) => {
+                    if (index === cellIndex) {
+                      return data;
+                    }
+                    return currentData;
+                  }),
+                };
+              }
+
+              return newData || props;
+            }
+            return props;
+          }),
+        };
+      });
+    },
+  }))
+);
 
 export const addCellsSelector = (state: State) => state.addCells;
 export const cellsSelector = (state: State) => state.cells;
