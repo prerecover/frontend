@@ -81,18 +81,18 @@ export const useClinicsStore = create<State>()(
     updateAddCell_S: ({ cellIndex, data, id }) => {
       set(({ addCells }) => {
         return {
-          addCells: addCells.map((props) => {
+          addCells: addCells.map((props, index) => {
             if (props.id === id) {
               let newData;
 
-              if (props.data.length - 1 <= cellIndex) {
+              if (props.data.length - 1 >= cellIndex) {
                 newData = {
                   ...props,
-                  data: props.data.map((currentData, index) => {
+                  data: props.data.map((props, index) => {
                     if (index === cellIndex) {
-                      return data;
+                      return { ...props, data };
                     }
-                    return currentData;
+                    return props;
                   }),
                 };
               }
@@ -107,13 +107,12 @@ export const useClinicsStore = create<State>()(
     updateCell_S: ({ cellIndex, data, id }) => {
       set(({ cells }) => {
         return {
-          cells: cells.map((props) => {
+          cells: cells.map((props, index) => {
             if (props.id === id) {
               let newData;
 
-              if (props.data.length - 1 <= cellIndex) {
+              if (props.data.length - 1 >= cellIndex) {
                 newData = {
-                  ...props,
                   data: props.data.map((currentData, index) => {
                     if (index === cellIndex) {
                       return data;
@@ -123,7 +122,7 @@ export const useClinicsStore = create<State>()(
                 };
               }
 
-              return newData || props;
+              return newData || props.data[index];
             }
             return props;
           }),
