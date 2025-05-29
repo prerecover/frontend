@@ -1,25 +1,29 @@
 import { cn } from '@/lib/utils';
-import { FC, Fragment, HTMLAttributes, ReactNode } from 'react';
-import { EnMode } from '../types/Mode';
+import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
+import { TDoctorsBody } from '@/shared/types/Admin/Doctors/Bodies';
+import { TServicesBody } from '@/shared/types/Admin/Services/Bodies';
+import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
+import { Fragment, HTMLAttributes } from 'react';
+import { EnTableTypes } from '../types/TableTypes';
 
-interface Props extends HTMLAttributes<HTMLTableElement> {
+interface Props<T extends EnTableTypes, M extends EnModes>
+  extends HTMLAttributes<HTMLTableElement> {
   headItems: string[];
-  bodyItems: {
-    id: number | string;
-    data: ({
-      children: ReactNode;
-      mode: EnMode;
-      className?: string;
-    } | null)[];
-  }[];
+  bodyItems: T extends EnTableTypes.clinics
+    ? TClinicsBody<M>
+    : T extends EnTableTypes.services
+      ? TServicesBody<M>
+      : T extends EnTableTypes.doctors
+        ? TDoctorsBody<M>
+        : never;
 }
 
-const MainTable: FC<Props> = ({
+const MainTable = <T extends EnTableTypes, M extends EnModes>({
   bodyItems,
   headItems,
   className,
   ...props
-}) => {
+}: Props<T, M>) => {
   return (
     <table className={cn('border-collapse', className)} {...props}>
       <thead className="font-medium">

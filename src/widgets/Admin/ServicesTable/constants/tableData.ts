@@ -1,5 +1,5 @@
 import { EnBodyType, EnMode } from '@/segments/Admin/MainTable';
-import { TTableDataItem } from '@/shared/types/Admin/Tables';
+import { TTableDataItem } from '@/shared/types/Admin/shared/Tables';
 import { ADMIN_ROUTES } from '@/shared/utils/paths';
 import { EnPayServiceType } from '../types/PayService';
 
@@ -80,6 +80,7 @@ export const TABLE_DATA: TTableDataItem[] = [
             },
             value: 1,
             isChecked: false,
+            searchValue: 'Сергей Сергеев Невролог',
           },
           {
             content: {
@@ -88,6 +89,7 @@ export const TABLE_DATA: TTableDataItem[] = [
             },
             value: 2,
             isChecked: false,
+            searchValue: 'Максим Максимов Уролог',
           },
           {
             content: {
@@ -96,6 +98,7 @@ export const TABLE_DATA: TTableDataItem[] = [
             },
             value: 3,
             isChecked: false,
+            searchValue: 'Темур Темуров Хирург',
           },
         ],
       },

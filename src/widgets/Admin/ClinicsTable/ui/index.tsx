@@ -1,91 +1,29 @@
 'use client';
 import { FC, HTMLAttributes } from 'react';
-import { EnBodyType, EnMode, MainTable } from '@/segments/Admin/MainTable';
+import { EnTableTypes, MainTable } from '@/segments/Admin/MainTable';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { InlineCell } from '@/entities/Admin/InlineCell';
-import { HasCell } from '@/entities/Admin/HasCell';
-import { InlineAreaCell } from '@/entities/Admin/InlineAreaCell';
+import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
-  cellsAddSelector,
+  addCellsSelector,
   cellsSelector,
-  useClinicStore,
-} from '@/shared/store/Admin/clinicStore';
-import { AddActionDropdown } from '@/features/Admin/AddActionDropdown';
-import { EditActionDropdown } from '@/features/Admin/EditActionDropdown';
-import { ViewActionDropdown } from '@/features/Admin/ViewActionDropdown';
+  useClinicsStore,
+} from '@/shared/store/Admin/useClinicsStore';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
 const ClinicsTable: FC<Props> = ({ className, ...props }) => {
-  const addCells = useClinicStore(cellsAddSelector);
-  const cells = useClinicStore(cellsSelector);
+  const cells = useClinicsStore(cellsSelector);
+  const addCells = useClinicsStore(addCellsSelector);
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
-      <MainTable
+      <MainTable<EnTableTypes.clinics, EnModes.view>
         bodyItems={[...addCells, ...cells].map(({ id, data, mode }) => {
-          return {
-            id,
-            data: data.map(({ data, type }) => {
-              const MODE = mode;
-
-              switch (type) {
-                case EnBodyType.inline:
-                  return {
-                    children: <InlineCell mode={MODE}>{data}</InlineCell>,
-                    mode: MODE,
-                  };
-                case EnBodyType.inlineArea:
-                  return {
-                    children: (
-                      <InlineAreaCell mode={MODE}>{data}</InlineAreaCell>
-                    ),
-                    mode: MODE,
-                  };
-                case EnBodyType.has:
-                  return {
-                    children: <HasCell children={data} mode={MODE} />,
-                    mode: MODE,
-                    className: '[&>div]:overflow-visible',
-                  };
-                case EnBodyType.link:
-                  return {
-                    children: (
-                      <Link
-                        href={data.href}
-                        className="text-base font-normal text-blue"
-                      >
-                        {data.content !== null ? data.content : 'Выбрать'}
-                      </Link>
-                    ),
-                    mode: MODE,
-                  };
-                case EnBodyType.action:
-                  if (mode === EnMode.view)
-                    return {
-                      children: <ViewActionDropdown id={id} />,
-                      mode: MODE,
-                    };
-                  else if (mode === EnMode.edit)
-                    return {
-                      children: <EditActionDropdown id={id} />,
-                      mode: MODE,
-                    };
-                  else if (mode === EnMode.add)
-                    return {
-                      children: <AddActionDropdown id={id} />,
-                      mode: MODE,
-                    };
-                  else
-                    throw new Error(
-                      'Некорректный mode для поля "Действия" строки таблицы. Использовать enum EnMode для mode'
-                    );
-                default:
-                  return null;
-              }
-            }),
-          };
+          if (mode === EnModes.view)
+            return {
+              id,
+              data: data.map(({ cellType, data }) => {}),
+            };
         })}
         headItems={[
           'Название',

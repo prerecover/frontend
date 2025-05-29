@@ -1,0 +1,10 @@
+Услуга					inline
+Категория				inline
+Онлайн/Офлайн			net
+Описание				inlineArea
+Цена					inlineArea
+Как оплачивать услугу?	multiselect
+Длительность			inline
+Врачи					multiselectSearch
+Медиафайлов				?????????
+Действия				action

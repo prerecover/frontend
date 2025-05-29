@@ -1,0 +1,9 @@
+Врач			inline
+Специальность	inline
+Онлайн/Офлайн	net
+Опыт			inlineArea
+Дни работы		multiselect
+Время работы	inline
+Медиафайлов		?????????
+Услуги			multiselectSearch
+Действия		action

@@ -1,6 +1,11 @@
 'use client';
 import { FC, HTMLAttributes } from 'react';
-import { EnBodyType, EnMode, MainTable } from '@/segments/Admin/MainTable';
+import {
+  EnBodyType,
+  EnMode,
+  MainTable,
+  TBodyItem,
+} from '@/segments/Admin/MainTable';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { InlineCell } from '@/entities/Admin/InlineCell';
@@ -21,13 +26,6 @@ interface Props extends HTMLAttributes<HTMLTableElement> {}
 const ServicesTable: FC<Props> = ({ className, ...props }) => {
   const addCells = useServicesStore(cellsAddSelector);
   const cells = useServicesStore(cellsSelector);
-  const options = [
-    { value: 1, content: <span>React</span> },
-    { value: 2, content: <span>Vue</span> },
-    { value: '3angular', content: <span>Angular</span> },
-    { value: '2angular', content: <span>Angular</span> },
-    { value: '1angular', content: <span>Angular</span> },
-  ];
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
@@ -35,95 +33,122 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
         bodyItems={[...addCells, ...cells].map(({ id, data, mode }) => {
           return {
             id,
-            data: data.map(({ data, type, description }) => {
-              const MODE = mode;
+            data: data.map(
+              ({ data, type, description }: TBodyItem<typeof MODE>) => {
+                const MODE = mode;
 
-              switch (type) {
-                case EnBodyType.multiselect:
-                  return {
-                    children: (
-                      <MultiselectCell
-                        options={options}
-                        placeholder="Выберите"
-                        maxDisplayedItems={2}
-                        className="justify-center"
-                        contentClassName="w-[250px] -translate-x-[calc((250px-var(--radix-select-trigger-width))/2)]"
-                      />
-                    ),
-                    mode: MODE,
-                    className: '[&>div]:w-full',
-                  };
-                case EnBodyType.multiselectSearch:
-                  return {
-                    children: (
-                      <MultiselectCell
-                        type="search"
-                        options={options}
-                        placeholder="Выберите технологии..."
-                        maxDisplayedItems={2}
-                        contentClassName="w-[365px] -translate-x-[calc((365px-var(--radix-select-trigger-width))/2)]"
-                        className="w-full"
-                      />
-                    ),
-                    mode: MODE,
-                  };
-                case EnBodyType.consultationType:
-                  return {
-                    children: (
-                      <ConsultationTypeCell mode={MODE}>
-                        {data}
-                      </ConsultationTypeCell>
-                    ),
-                    mode: MODE,
-                  };
-                case EnBodyType.inline:
-                  return {
-                    children: <InlineCell mode={MODE}>{data}</InlineCell>,
-                    mode: MODE,
-                  };
-                case EnBodyType.inlineArea:
-                  return {
-                    children: (
-                      <InlineAreaCell mode={MODE}>{data}</InlineAreaCell>
-                    ),
-                    mode: MODE,
-                  };
-                case EnBodyType.link:
-                  return {
-                    children: (
-                      <Link
-                        href={data.href}
-                        className="text-base font-normal text-blue"
-                      >
-                        {data.content !== null ? data.content : 'Выбрать'}
-                      </Link>
-                    ),
-                    mode: MODE,
-                  };
-                case EnBodyType.action:
-                  if (mode === EnMode.view)
+                switch (type) {
+                  case EnBodyType.multiselect:
                     return {
-                      children: <ViewActionDropdown id={id} />,
+                      children: (
+                        <MultiselectCell
+                          options={data.map(({ content, ...props }) => ({
+                            ...props,
+                            content:
+                              typeof content === 'string' ? (
+                                <div>{content}</div>
+                              ) : null,
+                          }))}
+                          placeholder="Выбрать"
+                          maxDisplayedItems={2}
+                          className="justify-center"
+                          contentClassName="w-[250px] -translate-x-[calc((250px-var(--radix-select-trigger-width))/2)]"
+                        />
+                      ),
+                      mode: MODE,
+                      className: '[&>div]:w-full',
+                    };
+                  case EnBodyType.multiselectSearch:
+                    return {
+                      children: (
+                        <MultiselectCell
+                          type="search"
+                          options={data.map(({ content, ...props }) => {
+                            const data = content as {
+                              name: string;
+                              speciality: string;
+                            };
+
+                            return {
+                              ...props,
+                              content: (
+                                <div>
+                                  <h2>{data.name}</h2>
+                                  <h3>{data.speciality}</h3>
+                                </div>
+                              ),
+                            };
+                          })}
+                          placeholder="Выбрать"
+                          maxDisplayedItems={2}
+                          contentClassName="w-[365px] -translate-x-[calc((365px-var(--radix-select-trigger-width))/2)]"
+                          className="w-full"
+                        />
+                      ),
                       mode: MODE,
                     };
-                  else if (mode === EnMode.edit)
+                  case EnBodyType.consultationType:
                     return {
-                      children: <EditActionDropdown id={id} />,
+                      children: (
+                        <ConsultationTypeCell mode={MODE as any}>
+                          {data}
+                        </ConsultationTypeCell>
+                      ),
                       mode: MODE,
                     };
-                  else if (mode === EnMode.add)
+                  case EnBodyType.inline:
                     return {
-                      children: <AddActionDropdown id={id} />,
+                      children: (
+                        <InlineCell mode={MODE as any}>{data}</InlineCell>
+                      ),
                       mode: MODE,
                     };
-                  else
-                    throw new Error(
-                      'Некорректный mode для поля "Действия" строки таблицы. Использовать enum EnMode для mode'
-                    );
-                default:
-                  return null;
+                  case EnBodyType.inlineArea:
+                    return {
+                      children: (
+                        <InlineAreaCell mode={MODE as any}>
+                          {data}
+                        </InlineAreaCell>
+                      ),
+                      mode: MODE,
+                    };
+                  case EnBodyType.link:
+                    return {
+                      children: (
+                        <Link
+                          href={data.href}
+                          className="text-base font-normal text-blue"
+                        >
+                          {data.content !== null ? data.content : 'Выбрать'}
+                        </Link>
+                      ),
+                      mode: MODE,
+                    };
+                  case EnBodyType.action:
+                    if (mode === EnMode.view)
+                      return {
+                        children: <ViewActionDropdown id={id} />,
+                        mode: MODE,
+                      };
+                    else if (mode === EnMode.edit)
+                      return {
+                        children: <EditActionDropdown id={id} />,
+                        mode: MODE,
+                      };
+                    else if (mode === EnMode.add)
+                      return {
+                        children: <AddActionDropdown id={id} />,
+                        mode: MODE,
+                      };
+                    else
+                      throw new Error(
+                        'Некорректный mode для поля "Действия" строки таблицы. Использовать enum EnMode для mode'
+                      );
+                  default:
+                    return null;
+                }
               }
-            }),
+            ),
           };
         })}
         headItems={[

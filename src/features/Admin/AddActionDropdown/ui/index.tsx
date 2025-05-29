@@ -11,7 +11,7 @@ import {
   deleteCellAddSelector,
   useClinicStore,
 } from '@/shared/store/Admin/clinicStore';
-import { TTableDataItem } from '@/shared/types/Admin/Tables';
+import { TTableDataItem } from '@/shared/types/Admin/shared/Tables';
 
 interface Props {
   id: TTableDataItem['id'];

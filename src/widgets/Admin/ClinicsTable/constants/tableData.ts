@@ -1,5 +1,5 @@
 import { EnBodyType, EnMode } from '@/segments/Admin/MainTable';
-import { TTableDataItem } from '@/shared/types/Admin/Tables';
+import { TTableDataItem } from '@/shared/types/Admin/shared/Tables';
 import { ADMIN_ROUTES } from '@/shared/utils/paths';
 
 export const TABLE_DATA: TTableDataItem[] = [
