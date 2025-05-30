@@ -1,3 +1,4 @@
+import { TClinicsNetAccumulatorData } from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
 import { EnCellTypes } from '../../shared/Entities/CellTypes';
 import { EnModes } from '../../shared/Entities/Modes';
 import { TAccumulatorAdd } from '../../shared/cells/Accumulator';
@@ -42,7 +43,7 @@ export type TAddBody = {
       }
     | {
         cellType: EnAccumulator.clinicsNet;
-        data: TAccumulatorAdd;
+        data: TAccumulatorAdd<TClinicsNetAccumulatorData>;
       }
     | {
         cellType: EnCellTypes.action;

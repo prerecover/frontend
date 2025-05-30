@@ -1,31 +1,60 @@
 'use client';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
-import { useDebounce } from '@/shared/hooks/useDebounce';
 import { TAccumulatorEdit } from '@/shared/types/Admin/shared/cells/Accumulator';
+import { TData } from '../../types/Data';
+import { DropdownMenu } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Plus, Trash2 } from 'lucide-react';
+import { TClinicsNetAccumulatorData } from '../..';
 
-interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, string> {
-  data: TAccumulatorEdit;
+interface Props
+  extends TCellDataUpdate<EnTableTypes.clinics, TClinicsNetAccumulatorData[]> {
+  data: TAccumulatorEdit<TData>;
 }
 
-const Edit = <T extends EnTableTypes>({
-  data,
-  cellIndex,
-  updateFunc,
-  id,
-}: Props<T>) => {
-  const debounceUpdate = useDebounce((inputValue: string) => {
-    updateFunc({ cellIndex, data: inputValue, id });
-  }, 200);
-
+const Edit = ({ data, cellIndex, updateFunc, id }: Props) => {
   return (
-    <input
-      defaultValue={data}
-      onChange={(event) => {
-        debounceUpdate(event.target.value);
-      }}
-      className="w-full bg-[transparent] text-center"
-    />
+    <DropdownMenu>
+      <DropdownMenuTrigger className="w-full ">
+        <p className="text-blue">{(data || []).length || 'Выбрать'}</p>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="py-2 border-none bg-white-background p-0 rounded-none rounded-br-xl rounded-bl-xl">
+        <Button
+          variant="ghost"
+          className="border-b border-blue border-solid rounded-none pb-1 text-blue w-full "
+        >
+          <Plus />
+          <p>Добавить клинику</p>
+        </Button>
+        {(data || []).map((props) => (
+          <div
+            className="flex items-center justify-between py-2 px-4"
+            key={props.id}
+          >
+            <div>
+              <p>{props.name}</p>
+              <p>{props.address}</p>
+            </div>
+            <button
+              onClick={() => {
+                updateFunc({
+                  cellIndex,
+                  id,
+                  data: (data ? data : []).filter(({ id }) => props.id !== id),
+                });
+              }}
+            >
+              <Trash2 className="text-grey-600" />
+            </button>
+          </div>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

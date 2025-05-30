@@ -138,7 +138,23 @@ export const ADD_CLINICS_CELL_BASE_STRUCTURE: (
       {
         // Сеть клиник
         cellType: EnAccumulator.clinicsNet,
-        data: null,
+        data: [
+          {
+            address: 'TEST',
+            id: '1',
+            name: 'TEST',
+          },
+          {
+            address: 'TEST',
+            id: '2',
+            name: 'TEST',
+          },
+          {
+            address: 'TEST',
+            id: '3',
+            name: 'TEST',
+          },
+        ],
       },
       {
         // Действия

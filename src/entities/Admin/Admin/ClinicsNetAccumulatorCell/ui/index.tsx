@@ -18,7 +18,7 @@ type Props<M extends EnModes> = {
     : M extends EnModes.edit
       ? TAccumulatorEdit<TData>
       : M extends EnModes.add
-        ? TAccumulatorAdd
+        ? TAccumulatorAdd<TData>
         : never;
 } & OmitForViewMode<M, EnTableTypes.clinics, 'cellIndex', EnModes.add>;
 
@@ -48,7 +48,7 @@ const ClinicsNetAccumulatorCell = <M extends EnModes>({
           data={data as TAccumulatorEdit<TData>}
         />
       ) : mode === EnModes.add ? (
-        <Add data={data as TAccumulatorAdd} />
+        <Add data={data as TAccumulatorAdd<TData>} />
       ) : null}
     </>
   );
