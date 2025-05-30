@@ -1,5 +1,9 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink';
+import {
+  ClinicsNetAccumulatorCell,
+  TClinicsNetAccumulatorData,
+} from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
 import { ClinicsServicesLink } from '@/entities/Admin/Admin/ClinicsServicesLink';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
@@ -16,6 +20,7 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TUpdateFuncField } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { TAccumulatorEdit } from '@/shared/types/Admin/shared/cells/Accumulator';
 import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
@@ -83,7 +88,15 @@ export const returnEditComponent = ({
         />
       );
     case EnAccumulator.clinicsNet:
-      return 1;
+      return (
+        <ClinicsNetAccumulatorCell<EnModes.edit>
+          data={data as TAccumulatorEdit<TClinicsNetAccumulatorData>}
+          mode={mode}
+          cellIndex={cellIndex}
+          updateFunc={updateFunc}
+          id={id}
+        />
+      );
     case EnLinks.doctors:
       return (
         <ClinicsDoctorsLink<EnModes.edit>

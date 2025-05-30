@@ -1,5 +1,9 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink';
+import {
+  ClinicsNetAccumulatorCell,
+  TClinicsNetAccumulatorData,
+} from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
 import { ClinicsServicesLink } from '@/entities/Admin/Admin/ClinicsServicesLink';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
@@ -14,6 +18,7 @@ import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
+import { TAccumulatorView } from '@/shared/types/Admin/shared/cells/Accumulator';
 import { THasView } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
 import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
@@ -63,7 +68,12 @@ export const returnViewComponent = ({
         />
       );
     case EnAccumulator.clinicsNet:
-      return 1;
+      return (
+        <ClinicsNetAccumulatorCell<EnModes.view>
+          data={data as TAccumulatorView<TClinicsNetAccumulatorData>}
+          mode={mode}
+        />
+      );
     case EnLinks.doctors:
       return (
         <ClinicsDoctorsLink<EnModes.view>
