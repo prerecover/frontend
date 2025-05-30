@@ -12,7 +12,7 @@ import { EnWorkDays } from '../entities/WorkDays';
 export type TViewEditBody = {
   id: string;
   mode: EnModes.view | EnModes.edit;
-  data: (
+  data: ((
     | {
         cellType: EnCellTypes.inline;
         data: TInlineView;
@@ -37,5 +37,7 @@ export type TViewEditBody = {
         cellType: EnCellTypes.action;
         data: null;
       }
-  )[];
+  ) & {
+    fieldName: string;
+  })[];
 }[];

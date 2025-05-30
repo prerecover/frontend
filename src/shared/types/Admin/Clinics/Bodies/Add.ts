@@ -15,7 +15,7 @@ import { EnLanguages } from '../entities/Languages';
 export type TAddBody = {
   id: TClinicsDataStructure['id'];
   mode: EnModes.add;
-  data: (
+  data: ((
     | {
         cellType: EnCellTypes.inline;
         data: TInlineAdd;
@@ -48,5 +48,7 @@ export type TAddBody = {
         cellType: EnCellTypes.action;
         data: null;
       }
-  )[];
+  ) & {
+    fieldName?: string;
+  })[];
 }[];

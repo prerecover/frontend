@@ -1,17 +1,9 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
-import { TDoctorsBody } from '@/shared/types/Admin/Doctors/Bodies';
-import { TServicesBody } from '@/shared/types/Admin/Services/Bodies';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { Fragment, HTMLAttributes } from 'react';
 import { EnTableTypes } from '../types/TableTypes';
-import { TBodyItem, TBodyItems } from '../types/Body';
-import { Form, FormProvider, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Cell } from './Cell';
-import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
-import { table } from 'console';
+import { TBodyItems } from '../types/Body';
 import { TInputs } from '../types/Inputs';
 import { Row } from './Row';
 

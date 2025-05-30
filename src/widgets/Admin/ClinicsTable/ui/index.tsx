@@ -71,7 +71,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 }),
                 id,
                 formSubmitCellIndex: actionCellTypeIndex,
-                data: rowData,
+                data: rowData.data,
               };
             else if (mode === EnModes.add) {
               return {
@@ -93,7 +93,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 }),
                 id,
                 formSubmitCellIndex: actionCellTypeIndex,
-                data: rowData,
+                data: rowData.data,
               };
             } else if (mode === EnModes.edit) {
               return {
@@ -115,7 +115,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 }),
                 id,
                 formSubmitCellIndex: actionCellTypeIndex,
-                data: rowData,
+                data: rowData.data,
               };
             }
 

@@ -18,66 +18,79 @@ export const ADD_CLINICS_CELL_BASE_STRUCTURE: (
         // Название
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'name',
       },
       {
         // Тип учреждения
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'type',
       },
       {
         // Начало работы
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'clinicWorkBegin',
       },
       {
         // Площадь, м²
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'square',
       },
       {
         // Телефон
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'phone',
       },
       {
         // Телефон для отправки отчета в тг
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'reportPhone',
       },
       {
         // Страна
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'country',
       },
       {
         // Город
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'city',
       },
       {
         // Адрес
         cellType: EnCellTypes.inlineArea,
         data: null,
+        fieldName: 'address',
       },
       {
         // Количество этажей
         cellType: EnCellTypes.inline,
         data: null,
+        fieldName: 'floorCount',
       },
       {
         // Компьютер
         cellType: EnCellTypes.has,
         data: null,
+        fieldName: 'hasComputer',
       },
       {
         // Интернет
         cellType: EnCellTypes.has,
         data: null,
+        fieldName: 'hasInternet',
       },
       {
         // Дни и время работы
         cellType: EnCellTypes.inlineArea,
         data: null,
+        fieldName: 'workTime',
       },
       {
         // Категорий
@@ -104,11 +117,13 @@ export const ADD_CLINICS_CELL_BASE_STRUCTURE: (
           { data: 'Узбекский', isSelected: null, value: EnLanguages.uz },
           { data: 'Английский', isSelected: null, value: EnLanguages.en },
         ],
+        fieldName: 'languages',
       },
       {
         // Лифт
         cellType: EnCellTypes.has,
         data: null,
+        fieldName: 'hasElevator',
       },
       {
         // Всего услуг

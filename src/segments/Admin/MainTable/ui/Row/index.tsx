@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Form, FormProvider, useForm } from 'react-hook-form';
 import { TInputs } from '../../types/Inputs';
 import { TBodyItems } from '../../types/Body';
@@ -27,7 +27,11 @@ const Row = <T extends EnTableTypes, M extends EnModes, I extends TInputs>({
     //@ts-ignore: Непонятно как типизировать
     resolver: yupResolver(validationSchema),
     //@ts-ignore: Непонятно как типизировать
-    values: row.data,
+    values: row?.data
+      ?.filter(({ fieldName }) => fieldName !== undefined)
+      .reduce((acc, { data, fieldName }) => {
+        return { ...acc, [fieldName]: data };
+      }, {}),
   });
 
   return (

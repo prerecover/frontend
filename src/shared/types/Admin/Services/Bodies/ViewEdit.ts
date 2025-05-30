@@ -12,7 +12,7 @@ import { EnPayType } from '../entities/PayType';
 export type TViewEditBody = {
   id: string;
   mode: EnModes.view | EnModes.edit;
-  data: (
+  data: ((
     | {
         cellType: EnCellTypes.inline;
         data: TInlineView;
@@ -33,5 +33,7 @@ export type TViewEditBody = {
         cellType: EnMultiselectSearchTypes.doctors;
         data: TMultiselectView<Omit<TDoctorItem, 'id'>, TDoctorItem['id']>;
       }
-  )[];
+  ) & {
+    fieldName: string;
+  })[];
 }[];

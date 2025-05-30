@@ -15,7 +15,7 @@ import { EnLanguages } from '../entities/Languages';
 export type TViewEditBody = {
   id: TClinicsDataStructure['id'];
   mode: EnModes.view | EnModes.edit;
-  data: (
+  data: ((
     | {
         cellType: EnCellTypes.inline;
         data: TInlineView;
@@ -48,5 +48,7 @@ export type TViewEditBody = {
         cellType: EnCellTypes.action;
         data: null;
       }
-  )[];
+  ) & {
+    fieldName: string;
+  })[];
 }[];

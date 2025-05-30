@@ -12,7 +12,7 @@ import { EnPayType } from '../entities/PayType';
 export type TAddBody = {
   id: string;
   mode: EnModes.add;
-  data: (
+  data: ((
     | {
         cellType: EnCellTypes.inline;
         data: TInlineAdd;
@@ -37,5 +37,7 @@ export type TAddBody = {
         cellType: EnCellTypes.action;
         data: null;
       }
-  )[];
+  ) & {
+    fieldName: string;
+  })[];
 }[];
