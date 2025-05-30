@@ -1,4 +1,5 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
+import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink/ui';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { MultiselectLanguagesCell } from '@/entities/Admin/Admin/MultiselectLanguagesCell/ui';
@@ -14,6 +15,7 @@ import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasView } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
+import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
 import { TMultiselectView } from '@/shared/types/Admin/shared/cells/Multiselect';
 
 interface Params extends TCellIndexField {
@@ -62,7 +64,12 @@ export const returnViewComponent = ({
     case EnAccumulator.clinicsNet:
       return 1;
     case EnLinks.doctors:
-      return 1;
+      return (
+        <ClinicsDoctorsLink<EnModes.view>
+          data={data as TLinkView<{ qnt: number }>}
+          mode={mode}
+        />
+      );
     case EnLinks.services:
       return 1;
     default:

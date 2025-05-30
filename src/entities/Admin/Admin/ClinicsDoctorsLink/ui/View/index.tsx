@@ -7,7 +7,7 @@ interface Props {
 }
 
 const View: FC<Props> = ({ data }) => {
-  return <p>{data.content.qnt}</p>;
+  return <p className="text-blue">{data.content.qnt || 'Выбрать'}</p>;
 };
 
 export { View };

@@ -38,7 +38,7 @@ export const Multiselect = ({
   value,
   defaultValue = [],
   onChange,
-  placeholder = 'Выберите',
+  placeholder = 'Выбрать',
   className,
   disabled = false,
   maxDisplayedItems = 2,
@@ -101,7 +101,9 @@ export const Multiselect = ({
 
   const renderTriggerContent = () => {
     if (selected.length === 0) {
-      return <SelectValue placeholder={placeholder} />;
+      return (
+        <SelectValue placeholder={<p className="text-blue">{placeholder}</p>} />
+      );
     }
     const hiddenCount = maxDisplayedItems
       ? selected.length - maxDisplayedItems

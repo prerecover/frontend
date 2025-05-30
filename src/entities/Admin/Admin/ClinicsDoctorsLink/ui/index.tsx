@@ -9,20 +9,20 @@ export type TData = {
   qnt: number;
 };
 
-type Props<M extends EnModes, T extends EnTableTypes> = {
+type Props<M extends EnModes> = {
   mode: M;
   data: M extends EnModes.view | EnModes.edit
     ? TLinkView<TData>
     : M extends EnModes.add
       ? TLinkAdd
       : never;
-} & OmitForViewMode<M, T, 'cellIndex'>;
+} & OmitForViewMode<M, EnTableTypes.clinics, 'cellIndex', EnModes.edit>;
 
-const ClinicsDoctorsLink = <M extends EnModes, T extends EnTableTypes>({
+const ClinicsDoctorsLink = <M extends EnModes>({
   mode,
   data,
   ...props
-}: Props<M, T>) => {
+}: Props<M>) => {
   if (mode === undefined) {
     throw new Error(
       `Некорректный мод для ClinicsDoctorsLink. Было получение ${mode}, а ожидалось одно из значений EnModes`

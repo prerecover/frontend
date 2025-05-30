@@ -1,4 +1,5 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
+import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink/ui';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
@@ -17,6 +18,7 @@ import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
+import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
 import { TMultiselectEdit } from '@/shared/types/Admin/shared/cells/Multiselect';
 
 interface Params
@@ -82,7 +84,12 @@ export const returnEditComponent = ({
     case EnAccumulator.clinicsNet:
       return 1;
     case EnLinks.doctors:
-      return 1;
+      return (
+        <ClinicsDoctorsLink<EnModes.edit>
+          data={data as TLinkView<{ qnt: number }>}
+          mode={mode}
+        />
+      );
     case EnLinks.services:
       return 1;
     default:
