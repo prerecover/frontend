@@ -26,7 +26,7 @@ const Edit = <T extends EnTableTypes>({
       onChange={(event) => {
         debounceUpdate(event.target.value);
       }}
-      className="w-full bg-[transparent] text-center"
+      className="w-full bg-[transparent] text-center max-h-32"
     />
   );
 };
