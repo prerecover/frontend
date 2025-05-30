@@ -4,10 +4,9 @@ import { View } from './View';
 import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
+import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structure';
 
-export type TData = {
-  qnt: number;
-};
+export type TData = TClinicsDataStructure['servicesQnt'];
 
 type Props<M extends EnModes> = {
   mode: M;

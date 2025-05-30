@@ -9,7 +9,7 @@ import { TMultiselectView } from '../../shared/cells/Multiselect';
 import { EnAccumulator } from '../FloatCellTypes/Accumulator';
 import { EnLinks } from '../FloatCellTypes/Links';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
-import { TClinicsNetItem } from '../data-structure';
+import { TClinicsDataStructure, TClinicsNetItem } from '../data-structure';
 import { EnLanguages } from '../entities/Languages';
 
 export type TViewEditBody = {
@@ -34,15 +34,11 @@ export type TViewEditBody = {
       }
     | {
         cellType: EnLinks.services;
-        data: TLinkView<{
-          qnt: number;
-        }>;
+        data: TLinkView<TClinicsDataStructure['servicesQnt']>;
       }
     | {
         cellType: EnLinks.doctors;
-        data: TLinkView<{
-          qnt: number;
-        }>;
+        data: TLinkView<TClinicsDataStructure['doctorsQnt']>;
       }
     | {
         cellType: EnAccumulator.clinicsNet;
