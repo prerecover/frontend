@@ -37,7 +37,7 @@ const MultiselectLanguagesCell = <M extends EnModes, T extends EnTableTypes>({
   return (
     <>
       {mode === EnModes.view ? (
-        <View data={data as TMultiselectView} />
+        <View data={data as TMultiselectEdit<string, EnLanguages>} />
       ) : mode === EnModes.edit ? (
         <Edit
           //@ts-ignore
