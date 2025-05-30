@@ -103,14 +103,15 @@ export const Multiselect = ({
     if (selected.length === 0) {
       return <SelectValue placeholder={placeholder} />;
     }
-
-    const displayedItems = maxDisplayedItems
-      ? selected.slice(0, maxDisplayedItems)
-      : selected;
     const hiddenCount = maxDisplayedItems
       ? selected.length - maxDisplayedItems
       : 0;
-    console.log(hiddenCount);
+    const displayedItems = maxDisplayedItems
+      ? selected.slice(
+          0,
+          hiddenCount > 1 ? maxDisplayedItems : maxDisplayedItems + 1
+        )
+      : selected;
 
     return (
       <div className="flex flex-wrap items-center gap-1 w-full">
@@ -130,7 +131,7 @@ export const Multiselect = ({
             </Badge>
           );
         })}
-        {hiddenCount > 0 && (
+        {hiddenCount > 1 && (
           <Badge variant="outline" className="py-1 border-blue text-blue">
             +{hiddenCount}
           </Badge>

@@ -12,6 +12,6 @@ export type TMultiselectEdit<T = null, V = TValue> = {
 }[];
 export type TMultiselectAdd<D = null, V = TValue> = {
   data: D;
-  isSelected: null;
+  isSelected: null | boolean;
   value: V;
 }[];

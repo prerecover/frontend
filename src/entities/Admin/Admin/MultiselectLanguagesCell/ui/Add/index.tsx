@@ -8,25 +8,39 @@ import { TMultiselectAdd } from '@/shared/types/Admin/shared/cells/Multiselect';
 import { Multiselect } from '@/components/ui/multiselect';
 import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
 
-interface Props<T extends EnTableTypes>
-  extends TCellDataUpdate<EnModes.add, T, string> {
-  data: TMultiselectAdd<string, EnLanguages>;
+type TData = TMultiselectAdd<string, EnLanguages>;
+
+interface Props
+  extends TCellDataUpdate<EnModes.add, EnTableTypes.clinics, TData> {
+  data: TData;
 }
 
-const Add = <T extends EnTableTypes>({
-  data,
-  cellIndex,
-  id,
-  updateFunc,
-}: Props<T>) => {
-  const debounceUpdate = useDebounce((inputValue: string) => {
+const Add = ({ data, cellIndex, id, updateFunc }: Props) => {
+  const debounceUpdate = useDebounce((inputValue: TData) => {
     updateFunc({ cellIndex, data: inputValue, id });
   }, 200);
 
   return (
     <Multiselect
-      onChange={() => {}}
-      options={data.map(({ data, isSelected, value }) => {
+      onChange={(values) => {
+        const res = data.map((props) => {
+          const hasValue = values.find((value) => value === props.value);
+
+          if (hasValue) {
+            return {
+              ...props,
+              isSelected: true,
+            };
+          }
+          return { ...props, isSelected: false };
+        });
+
+        debounceUpdate(res);
+      }}
+      value={data
+        .filter(({ isSelected }) => isSelected)
+        .map(({ value }) => value)}
+      options={data.map(({ data, value }) => {
         return {
           content: <p>{data}</p>,
           searchValue: data,
