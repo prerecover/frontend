@@ -1,5 +1,6 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
-import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink/ui';
+import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink';
+import { ClinicsServicesLink } from '@/entities/Admin/Admin/ClinicsServicesLink';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
@@ -91,7 +92,12 @@ export const returnEditComponent = ({
         />
       );
     case EnLinks.services:
-      return 1;
+      return (
+        <ClinicsServicesLink<EnModes.edit>
+          data={data as TLinkView<{ qnt: number }>}
+          mode={mode}
+        />
+      );
     default:
       throw new Error(`Некорректный cellType для ClinicsTable. Был получен ${cellType}. Поле cellType может быть только следующими данными: cellType:
 		| EnCellTypes.inline
