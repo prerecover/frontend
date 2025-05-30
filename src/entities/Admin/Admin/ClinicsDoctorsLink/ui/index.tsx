@@ -6,7 +6,7 @@ import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
 import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structure';
 
-export type TData = TClinicsDataStructure['doctorsQnt'];
+export type TData = { qnt: TClinicsDataStructure['doctorsQnt'] };
 
 type Props<M extends EnModes> = {
   mode: M;

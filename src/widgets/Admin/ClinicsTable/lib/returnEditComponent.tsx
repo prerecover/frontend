@@ -28,7 +28,7 @@ interface Params
   mode: EnModes.edit;
   cellType: TClinicsAllCellTypes;
   data: unknown;
-  id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
+  id: TBodyItemId<EnTableTypes.clinics>;
 }
 
 export const returnEditComponent = ({

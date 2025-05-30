@@ -9,10 +9,11 @@ import { TMultiselectAdd } from '../../shared/cells/Multiselect';
 import { EnAccumulator } from '../FloatCellTypes/Accumulator';
 import { EnLinks } from '../FloatCellTypes/Links';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
+import { TClinicsDataStructure } from '../data-structure';
 import { EnLanguages } from '../entities/Languages';
 
 export type TAddBody = {
-  id: string;
+  id: TClinicsDataStructure['id'];
   mode: EnModes.add;
   data: (
     | {

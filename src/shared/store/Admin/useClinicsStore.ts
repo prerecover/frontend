@@ -22,28 +22,28 @@ interface State {
   updateAddCell_S: <T>(
     params: TCellFuncParams<T, EnTableTypes.clinics>
   ) => void;
-  getAddCellData_S: <T>(
-    params: Omit<TCellFuncParams<T, EnTableTypes.clinics>, 'data'>
-  ) => T | null;
+  getAddItemData_S: (
+    params: TBodyItemId<EnTableTypes.clinics>
+  ) => TAddBody[0] | null;
 
   addCell_S: (data: TViewEditBody) => void;
   removeCell_S: (params: { id: TClinicsDataStructure['id'] }) => void;
   updateCell_S: <T>(params: TCellFuncParams<T, EnTableTypes.clinics>) => void;
-  getCellData_S: <T>(
-    params: Omit<TCellFuncParams<T, EnTableTypes.clinics>, 'data'>
-  ) => T | null;
+  getItemData_S: (
+    params: TBodyItemId<EnTableTypes.clinics>
+  ) => TViewEditBody[0] | null;
 
   transformAddToView_S: (params: {
-    id: TBodyItemId<EnModes.add, EnTableTypes.clinics>;
+    id: TBodyItemId<EnTableTypes.clinics>;
   }) => void;
   transformViewToEdit_S: (params: {
-    id: TBodyItemId<EnModes.view, EnTableTypes.clinics>;
+    id: TBodyItemId<EnTableTypes.clinics>;
   }) => void;
   transformEditToViewSave_S: (params: {
-    id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
+    id: TBodyItemId<EnTableTypes.clinics>;
   }) => void;
   transformEditToViewCancel_S: (params: {
-    id: TBodyItemId<EnModes.edit, EnTableTypes.clinics>;
+    id: TBodyItemId<EnTableTypes.clinics>;
   }) => void;
 }
 
@@ -154,28 +154,6 @@ export const useClinicsStore = create<State>()(
         };
       });
     },
-    getAddCellData_S: <T>({ id, cellIndex }) => {
-      const addCells = get().addCells;
-
-      // @ts-ignore
-      const result: { data: T } = addCells.find((props) => {
-        if (props.id === id) {
-          return props;
-        }
-      });
-      return result.data[cellIndex];
-    },
-    getCellData_S: ({ id, cellIndex }) => {
-      const addCells = get().cells;
-
-      // @ts-ignore
-      const result: { data: T } = addCells.find((props) => {
-        if (props.id === id) {
-          return props;
-        }
-      });
-      return result.data[cellIndex];
-    },
     transformAddToView_S: ({ id }) => {
       const removeAddCell = get().removeAddCell_S;
 
@@ -244,6 +222,16 @@ export const useClinicsStore = create<State>()(
         };
       });
     },
+    getItemData_S: (id) => {
+      const cells = get().cells;
+
+      return cells.find((props) => props.id === id) || null;
+    },
+    getAddItemData_S: (id) => {
+      const addCells = get().addCells;
+
+      return addCells.find((props) => props.id === id) || null;
+    },
   }))
 );
 
@@ -253,12 +241,10 @@ export const cellsSelector = (state: State) => state.cells;
 export const addAddCellSetter = (state: State) => state.addAddCell_S;
 export const removeAddCellSetter = (state: State) => state.removeAddCell_S;
 export const updateAddCellSetter = (state: State) => state.updateAddCell_S;
-export const getAddCellDataGetter = (state: State) => state.getAddCellData_S;
 
 export const addCellSetter = (state: State) => state.addCell_S;
 export const removeCellSetter = (state: State) => state.removeCell_S;
 export const updateCellSetter = (state: State) => state.updateCell_S;
-export const getCellDataGetter = (state: State) => state.getCellData_S;
 
 export const transformAddToViewSetter = (state: State) =>
   state.transformAddToView_S;
@@ -268,3 +254,6 @@ export const transformEditToViewSaveSetter = (state: State) =>
   state.transformEditToViewSave_S;
 export const transformEditToViewCancelSetter = (state: State) =>
   state.transformEditToViewCancel_S;
+
+export const getItemDataGetter = (state: State) => state.getItemData_S;
+export const getAddItemDataGetter = (state: State) => state.getAddItemData_S;

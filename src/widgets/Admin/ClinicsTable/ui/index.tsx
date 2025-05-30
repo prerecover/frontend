@@ -6,6 +6,8 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   addCellsSelector,
   cellsSelector,
+  getAddItemDataGetter,
+  getItemDataGetter,
   updateAddCellSetter,
   updateCellSetter,
   useClinicsStore,
@@ -24,6 +26,8 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
   const addCells = useClinicsStore(addCellsSelector);
   const updateAddCell = useClinicsStore(updateAddCellSetter);
   const updateCell = useClinicsStore(updateCellSetter);
+  const getItem = useClinicsStore(getItemDataGetter);
+  const getAddItem = useClinicsStore(getAddItemDataGetter);
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
@@ -32,8 +36,16 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
         onFormSubmit={(data) => {}}
         bodyItems={[...addCells, ...cells].map(
           ({ id, data, mode }, cellIndex) => {
+            let rowData;
+
+            if (mode === EnModes.add) {
+              rowData = getAddItem(id);
+            } else {
+              rowData = getItem(id);
+            }
+
             let actionCellTypeIndex;
-            data.find(({ cellType }, index) => {
+            data.forEach(({ cellType }, index) => {
               if (cellType === EnCellTypes.action) {
                 actionCellTypeIndex = index;
                 return true;
@@ -59,6 +71,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 }),
                 id,
                 formSubmitCellIndex: actionCellTypeIndex,
+                data: rowData,
               };
             else if (mode === EnModes.add) {
               return {
@@ -80,6 +93,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 }),
                 id,
                 formSubmitCellIndex: actionCellTypeIndex,
+                data: rowData,
               };
             } else if (mode === EnModes.edit) {
               return {
@@ -101,6 +115,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                 }),
                 id,
                 formSubmitCellIndex: actionCellTypeIndex,
+                data: rowData,
               };
             }
 

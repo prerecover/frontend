@@ -1,12 +1,10 @@
 'use client';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 
-interface Props<T extends EnTableTypes>
-  extends TCellDataUpdate<EnModes.edit, T, string> {
+interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, string> {
   data: TInlineEdit;
 }
 

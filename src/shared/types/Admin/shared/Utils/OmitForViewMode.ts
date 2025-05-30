@@ -8,5 +8,5 @@ export type OmitForViewMode<
   O extends string | symbol | number | never = never,
   AM extends EnModes | never = never,
 > = M extends EnModes.view | AM
-  ? Omit<TCellDataUpdate<M, T, string>, 'updateFunc' | 'id' | O>
-  : TCellDataUpdate<M, T, string>;
+  ? Omit<TCellDataUpdate<T, string>, 'updateFunc' | 'id' | O>
+  : TCellDataUpdate<T, string>;

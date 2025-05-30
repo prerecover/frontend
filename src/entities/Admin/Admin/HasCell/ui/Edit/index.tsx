@@ -2,7 +2,6 @@
 import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -12,8 +11,7 @@ import { useState } from 'react';
 const buttonCls =
   'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
 
-interface Props<T extends EnTableTypes>
-  extends TCellDataUpdate<EnModes.edit, T, boolean> {
+interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, boolean> {
   data: THasEdit;
 }
 

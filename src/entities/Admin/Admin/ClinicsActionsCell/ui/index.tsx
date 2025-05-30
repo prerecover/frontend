@@ -6,7 +6,7 @@ import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 
 interface Props<M extends EnModes>
-  extends TBodyItemIdField<M, EnTableTypes.clinics> {
+  extends TBodyItemIdField<EnTableTypes.clinics> {
   mode: M;
 }
 

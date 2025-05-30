@@ -2,7 +2,6 @@
 
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { TMultiselectEdit } from '@/shared/types/Admin/shared/cells/Multiselect';
 import { Multiselect } from '@/components/ui/multiselect';
@@ -10,8 +9,7 @@ import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
 
 type TData = TMultiselectEdit<string, EnLanguages>;
 
-interface Props
-  extends TCellDataUpdate<EnModes.edit, EnTableTypes.clinics, TData> {
+interface Props extends TCellDataUpdate<EnTableTypes.clinics, TData> {
   data: TData;
 }
 

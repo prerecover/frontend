@@ -4,13 +4,11 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
-import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { useState } from 'react';
 
-interface Props<T extends EnTableTypes>
-  extends TCellDataUpdate<EnModes.add, T, boolean> {
+interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, boolean> {
   data: THasAdd;
 }
 

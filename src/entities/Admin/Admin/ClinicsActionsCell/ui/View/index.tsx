@@ -1,5 +1,4 @@
 'use client';
-import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -17,7 +16,7 @@ const itemCls = 'rounded-[inherit]';
 const itemContentCls =
   'w-full py-3 px-2.5 hover:bg-blue-100 duration-150 rounded-[inherit]';
 
-interface Props extends TBodyItemIdField<EnModes.view, EnTableTypes.clinics> {}
+interface Props extends TBodyItemIdField<EnTableTypes.clinics> {}
 
 const View = ({ id }: Props) => {
   const transformViewToEdit = useClinicsStore(transformViewToEditSetter);

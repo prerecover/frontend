@@ -1,20 +1,16 @@
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { TClinicsBody } from '../../Clinics/Bodies';
-import { TDoctorsBody } from '../../Doctors/Bodies';
-import { TServicesBody } from '../../Services/Bodies';
-import { EnModes } from '../Entities/Modes';
+import { TClinicsDataStructure } from '../../Clinics/data-structure';
+import { TDoctorsDataStructure } from '../../Doctors/data-structure';
+import { TServicesDataStructure } from '../../services/data-structure';
 
-export type TBodyItemId<
-  M extends EnModes,
-  T extends EnTableTypes,
-> = T extends EnTableTypes.clinics
-  ? TClinicsBody<M>[0]['id']
+export type TBodyItemId<T extends EnTableTypes> = T extends EnTableTypes.clinics
+  ? TClinicsDataStructure['id']
   : T extends EnTableTypes.doctors
-    ? TDoctorsBody<M>[0]['id']
+    ? TDoctorsDataStructure['id']
     : T extends EnTableTypes.services
-      ? TServicesBody<M>[0]['id']
+      ? TServicesDataStructure['id']
       : never;
 
-export type TBodyItemIdField<M extends EnModes, T extends EnTableTypes> = {
-  id: TBodyItemId<M, T>;
+export type TBodyItemIdField<T extends EnTableTypes> = {
+  id: TBodyItemId<T>;
 };

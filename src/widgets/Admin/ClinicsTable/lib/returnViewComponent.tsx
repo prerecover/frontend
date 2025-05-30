@@ -23,7 +23,7 @@ interface Params extends TCellIndexField {
   mode: EnModes.view;
   cellType: TClinicsAllCellTypes;
   data: unknown;
-  id: TBodyItemId<EnModes.view, EnTableTypes.clinics>;
+  id: TBodyItemId<EnTableTypes.clinics>;
 }
 
 export const returnViewComponent = ({

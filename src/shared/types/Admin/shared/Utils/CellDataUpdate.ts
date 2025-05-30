@@ -22,7 +22,7 @@ export type TUpdateFuncField<T extends EnTableTypes, D> = {
   updateFunc: (params: TCellFuncParams<D, T>) => void;
 };
 
-export type TCellDataUpdate<M extends EnModes, T extends EnTableTypes, D> = {
+export type TCellDataUpdate<T extends EnTableTypes, D> = {
   updateFunc: (params: TCellFuncParams<D, T>) => void;
-} & TBodyItemIdField<M, T> &
+} & TBodyItemIdField<T> &
   TCellIndexField;

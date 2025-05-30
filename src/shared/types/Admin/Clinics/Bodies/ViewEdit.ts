@@ -13,7 +13,7 @@ import { TClinicsDataStructure, TClinicsNetItem } from '../data-structure';
 import { EnLanguages } from '../entities/Languages';
 
 export type TViewEditBody = {
-  id: string;
+  id: TClinicsDataStructure['id'];
   mode: EnModes.view | EnModes.edit;
   data: (
     | {
