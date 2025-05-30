@@ -20,6 +20,7 @@ export type TClinicsDataStructure = {
   address: string;
   floorCount: number;
   hasComputer: boolean;
+  hasInternet: boolean;
   workTime: string;
   categories: {
     qnt: number;

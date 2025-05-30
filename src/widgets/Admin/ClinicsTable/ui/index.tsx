@@ -14,6 +14,8 @@ import { returnViewComponent } from '../lib/returnViewComponent';
 import { returnAddComponent } from '../lib/returnAddComponent';
 import { returnEditComponent } from '../lib/returnEditComponent';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
+import { SCHEMA } from '../model/validation-schema';
+import { TInputs } from '../types/Inputs';
 
 interface Props extends HTMLAttributes<HTMLTableElement> {}
 
@@ -25,9 +27,19 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
 
   return (
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
-      <MainTable<EnTableTypes.clinics, EnModes.view>
+      <MainTable<EnTableTypes.clinics, EnModes.view, TInputs>
+        validationSchema={SCHEMA}
+        onFormSubmit={(data) => {}}
         bodyItems={[...addCells, ...cells].map(
           ({ id, data, mode }, cellIndex) => {
+            let actionCellTypeIndex;
+            data.find(({ cellType }, index) => {
+              if (cellType === EnCellTypes.action) {
+                actionCellTypeIndex = index;
+                return true;
+              }
+            });
+
             if (mode === EnModes.view)
               return {
                 render: data.map(({ cellType, data }) => {
@@ -46,6 +58,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                   };
                 }),
                 id,
+                formSubmitCellIndex: actionCellTypeIndex,
               };
             else if (mode === EnModes.add) {
               return {
@@ -66,6 +79,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                   };
                 }),
                 id,
+                formSubmitCellIndex: actionCellTypeIndex,
               };
             } else if (mode === EnModes.edit) {
               return {
@@ -86,6 +100,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
                   };
                 }),
                 id,
+                formSubmitCellIndex: actionCellTypeIndex,
               };
             }
 

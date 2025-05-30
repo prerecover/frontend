@@ -1,3 +1,4 @@
+'use client';
 import { cn } from '@/lib/utils';
 import { TClinicsBody } from '@/shared/types/Admin/Clinics/Bodies';
 import { TDoctorsBody } from '@/shared/types/Admin/Doctors/Bodies';
@@ -6,25 +7,52 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { Fragment, HTMLAttributes } from 'react';
 import { EnTableTypes } from '../types/TableTypes';
 import { TBodyItem } from '../types/Body';
+import { Form, FormProvider, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AnyObject, ObjectSchema } from 'yup';
+import { Cell } from './Cell';
 
-interface Props<T extends EnTableTypes, M extends EnModes>
-  extends HTMLAttributes<HTMLTableElement> {
+type TInputs = Record<string, any>;
+type TSchema<I extends TInputs> = ObjectSchema<I, AnyObject, I, ''>;
+interface Props<
+  T extends EnTableTypes,
+  M extends EnModes,
+  Inputs extends TInputs,
+> extends Omit<HTMLAttributes<HTMLTableElement>, 'onSubmit'> {
+  validationSchema: any;
+  onFormSubmit: (data: Inputs) => void;
   headItems: string[];
   bodyItems: (T extends EnTableTypes.clinics
-    ? TBodyItem<TClinicsBody<M>[0]['id']>
+    ? TBodyItem<TClinicsBody<M>[0]['id']> & {}
     : T extends EnTableTypes.services
-      ? TBodyItem<TServicesBody<M>[0]['id']>
+      ? TBodyItem<TServicesBody<M>[0]['id']> & {
+          formSubmitCellIndex?: number;
+        }
       : T extends EnTableTypes.doctors
-        ? TBodyItem<TDoctorsBody<M>[0]['id']>
+        ? TBodyItem<TDoctorsBody<M>[0]['id']> & {
+            formSubmitCellIndex?: number;
+          }
         : never)[];
 }
 
-const MainTable = <T extends EnTableTypes, M extends EnModes>({
+const MainTable = <
+  T extends EnTableTypes,
+  M extends EnModes,
+  I extends TInputs,
+>({
   bodyItems,
   headItems,
   className,
+  validationSchema,
+  onFormSubmit,
   ...props
-}: Props<T, M>) => {
+}: Props<T, M, I>) => {
+  const formMethods = useForm<I>({
+    reValidateMode: 'onSubmit',
+    //@ts-ignore: Непонятно как типизировать
+    resolver: yupResolver(validationSchema),
+  });
+
   return (
     <table className={cn('border-collapse', className)} {...props}>
       <thead className="font-medium">
@@ -46,29 +74,33 @@ const MainTable = <T extends EnTableTypes, M extends EnModes>({
       <tbody className="">
         {bodyItems.map((row, rowIndex) => {
           return (
-            <tr key={row.id}>
-              {row?.render?.map(({ node, cellClassName }, cellIndex) => {
-                return (
-                  <Fragment key={cellIndex}>
-                    {cellIndex === 0 ? (
-                      <td className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24">
-                        <p className="w-max mx-auto">{rowIndex + 1}</p>
-                      </td>
-                    ) : null}
-                    <td
-                      className={cn(
-                        'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
-                        cellClassName
+            <FormProvider {...formMethods}>
+              <tr key={row.id}>
+                {row?.render?.map(({ node, cellClassName }, cellIndex) => {
+                  return (
+                    <Fragment key={cellIndex}>
+                      {cellIndex === 0 ? (
+                        <td className="bg-blue-100 border-blue-400 border min-w-10 text-xs text-blue-500 h-24">
+                          <p className="w-max mx-auto">{rowIndex + 1}</p>
+                        </td>
+                      ) : null}
+                      {row?.formSubmitCellIndex === cellIndex ? (
+                        <Cell className={cellClassName}>
+                          <Form
+                            // @ts-ignore: Непонятно как типизировать
+                            onSubmit={formMethods.handleSubmit(onFormSubmit)}
+                          >
+                            {node}
+                          </Form>
+                        </Cell>
+                      ) : (
+                        <Cell className={cellClassName}>{node}</Cell>
                       )}
-                    >
-                      <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle w-full">
-                        {node}
-                      </div>
-                    </td>
-                  </Fragment>
-                );
-              })}
-            </tr>
+                    </Fragment>
+                  );
+                })}
+              </tr>
+            </FormProvider>
           );
         })}
       </tbody>
