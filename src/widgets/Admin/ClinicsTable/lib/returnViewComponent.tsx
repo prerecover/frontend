@@ -1,17 +1,20 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
+import { MultiselectLanguagesCell } from '@/entities/Admin/Admin/MultiselectLanguagesCell/ui';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasView } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
+import { TMultiselectView } from '@/shared/types/Admin/shared/cells/Multiselect';
 
 interface Params extends TCellIndexField {
   mode: EnModes.view;
@@ -49,7 +52,13 @@ export const returnViewComponent = ({
     case EnCellTypes.inlineArea:
       return 1;
     case EnMultiselectTypes.language:
-      return 1;
+      return (
+        <MultiselectLanguagesCell<EnModes.view, EnTableTypes.clinics>
+          cellIndex={cellIndex}
+          data={data as TMultiselectView<string, EnLanguages>}
+          mode={mode}
+        />
+      );
     case EnAccumulator.clinicsNet:
       return 1;
     case EnLinks.doctors:

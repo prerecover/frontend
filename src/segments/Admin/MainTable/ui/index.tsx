@@ -61,7 +61,7 @@ const MainTable = <T extends EnTableTypes, M extends EnModes>({
                         cellClassName
                       )}
                     >
-                      <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle">
+                      <div className="inline-block whitespace-pre-wrap text-center max-h-32 overflow-auto scroll-hide align-middle w-full">
                         {node}
                       </div>
                     </td>

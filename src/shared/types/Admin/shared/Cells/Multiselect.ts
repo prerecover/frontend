@@ -10,8 +10,8 @@ export type TMultiselectEdit<T = null, V = TValue> = {
   isSelected: boolean;
   value: V;
 }[];
-export type TMultiselectAdd<T = null, V = TValue> = {
-  data: T;
+export type TMultiselectAdd<D = null, V = TValue> = {
+  data: D;
   isSelected: null;
   value: V;
 }[];
