@@ -38,7 +38,7 @@ const HasCell = <M extends EnModes, T extends EnTableTypes>({
       {mode === EnModes.view ? (
         <View data={data as THasView} />
       ) : mode === EnModes.edit ? (
-        <Edit<M, T>
+        <Edit
           //@ts-ignore
           updateFunc={props.updateFunc}
           //@ts-ignore
@@ -47,7 +47,7 @@ const HasCell = <M extends EnModes, T extends EnTableTypes>({
           data={data as THasEdit}
         />
       ) : mode === EnModes.add ? (
-        <Add<M, T>
+        <Add
           //@ts-ignore
           updateFunc={props.updateFunc}
           //@ts-ignore

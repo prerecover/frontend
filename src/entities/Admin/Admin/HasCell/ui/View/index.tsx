@@ -13,6 +13,7 @@ const View: FC<Props> = ({ data }) => {
       alt=""
       width={24}
       height={24}
+      className="mx-auto"
     />
   );
 };

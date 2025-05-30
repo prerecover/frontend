@@ -30,7 +30,7 @@ const Edit = <T extends EnTableTypes>({
   }, 200);
 
   return (
-    <div className="flex rounded-xl shadow-mainShadow">
+    <div className="flex rounded-xl shadow-mainShadow w-max mx-auto">
       <Button
         variant="ghost"
         className={cn(
