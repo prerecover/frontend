@@ -1,6 +1,7 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
-import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
+import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
+import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
@@ -13,6 +14,7 @@ import { TUpdateFuncField } from '@/shared/types/Admin/shared/Utils/CellDataUpda
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
 import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
 import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
+import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
 
 interface Params
   extends TCellIndexField,
@@ -55,7 +57,15 @@ export const returnEditComponent = ({
         />
       );
     case EnCellTypes.inlineArea:
-      return 1;
+      return (
+        <InlineAreaCell<EnModes.edit, EnTableTypes.clinics>
+          updateFunc={updateFunc}
+          cellIndex={cellIndex}
+          data={data as TInlineAreaAdd}
+          mode={mode}
+          id={id}
+        />
+      );
     case EnMultiselectTypes.language:
       return 1;
     case EnAccumulator.clinicsNet:

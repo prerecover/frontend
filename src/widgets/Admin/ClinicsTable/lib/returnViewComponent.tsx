@@ -1,6 +1,6 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
-import { InlineCell } from '@/entities/Admin/Admin/InlinceCell';
+import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
