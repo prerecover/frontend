@@ -33,25 +33,14 @@ export const Edit = <T extends EnTableTypes>({
 }: Props<T>) => {
   const [workTime, setWorkTime] = useState<TWorkTimeEdit>(data);
   const [visibleDays, setVisibleDays] = useState<Record<string, boolean>>(
-    Object.fromEntries(
-      daysOfWeek.map(({ key }) => [
-        key,
-        data[key] !== null, // если значение не null, день изначально видим
-      ])
-    )
+    Object.fromEntries(daysOfWeek.map(({ key }) => [key, data[key] !== null]))
   );
 
-  // 🆕 Следим за изменением внешних данных и обновляем локальный стейт
   useEffect(() => {
     setWorkTime(data);
 
     setVisibleDays((prev) =>
-      Object.fromEntries(
-        daysOfWeek.map(({ key }) => [
-          key,
-          data[key] !== null, // показываем только те дни, где есть значения
-        ])
-      )
+      Object.fromEntries(daysOfWeek.map(({ key }) => [key, data[key] !== null]))
     );
   }, [data]);
 
@@ -76,7 +65,6 @@ export const Edit = <T extends EnTableTypes>({
       const newVisibleState = !prev[dayKey];
 
       if (newVisibleState === false) {
-        // Если скрываем — удаляем время
         setWorkTime((prevData) => ({
           ...prevData,
           [dayKey]: null,

@@ -98,8 +98,8 @@ export const Add = <T extends EnTableTypes>({
 
               {visibleDays[key] ? (
                 <TimeRangeInputs
-                  valueFrom={workTime[key] !== null ? workTime[key][0] : null}
-                  valueTo={workTime[key] !== null ? workTime[key][1] : null}
+                  valueFrom={workTime[key] !== null ? workTime[key][0] : 0}
+                  valueTo={workTime[key] !== null ? workTime[key][1] : 86340}
                   onChange={handleTimeChange(key)}
                 />
               ) : null}
