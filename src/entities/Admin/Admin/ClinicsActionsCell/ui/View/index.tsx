@@ -33,7 +33,7 @@ const View = ({ id }: Props) => {
   return (
     <>
       {isChangesConfirmAlertsCells ? (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%+14px)] py-2 px-3 rounded-xl shadow-mainShadow bg-white-100 animate-scale-fade">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%+14px)] py-2 px-3 rounded-xl shadow-mainShadow bg-white-100 animate-scale-fade transform-gpu">
           <Image
             src="/assets/confirmation-checkmark.svg"
             width={42}
