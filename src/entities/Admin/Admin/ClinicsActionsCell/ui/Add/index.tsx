@@ -13,6 +13,7 @@ import {
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
 import { ActionConfirmationModal } from '../../../ActionConfirmationModal';
+import { cn } from '@/lib/utils';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -38,7 +39,7 @@ const Add = ({ id }: Props) => {
         >
           <p className={itemContentCls}>Зарегистрировать</p>
         </DropdownMenuItem>
-        <DropdownMenuItem className={itemCls}>
+        <DropdownMenuItem asChild>
           <ActionConfirmationModal
             actionText="Удалить"
             closeText="Отменить"
@@ -47,7 +48,7 @@ const Add = ({ id }: Props) => {
               removeAddCell({ id });
             }}
           >
-            <p className={itemContentCls}>Отменить</p>
+            <p className={cn(itemContentCls, 'm-1.5')}>Отменить</p>
           </ActionConfirmationModal>
         </DropdownMenuItem>
       </DropdownMenuContent>

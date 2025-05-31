@@ -6,12 +6,12 @@ import {
   DialogContent,
   DialogClose,
 } from '@/components/ui/dialog';
-import { FC, ReactNode } from 'react';
+import { FC, MouseEventHandler, ReactNode } from 'react';
 import Image from 'next/image';
 
 interface Props {
   children: ReactNode;
-  actionFn: () => void;
+  actionFn: MouseEventHandler;
   title: string;
   closeText: string;
   actionText: string;
@@ -34,12 +34,13 @@ const ActionConfirmationModal: FC<Props> = ({
         <Image
           src="/assets/close-danger.svg"
           alt="Удалить"
-          width={11}
-          height={11}
+          width={38}
+          height={38}
+          className="mx-auto"
         />
         <h2 className="font-medium text-2xl text-center mt-2 mb-4">{title}</h2>
         <div className="grid grid-cols-2 gap-x-4">
-          <DialogClose>
+          <DialogClose asChild>
             <Button
               className="py-2.5 h-auto font-semibold w-full"
               variant="default"
@@ -47,13 +48,15 @@ const ActionConfirmationModal: FC<Props> = ({
               {closeText}
             </Button>
           </DialogClose>
-          <Button
-            className="py-2.5 h-auto font-semibold"
-            variant="outline"
-            onClick={actionFn}
-          >
-            {actionText}
-          </Button>
+          <DialogClose asChild>
+            <Button
+              className="py-2.5 h-auto font-semibold"
+              variant="outline"
+              onClick={actionFn}
+            >
+              {actionText}
+            </Button>
+          </DialogClose>
         </div>
       </DialogContent>
     </Dialog>

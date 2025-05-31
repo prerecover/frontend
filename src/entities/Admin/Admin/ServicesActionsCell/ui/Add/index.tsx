@@ -12,6 +12,8 @@ import {
   transformAddToViewSetter,
   useServicesStore,
 } from '@/shared/store/Admin/useServicesStore';
+import { cn } from '@/lib/utils'
+import { ActionConfirmationModal } from '../../../ActionConfirmationModal'
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -37,15 +39,18 @@ const Add = ({ id }: Props) => {
         >
           <p className={itemContentCls}>Зарегистрировать</p>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          className={itemCls}
-          onClick={() => {
-            removeAddCell({ id });
-          }}
-        >
-          <p className={itemContentCls}>Отменить</p>
+        <DropdownMenuItem asChild>
+          <ActionConfirmationModal
+            actionText="Удалить"
+            closeText="Отменить"
+            title="Вы уверены, что хотите отменить?"
+            actionFn={() => {
+              removeAddCell({ id });
+            }}
+          >
+            <p className={cn(itemContentCls, 'm-1.5')}>Отменить</p>
+          </ActionConfirmationModal>
         </DropdownMenuItem>
-      </DropdownMenuContent>
     </DropdownMenu>
   );
 };

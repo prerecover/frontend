@@ -13,6 +13,7 @@ import {
   removeCellSetter,
 } from '@/shared/store/Admin/useDoctorsStore';
 import { ActionConfirmationModal } from '../../../ActionConfirmationModal';
+import { cn } from '@/lib/utils';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -38,16 +39,16 @@ const View = ({ id }: Props) => {
         >
           <p className={itemContentCls}>Изменить</p>
         </DropdownMenuItem>
-        <DropdownMenuItem className={itemCls}>
+        <DropdownMenuItem asChild>
           <ActionConfirmationModal
             actionText="Удалить"
             closeText="Отменить"
-            title="Вы уверены, что хотите удалить услугу?"
+            title="Вы уверены, что хотите удалить врача?"
             actionFn={() => {
               removeCell({ id });
             }}
           >
-            <p className={itemContentCls}>Удалить</p>
+            <p className={cn(itemContentCls, 'm-1.5')}>Удалить</p>
           </ActionConfirmationModal>
         </DropdownMenuItem>
       </DropdownMenuContent>
