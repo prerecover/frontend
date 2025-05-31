@@ -8,6 +8,7 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 interface State {
   addCells: TAddBody;
@@ -51,221 +52,227 @@ interface State {
   removeChangesConfirmAlertCell_S: (id: TClinicsDataStructure['id']) => void;
 }
 
-export const useClinicsStore = create<State>()((set, get) => ({
-  addCells: [],
-  cells: [],
-  editableCells: [],
-  changesConfirmAlertsCells: [],
-  addChangesConfirmAlertCell_S: (id) => {
-    set(({ changesConfirmAlertsCells }) => {
-      return {
-        changesConfirmAlertsCells: [...changesConfirmAlertsCells, id],
-      };
-    });
-  },
-  removeChangesConfirmAlertCell_S: (id) => {
-    set(({ changesConfirmAlertsCells }) => {
-      return {
-        changesConfirmAlertsCells: changesConfirmAlertsCells.filter(
-          (curId) => curId !== id
-        ),
-      };
-    });
-  },
-  addAddCell_S: () => {
-    set(({ addCells }) => {
-      return {
-        addCells: [
-          ADD_CLINICS_CELL_BASE_STRUCTURE(`add-cell-id-${addCells.length - 1}`),
-          ...addCells,
-        ],
-      };
-    });
-  },
-  removeAddCell_S: ({ id }) => {
-    set(({ addCells }) => {
-      return {
-        addCells: addCells.filter((props) => props.id !== id),
-      };
-    });
-  },
-  addEditableCell_S: ({ id }) => {
-    set(({ editableCells, cells }) => {
-      const editableCell = cells.find((props) => props.id === id);
-
-      if (editableCell)
+export const useClinicsStore = create<State>()(
+  devtools((set, get) => ({
+    addCells: [],
+    cells: [],
+    editableCells: [],
+    changesConfirmAlertsCells: [],
+    addChangesConfirmAlertCell_S: (id) => {
+      set(({ changesConfirmAlertsCells }) => {
         return {
-          editableCells: [...editableCells, editableCell],
+          changesConfirmAlertsCells: [...changesConfirmAlertsCells, id],
         };
-    });
-  },
-  removeEditableCell_S: ({ id }) => {
-    set(({ editableCells }) => {
-      return {
-        editableCells: editableCells.filter((props) => props.id !== id),
-      };
-    });
-  },
-  addCell_S: (data) => {
-    set(({ cells }) => {
-      return {
-        cells: [...cells, ...data],
-      };
-    });
-  },
-  removeCell_S: ({ id }) => {
-    set(({ cells }) => {
-      return {
-        cells: cells.filter((props) => props.id !== id),
-      };
-    });
-  },
-  updateAddCell_S: ({ cellIndex, data, id }) => {
-    set(({ addCells }) => {
-      return {
-        addCells: addCells.map((props, index) => {
-          if (props.id === id) {
-            let newData;
-
-            if (props.data.length - 1 >= cellIndex) {
-              newData = {
-                ...props,
-                data: props.data.map((props, index) => {
-                  if (index === cellIndex) {
-                    return { ...props, data };
-                  }
-                  return props;
-                }),
-              };
-            }
-
-            return newData || props;
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  updateCell_S: ({ cellIndex, data, id }) => {
-    set(({ cells }) => {
-      return {
-        cells: cells.map((props, index) => {
-          if (props.id === id) {
-            let newData;
-
-            if (props.data.length - 1 >= cellIndex) {
-              newData = {
-                ...props,
-                data: props.data.map((props, index) => {
-                  if (index === cellIndex) {
-                    return { ...props, data };
-                  }
-                  return props;
-                }),
-              };
-            }
-
-            return newData || props;
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  transformAddToView_S: ({ id }) => {
-    const removeAddCell = get().removeAddCell_S;
-    const addChangesConfirmAlertCellSetter = get().addChangesConfirmAlertCell_S;
-    const removeChangesConfirmAlertCellSetter =
-      get().removeChangesConfirmAlertCell_S;
-
-    set(({ cells, addCells }) => {
-      const transformAddCell = addCells.find((props) => props.id === id);
-
-      if (transformAddCell) {
-        addChangesConfirmAlertCellSetter(`added-${id}`);
-        setTimeout(() => {
-          removeChangesConfirmAlertCellSetter(`added-${id}`);
-        }, CHANGES_CONFIRM_ALERT_TIME);
-        removeAddCell({ id });
+      });
+    },
+    removeChangesConfirmAlertCell_S: (id) => {
+      set(({ changesConfirmAlertsCells }) => {
         return {
-          cells: [
-            {
-              ...transformAddCell,
-              mode: EnModes.view,
-              id: `added-${id}`,
-            } as unknown as TViewEditBody[0],
-            ...cells,
+          changesConfirmAlertsCells: changesConfirmAlertsCells.filter(
+            (curId) => curId !== id
+          ),
+        };
+      });
+    },
+    addAddCell_S: () => {
+      set(({ addCells }) => {
+        return {
+          addCells: [
+            ADD_CLINICS_CELL_BASE_STRUCTURE(
+              `add-cell-id-${addCells.length - 1}`
+            ),
+            ...addCells,
           ],
         };
-      }
-    });
-  },
-  transformViewToEdit_S: ({ id }) => {
-    const addEditableCell = get().addEditableCell_S;
+      });
+    },
+    removeAddCell_S: ({ id }) => {
+      set(({ addCells }) => {
+        return {
+          addCells: addCells.filter((props) => props.id !== id),
+        };
+      });
+    },
+    addEditableCell_S: ({ id }) => {
+      set(({ editableCells, cells }) => {
+        const editableCell = cells.find((props) => props.id === id);
 
-    set(({ cells }) => {
-      addEditableCell({ id });
-      return {
-        cells: cells.map((props) => {
-          if (props.id === id) {
-            return { ...props, mode: EnModes.edit };
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  transformEditToViewSave_S: ({ id }) => {
-    const removeEditableCell = get().removeEditableCell_S;
-    const addChangesConfirmAlertCellSetter = get().addChangesConfirmAlertCell_S;
-    const removeChangesConfirmAlertCellSetter =
-      get().removeChangesConfirmAlertCell_S;
+        if (editableCell)
+          return {
+            editableCells: [...editableCells, editableCell],
+          };
+      });
+    },
+    removeEditableCell_S: ({ id }) => {
+      set(({ editableCells }) => {
+        return {
+          editableCells: editableCells.filter((props) => props.id !== id),
+        };
+      });
+    },
+    addCell_S: (data) => {
+      set(({ cells }) => {
+        return {
+          cells: [...cells, ...data],
+        };
+      });
+    },
+    removeCell_S: ({ id }) => {
+      set(({ cells }) => {
+        return {
+          cells: cells.filter((props) => props.id !== id),
+        };
+      });
+    },
+    updateAddCell_S: ({ cellIndex, data, id }) => {
+      set(({ addCells }) => {
+        return {
+          addCells: addCells.map((props, index) => {
+            if (props.id === id) {
+              let newData;
 
-    set(({ cells }) => {
-      addChangesConfirmAlertCellSetter(id);
-      setTimeout(() => {
-        removeChangesConfirmAlertCellSetter(id);
-      }, CHANGES_CONFIRM_ALERT_TIME);
+              if (props.data.length - 1 >= cellIndex) {
+                newData = {
+                  ...props,
+                  data: props.data.map((props, index) => {
+                    if (index === cellIndex) {
+                      return { ...props, data };
+                    }
+                    return props;
+                  }),
+                };
+              }
 
-      return {
-        cells: cells.map((props) => {
-          if (props.id === id) {
-            removeEditableCell({ id });
-            return { ...props, mode: EnModes.view };
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  transformEditToViewCancel_S: ({ id }) => {
-    const removeEditableCell = get().removeEditableCell_S;
+              return newData || props;
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    updateCell_S: ({ cellIndex, data, id }) => {
+      set(({ cells }) => {
+        return {
+          cells: cells.map((props, index) => {
+            if (props.id === id) {
+              let newData;
 
-    set(({ editableCells, cells }) => {
-      const editableCell = editableCells.find((props) => props.id === id);
+              if (props.data.length - 1 >= cellIndex) {
+                newData = {
+                  ...props,
+                  data: props.data.map((props, index) => {
+                    if (index === cellIndex) {
+                      return { ...props, data };
+                    }
+                    return props;
+                  }),
+                };
+              }
 
-      return {
-        cells: cells.map((props) => {
-          if (props.id === id) {
-            removeEditableCell({ id });
-            return editableCell;
-          }
-          return props;
-        }),
-      };
-    });
-  },
-  getItemData_S: (id) => {
-    const cells = get().cells;
+              return newData || props;
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    transformAddToView_S: ({ id }) => {
+      const removeAddCell = get().removeAddCell_S;
+      const addChangesConfirmAlertCellSetter =
+        get().addChangesConfirmAlertCell_S;
+      const removeChangesConfirmAlertCellSetter =
+        get().removeChangesConfirmAlertCell_S;
 
-    return cells.find((props) => props.id === id) || null;
-  },
-  getAddItemData_S: (id) => {
-    const addCells = get().addCells;
+      set(({ cells, addCells }) => {
+        const transformAddCell = addCells.find((props) => props.id === id);
 
-    return addCells.find((props) => props.id === id) || null;
-  },
-}));
+        if (transformAddCell) {
+          addChangesConfirmAlertCellSetter(`added-${id}`);
+          setTimeout(() => {
+            removeChangesConfirmAlertCellSetter(`added-${id}`);
+          }, CHANGES_CONFIRM_ALERT_TIME);
+          removeAddCell({ id });
+          return {
+            cells: [
+              {
+                ...transformAddCell,
+                mode: EnModes.view,
+                id: `added-${id}`,
+              } as unknown as TViewEditBody[0],
+              ...cells,
+            ],
+          };
+        }
+      });
+    },
+    transformViewToEdit_S: ({ id }) => {
+      const addEditableCell = get().addEditableCell_S;
+
+      set(({ cells }) => {
+        addEditableCell({ id });
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              return { ...props, mode: EnModes.edit };
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    transformEditToViewSave_S: ({ id }) => {
+      const removeEditableCell = get().removeEditableCell_S;
+      const addChangesConfirmAlertCellSetter =
+        get().addChangesConfirmAlertCell_S;
+      const removeChangesConfirmAlertCellSetter =
+        get().removeChangesConfirmAlertCell_S;
+
+      set(({ cells }) => {
+        addChangesConfirmAlertCellSetter(id);
+        setTimeout(() => {
+          removeChangesConfirmAlertCellSetter(id);
+        }, CHANGES_CONFIRM_ALERT_TIME);
+
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              removeEditableCell({ id });
+              return { ...props, mode: EnModes.view };
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    transformEditToViewCancel_S: ({ id }) => {
+      const removeEditableCell = get().removeEditableCell_S;
+
+      set(({ editableCells, cells }) => {
+        const editableCell = editableCells.find((props) => props.id === id);
+
+        return {
+          cells: cells.map((props) => {
+            if (props.id === id) {
+              removeEditableCell({ id });
+              return editableCell;
+            }
+            return props;
+          }),
+        };
+      });
+    },
+    getItemData_S: (id) => {
+      const cells = get().cells;
+
+      return cells.find((props) => props.id === id) || null;
+    },
+    getAddItemData_S: (id) => {
+      const addCells = get().addCells;
+
+      return addCells.find((props) => props.id === id) || null;
+    },
+  }))
+);
 
 export const addCellsSelector = (state: State) => state.addCells;
 export const cellsSelector = (state: State) => state.cells;

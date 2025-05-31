@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { TWorkTimeView } from '@/shared/types/Admin/shared/Cells/WorkTime';
+import { convertSecondsToDay } from '@/shared/lib/convertSecondsToDay';
 
 interface Props {
   data: TWorkTimeView;

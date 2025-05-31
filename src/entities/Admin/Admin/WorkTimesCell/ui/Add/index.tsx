@@ -36,6 +36,7 @@ export const Add = <T extends EnTableTypes>({
     Object.fromEntries(daysOfWeek.map(({ key }) => [key, false]))
   );
 
+  console.log(workTime);
   const debounceUpdate = useDebounce((values: TWorkTimeAdd) => {
     updateFunc({ cellIndex, data: values, id });
   }, 200);

@@ -4,7 +4,7 @@
  * @returns строка в формате "ЧЧ:ММ:СС"
  * @throws Error если totalSeconds отрицательное или превышает 86400 (24 часа)
  */
-const convertSecondsToDay = (totalSeconds: number): string => {
+export const convertSecondsToDay = (totalSeconds: number): string => {
   if (totalSeconds < 0) {
     throw new Error('Количество секунд не может быть отрицательным');
   }

@@ -4,7 +4,7 @@
  * @returns количество секунд (целое число)
  * @throws Error если формат строки неверен или значения некорректны
  */
-const convertTimeToSeconds = (timeString: string): number => {
+export const convertTimeToSeconds = (timeString: string): number => {
   const regex = /^(\d{1,2}):(\d{2})$/;
   const match = timeString.match(regex);
 
