@@ -3,7 +3,7 @@ import {
   TInlineAdd,
   TInlineEdit,
   TInlineView,
-} from '@/shared/types/Admin/shared/cells/Inline';
+} from '@/shared/types/Admin/shared/Cells/Inline';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';

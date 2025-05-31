@@ -1,11 +1,11 @@
 'use client';
-import { TInlineAdd } from '@/shared/types/Admin/shared/cells/Inline';
+import { TInlineAdd } from '@/shared/types/Admin/shared/Cells/Inline';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { useEffect } from 'react';
 import { ADMIN_ROUTES } from '@/shared/utils/paths';
-import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
+import { TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
 import { TData } from '..';
 
 interface Props<T extends EnTableTypes>

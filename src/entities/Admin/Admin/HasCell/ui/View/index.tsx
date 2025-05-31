@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { THasView } from '@/shared/types/Admin/shared/cells/Has';
+import { THasView } from '@/shared/types/Admin/shared/Cells/Has';
 import Image from 'next/image';
 
 interface Props {

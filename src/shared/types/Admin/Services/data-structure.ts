@@ -1,7 +1,7 @@
 import { TDoctorsDataStructure } from '../Doctors/data-structure';
 import { EnNetType } from '../shared/Entities/NetType';
 import { TPrevPage } from '../shared/Utils/PrevPage';
-import { EnPayType } from './entities/PayType';
+import { EnPayType } from './Entities/PayType';
 
 export type TDoctorItem = {
   id: TDoctorsDataStructure['id'];

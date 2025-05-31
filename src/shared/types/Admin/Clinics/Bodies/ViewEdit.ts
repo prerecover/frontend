@@ -1,17 +1,17 @@
 import { EnCellTypes } from '../../shared/Entities/CellTypes';
 import { EnModes } from '../../shared/Entities/Modes';
-import { TAccumulatorView } from '../../shared/cells/Accumulator';
-import { THasView } from '../../shared/cells/Has';
-import { TInlineView } from '../../shared/cells/Inline';
-import { TInlineAreaView } from '../../shared/cells/InlineArea';
-import { TLinkView } from '../../shared/cells/Link';
-import { TMultiselectView } from '../../shared/cells/Multiselect';
-import { TWorkTimeView } from '../../shared/cells/WorkTime';
+import { TAccumulatorView } from '../../shared/Cells/Accumulator';
+import { THasView } from '../../shared/Cells/Has';
+import { TInlineView } from '../../shared/Cells/Inline';
+import { TInlineAreaView } from '../../shared/Cells/InlineArea';
+import { TLinkView } from '../../shared/Cells/Link';
+import { TMultiselectView } from '../../shared/Cells/Multiselect';
+import { TWorkTimeView } from '../../shared/Cells/WorkTime';
 import { EnAccumulator } from '../FloatCellTypes/Accumulator';
 import { EnLinks } from '../FloatCellTypes/Links';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { TClinicsDataStructure, TClinicsNetItem } from '../data-structure';
-import { EnLanguages } from '../entities/Languages';
+import { EnLanguages } from '../Entities/Languages';
 
 export type TViewEditBody = {
   id: TClinicsDataStructure['id'];

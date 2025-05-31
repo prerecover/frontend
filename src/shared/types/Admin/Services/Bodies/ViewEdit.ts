@@ -1,13 +1,13 @@
 import { EnCellTypes } from '../../shared/Entities/CellTypes';
 import { EnModes } from '../../shared/Entities/Modes';
-import { TInlineView } from '../../shared/cells/Inline';
-import { TInlineAreaView } from '../../shared/cells/InlineArea';
-import { TMultiselectView } from '../../shared/cells/Multiselect';
-import { TNetView } from '../../shared/cells/Net';
+import { TInlineView } from '../../shared/Cells/Inline';
+import { TInlineAreaView } from '../../shared/Cells/InlineArea';
+import { TMultiselectView } from '../../shared/Cells/Multiselect';
+import { TNetView } from '../../shared/Cells/Net';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { EnMultiselectSearchTypes } from '../FloatCellTypes/MultiselectSearch';
 import { TDoctorItem } from '../data-structure';
-import { EnPayType } from '../entities/PayType';
+import { EnPayType } from '../Entities/PayType';
 
 export type TViewEditBody = {
   id: string;

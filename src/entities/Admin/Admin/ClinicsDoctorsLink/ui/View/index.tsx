@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
+import { TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
 import { TData } from '..';
 import Link from 'next/link';
 

@@ -1,5 +1,5 @@
 'use client';
-import { TInlineAdd } from '@/shared/types/Admin/shared/cells/Inline';
+import { TInlineAdd } from '@/shared/types/Admin/shared/Cells/Inline';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';

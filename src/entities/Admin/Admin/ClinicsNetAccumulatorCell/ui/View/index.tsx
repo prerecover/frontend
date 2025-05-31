@@ -1,12 +1,12 @@
 'use client';
 
-import { TAccumulatorView } from '@/shared/types/Admin/shared/cells/Accumulator';
 import { TData } from '../../types/Data';
 import { DropdownMenu } from '@/components/ui/dropdown-menu';
 import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { TAccumulatorView } from '@/shared/types/Admin/shared/Cells/Accumulator';
 
 interface Props {
   data: TAccumulatorView<TData>;

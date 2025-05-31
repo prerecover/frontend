@@ -1,10 +1,10 @@
 import { TAddBody } from '@/shared/types/Admin/Services/Bodies/Add';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Services/FloatCellTypes/Multiselect';
 import { EnMultiselectSearchTypes } from '@/shared/types/Admin/Services/FloatCellTypes/MultiselectSearch';
-import { EnPayType } from '@/shared/types/Admin/services/entities/PayType';
+import { EnPayType } from '@/shared/types/Admin/Services/Entities/PayType';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TServicesDataStructure } from '@/shared/types/Admin/services/data-structure';
+import { TServicesDataStructure } from '@/shared/types/Admin/Services/data-structure';
 
 export const ADD_SERVICES_CELL_BASE_STRUCTURE: (
   newId: TServicesDataStructure['id']

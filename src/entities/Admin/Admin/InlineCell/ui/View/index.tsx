@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
+import { TInlineView } from '@/shared/types/Admin/shared/Cells/Inline';
 
 interface Props {
   data: TInlineView;

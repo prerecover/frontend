@@ -1,5 +1,5 @@
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import { TLinkAdd, TLinkView } from '@/shared/types/Admin/shared/cells/Link';
+import { TLinkAdd, TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
 import { View } from './View';
 import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';

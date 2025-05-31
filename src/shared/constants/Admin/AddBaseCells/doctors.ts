@@ -2,7 +2,7 @@ import { TAddBody } from '@/shared/types/Admin/Doctors/Bodies/Add';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Doctors/FloatCellTypes/Multiselect';
 import { EnMultiselectSearchTypes } from '@/shared/types/Admin/Doctors/FloatCellTypes/MultiselectSearch';
 import { TDoctorsDataStructure } from '@/shared/types/Admin/Doctors/data-structure';
-import { EnWorkDays } from '@/shared/types/Admin/Doctors/entities/WorkDays';
+import { EnWorkDays } from '@/shared/types/Admin/Doctors/Entities/WorkDays';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 

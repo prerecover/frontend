@@ -8,7 +8,7 @@ import {
   TInlineAreaAdd,
   TInlineAreaEdit,
   TInlineAreaView,
-} from '@/shared/types/Admin/shared/cells/InlineArea';
+} from '@/shared/types/Admin/shared/Cells/InlineArea';
 
 type Props<M extends EnModes, T extends EnTableTypes> = {
   mode: M;

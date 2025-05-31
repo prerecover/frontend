@@ -4,7 +4,7 @@ import { TBodyItemIdField } from './BodyItemId';
 import { TCellIndexField } from './CellIndex';
 import { TClinicsDataStructure } from '../../Clinics/data-structure';
 import { TDoctorsDataStructure } from '../../Doctors/data-structure';
-import { TServicesDataStructure } from '../../services/data-structure';
+import { TServicesDataStructure } from '../../Services/data-structure';
 
 export type TCellFuncParams<D, T extends EnTableTypes> = {
   id: T extends EnTableTypes.clinics

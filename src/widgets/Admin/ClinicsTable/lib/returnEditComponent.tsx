@@ -5,7 +5,7 @@ import {
   TClinicsNetAccumulatorData,
 } from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
 import { ClinicsServicesLink } from '@/entities/Admin/Admin/ClinicsServicesLink';
-import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
+import { HasCell } from '@/entities/Admin/Admin/HasCell';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { MultiselectLanguagesCell } from '@/entities/Admin/Admin/MultiselectLanguagesCell/ui';
@@ -15,19 +15,19 @@ import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes'
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/Entities/Languages';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TUpdateFuncField } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
-import { TAccumulatorEdit } from '@/shared/types/Admin/shared/cells/Accumulator';
-import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
-import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
-import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
-import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
-import { TMultiselectEdit } from '@/shared/types/Admin/shared/cells/Multiselect';
-import { TWorkTimeEdit } from '@/shared/types/Admin/shared/cells/WorkTime';
+import { TAccumulatorEdit } from '@/shared/types/Admin/shared/Cells/Accumulator';
+import { THasEdit } from '@/shared/types/Admin/shared/Cells/Has';
+import { TInlineEdit } from '@/shared/types/Admin/shared/Cells/Inline';
+import { TInlineAreaAdd } from '@/shared/types/Admin/shared/Cells/InlineArea';
+import { TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
+import { TMultiselectEdit } from '@/shared/types/Admin/shared/Cells/Multiselect';
+import { TWorkTimeEdit } from '@/shared/types/Admin/shared/Cells/WorkTime';
 
 interface Params
   extends TCellIndexField,

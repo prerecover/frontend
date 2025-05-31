@@ -1,6 +1,6 @@
-import { EnNetType } from '../shared/entities/NetType';
-import { EnWorkDays } from './entities/WorkDays';
-import { TServicesDataStructure } from '../services/data-structure';
+import { EnNetType } from '../shared/Entities/NetType';
+import { EnWorkDays } from './Entities/WorkDays';
+import { TServicesDataStructure } from '../Services/data-structure';
 import { TPrevPage } from '../shared/Utils/PrevPage';
 
 export type TServiceItem = {

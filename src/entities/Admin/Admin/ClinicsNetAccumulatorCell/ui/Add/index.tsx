@@ -1,5 +1,5 @@
 'use client';
-import { TAccumulatorAdd } from '@/shared/types/Admin/shared/cells/Accumulator';
+import { TAccumulatorAdd } from '@/shared/types/Admin/shared/Cells/Accumulator';
 import { TData } from '../../types/Data';
 
 interface Props {

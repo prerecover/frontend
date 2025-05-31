@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { TNetView } from '@/shared/types/Admin/shared/cells/Net';
-import { EnNetType } from '@/shared/types/Admin/shared/entities/NetType';
+import { TNetView } from '@/shared/types/Admin/shared/Cells/Net';
+import { EnNetType } from '@/shared/types/Admin/shared/Entities/NetType';
 
 interface Props {
   data: TNetView;

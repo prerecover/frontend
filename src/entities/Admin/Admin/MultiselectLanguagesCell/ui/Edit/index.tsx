@@ -3,9 +3,9 @@
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';
-import { TMultiselectEdit } from '@/shared/types/Admin/shared/cells/Multiselect';
+import { TMultiselectEdit } from '@/shared/types/Admin/shared/Cells/Multiselect';
 import { Multiselect } from '@/components/ui/multiselect';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/Entities/Languages';
 import { useMemo, useCallback } from 'react';
 
 type TData = TMultiselectEdit<string, EnLanguages>;

@@ -1,9 +1,9 @@
-import { EnPayType } from '@/shared/types/Admin/services/entities/PayType';
+import { EnPayType } from '@/shared/types/Admin/Services/Entities/PayType';
 import {
   TMultiselectAdd,
   TMultiselectEdit,
   TMultiselectView,
-} from '@/shared/types/Admin/shared/cells/Multiselect';
+} from '@/shared/types/Admin/shared/Cells/Multiselect';
 
 export type TViewData = TMultiselectView<string, EnPayType>;
 export type TEditData = TMultiselectEdit<string, EnPayType>;

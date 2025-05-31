@@ -3,7 +3,7 @@ import {
   TWorkTimeAdd,
   TWorkTimeEdit,
   TWorkTimeView,
-} from '@/shared/types/Admin/shared/cells/WorkTime';
+} from '@/shared/types/Admin/shared/Cells/WorkTime';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';

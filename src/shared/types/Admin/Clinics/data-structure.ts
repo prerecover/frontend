@@ -1,5 +1,5 @@
 import { TPrevPage } from '../shared/Utils/PrevPage';
-import { EnLanguages } from './entities/Languages';
+import { EnLanguages } from './Entities/Languages';
 
 export type TClinicsNetItem = Pick<
   TClinicsDataStructure,

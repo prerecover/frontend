@@ -1,4 +1,4 @@
-import { TServicesDataStructure } from '@/shared/types/Admin/services/data-structure';
+import { TServicesDataStructure } from '@/shared/types/Admin/Services/data-structure';
 
 export interface TInputs
   extends Pick<

@@ -1,5 +1,5 @@
 'use client';
-import { THasAdd } from '@/shared/types/Admin/shared/cells/Has';
+import { THasAdd } from '@/shared/types/Admin/shared/Cells/Has';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';

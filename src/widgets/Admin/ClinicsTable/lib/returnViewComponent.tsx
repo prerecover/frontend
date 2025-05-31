@@ -5,7 +5,7 @@ import {
   TClinicsNetAccumulatorData,
 } from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
 import { ClinicsServicesLink } from '@/entities/Admin/Admin/ClinicsServicesLink';
-import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
+import { HasCell } from '@/entities/Admin/Admin/HasCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { MultiselectLanguagesCell } from '@/entities/Admin/Admin/MultiselectLanguagesCell/ui';
 import { WorkTimesCell } from '@/entities/Admin/Admin/WorkTimesCell';
@@ -14,17 +14,17 @@ import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes'
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/Entities/Languages';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
-import { TAccumulatorView } from '@/shared/types/Admin/shared/cells/Accumulator';
-import { THasView } from '@/shared/types/Admin/shared/cells/Has';
-import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
-import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
-import { TMultiselectView } from '@/shared/types/Admin/shared/cells/Multiselect';
-import { TWorkTimeView } from '@/shared/types/Admin/shared/cells/WorkTime';
+import { TAccumulatorView } from '@/shared/types/Admin/shared/Cells/Accumulator';
+import { THasView } from '@/shared/types/Admin/shared/Cells/Has';
+import { TInlineView } from '@/shared/types/Admin/shared/Cells/Inline';
+import { TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
+import { TMultiselectView } from '@/shared/types/Admin/shared/Cells/Multiselect';
+import { TWorkTimeView } from '@/shared/types/Admin/shared/Cells/WorkTime';
 
 interface Params extends TCellIndexField {
   mode: EnModes.view;

@@ -1,9 +1,9 @@
-import { TDoctorItem } from '@/shared/types/Admin/services/data-structure';
+import { TDoctorItem } from '@/shared/types/Admin/Services/data-structure';
 import {
   TMultiselectAdd,
   TMultiselectEdit,
   TMultiselectView,
-} from '@/shared/types/Admin/shared/cells/Multiselect';
+} from '@/shared/types/Admin/shared/Cells/Multiselect';
 
 export type TViewData = TMultiselectView<
   Omit<TDoctorItem, 'id'>,

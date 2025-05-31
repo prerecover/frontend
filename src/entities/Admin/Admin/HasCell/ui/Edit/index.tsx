@@ -1,5 +1,5 @@
 'use client';
-import { THasEdit } from '@/shared/types/Admin/shared/cells/Has';
+import { THasEdit } from '@/shared/types/Admin/shared/Cells/Has';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';

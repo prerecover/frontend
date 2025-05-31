@@ -2,7 +2,7 @@
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';
-import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
+import { TInlineAreaAdd } from '@/shared/types/Admin/shared/Cells/InlineArea';
 
 interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, string> {
   data: TInlineAreaAdd;

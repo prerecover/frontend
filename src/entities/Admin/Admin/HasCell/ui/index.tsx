@@ -3,7 +3,7 @@ import {
   THasAdd,
   THasEdit,
   THasView,
-} from '@/shared/types/Admin/shared/cells/Has';
+} from '@/shared/types/Admin/shared/Cells/Has';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';

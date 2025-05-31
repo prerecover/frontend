@@ -2,7 +2,7 @@
 
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
-import { TAccumulatorEdit } from '@/shared/types/Admin/shared/cells/Accumulator';
+import { TAccumulatorEdit } from '@/shared/types/Admin/shared/Cells/Accumulator';
 import { TData } from '../../types/Data';
 import { DropdownMenu } from '@/components/ui/dropdown-menu';
 import {

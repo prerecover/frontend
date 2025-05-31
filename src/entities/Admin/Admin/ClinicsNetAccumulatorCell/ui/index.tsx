@@ -1,15 +1,15 @@
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import {
-  TAccumulatorAdd,
-  TAccumulatorEdit,
-  TAccumulatorView,
-} from '@/shared/types/Admin/shared/cells/Accumulator';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
 import { TData } from '../types/Data';
+import {
+  TAccumulatorAdd,
+  TAccumulatorEdit,
+  TAccumulatorView,
+} from '@/shared/types/Admin/shared/Cells/Accumulator';
 
 type Props<M extends EnModes> = {
   mode: M;

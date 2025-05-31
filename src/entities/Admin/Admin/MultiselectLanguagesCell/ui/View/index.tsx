@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { TMultiselectView } from '@/shared/types/Admin/shared/cells/Multiselect';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { TMultiselectView } from '@/shared/types/Admin/shared/Cells/Multiselect';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/Entities/Languages';
 
 interface Props {
   data: TMultiselectView<string, EnLanguages>;

@@ -3,7 +3,7 @@ import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accum
 import { EnLinks } from '@/shared/types/Admin/Clinics/FloatCellTypes/Links';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Clinics/FloatCellTypes/Multiselect';
 import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structure';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/Entities/Languages';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 

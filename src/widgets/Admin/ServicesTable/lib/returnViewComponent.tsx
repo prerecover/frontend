@@ -7,17 +7,17 @@ import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
-import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
+import { TInlineView } from '@/shared/types/Admin/shared/Cells/Inline';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { NetCell } from '@/entities/Admin/Admin/NetCell';
 import { ServicesPayTypeMultiselectCell } from '@/entities/Admin/Admin/ServicesPayTypeMultiselectCell';
 import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell';
-import { TMultiselectView } from '@/shared/types/Admin/shared/cells/Multiselect';
-import { EnPayType } from '@/shared/types/Admin/services/entities/PayType';
+import { TMultiselectView } from '@/shared/types/Admin/shared/Cells/Multiselect';
+import { EnPayType } from '@/shared/types/Admin/Services/Entities/PayType';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Services/FloatCellTypes/Multiselect';
-import { TNetView } from '@/shared/types/Admin/shared/cells/Net';
+import { TNetView } from '@/shared/types/Admin/shared/Cells/Net';
 import { EnMultiselectSearchTypes } from '@/shared/types/Admin/Services/FloatCellTypes/MultiselectSearch';
-import { TInlineAreaView } from '@/shared/types/Admin/shared/cells/InlineArea';
+import { TInlineAreaView } from '@/shared/types/Admin/shared/Cells/InlineArea';
 import { TViewData as TMultiselectSearchViewData } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell/types/Data';
 
 interface Params extends TCellIndexField {

@@ -1,11 +1,11 @@
 'use client';
-import { TNetEdit } from '@/shared/types/Admin/shared/cells/Net';
+import { TNetEdit } from '@/shared/types/Admin/shared/Cells/Net';
 import { TCellDataUpdate } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { EnNetType } from '@/shared/types/Admin/shared/entities/NetType';
+import { EnNetType } from '@/shared/types/Admin/shared/Entities/NetType';
 
 const buttonCls =
   'flex-1 h-14 p-0 hover:bg-white-100 duration-150 flex items-center font-normal';

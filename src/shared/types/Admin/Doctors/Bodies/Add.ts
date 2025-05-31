@@ -1,13 +1,13 @@
 import { EnCellTypes } from '../../shared/Entities/CellTypes';
 import { EnModes } from '../../shared/Entities/Modes';
-import { TInlineAdd } from '../../shared/cells/Inline';
-import { TInlineAreaAdd } from '../../shared/cells/InlineArea';
-import { TMultiselectAdd } from '../../shared/cells/Multiselect';
-import { TNetAdd } from '../../shared/cells/Net';
+import { TInlineAdd } from '../../shared/Cells/Inline';
+import { TInlineAreaAdd } from '../../shared/Cells/InlineArea';
+import { TMultiselectAdd } from '../../shared/Cells/Multiselect';
+import { TNetAdd } from '../../shared/Cells/Net';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { EnMultiselectSearchTypes } from '../FloatCellTypes/MultiselectSearch';
 import { TServiceItem } from '../data-structure';
-import { EnWorkDays } from '../entities/WorkDays';
+import { EnWorkDays } from '../Entities/WorkDays';
 
 export type TAddBody = {
   id: string;

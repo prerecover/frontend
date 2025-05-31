@@ -1,7 +1,7 @@
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsDataStructure } from '../../Clinics/data-structure';
 import { TDoctorsDataStructure } from '../../Doctors/data-structure';
-import { TServicesDataStructure } from '../../services/data-structure';
+import { TServicesDataStructure } from '../../Services/data-structure';
 
 export type TBodyItemId<T extends EnTableTypes> = T extends EnTableTypes.clinics
   ? TClinicsDataStructure['id']

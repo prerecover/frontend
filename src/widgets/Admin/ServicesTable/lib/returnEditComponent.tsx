@@ -8,16 +8,16 @@ import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Services/FloatCellTypes/Multiselect';
 import { EnMultiselectSearchTypes } from '@/shared/types/Admin/Services/FloatCellTypes/MultiselectSearch';
 import { TServicesAllCellTypes } from '@/shared/types/Admin/Services/AllCellTypes';
-import { EnPayType } from '@/shared/types/Admin/services/entities/PayType';
+import { EnPayType } from '@/shared/types/Admin/Services/Entities/PayType';
 import { EnCellTypes } from '@/shared/types/Admin/shared/Entities/CellTypes';
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TUpdateFuncField } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { TCellIndexField } from '@/shared/types/Admin/shared/Utils/CellIndex';
-import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
-import { TInlineAreaEdit } from '@/shared/types/Admin/shared/cells/InlineArea';
-import { TMultiselectEdit } from '@/shared/types/Admin/shared/cells/Multiselect';
-import { TNetEdit } from '@/shared/types/Admin/shared/cells/Net';
+import { TInlineEdit } from '@/shared/types/Admin/shared/Cells/Inline';
+import { TInlineAreaEdit } from '@/shared/types/Admin/shared/Cells/InlineArea';
+import { TMultiselectEdit } from '@/shared/types/Admin/shared/Cells/Multiselect';
+import { TNetEdit } from '@/shared/types/Admin/shared/Cells/Net';
 import { TEditData as TMultiselectSearchEditData } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell/types/Data';
 
 interface Params

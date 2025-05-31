@@ -3,13 +3,13 @@ import {
   TMultiselectAdd,
   TMultiselectEdit,
   TMultiselectView,
-} from '@/shared/types/Admin/shared/cells/Multiselect';
+} from '@/shared/types/Admin/shared/Cells/Multiselect';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { EnLanguages } from '@/shared/types/Admin/Clinics/Entities/Languages';
 
 type Props<M extends EnModes> = {
   mode: M;

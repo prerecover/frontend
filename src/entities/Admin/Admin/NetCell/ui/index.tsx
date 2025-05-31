@@ -3,7 +3,7 @@ import {
   TNetAdd,
   TNetEdit,
   TNetView,
-} from '@/shared/types/Admin/shared/cells/Net';
+} from '@/shared/types/Admin/shared/Cells/Net';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
