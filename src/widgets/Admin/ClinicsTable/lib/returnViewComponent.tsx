@@ -61,7 +61,7 @@ export const returnViewComponent = ({
       return 1;
     case EnMultiselectTypes.language:
       return (
-        <MultiselectLanguagesCell<EnModes.view, EnTableTypes.clinics>
+        <MultiselectLanguagesCell<EnModes.view>
           cellIndex={cellIndex}
           data={data as TMultiselectView<string, EnLanguages>}
           mode={mode}

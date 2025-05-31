@@ -38,6 +38,6 @@ export type TViewEditBody = {
         data: null;
       }
   ) & {
-    fieldName: string;
+    fieldName?: string;
   })[];
 }[];

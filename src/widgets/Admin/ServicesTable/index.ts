@@ -1,1 +1,2 @@
-export { ServicesTable } from './ui';
+export { ClinicsTable } from './ui';
+export { DeleteConfirmationModal } from './ui/DeleteConfirmationModal';

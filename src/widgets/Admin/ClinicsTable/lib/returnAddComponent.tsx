@@ -1,6 +1,9 @@
 import { ClinicsActionsCell } from '@/entities/Admin/Admin/ClinicsActionsCell';
 import { ClinicsDoctorsLink } from '@/entities/Admin/Admin/ClinicsDoctorsLink';
-import { ClinicsNetAccumulatorCell } from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
+import {
+  ClinicsNetAccumulatorCell,
+  TClinicsNetAccumulatorData,
+} from '@/entities/Admin/Admin/ClinicsNetAccumulatorCell';
 import { ClinicsServicesLink } from '@/entities/Admin/Admin/ClinicsServicesLink';
 import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
@@ -76,7 +79,7 @@ export const returnAddComponent = ({
       );
     case EnMultiselectTypes.language:
       return (
-        <MultiselectLanguagesCell<EnModes.add, EnTableTypes.clinics>
+        <MultiselectLanguagesCell<EnModes.add>
           updateFunc={updateFunc}
           cellIndex={cellIndex}
           data={data as TMultiselectAdd<string, EnLanguages>}
@@ -87,7 +90,7 @@ export const returnAddComponent = ({
     case EnAccumulator.clinicsNet:
       return (
         <ClinicsNetAccumulatorCell<EnModes.add>
-          data={data as TAccumulatorAdd}
+          data={data as TAccumulatorAdd<TClinicsNetAccumulatorData>}
           mode={mode}
         />
       );

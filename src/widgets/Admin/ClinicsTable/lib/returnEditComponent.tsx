@@ -79,7 +79,7 @@ export const returnEditComponent = ({
       );
     case EnMultiselectTypes.language:
       return (
-        <MultiselectLanguagesCell<EnModes.edit, EnTableTypes.clinics>
+        <MultiselectLanguagesCell<EnModes.edit>
           cellIndex={cellIndex}
           data={data as TMultiselectEdit<string, EnLanguages>}
           mode={mode}

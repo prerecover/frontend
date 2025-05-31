@@ -38,6 +38,6 @@ export type TAddBody = {
         data: null;
       }
   ) & {
-    fieldName: string;
+    fieldName?: string;
   })[];
 }[];

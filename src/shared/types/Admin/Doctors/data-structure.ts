@@ -7,7 +7,7 @@ export type TServiceItem = {
   id: TServicesDataStructure['id'];
   name: TServicesDataStructure['name'];
   category: TServicesDataStructure['category'];
-} & TPrevPage;
+};
 
 export type TDoctorsDataStructure = {
   id: string;
@@ -17,5 +17,5 @@ export type TDoctorsDataStructure = {
   experience: string;
   workDays: EnWorkDays[];
   workTime: string;
-  services: TServiceItem;
-} & TPrevPage;
+  services: { data: TServiceItem[] } & TPrevPage;
+};

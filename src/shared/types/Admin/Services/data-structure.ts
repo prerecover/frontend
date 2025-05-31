@@ -7,7 +7,7 @@ export type TDoctorItem = {
   id: TDoctorsDataStructure['id'];
   name: TDoctorsDataStructure['name'];
   speciality: TDoctorsDataStructure['speciality'];
-} & TPrevPage;
+};
 
 export type TServicesDataStructure = {
   id: string;
@@ -18,5 +18,5 @@ export type TServicesDataStructure = {
   price: string;
   payType: EnPayType[];
   duration: string;
-  doctors: TDoctorItem[];
+  doctors: { data: TDoctorItem[] } & TPrevPage;
 } & TPrevPage;

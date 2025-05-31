@@ -34,6 +34,6 @@ export type TViewEditBody = {
         data: TMultiselectView<Omit<TDoctorItem, 'id'>, TDoctorItem['id']>;
       }
   ) & {
-    fieldName: string;
+    fieldName?: string;
   })[];
 }[];

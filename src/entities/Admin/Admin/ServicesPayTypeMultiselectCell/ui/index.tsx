@@ -1,28 +1,23 @@
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
-import {
-  TMultiselectAdd,
-  TMultiselectEdit,
-  TMultiselectView,
-} from '@/shared/types/Admin/shared/cells/Multiselect';
 import { View } from './View';
 import { Edit } from './Edit';
 import { Add } from './Add';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { OmitForViewMode } from '@/shared/types/Admin/shared/Utils/OmitForViewMode';
-import { EnLanguages } from '@/shared/types/Admin/Clinics/entities/Languages';
+import { TViewData, TEditData, TAddData } from '../types/Data';
 
 type Props<M extends EnModes> = {
   mode: M;
   data: M extends EnModes.view
-    ? TMultiselectView<string, EnLanguages>
+    ? TViewData
     : M extends EnModes.edit
-      ? TMultiselectEdit<string, EnLanguages>
+      ? TEditData
       : M extends EnModes.add
-        ? TMultiselectAdd<string, EnLanguages>
+        ? TAddData
         : never;
-} & OmitForViewMode<M, EnTableTypes.clinics>;
+} & OmitForViewMode<M, EnTableTypes.services>;
 
-const MultiselectLanguagesCell = <M extends EnModes>({
+const ServicesPayTypeMultiselectCell = <M extends EnModes>({
   mode,
   data,
   cellIndex,
@@ -30,14 +25,14 @@ const MultiselectLanguagesCell = <M extends EnModes>({
 }: Props<M>) => {
   if (mode === undefined) {
     throw new Error(
-      `Некорректный мод для MultiselectLanguagesCell. Было получение ${mode}, а ожидалось одно из значений EnModes`
+      `Некорректный мод для ServicesPayTypeMultiselectCell. Было получение ${mode}, а ожидалось одно из значений EnModes`
     );
   }
 
   return (
     <>
       {mode === EnModes.view ? (
-        <View data={data as TMultiselectEdit<string, EnLanguages>} />
+        <View data={data as TViewData} />
       ) : mode === EnModes.edit ? (
         <Edit
           //@ts-ignore
@@ -45,8 +40,7 @@ const MultiselectLanguagesCell = <M extends EnModes>({
           cellIndex={cellIndex}
           // @ts-ignore
           updateFunc={props.updateFunc}
-          // @ts-ignore
-          data={data as TMultiselectEdit<string, EnLanguages>}
+          data={data as TEditData}
         />
       ) : mode === EnModes.add ? (
         <Add
@@ -55,11 +49,11 @@ const MultiselectLanguagesCell = <M extends EnModes>({
           cellIndex={cellIndex}
           // @ts-ignore
           updateFunc={props.updateFunc}
-          data={data as TMultiselectAdd<string, EnLanguages>}
+          data={data as TAddData}
         />
       ) : null}
     </>
   );
 };
 
-export { MultiselectLanguagesCell };
+export { ServicesPayTypeMultiselectCell };
