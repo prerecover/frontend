@@ -10,7 +10,7 @@ const View: FC<Props> = ({ data }) => {
     <p>
       {data.map((props, index) => {
         if (props.isSelected) {
-          return `${props.data}${index + 1 === data.length ? '' : ','} `;
+          return `${props.data.name}${index + 1 === data.length ? '' : ','} `;
         }
         return null;
       })}

@@ -10,6 +10,7 @@ import { SMSButton } from './SMSButton';
 import { usePathValidating } from '@/shared/hooks/usePathValidating';
 import { ADMIN_ROUTES } from '@/shared/utils/paths';
 import { AddServiceButton } from './AddServiceButton';
+import { AddDoctorsButton } from './AddDoctorsButton';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
@@ -21,6 +22,9 @@ const AdminHeader: FC<Props> = ({ className, ...props }) => {
   });
   const isServicesPages = usePathValidating({
     validator: `${ADMIN_ROUTES.ADMIN.CLINICS.INDEX}/services/...`,
+  });
+  const isDoctorsPages = usePathValidating({
+    validator: `${ADMIN_ROUTES.ADMIN.CLINICS.INDEX}/doctors/...`,
   });
 
   return (
@@ -35,6 +39,8 @@ const AdminHeader: FC<Props> = ({ className, ...props }) => {
           <AddClinicButton />
         ) : isServicesPages ? (
           <AddServiceButton />
+        ) : isDoctorsPages ? (
+          <AddDoctorsButton />
         ) : null}
         <SearchInput
           value={search}
