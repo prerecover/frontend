@@ -30,13 +30,13 @@ const View = ({ id }: Props) => {
       <DropdownMenuTrigger>
         <p className="text-blue">Выбрать</p>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className="p-0 bg-white-background"
-        onClick={() => {
-          transformViewToEdit({ id });
-        }}
-      >
-        <DropdownMenuItem className={itemCls}>
+      <DropdownMenuContent className="p-0 bg-white-background">
+        <DropdownMenuItem
+          className={itemCls}
+          onClick={() => {
+            transformViewToEdit({ id });
+          }}
+        >
           <p className={itemContentCls}>Изменить</p>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
