@@ -57,4 +57,6 @@ const Edit = memo(({ data, cellIndex, id, updateFunc }: Props) => {
   );
 });
 
+Edit.displayName = 'Edit';
+
 export { Edit };

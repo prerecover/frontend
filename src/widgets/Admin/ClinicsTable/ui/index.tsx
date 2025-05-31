@@ -33,7 +33,7 @@ const ClinicsTable: FC<Props> = ({ className, ...props }) => {
     <div className={cn('overflow-auto grow scroll-main-x', className)}>
       <MainTable<EnTableTypes.clinics, EnModes.view, TInputs>
         validationSchema={SCHEMA}
-        onFormSubmit={(data) => {}}
+        onFormSubmit={() => {}}
         bodyItems={[...addCells, ...cells].map(
           ({ id, data, mode }, cellIndex) => {
             let rowData;

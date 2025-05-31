@@ -39,7 +39,7 @@ export const UiTimeInput = ({
     if (raw.length > 4) raw = raw.slice(0, 4);
 
     let hours = raw.slice(0, 2);
-    let minutes = raw.slice(2, 4);
+    const minutes = raw.slice(2, 4);
 
     if (hours.length === 1 && +hours > 2) {
       hours = '0' + hours;

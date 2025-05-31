@@ -9,21 +9,12 @@ import { View } from '../View';
 import { TimeRangeInputs } from '../TimeRangeInputs';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { DAYS_OF_WEEK } from '../../constants/daysOfWeek';
 
 interface Props<T extends EnTableTypes>
   extends TCellDataUpdate<T, TWorkTimeAdd> {
   data: TWorkTimeAdd;
 }
-
-const daysOfWeek = [
-  { key: 'Monday', label: 'Понедельник' },
-  { key: 'Tuesday', label: 'Вторник' },
-  { key: 'Wednesday', label: 'Среда' },
-  { key: 'Thursday', label: 'Четверг' },
-  { key: 'Friday', label: 'Пятница' },
-  { key: 'Saturday', label: 'Суббота' },
-  { key: 'Sunday', label: 'Воскресенье' },
-] as const;
 
 export const Add = <T extends EnTableTypes>({
   data,
@@ -33,7 +24,7 @@ export const Add = <T extends EnTableTypes>({
 }: Props<T>) => {
   const [workTime, setWorkTime] = useState<TWorkTimeAdd>(data);
   const [visibleDays, setVisibleDays] = useState<Record<string, boolean>>(
-    Object.fromEntries(daysOfWeek.map(({ key }) => [key, false]))
+    Object.fromEntries(DAYS_OF_WEEK.map(({ key }) => [key, false]))
   );
 
   console.log(workTime);
@@ -82,7 +73,7 @@ export const Add = <T extends EnTableTypes>({
         className="py-12 px-14 rounded-[40px] max-w-none w-[590px] overflow-visible shadow-[0_4px_10px_0_rgba(0,0,0,10%)] border-none"
       >
         <ul className="space-y-4">
-          {daysOfWeek.map(({ key, label }) => (
+          {DAYS_OF_WEEK.map(({ key, label }) => (
             <li key={key} className="flex justify-between">
               <p
                 className={cn(

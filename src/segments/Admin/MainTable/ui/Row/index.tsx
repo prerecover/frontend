@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Form, FormProvider, useForm } from 'react-hook-form';
 import { TInputs } from '../../types/Inputs';
 import { TBodyItems } from '../../types/Body';

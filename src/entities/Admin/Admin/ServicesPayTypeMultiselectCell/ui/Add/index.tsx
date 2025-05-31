@@ -11,7 +11,7 @@ interface Props extends TCellDataUpdate<EnTableTypes.services, TAddData> {
   data: TAddData;
 }
 
-export const Add = memo(({ data, cellIndex, id, updateFunc }: Props) => {
+const Add = memo(({ data, cellIndex, id, updateFunc }: Props) => {
   const debounceUpdate = useDebounce((inputValue: TAddData) => {
     updateFunc({ cellIndex, data: inputValue, id });
   }, 200);
@@ -56,3 +56,7 @@ export const Add = memo(({ data, cellIndex, id, updateFunc }: Props) => {
     />
   );
 });
+
+Add.displayName = 'Add';
+
+export { Add };

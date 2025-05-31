@@ -14,7 +14,6 @@ interface Props<T extends EnTableTypes>
 }
 
 const Add = <T extends EnTableTypes>({
-  data,
   cellIndex,
   id,
   updateFunc,

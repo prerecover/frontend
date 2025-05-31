@@ -127,7 +127,7 @@ export const useClinicsStore = create<State>()(
     updateAddCell_S: ({ cellIndex, data, id }) => {
       set(({ addCells }) => {
         return {
-          addCells: addCells.map((props, index) => {
+          addCells: addCells.map((props) => {
             if (props.id === id) {
               let newData;
 
@@ -153,7 +153,7 @@ export const useClinicsStore = create<State>()(
     updateCell_S: ({ cellIndex, data, id }) => {
       set(({ cells }) => {
         return {
-          cells: cells.map((props, index) => {
+          cells: cells.map((props) => {
             if (props.id === id) {
               let newData;
 

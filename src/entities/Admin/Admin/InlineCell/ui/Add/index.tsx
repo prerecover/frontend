@@ -9,7 +9,6 @@ interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, string> {
 }
 
 const Add = <T extends EnTableTypes>({
-  data,
   cellIndex,
   id,
   updateFunc,

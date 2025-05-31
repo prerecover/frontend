@@ -1,5 +1,4 @@
 import { EnTableTypes } from '@/segments/Admin/MainTable';
-import { EnModes } from '../Entities/Modes';
 import { TBodyItemIdField } from './BodyItemId';
 import { TCellIndexField } from './CellIndex';
 import { TClinicsDataStructure } from '../../Clinics/data-structure';

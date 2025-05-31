@@ -72,4 +72,6 @@ const TimeRangeInputs: FC<Props> = memo(({ valueFrom, valueTo, onChange }) => {
   );
 });
 
+TimeRangeInputs.displayName = 'TimeRangeInputs';
+
 export { TimeRangeInputs };
