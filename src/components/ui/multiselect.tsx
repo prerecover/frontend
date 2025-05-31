@@ -10,6 +10,7 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { filterBySearch } from '@/shared/lib/filterBySearch';
 import { TValue } from '@/shared/types/Admin/shared/Utils/Value';
 import { Search, X } from 'lucide-react';
 import { ReactNode, useEffect, useRef, useState, useMemo } from 'react';
@@ -62,12 +63,13 @@ export const Multiselect = ({
 
   // Фильтрация опций по поиску
   const filteredOptions = useMemo(() => {
-    const lowerSearch = searchVal.toLowerCase();
-    return searchVal
-      ? options.filter((opt) =>
-          opt.searchValue.toLowerCase().includes(lowerSearch)
-        )
-      : options;
+    const res = filterBySearch<MultiselectOption>(
+      searchVal,
+      options,
+      'searchValue'
+    );
+
+    return res;
   }, [options, searchVal]);
 
   const handleSelect = (selectedValue: TValue) => {
@@ -164,7 +166,7 @@ export const Multiselect = ({
           contentClassName
         )}
       >
-        {type === 'search' && (
+        {(type === 'search' || searchVal) && (
           <label className="px-6 py-3 flex">
             <div className="w-full flex gap-x-2.5 items-center border-blue-100 bg-white border-[1px] rounded-[12px] p-3.5">
               <Search className="text-grey-700" />

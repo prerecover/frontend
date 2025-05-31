@@ -8,7 +8,7 @@ const UiAdminChangesConfirmPlaque: FC<Props> = ({ className, ...props }) => {
   return (
     <div
       className={cn(
-        'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%+14px)] py-2 px-3 rounded-xl shadow-mainShadow bg-white-100 animate-scale-fade transform-gpu',
+        'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%+14px)] py-2 px-3 rounded-xl shadow-mainShadow bg-white-100 animate-scale-fade transform-gpu flex flex-col justify-center',
         className
       )}
       {...props}
