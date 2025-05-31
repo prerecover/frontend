@@ -11,9 +11,11 @@ import {
   useServicesStore,
   transformViewToEditSetter,
   removeCellSetter,
+  changesConfirmAlertsCellsSelector,
 } from '@/shared/store/Admin/useServicesStore';
 import { cn } from '@/lib/utils';
 import { ActionConfirmationModal } from '../../../ActionConfirmationModal';
+import { UiAdminChangesConfirmPlaque } from '@/shared/ui/UiAdminChangesConfirmPlaque';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -24,35 +26,41 @@ interface Props extends TBodyItemIdField<EnTableTypes.clinics> {}
 const View = ({ id }: Props) => {
   const transformViewToEdit = useServicesStore(transformViewToEditSetter);
   const removeCell = useServicesStore(removeCellSetter);
+  const isChangesConfirmAlertsCells = useServicesStore(
+    changesConfirmAlertsCellsSelector
+  ).find((curId) => curId === id);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <p className="text-blue">Выбрать</p>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="p-0 bg-white-background">
-        <DropdownMenuItem
-          className={itemCls}
-          onClick={() => {
-            transformViewToEdit({ id });
-          }}
-        >
-          <p className={itemContentCls}>Изменить</p>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <ActionConfirmationModal
-            actionText="Удалить"
-            closeText="Отменить"
-            title="Вы уверены, что хотите удалить услугу?"
-            actionFn={() => {
-              removeCell({ id });
+    <>
+      {isChangesConfirmAlertsCells ? <UiAdminChangesConfirmPlaque /> : null}
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <p className="text-blue">Выбрать</p>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="p-0 bg-white-background">
+          <DropdownMenuItem
+            className={itemCls}
+            onClick={() => {
+              transformViewToEdit({ id });
             }}
           >
-            <p className={cn(itemContentCls, 'm-1.5')}>Удалить</p>
-          </ActionConfirmationModal>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+            <p className={itemContentCls}>Изменить</p>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <ActionConfirmationModal
+              actionText="Удалить"
+              closeText="Отменить"
+              title="Вы уверены, что хотите удалить услугу?"
+              actionFn={() => {
+                removeCell({ id });
+              }}
+            >
+              <p className={cn(itemContentCls, 'm-1.5')}>Удалить</p>
+            </ActionConfirmationModal>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };
 

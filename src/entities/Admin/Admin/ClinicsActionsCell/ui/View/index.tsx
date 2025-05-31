@@ -15,7 +15,7 @@ import {
 } from '@/shared/store/Admin/useClinicsStore';
 import { ActionConfirmationModal } from '../../../ActionConfirmationModal';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
+import { UiAdminChangesConfirmPlaque } from '@/shared/ui/UiAdminChangesConfirmPlaque';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -32,22 +32,7 @@ const View = ({ id }: Props) => {
 
   return (
     <>
-      {isChangesConfirmAlertsCells ? (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%+14px)] py-2 px-3 rounded-xl shadow-mainShadow bg-white-100 animate-scale-fade transform-gpu">
-          <Image
-            src="/assets/confirmation-checkmark.svg"
-            width={42}
-            height={42}
-            className="mx-auto"
-            alt=""
-          />
-          <p className="text-lg font-medium text-center leading-[112%]">
-            Изменения
-            <br />
-            сохранены
-          </p>
-        </div>
-      ) : null}
+      {isChangesConfirmAlertsCells ? <UiAdminChangesConfirmPlaque /> : null}
       <DropdownMenu>
         <DropdownMenuTrigger>
           <p className="text-blue">Выбрать</p>
