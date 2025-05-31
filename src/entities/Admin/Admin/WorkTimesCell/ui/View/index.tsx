@@ -10,6 +10,15 @@ const View: FC<Props> = ({
 }) => {
   return (
     <div className="">
+      {Friday === null &&
+      Monday === null &&
+      Sunday === null &&
+      Thursday === null &&
+      Tuesday === null &&
+      Wednesday === null &&
+      Saturday === null ? (
+        <p className="text-blue">Выбрать</p>
+      ) : null}
       {Monday !== null ? (
         <p>
           пн{' '}

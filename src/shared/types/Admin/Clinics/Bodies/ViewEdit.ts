@@ -6,6 +6,7 @@ import { TInlineView } from '../../shared/cells/Inline';
 import { TInlineAreaView } from '../../shared/cells/InlineArea';
 import { TLinkView } from '../../shared/cells/Link';
 import { TMultiselectView } from '../../shared/cells/Multiselect';
+import { TWorkTimeView } from '../../shared/cells/WorkTime';
 import { EnAccumulator } from '../FloatCellTypes/Accumulator';
 import { EnLinks } from '../FloatCellTypes/Links';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
@@ -47,6 +48,10 @@ export type TViewEditBody = {
     | {
         cellType: EnCellTypes.action;
         data: null;
+      }
+    | {
+        cellType: EnCellTypes.workTime;
+        data: TWorkTimeView;
       }
   ) & {
     fieldName: string;

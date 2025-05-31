@@ -20,7 +20,7 @@ const daysOfWeek = [
   { key: 'Wednesday', label: 'Среда' },
   { key: 'Thursday', label: 'Четверг' },
   { key: 'Friday', label: 'Пятница' },
-  { key: 'Saturday', label: 'Суббота' }, // Заменено: было Saturday -> Weekday
+  { key: 'Saturday', label: 'Суббота' },
   { key: 'Sunday', label: 'Воскресенье' },
 ] as const;
 
@@ -30,19 +30,16 @@ export const Edit = <T extends EnTableTypes>({
   updateFunc,
   id,
 }: Props<T>) => {
-  // Единое состояние для всех дней
   const [workTime, setWorkTime] = useState<TWorkTimeEdit>(data);
 
   const debounceUpdate = useDebounce((values: TWorkTimeEdit) => {
     updateFunc({ cellIndex, data: values, id });
   }, 200);
 
-  // Отправляем обновлённые данные
   useEffect(() => {
     debounceUpdate(workTime);
   }, [workTime]);
 
-  // Обработчик изменения времени для любого дня
   const handleTimeChange =
     (dayKey: keyof TWorkTimeEdit) => (values: [number, number]) => {
       setWorkTime((prev) => ({
@@ -65,8 +62,8 @@ export const Edit = <T extends EnTableTypes>({
             <li key={key}>
               <p>{label}</p>
               <TimeRangeInputs
-                valueFrom={workTime[key][0]}
-                valueTo={workTime[key][1]}
+                valueFrom={workTime[key] !== null ? workTime[key][0] : null}
+                valueTo={workTime[key] !== null ? workTime[key][1] : null}
                 onChange={handleTimeChange(key)}
               />
             </li>

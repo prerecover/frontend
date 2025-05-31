@@ -32,6 +32,7 @@ export const Add = <T extends EnTableTypes>({
 }: Props<T>) => {
   // Единое состояние для всех дней
   const [workTime, setWorkTime] = useState<TWorkTimeAdd>(data);
+  console.log(workTime);
 
   const debounceUpdate = useDebounce((values: TWorkTimeAdd) => {
     updateFunc({ cellIndex, data: values, id });
@@ -53,7 +54,7 @@ export const Add = <T extends EnTableTypes>({
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <View data={data} />
       </DialogTrigger>
       <DialogContent
@@ -65,9 +66,12 @@ export const Add = <T extends EnTableTypes>({
             <li key={key}>
               <p>{label}</p>
               <TimeRangeInputs
-                valueFrom={workTime[key][0]}
-                valueTo={workTime[key][1]}
-                onChange={handleTimeChange(key)}
+                valueFrom={workTime[key] !== null ? workTime[key][0] : null}
+                valueTo={workTime[key] !== null ? workTime[key][1] : null}
+                onChange={(e) => {
+                  console.log(e);
+                }}
+                // onChange={handleTimeChange(key)}
               />
             </li>
           ))}

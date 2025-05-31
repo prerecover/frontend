@@ -9,6 +9,7 @@ import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { MultiselectLanguagesCell } from '@/entities/Admin/Admin/MultiselectLanguagesCell/ui';
+import { WorkTimesCell } from '@/entities/Admin/Admin/WorkTimesCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
@@ -26,6 +27,7 @@ import { TInlineEdit } from '@/shared/types/Admin/shared/cells/Inline';
 import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
 import { TLinkView } from '@/shared/types/Admin/shared/cells/Link';
 import { TMultiselectEdit } from '@/shared/types/Admin/shared/cells/Multiselect';
+import { TWorkTimeEdit } from '@/shared/types/Admin/shared/cells/WorkTime';
 
 interface Params
   extends TCellIndexField,
@@ -109,6 +111,16 @@ export const returnEditComponent = ({
         <ClinicsServicesLink<EnModes.edit>
           data={data as TLinkView<{ qnt: number }>}
           mode={mode}
+        />
+      );
+    case EnCellTypes.workTime:
+      return (
+        <WorkTimesCell<EnModes.edit, EnTableTypes.clinics>
+          data={data as TWorkTimeEdit}
+          mode={mode}
+          cellIndex={cellIndex}
+          id={id}
+          updateFunc={updateFunc}
         />
       );
     default:

@@ -12,6 +12,7 @@ import { EnLinks } from '../FloatCellTypes/Links';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { TClinicsDataStructure } from '../data-structure';
 import { EnLanguages } from '../entities/Languages';
+import { TWorkTimeAdd } from '../../shared/cells/WorkTime';
 
 export type TAddBody = {
   id: TClinicsDataStructure['id'];
@@ -48,6 +49,10 @@ export type TAddBody = {
     | {
         cellType: EnCellTypes.action;
         data: null;
+      }
+    | {
+        cellType: EnCellTypes.workTime;
+        data: TWorkTimeAdd;
       }
   ) & {
     fieldName?: string;

@@ -7,6 +7,7 @@ export type TClinicsAllCellTypes =
   | EnCellTypes.inline
   | EnCellTypes.action
   | EnCellTypes.has
+  | EnCellTypes.workTime
   | EnCellTypes.inlineArea
   | EnMultiselectTypes.language
   | EnAccumulator.clinicsNet

@@ -19,12 +19,11 @@ type Props<M extends EnModes, T extends EnTableTypes> = {
       : M extends EnModes.add
         ? TWorkTimeAdd
         : never;
-} & OmitForViewMode<M, T>;
+} & OmitForViewMode<M, T, 'cellIndex'>;
 
 const WorkTimesCell = <M extends EnModes, T extends EnTableTypes>({
   mode,
   data,
-  cellIndex,
   ...props
 }: Props<M, T>) => {
   if (mode === undefined) {
@@ -41,7 +40,8 @@ const WorkTimesCell = <M extends EnModes, T extends EnTableTypes>({
         <Edit
           //@ts-ignore
           id={props.id}
-          cellIndex={cellIndex}
+          //@ts-ignore
+          cellIndex={props.cellIndex}
           // @ts-ignore
           updateFunc={props.updateFunc}
           data={data as TWorkTimeEdit}
@@ -50,7 +50,8 @@ const WorkTimesCell = <M extends EnModes, T extends EnTableTypes>({
         <Add
           //@ts-ignore
           id={props.id}
-          cellIndex={cellIndex}
+          //@ts-ignore
+          cellIndex={props.cellIndex}
           // @ts-ignore
           updateFunc={props.updateFunc}
           data={data as TWorkTimeAdd}

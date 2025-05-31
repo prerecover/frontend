@@ -88,8 +88,16 @@ export const ADD_CLINICS_CELL_BASE_STRUCTURE: (
       },
       {
         // Дни и время работы
-        cellType: EnCellTypes.inlineArea,
-        data: null,
+        cellType: EnCellTypes.workTime,
+        data: {
+          Friday: null,
+          Monday: null,
+          Saturday: null,
+          Sunday: null,
+          Thursday: null,
+          Tuesday: null,
+          Wednesday: null,
+        },
         fieldName: 'workTime',
       },
       {

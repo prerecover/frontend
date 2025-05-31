@@ -9,6 +9,7 @@ import { HasCell } from '@/entities/Admin/Admin/HasCell/ui';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { MultiselectLanguagesCell } from '@/entities/Admin/Admin/MultiselectLanguagesCell/ui';
+import { WorkTimesCell } from '@/entities/Admin/Admin/WorkTimesCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TClinicsAllCellTypes } from '@/shared/types/Admin/Clinics/AllCellTypes';
 import { EnAccumulator } from '@/shared/types/Admin/Clinics/FloatCellTypes/Accumulator';
@@ -26,6 +27,7 @@ import { TInlineAdd } from '@/shared/types/Admin/shared/cells/Inline';
 import { TInlineAreaAdd } from '@/shared/types/Admin/shared/cells/InlineArea';
 import { TLinkAdd } from '@/shared/types/Admin/shared/cells/Link';
 import { TMultiselectAdd } from '@/shared/types/Admin/shared/cells/Multiselect';
+import { TWorkTimeAdd } from '@/shared/types/Admin/shared/cells/WorkTime';
 
 interface Params
   extends TCellIndexField,
@@ -108,6 +110,16 @@ export const returnAddComponent = ({
       return (
         <ClinicsServicesLink<EnModes.add>
           data={data as TLinkAdd}
+          mode={mode}
+          cellIndex={cellIndex}
+          id={id}
+          updateFunc={updateFunc}
+        />
+      );
+    case EnCellTypes.workTime:
+      return (
+        <WorkTimesCell<EnModes.add, EnTableTypes.clinics>
+          data={data as TWorkTimeAdd}
           mode={mode}
           cellIndex={cellIndex}
           id={id}

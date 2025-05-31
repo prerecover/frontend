@@ -1,7 +1,9 @@
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface TimeInputProps {
-  value?: number;
+  value?: number | null;
   onChange?: (seconds: number | null) => void;
   onBlur?: () => void;
   placeholder?: string;
@@ -9,9 +11,6 @@ interface TimeInputProps {
   disabled?: boolean;
 }
 
-/**
- * Поле ввода для времени в формате ЧЧ:ММ, но значение передаётся как число (секунды)
- */
 export const UiTimeInput = ({
   value,
   onChange,
@@ -23,31 +22,20 @@ export const UiTimeInput = ({
   const [inputValue, setInputValue] = useState<string>('');
 
   useEffect(() => {
-    if (value === undefined || value === null) {
+    if (value === null || value === undefined || value < 0 || value > 86400) {
       setInputValue('');
-      return;
+    } else {
+      const hours = Math.floor(value / 3600);
+      const minutes = Math.floor((value % 3600) / 60);
+      const formatted = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+      setInputValue(formatted);
     }
-
-    if (value < 0 || value > 86400) {
-      setInputValue('');
-      return;
-    }
-
-    const hours = Math.floor(value / 3600);
-    const minutes = Math.floor((value % 3600) / 60);
-
-    const formatted = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    setInputValue(formatted);
   }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let raw = e.target.value;
+    let raw = e.target.value.replace(/[^0-9]/g, '');
 
-    raw = raw.replace(/[^0-9]/g, '');
-
-    if (raw.length > 4) {
-      raw = raw.slice(0, 4);
-    }
+    if (raw.length > 4) raw = raw.slice(0, 4);
 
     let hours = raw.slice(0, 2);
     let minutes = raw.slice(2, 4);
@@ -85,16 +73,33 @@ export const UiTimeInput = ({
     onBlur?.();
   };
 
+  const handleClear = () => {
+    setInputValue('');
+    onChange?.(null);
+  };
+
   return (
-    <input
-      type="text"
-      value={inputValue}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      placeholder={placeholder}
-      maxLength={5}
-      disabled={disabled}
-      className={className}
-    />
+    <div className="relative flex items-center">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        placeholder={placeholder}
+        maxLength={5}
+        disabled={disabled}
+        className={className}
+      />
+      {!disabled && inputValue && inputValue !== placeholder && (
+        <Button
+          variant="ghost"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full size-5 bg-white flex items-center justify-center p-0"
+          onClick={handleClear}
+          aria-label="Clear time"
+        >
+          <X className="text-gray-500 size-4" />
+        </Button>
+      )}
+    </div>
   );
 };
