@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import cls from './page.module.scss';
 import { ServicesScreen } from '@/screens/Admin/Services';
 
 interface Props {
