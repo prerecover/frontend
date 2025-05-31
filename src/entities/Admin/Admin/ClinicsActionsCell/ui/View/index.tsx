@@ -8,9 +8,11 @@ import {
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { TBodyItemIdField } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import {
+  removeCellSetter,
   transformViewToEditSetter,
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
+import { ActionConfirmationModal } from '../../../ActionConfirmationModal';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -20,23 +22,33 @@ interface Props extends TBodyItemIdField<EnTableTypes.clinics> {}
 
 const View = ({ id }: Props) => {
   const transformViewToEdit = useClinicsStore(transformViewToEditSetter);
+  const removeCell = useClinicsStore(removeCellSetter);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <p className="text-blue">Выбрать</p>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className="p-0 bg-white-background"
-        onClick={() => {
-          transformViewToEdit({ id });
-        }}
-      >
-        <DropdownMenuItem className={itemCls}>
+      <DropdownMenuContent className="p-0 bg-white-background">
+        <DropdownMenuItem
+          className={itemCls}
+          onClick={() => {
+            transformViewToEdit({ id });
+          }}
+        >
           <p className={itemContentCls}>Изменить</p>
         </DropdownMenuItem>
         <DropdownMenuItem className={itemCls}>
-          <p className={itemContentCls}>Удалить</p>
+          <ActionConfirmationModal
+            actionText="Удалить"
+            closeText="Отменить"
+            title="Вы уверены, что хотите удалить клинику?"
+            actionFn={() => {
+              removeCell({ id });
+            }}
+          >
+            <p className={itemContentCls}>Удалить</p>
+          </ActionConfirmationModal>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

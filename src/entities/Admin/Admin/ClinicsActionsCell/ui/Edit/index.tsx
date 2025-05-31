@@ -12,6 +12,7 @@ import {
   transformEditToViewSaveSetter,
   useClinicsStore,
 } from '@/shared/store/Admin/useClinicsStore';
+import { ActionConfirmationModal } from '../../../ActionConfirmationModal';
 
 const itemCls = 'rounded-[inherit]';
 const itemContentCls =
@@ -41,13 +42,17 @@ const Edit = ({ id }: Props) => {
         >
           <p className={itemContentCls}>Сохранить</p>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          className={itemCls}
-          onClick={() => {
-            transformEditToViewCancel({ id });
-          }}
-        >
-          <p className={itemContentCls}>Отменить</p>
+        <DropdownMenuItem className={itemCls}>
+          <ActionConfirmationModal
+            actionText="Удалить"
+            closeText="Отменить"
+            title="Вы уверены, что хотите отменить?"
+            actionFn={() => {
+              transformEditToViewCancel({ id });
+            }}
+          >
+            <p className={itemContentCls}>Отменить</p>
+          </ActionConfirmationModal>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

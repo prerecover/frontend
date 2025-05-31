@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -10,9 +11,19 @@ import Image from 'next/image';
 
 interface Props {
   children: ReactNode;
+  actionFn: () => void;
+  title: string;
+  closeText: string;
+  actionText: string;
 }
 
-const DeleteConfirmationModal: FC<Props> = ({ children }) => {
+const ActionConfirmationModal: FC<Props> = ({
+  children,
+  actionFn,
+  actionText,
+  closeText,
+  title,
+}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -26,20 +37,22 @@ const DeleteConfirmationModal: FC<Props> = ({ children }) => {
           width={11}
           height={11}
         />
-        <h2 className="font-medium text-2xl text-center mt-2 mb-4">
-          Вы уверены, что хотите удалить клинику?
-        </h2>
+        <h2 className="font-medium text-2xl text-center mt-2 mb-4">{title}</h2>
         <div className="grid grid-cols-2 gap-x-4">
           <DialogClose>
             <Button
               className="py-2.5 h-auto font-semibold w-full"
               variant="default"
             >
-              Отменить
+              {closeText}
             </Button>
           </DialogClose>
-          <Button className="py-2.5 h-auto font-semibold" variant="outline">
-            Удалить
+          <Button
+            className="py-2.5 h-auto font-semibold"
+            variant="outline"
+            onClick={actionFn}
+          >
+            {actionText}
           </Button>
         </div>
       </DialogContent>
@@ -47,4 +60,4 @@ const DeleteConfirmationModal: FC<Props> = ({ children }) => {
   );
 };
 
-export { DeleteConfirmationModal };
+export { ActionConfirmationModal };
