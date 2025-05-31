@@ -58,7 +58,7 @@ const TimeRangeInputs: FC<Props> = memo(({ valueFrom, valueTo, onChange }) => {
   return (
     <div className="flex items-center gap-2">
       <UiTimeInput value={from} onChange={handleChangeFrom} />
-      <span>-</span>
+      <span className="text-3xl font-medium">-</span>
       <UiTimeInput value={to} onChange={handleChangeTo} onBlur={handleToBlur} />
     </div>
   );

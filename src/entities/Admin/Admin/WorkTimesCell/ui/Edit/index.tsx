@@ -59,7 +59,7 @@ export const Edit = <T extends EnTableTypes>({
       >
         <ul className="space-y-4">
           {daysOfWeek.map(({ key, label }) => (
-            <li key={key}>
+            <li key={key} className="flex gap-x-7">
               <p>{label}</p>
               <TimeRangeInputs
                 valueFrom={workTime[key] !== null ? workTime[key][0] : null}

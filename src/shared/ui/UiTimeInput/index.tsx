@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -88,12 +89,15 @@ export const UiTimeInput = ({
         placeholder={placeholder}
         maxLength={5}
         disabled={disabled}
-        className={className}
+        className={cn(
+          'bg-blue text-white placeholder:text-white w-[115px] h-[45px] px-2 text-center rounded-2xl text-xl font-medium',
+          className
+        )}
       />
       {!disabled && inputValue && inputValue !== placeholder && (
         <Button
           variant="ghost"
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full size-5 bg-white flex items-center justify-center p-0"
+          className="absolute -right-2.5 -top-2.5 rounded-full size-5 bg-white flex items-center justify-center p-0"
           onClick={handleClear}
           aria-label="Clear time"
         >
