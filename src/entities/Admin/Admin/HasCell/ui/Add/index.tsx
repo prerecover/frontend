@@ -32,7 +32,7 @@ const Add = <T extends EnTableTypes>({
       <Button
         variant="ghost"
         className={cn(
-          'relative before:absolute before:right-0 before:top-1/2 before:-translate-y-1/2 before:h-[35px] before:w-[1px] before:bg-white-100',
+          'relative before:absolute before:right-0 before:top-1/2 before:-translate-y-1/2 before:h-[35px] before:w-[1px] before:bg-white-100 rounded-tr-none rounded-br-none',
           buttonCls,
           { ['bg-white-100']: state && state !== null }
         )}
@@ -45,7 +45,7 @@ const Add = <T extends EnTableTypes>({
       </Button>
       <Button
         variant="ghost"
-        className={cn(buttonCls, {
+        className={cn(buttonCls, 'rounded-tl-none rounded-bl-none', {
           ['bg-white-100']: !state && state !== null,
         })}
         onClick={() => {

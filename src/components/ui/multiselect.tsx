@@ -165,7 +165,6 @@ export const Multiselect = ({
         ref={contentRef}
         className={cn(
           'border-none bg-white-background p-0 rounded-none rounded-br-xl rounded-bl-xl',
-          { ['pt-4']: type === 'search' },
           contentClassName
         )}
       >
