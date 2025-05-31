@@ -89,7 +89,32 @@ export const ADD_DOCTORS_CELL_BASE_STRUCTURE: (
       {
         // Услуги
         cellType: EnMultiselectSearchTypes.services,
-        data: [],
+        data: [
+          {
+            data: {
+              category: 'Консультация',
+              name: 'Оценка услуги',
+            },
+            isSelected: null,
+            value: '1',
+          },
+          {
+            data: {
+              category: 'Консультация',
+              name: 'Мамаграма максима',
+            },
+            isSelected: null,
+            value: '2',
+          },
+          {
+            data: {
+              category: 'Консультация',
+              name: 'Колоноскапия Темура',
+            },
+            isSelected: null,
+            value: '3',
+          },
+        ],
       },
       {
         // Действия

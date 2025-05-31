@@ -106,7 +106,7 @@ export const ADD_SERVICES_CELL_BASE_STRUCTURE: (
       },
       {
         // Медиафайлов
-        cellType: EnCellTypes.inlineArea,
+        cellType: EnCellTypes.inline,
         data: null,
       },
       {
