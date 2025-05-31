@@ -20,6 +20,8 @@ const TimeRangeInputs: FC<Props> = memo(({ valueFrom, valueTo, onChange }) => {
     }
 
     if (to !== null && value > to) {
+      setFrom(value);
+      setTo(null);
       return;
     }
 
@@ -33,6 +35,8 @@ const TimeRangeInputs: FC<Props> = memo(({ valueFrom, valueTo, onChange }) => {
     }
 
     if (from !== null && value < from) {
+      setTo(value);
+      setFrom(null);
       return;
     }
 
@@ -46,13 +50,9 @@ const TimeRangeInputs: FC<Props> = memo(({ valueFrom, valueTo, onChange }) => {
   };
 
   useEffect(() => {
-    if (from !== null && to !== null && from > to) {
+    if (from !== null && to !== null && to < from) {
       setTo(null);
     }
-  }, [from, to]);
-
-  useEffect(() => {
-    onChange([from, to]);
   }, [from, to]);
 
   return (
