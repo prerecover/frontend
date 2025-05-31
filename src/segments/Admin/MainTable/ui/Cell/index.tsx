@@ -10,7 +10,7 @@ const Cell: FC<Props> = ({ children, className }) => {
   return (
     <td
       className={cn(
-        'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center',
+        'border-blue-100 min-w-48 max-w-48 border font-normal px-2 py-1 text-center relative',
         className
       )}
     >

@@ -182,9 +182,9 @@ export const useClinicsStore = create<State>()((set, get) => ({
       const transformAddCell = addCells.find((props) => props.id === id);
 
       if (transformAddCell) {
-        addChangesConfirmAlertCellSetter(id);
+        addChangesConfirmAlertCellSetter(`added-${id}`);
         setTimeout(() => {
-          removeChangesConfirmAlertCellSetter(id);
+          removeChangesConfirmAlertCellSetter(`added-${id}`);
         }, CHANGES_CONFIRM_ALERT_TIME);
         removeAddCell({ id });
         return {
