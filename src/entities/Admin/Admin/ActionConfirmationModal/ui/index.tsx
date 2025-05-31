@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -6,12 +7,12 @@ import {
   DialogContent,
   DialogClose,
 } from '@/components/ui/dialog';
-import { FC, MouseEventHandler, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import Image from 'next/image';
 
 interface Props {
   children: ReactNode;
-  actionFn: MouseEventHandler;
+  actionFn: () => void;
   title: string;
   closeText: string;
   actionText: string;
@@ -24,8 +25,15 @@ const ActionConfirmationModal: FC<Props> = ({
   closeText,
   title,
 }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleConfirm = () => {
+    actionFn(); // выполняем действие
+    setOpen(false); // закрываем диалог
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         hideCloseButton
@@ -52,7 +60,7 @@ const ActionConfirmationModal: FC<Props> = ({
             <Button
               className="py-2.5 h-auto font-semibold"
               variant="outline"
-              onClick={actionFn}
+              onClick={handleConfirm}
             >
               {actionText}
             </Button>
