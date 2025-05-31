@@ -18,6 +18,11 @@ const Edit = ({ data, cellIndex, id, updateFunc }: Props) => {
   return (
     <Multiselect
       type="search"
+      generateTriggerItemContent={(value) => {
+        const item = data.find((props) => props.value === value);
+
+        return <p>{item.data.name}</p>;
+      }}
       onChange={(values) => {
         const res = data.map((props) => {
           const hasValue = values.find((value) => value === props.value);
@@ -41,7 +46,7 @@ const Edit = ({ data, cellIndex, id, updateFunc }: Props) => {
           content: (
             <div>
               <p>{data.name}</p>
-              <p className="text-sm mt-2.5">{data.speciality}</p>
+              <p className="text-sm mt-1">{data.speciality}</p>
             </div>
           ),
           searchValue: `${data.name} ${data.speciality}`,

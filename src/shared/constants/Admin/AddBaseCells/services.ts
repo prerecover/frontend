@@ -77,7 +77,32 @@ export const ADD_SERVICES_CELL_BASE_STRUCTURE: (
       {
         // Врачи
         cellType: EnMultiselectSearchTypes.doctors,
-        data: [],
+        data: [
+          {
+            data: {
+              name: 'Сергей Сергеев',
+              speciality: 'Невролог',
+            },
+            isSelected: null,
+            value: '1',
+          },
+          {
+            data: {
+              name: 'Максим Максимов',
+              speciality: 'Уролог',
+            },
+            isSelected: null,
+            value: '2',
+          },
+          {
+            data: {
+              name: 'Темур Темуров',
+              speciality: 'Хирург',
+            },
+            isSelected: null,
+            value: '3',
+          },
+        ],
       },
       {
         // Медиафайлов

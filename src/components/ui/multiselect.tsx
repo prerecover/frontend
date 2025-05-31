@@ -31,6 +31,7 @@ interface MultiselectProps {
   maxDisplayedItems?: number;
   contentClassName?: string;
   type?: 'default' | 'search';
+  generateTriggerItemContent?: (data: MultiselectOption['value']) => ReactNode;
 }
 
 export const Multiselect = ({
@@ -44,6 +45,7 @@ export const Multiselect = ({
   maxDisplayedItems = 2,
   type = 'default',
   contentClassName,
+  generateTriggerItemContent,
 }: MultiselectProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<TValue[]>(value || defaultValue);
@@ -125,7 +127,9 @@ export const Multiselect = ({
               variant="secondary"
               className="flex items-center gap-1 py-1 border-blue text-blue w-full justify-between"
             >
-              {option?.content}
+              {generateTriggerItemContent
+                ? generateTriggerItemContent(option.value)
+                : option?.content}
               <X
                 className="h-3 w-3 cursor-pointer"
                 onClick={(e) => handleRemove(value, e)}

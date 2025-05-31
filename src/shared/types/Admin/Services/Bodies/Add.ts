@@ -1,4 +1,3 @@
-import { TServiceItem } from '../../Doctors/data-structure';
 import { EnCellTypes } from '../../shared/Entities/CellTypes';
 import { EnModes } from '../../shared/Entities/Modes';
 import { TInlineAdd } from '../../shared/cells/Inline';
@@ -7,6 +6,7 @@ import { TMultiselectAdd } from '../../shared/cells/Multiselect';
 import { TNetAdd } from '../../shared/cells/Net';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { EnMultiselectSearchTypes } from '../FloatCellTypes/MultiselectSearch';
+import { TDoctorItem } from '../data-structure';
 import { EnPayType } from '../entities/PayType';
 
 export type TAddBody = {
@@ -31,7 +31,7 @@ export type TAddBody = {
       }
     | {
         cellType: EnMultiselectSearchTypes.doctors;
-        data: TMultiselectAdd<Omit<TServiceItem, 'id'>, TServiceItem['id']>;
+        data: TMultiselectAdd<Omit<TDoctorItem, 'id'>, TDoctorItem['id']>;
       }
     | {
         cellType: EnCellTypes.action;
