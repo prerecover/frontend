@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { View } from '../View';
 import { TimeRangeInputs } from '../TimeRangeInputs';
 import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface Props<T extends EnTableTypes>
   extends TCellDataUpdate<T, TWorkTimeAdd> {
@@ -31,7 +32,9 @@ export const Add = <T extends EnTableTypes>({
   id,
 }: Props<T>) => {
   const [workTime, setWorkTime] = useState<TWorkTimeAdd>(data);
-  console.log(workTime);
+  const [visibleDays, setVisibleDays] = useState<Record<string, boolean>>(
+    Object.fromEntries(daysOfWeek.map(({ key }) => [key, false]))
+  );
 
   const debounceUpdate = useDebounce((values: TWorkTimeAdd) => {
     updateFunc({ cellIndex, data: values, id });
@@ -49,6 +52,25 @@ export const Add = <T extends EnTableTypes>({
       }));
     };
 
+  const toggleDay = (dayKey: string) => {
+    setVisibleDays((prev) => {
+      const newVisibleState = !prev[dayKey];
+
+      if (newVisibleState === false) {
+        // Если скрываем — удаляем время
+        setWorkTime((prevData) => ({
+          ...prevData,
+          [dayKey]: null,
+        }));
+      }
+
+      return {
+        ...prev,
+        [dayKey]: newVisibleState,
+      };
+    });
+  };
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -61,16 +83,25 @@ export const Add = <T extends EnTableTypes>({
         <ul className="space-y-4">
           {daysOfWeek.map(({ key, label }) => (
             <li key={key} className="flex justify-between">
-              <p className="text-2xl px-4 rounded-2xl flex items-center justify-center bg-blue w-[205px]">
+              <p
+                className={cn(
+                  'text-2xl px-4 rounded-2xl flex items-center justify-center cursor-pointer h-[45px] w-[205px] bg-blue-100 text-grey-600 duration-100',
+                  {
+                    ['bg-blue font-medium text-white']: visibleDays[key],
+                  }
+                )}
+                onClick={() => toggleDay(key)}
+              >
                 {label}
               </p>
-              <TimeRangeInputs
-                valueFrom={workTime[key] !== null ? workTime[key][0] : null}
-                valueTo={workTime[key] !== null ? workTime[key][1] : null}
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
+
+              {visibleDays[key] ? (
+                <TimeRangeInputs
+                  valueFrom={workTime[key] !== null ? workTime[key][0] : null}
+                  valueTo={workTime[key] !== null ? workTime[key][1] : null}
+                  onChange={handleTimeChange(key)}
+                />
+              ) : null}
             </li>
           ))}
         </ul>
