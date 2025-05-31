@@ -1,7 +1,7 @@
 /**
- * Преобразует количество секунд в строку в формате ЧЧ:ММ:СС (24-часовой формат)
+ * Преобразует количество секунд в строку в формате ЧЧ:ММ (24-часовой формат)
  * @param totalSeconds - общее количество секунд (целое положительное число)
- * @returns строка в формате "ЧЧ:ММ:СС"
+ * @returns строка в формате "ЧЧ:ММ"
  * @throws Error если totalSeconds отрицательное или превышает 86400 (24 часа)
  */
 export const convertSecondsToDay = (totalSeconds: number): string => {
@@ -15,9 +15,8 @@ export const convertSecondsToDay = (totalSeconds: number): string => {
 
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
 
   const pad = (num: number): string => num.toString().padStart(2, '0');
 
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return `${pad(hours)}:${pad(minutes)}`;
 };
