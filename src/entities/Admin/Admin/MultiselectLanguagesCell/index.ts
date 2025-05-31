@@ -1,1 +1,1 @@
-export { InlineCell } from './ui';
+export { MultiselectLanguagesCell } from './ui';
