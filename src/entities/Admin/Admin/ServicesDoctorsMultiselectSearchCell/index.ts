@@ -1,1 +1,1 @@
-export { ServicesPayTypeMultiselectCell } from './ui';
+export { ServicesDoctorsMultiselectSearchCell } from './ui';

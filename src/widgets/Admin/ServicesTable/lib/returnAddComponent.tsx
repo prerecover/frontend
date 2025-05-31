@@ -17,7 +17,7 @@ import { ServicesPayTypeMultiselectCell } from '@/entities/Admin/Admin/ServicesP
 import { TMultiselectAdd } from '@/shared/types/Admin/shared/cells/Multiselect';
 import { EnPayType } from '@/shared/types/Admin/services/entities/PayType';
 import { EnMultiselectSearchTypes } from '@/shared/types/Admin/Services/FloatCellTypes/MultiselectSearch';
-import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell/ui';
+import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell';
 import { TAddData as TMultiselectSearchAddData } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell/types/Data';
 
 interface Params

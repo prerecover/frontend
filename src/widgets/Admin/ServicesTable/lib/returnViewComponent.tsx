@@ -11,7 +11,7 @@ import { TInlineView } from '@/shared/types/Admin/shared/cells/Inline';
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { NetCell } from '@/entities/Admin/Admin/NetCell';
 import { ServicesPayTypeMultiselectCell } from '@/entities/Admin/Admin/ServicesPayTypeMultiselectCell';
-import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell/ui';
+import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell';
 import { TMultiselectView } from '@/shared/types/Admin/shared/cells/Multiselect';
 import { EnPayType } from '@/shared/types/Admin/services/entities/PayType';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Services/FloatCellTypes/Multiselect';

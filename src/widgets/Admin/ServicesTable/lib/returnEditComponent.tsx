@@ -2,7 +2,7 @@ import { ServicesActionsCell } from '@/entities/Admin/Admin/ServicesActionsCell'
 import { InlineAreaCell } from '@/entities/Admin/Admin/InlineAreaCell';
 import { InlineCell } from '@/entities/Admin/Admin/InlineCell';
 import { NetCell } from '@/entities/Admin/Admin/NetCell';
-import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell/ui';
+import { ServicesDoctorsMultiselectSearchCell } from '@/entities/Admin/Admin/ServicesDoctorsMultiselectSearchCell';
 import { ServicesPayTypeMultiselectCell } from '@/entities/Admin/Admin/ServicesPayTypeMultiselectCell';
 import { EnTableTypes } from '@/segments/Admin/MainTable';
 import { EnMultiselectTypes } from '@/shared/types/Admin/Services/FloatCellTypes/Multiselect';
