@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { EnNetType } from '@/shared/types/Admin/shared/entities/NetType';
 
 const buttonCls =
-  'flex-1 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
+  'flex-1 h-14 p-0 hover:bg-white-100 duration-150 flex items-center font-normal';
 
 interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, EnNetType> {
   data: TNetEdit;
