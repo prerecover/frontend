@@ -25,7 +25,7 @@ const Edit = <T extends EnTableTypes>({
   }, 200);
 
   return (
-    <div className="flex rounded-xl shadow-mainShadow w-full mx-auto">
+    <div className="flex rounded-xl shadow-mainShadow bg-white-background w-[calc(100%+6px)] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto">
       <Button
         variant="ghost"
         className={cn(

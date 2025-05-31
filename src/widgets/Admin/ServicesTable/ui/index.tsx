@@ -65,7 +65,7 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
                     }),
                     cellClassName:
                       cellType === EnCellTypes.net
-                        ? '[&>div]:overflow-visible'
+                        ? '[&>div]:overflow-visible relative'
                         : undefined,
                   };
                 }),
@@ -87,7 +87,7 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
                     }),
                     cellClassName:
                       cellType === EnCellTypes.net
-                        ? '[&>div]:overflow-visible'
+                        ? '[&>div]:overflow-visible relative'
                         : undefined,
                   };
                 }),
@@ -109,7 +109,7 @@ const ServicesTable: FC<Props> = ({ className, ...props }) => {
                     }),
                     cellClassName:
                       cellType === EnCellTypes.net
-                        ? '[&>div]:overflow-visible'
+                        ? '[&>div]:overflow-visible relative'
                         : undefined,
                   };
                 }),
