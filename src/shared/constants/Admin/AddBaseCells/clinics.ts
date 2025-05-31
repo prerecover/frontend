@@ -140,19 +140,19 @@ export const ADD_CLINICS_CELL_BASE_STRUCTURE: (
         cellType: EnAccumulator.clinicsNet,
         data: [
           {
-            address: 'TEST',
+            address: 'Ташкент, Юнус-Абад 4',
             id: '1',
-            name: 'TEST',
+            name: 'Клиника Хелликс',
           },
           {
-            address: 'TEST',
+            address: 'Ташкент, Юнус-Абад 4',
             id: '2',
-            name: 'TEST',
+            name: 'Клиника Хелликс',
           },
           {
-            address: 'TEST',
+            address: 'Клиника Хелликс',
             id: '3',
-            name: 'TEST',
+            name: 'Ташкент, Юнус-Абад 4',
           },
         ],
       },

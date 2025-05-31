@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Plus, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { TClinicsNetAccumulatorData } from '../..';
 
 interface Props
@@ -23,22 +23,21 @@ const Edit = ({ data, cellIndex, updateFunc, id }: Props) => {
       <DropdownMenuTrigger className="w-full ">
         <p className="text-blue">{(data || []).length || 'Выбрать'}</p>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="py-2 border-none bg-white-background p-0 rounded-none rounded-br-xl rounded-bl-xl">
+      <DropdownMenuContent className="py-2 border-none bg-white-background p-0 rounded-none rounded-br-xl rounded-bl-xl w-[400px]">
         <Button
           variant="ghost"
-          className="border-b border-blue border-solid rounded-none pb-1 text-blue w-full "
+          className="rounded-none pb-1 text-blue w-full h-auto font-normal"
         >
-          <Plus />
-          <p>Добавить клинику</p>
+          <p className="py-3.5">Добавить +</p>
         </Button>
         {(data || []).map((props) => (
           <div
-            className="flex items-center justify-between py-2 px-4"
+            className="flex items-center justify-between p-3 hover:bg-blue-100 cursor-pointer duration-100"
             key={props.id}
           >
             <div>
-              <p>{props.name}</p>
-              <p>{props.address}</p>
+              <p className="font-medium">{props.name}</p>
+              <p className="text-sm mt-1.5">{props.address}</p>
             </div>
             <button
               onClick={() => {
