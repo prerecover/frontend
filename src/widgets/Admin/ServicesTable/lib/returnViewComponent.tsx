@@ -74,11 +74,13 @@ export const returnViewComponent = ({
       );
 
     case EnMultiselectSearchTypes.doctors:
-      <ServicesDoctorsMultiselectSearchCell<EnModes.view>
-        cellIndex={cellIndex}
-        data={data as TMultiselectSearchViewData}
-        mode={mode}
-      />;
+      return (
+        <ServicesDoctorsMultiselectSearchCell<EnModes.view>
+          cellIndex={cellIndex}
+          data={data as TMultiselectSearchViewData}
+          mode={mode}
+        />
+      );
 
     default:
       throw new Error(`Некорректный cellType для ServicesTable. Был получен ${cellType}. Поле cellType может быть только следующими данными: cellType:

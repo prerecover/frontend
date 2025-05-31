@@ -7,7 +7,6 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
 
 interface State {
   addCells: TAddBody;

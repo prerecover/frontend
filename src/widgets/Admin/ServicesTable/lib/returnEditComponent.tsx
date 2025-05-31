@@ -85,13 +85,15 @@ export const returnEditComponent = ({
       );
 
     case EnMultiselectSearchTypes.doctors:
-      <ServicesDoctorsMultiselectSearchCell<EnModes.edit>
-        updateFunc={updateFunc}
-        cellIndex={cellIndex}
-        data={data as TMultiselectSearchEditData}
-        mode={mode}
-        id={id}
-      />;
+      return (
+        <ServicesDoctorsMultiselectSearchCell<EnModes.edit>
+          updateFunc={updateFunc}
+          cellIndex={cellIndex}
+          data={data as TMultiselectSearchEditData}
+          mode={mode}
+          id={id}
+        />
+      );
 
     default:
       throw new Error(`Некорректный cellType для ServicesTable. Был получен ${cellType}. Поле cellType может быть только следующими данными: cellType:

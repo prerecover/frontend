@@ -86,7 +86,7 @@ export const ADD_SERVICES_CELL_BASE_STRUCTURE: (
       },
       {
         // Действия
-        cellType: EnCellTypes.inline,
+        cellType: EnCellTypes.action,
         data: null,
       },
     ],
