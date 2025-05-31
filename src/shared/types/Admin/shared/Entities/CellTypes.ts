@@ -4,4 +4,5 @@ export enum EnCellTypes {
   has = 'has',
   action = 'action',
   net = 'net',
+  workTime = 'work-time',
 }

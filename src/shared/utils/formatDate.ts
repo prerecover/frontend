@@ -80,7 +80,7 @@ export const formatDate = (date: Date) => {
 
   return date.toLocaleDateString('ru-RU', options);
 };
-export const parseWeekDay = (dayWeek: number | undefined) => {
+export const parseSaturday = (dayWeek: number | undefined) => {
   if (!dayWeek) {
     return '-';
   }

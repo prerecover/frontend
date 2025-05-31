@@ -69,7 +69,7 @@ export const ADD_DOCTORS_CELL_BASE_STRUCTURE: (
           },
           {
             isSelected: null,
-            value: EnWorkDays.Weekday,
+            value: EnWorkDays.Saturday,
             data: 'Воскресенье',
           },
         ],

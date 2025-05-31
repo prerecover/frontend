@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { IClinic } from '@/shared/types/clinic.interface';
-import { parseWeekDay } from '@/shared/utils/formatDate';
+import { parseSaturday } from '@/shared/utils/formatDate';
 
 export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
   return (
@@ -64,7 +64,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.mondayTime &&
-                    parseWeekDay(clinic.detail.mondayTime)) ||
+                    parseSaturday(clinic.detail.mondayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
@@ -74,7 +74,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.tuesdayTime &&
-                    parseWeekDay(clinic.detail.tuesdayTime)) ||
+                    parseSaturday(clinic.detail.tuesdayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
@@ -84,7 +84,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.wednesdayTime &&
-                    parseWeekDay(clinic.detail.wednesdayTime)) ||
+                    parseSaturday(clinic.detail.wednesdayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
@@ -94,7 +94,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.thursdayTime &&
-                    parseWeekDay(clinic.detail.thursdayTime)) ||
+                    parseSaturday(clinic.detail.thursdayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
@@ -104,7 +104,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.fridayTime &&
-                    parseWeekDay(clinic.detail.fridayTime)) ||
+                    parseSaturday(clinic.detail.fridayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
@@ -114,7 +114,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.saturdayTime &&
-                    parseWeekDay(clinic.detail.saturdayTime)) ||
+                    parseSaturday(clinic.detail.saturdayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
@@ -124,7 +124,7 @@ export default function ClinicInfo({ clinic }: { clinic?: IClinic }) {
                 </Text>
                 <Text type="h5" fz={500}>
                   {(clinic?.detail.sundayTime &&
-                    parseWeekDay(clinic.detail.sundayTime)) ||
+                    parseSaturday(clinic.detail.sundayTime)) ||
                     'Выходной'}
                 </Text>
               </div>
