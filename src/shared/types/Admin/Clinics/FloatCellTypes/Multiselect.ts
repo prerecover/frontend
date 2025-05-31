@@ -1,3 +1,3 @@
 export enum EnMultiselectTypes {
-	language = 'language',
+  language = 'language',
 }

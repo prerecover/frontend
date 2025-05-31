@@ -1,3 +1,3 @@
 export enum EnMultiselectTypes {
-	payType = 'payType',
+  payType = 'payType',
 }

@@ -1,4 +1,4 @@
 export enum EnNetType {
-	offline = 'offline',
-	online = 'online',
+  offline = 'offline',
+  online = 'online',
 }

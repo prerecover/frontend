@@ -1,3 +1,3 @@
 export enum EnMultiselectSearchTypes {
-	doctors = 'doctors',
+  doctors = 'doctors',
 }

@@ -1,3 +1,3 @@
 export enum EnAccumulator {
-	clinicsNet = 'clinics-net',
+  clinicsNet = 'clinics-net',
 }

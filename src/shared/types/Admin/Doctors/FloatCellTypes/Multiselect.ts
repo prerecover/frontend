@@ -1,3 +1,3 @@
 export enum EnMultiselectTypes {
-	workDays = 'workDays',
+  workDays = 'workDays',
 }

@@ -1,3 +1,3 @@
 export enum EnMultiselectSearchTypes {
-	services = 'services',
+  services = 'services',
 }
