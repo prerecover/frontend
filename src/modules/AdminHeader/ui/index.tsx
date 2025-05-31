@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { FC, HTMLAttributes } from 'react';
+import { FC, HTMLAttributes, useState } from 'react';
 import { AppointmentSelect } from './AppointmentSelect';
 import { ClinicButton } from './ClinicButton';
 import { AddClinicButton } from './AddClinicButton';
@@ -14,6 +14,8 @@ import { AddServiceButton } from './AddServiceButton';
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
 const AdminHeader: FC<Props> = ({ className, ...props }) => {
+  const [search, setSearch] = useState<string>('');
+
   const isClinicsPages = usePathValidating({
     validator: ADMIN_ROUTES.ADMIN.CLINICS.INDEX,
   });
@@ -34,7 +36,13 @@ const AdminHeader: FC<Props> = ({ className, ...props }) => {
         ) : isServicesPages ? (
           <AddServiceButton />
         ) : null}
-        <SearchInput value="1" className="w-[475px]" />
+        <SearchInput
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+          className="w-[475px]"
+        />
         <ExitButton />
       </div>
     </header>

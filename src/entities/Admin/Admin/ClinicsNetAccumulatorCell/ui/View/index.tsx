@@ -17,7 +17,7 @@ const View = ({ data }: Props) => {
       <DropdownMenuTrigger className="w-full ">
         <p className="text-blue">{(data || []).length || 'Выбрать'}</p>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="py-2 border-none bg-white-background p-0 rounded-none rounded-br-xl rounded-bl-xl">
+      <DropdownMenuContent className="py-2 border-none bg-white-background p-0 rounded-none rounded-br-xl rounded-bl-xl w-[400px]">
         {(data || []).map((props) => (
           <div
             className="flex items-center justify-between py-2 px-4"
