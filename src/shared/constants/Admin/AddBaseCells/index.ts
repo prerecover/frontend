@@ -1,0 +1,1 @@
+export const CHANGES_CONFIRM_ALERT_TIME = 500;

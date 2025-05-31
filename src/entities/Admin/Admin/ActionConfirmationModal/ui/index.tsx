@@ -28,8 +28,10 @@ const ActionConfirmationModal: FC<Props> = ({
   const [open, setOpen] = useState(false);
 
   const handleConfirm = () => {
-    actionFn(); // выполняем действие
     setOpen(false); // закрываем диалог
+    setTimeout(() => {
+      actionFn(); // выполняем действие
+    }, 0);
   };
 
   return (

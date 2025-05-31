@@ -1,4 +1,5 @@
 import { EnTableTypes } from '@/segments/Admin/MainTable';
+import { CHANGES_CONFIRM_ALERT_TIME } from '@/shared/constants/Admin/AddBaseCells';
 import { ADD_DOCTORS_CELL_BASE_STRUCTURE } from '@/shared/constants/Admin/AddBaseCells/doctors';
 import { TAddBody } from '@/shared/types/Admin/Doctors/Bodies/Add';
 import { TViewEditBody } from '@/shared/types/Admin/Doctors/Bodies/ViewEdit';
@@ -12,6 +13,7 @@ interface State {
   addCells: TAddBody;
   cells: TViewEditBody;
   editableCells: TViewEditBody;
+  changesConfirmAlertsCells: TDoctorsDataStructure['id'][];
 
   addEditableCell_S: (params: { id: TDoctorsDataStructure['id'] }) => void;
   removeEditableCell_S: (params: { id: TDoctorsDataStructure['id'] }) => void;
@@ -44,12 +46,32 @@ interface State {
   transformEditToViewCancel_S: (params: {
     id: TBodyItemId<EnTableTypes.doctors>;
   }) => void;
+
+  addChangesConfirmAlertCell_S: (id: TDoctorsDataStructure['id']) => void;
+  removeChangesConfirmAlertCell_S: (id: TDoctorsDataStructure['id']) => void;
 }
 
 export const useDoctorsStore = create<State>()((set, get) => ({
   addCells: [],
   cells: [],
   editableCells: [],
+  changesConfirmAlertsCells: [],
+  addChangesConfirmAlertCell_S: (id) => {
+    set(({ changesConfirmAlertsCells }) => {
+      return {
+        changesConfirmAlertsCells: [...changesConfirmAlertsCells, id],
+      };
+    });
+  },
+  removeChangesConfirmAlertCell_S: (id) => {
+    set(({ changesConfirmAlertsCells }) => {
+      return {
+        changesConfirmAlertsCells: changesConfirmAlertsCells.filter(
+          (curId) => curId !== id
+        ),
+      };
+    });
+  },
   addAddCell_S: () => {
     set(({ addCells }) => {
       return {
@@ -152,11 +174,18 @@ export const useDoctorsStore = create<State>()((set, get) => ({
   },
   transformAddToView_S: ({ id }) => {
     const removeAddCell = get().removeAddCell_S;
+    const addChangesConfirmAlertCellSetter = get().addChangesConfirmAlertCell_S;
+    const removeChangesConfirmAlertCellSetter =
+      get().removeChangesConfirmAlertCell_S;
 
     set(({ cells, addCells }) => {
       const transformAddCell = addCells.find((props) => props.id === id);
 
       if (transformAddCell) {
+        addChangesConfirmAlertCellSetter(id);
+        setTimeout(() => {
+          removeChangesConfirmAlertCellSetter(id);
+        }, CHANGES_CONFIRM_ALERT_TIME);
         removeAddCell({ id });
         return {
           cells: [
@@ -188,8 +217,16 @@ export const useDoctorsStore = create<State>()((set, get) => ({
   },
   transformEditToViewSave_S: ({ id }) => {
     const removeEditableCell = get().removeEditableCell_S;
+    const addChangesConfirmAlertCellSetter = get().addChangesConfirmAlertCell_S;
+    const removeChangesConfirmAlertCellSetter =
+      get().removeChangesConfirmAlertCell_S;
 
     set(({ cells }) => {
+      addChangesConfirmAlertCellSetter(id);
+      setTimeout(() => {
+        removeChangesConfirmAlertCellSetter(id);
+      }, CHANGES_CONFIRM_ALERT_TIME);
+
       return {
         cells: cells.map((props) => {
           if (props.id === id) {
@@ -252,3 +289,10 @@ export const transformEditToViewCancelSetter = (state: State) =>
 
 export const getItemDataGetter = (state: State) => state.getItemData_S;
 export const getAddItemDataGetter = (state: State) => state.getAddItemData_S;
+
+export const changesConfirmAlertsCellsSelector = (state: State) =>
+  state.changesConfirmAlertsCells;
+export const addChangesConfirmAlertCellSetter = (state: State) =>
+  state.addChangesConfirmAlertCell_S;
+export const removeChangesConfirmAlertCellSetter = (state: State) =>
+  state.removeChangesConfirmAlertCell_S;
