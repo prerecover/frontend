@@ -56,7 +56,8 @@ const TimeRangeInputs: FC<Props> = memo(({ valueFrom, valueTo, onChange }) => {
     } else {
       if (from < to) {
         onChange([from, to]);
-      } else if (from >= to) {
+      } else if (from >= to && to !== null) {
+        console.log({ from, to });
         setFrom(null);
         setTo(null);
       }
