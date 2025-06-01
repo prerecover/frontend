@@ -52,7 +52,7 @@ const ActionConfirmationModal: FC<Props> = ({
         <div className="grid grid-cols-2 gap-x-4">
           <DialogClose asChild>
             <Button
-              className="py-2.5 h-auto font-semibold w-full"
+              className="py-2.5 font-semibold h-[45px] w-full"
               variant="default"
             >
               {closeText}
@@ -60,7 +60,7 @@ const ActionConfirmationModal: FC<Props> = ({
           </DialogClose>
           <DialogClose asChild>
             <Button
-              className="py-2.5 h-auto font-semibold"
+              className="py-2.5 h-[45px] font-semibold"
               variant="outline"
               onClick={handleConfirm}
             >
