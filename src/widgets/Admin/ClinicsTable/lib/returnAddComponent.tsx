@@ -28,6 +28,8 @@ import { TInlineAreaAdd } from '@/shared/types/Admin/shared/Cells/InlineArea';
 import { TLinkAdd } from '@/shared/types/Admin/shared/Cells/Link';
 import { TMultiselectAdd } from '@/shared/types/Admin/shared/Cells/Multiselect';
 import { TWorkTimeAdd } from '@/shared/types/Admin/shared/Cells/WorkTime';
+import { DefaultCell } from '@/entities/Admin/Admin/DefaultCell';
+import { TDefaultAdd } from '@/shared/types/Admin/shared/Cells/Default';
 
 interface Params
   extends TCellIndexField,
@@ -126,6 +128,14 @@ export const returnAddComponent = ({
           updateFunc={updateFunc}
         />
       );
+    case EnCellTypes.default:
+      return (
+        <DefaultCell<EnModes.add, EnTableTypes.clinics>
+          data={data as TDefaultAdd}
+          mode={mode}
+        />
+      );
+
     default:
       throw new Error(`Некорректный cellType для ClinicsTable. Был получен ${cellType}. Поле cellType может быть только следующими данными: cellType:
 		| EnCellTypes.inline

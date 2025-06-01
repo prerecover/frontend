@@ -5,4 +5,5 @@ export enum EnCellTypes {
   action = 'action',
   net = 'net',
   workTime = 'work-time',
+  default = 'default',
 }

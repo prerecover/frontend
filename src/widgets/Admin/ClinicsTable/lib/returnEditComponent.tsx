@@ -28,6 +28,8 @@ import { TInlineAreaAdd } from '@/shared/types/Admin/shared/Cells/InlineArea';
 import { TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
 import { TMultiselectEdit } from '@/shared/types/Admin/shared/Cells/Multiselect';
 import { TWorkTimeEdit } from '@/shared/types/Admin/shared/Cells/WorkTime';
+import { DefaultCell } from '@/entities/Admin/Admin/DefaultCell';
+import { TDefaultEdit } from '@/shared/types/Admin/shared/Cells/Default';
 
 interface Params
   extends TCellIndexField,
@@ -121,6 +123,13 @@ export const returnEditComponent = ({
           cellIndex={cellIndex}
           id={id}
           updateFunc={updateFunc}
+        />
+      );
+    case EnCellTypes.default:
+      return (
+        <DefaultCell<EnModes.edit, EnTableTypes.clinics>
+          data={data as TDefaultEdit}
+          mode={mode}
         />
       );
     default:

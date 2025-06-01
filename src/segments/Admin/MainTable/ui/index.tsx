@@ -48,7 +48,7 @@ const MainTable = <
           ))}
         </tr>
       </thead>
-      <tbody className="">
+      <tbody className="[&>tr>td:nth-child(odd)]:bg-white-background">
         {bodyItems.map((row, rowIndex) => {
           return (
             <Row<T, M, I>

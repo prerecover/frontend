@@ -13,6 +13,7 @@ import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { TClinicsDataStructure } from '../data-structure';
 import { EnLanguages } from '../Entities/Languages';
 import { TWorkTimeAdd } from '../../shared/Cells/WorkTime';
+import { TDefaultAdd } from '../../shared/Cells/Default';
 
 export type TAddBody = {
   id: TClinicsDataStructure['id'];
@@ -53,6 +54,10 @@ export type TAddBody = {
     | {
         cellType: EnCellTypes.workTime;
         data: TWorkTimeAdd;
+      }
+    | {
+        cellType: EnCellTypes.default;
+        data: TDefaultAdd;
       }
   ) & {
     fieldName?: string;

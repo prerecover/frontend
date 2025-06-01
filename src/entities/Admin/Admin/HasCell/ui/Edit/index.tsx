@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 const buttonCls =
-  'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
+  'w-12 h-14 p-0 hover:bg-white-100 bg-white duration-150 flex items-center';
 
 interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, boolean> {
   data: THasEdit;

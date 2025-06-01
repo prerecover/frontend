@@ -12,6 +12,7 @@ import { EnLinks } from '../FloatCellTypes/Links';
 import { EnMultiselectTypes } from '../FloatCellTypes/Multiselect';
 import { TClinicsDataStructure, TClinicsNetItem } from '../data-structure';
 import { EnLanguages } from '../Entities/Languages';
+import { TDefaultView } from '../../shared/Cells/Default';
 
 export type TViewEditBody = {
   id: TClinicsDataStructure['id'];
@@ -52,6 +53,10 @@ export type TViewEditBody = {
     | {
         cellType: EnCellTypes.workTime;
         data: TWorkTimeView;
+      }
+    | {
+        cellType: EnCellTypes.default;
+        data: TDefaultView;
       }
   ) & {
     fieldName: string;

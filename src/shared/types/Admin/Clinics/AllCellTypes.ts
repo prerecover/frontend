@@ -12,4 +12,5 @@ export type TClinicsAllCellTypes =
   | EnMultiselectTypes.language
   | EnAccumulator.clinicsNet
   | EnLinks.doctors
-  | EnLinks.services;
+  | EnLinks.services
+  | EnCellTypes.default;

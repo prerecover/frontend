@@ -25,6 +25,8 @@ import { TInlineView } from '@/shared/types/Admin/shared/Cells/Inline';
 import { TLinkView } from '@/shared/types/Admin/shared/Cells/Link';
 import { TMultiselectView } from '@/shared/types/Admin/shared/Cells/Multiselect';
 import { TWorkTimeView } from '@/shared/types/Admin/shared/Cells/WorkTime';
+import { DefaultCell } from '@/entities/Admin/Admin/DefaultCell';
+import { TDefaultView } from '@/shared/types/Admin/shared/Cells/Default';
 
 interface Params extends TCellIndexField {
   mode: EnModes.view;
@@ -94,6 +96,13 @@ export const returnViewComponent = ({
       return (
         <WorkTimesCell<EnModes.view, EnTableTypes.clinics>
           data={data as TWorkTimeView}
+          mode={mode}
+        />
+      );
+    case EnCellTypes.default:
+      return (
+        <DefaultCell<EnModes.view, EnTableTypes.clinics>
+          data={data as TDefaultView}
           mode={mode}
         />
       );

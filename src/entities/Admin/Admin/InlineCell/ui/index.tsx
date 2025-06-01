@@ -38,7 +38,7 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
       {mode === EnModes.view ? (
         <View data={data as TInlineView} />
       ) : mode === EnModes.edit ? (
-        <Edit
+        <Edit<T>
           //@ts-ignore
           id={props.id}
           cellIndex={cellIndex}
@@ -47,7 +47,7 @@ const InlineCell = <M extends EnModes, T extends EnTableTypes>({
           data={data as TInlineEdit}
         />
       ) : mode === EnModes.add ? (
-        <Add
+        <Add<T>
           //@ts-ignore
           id={props.id}
           cellIndex={cellIndex}

@@ -13,7 +13,7 @@ interface Props<T extends EnTableTypes> extends TCellDataUpdate<T, boolean> {
 }
 
 const buttonCls =
-  'w-12 h-14 p-0 hover:bg-white-100 duration-150 flex items-center';
+  'w-12 h-14 p-0 hover:bg-white-100 bg-white duration-150 flex items-center';
 
 const Add = <T extends EnTableTypes>({
   data,

@@ -102,7 +102,7 @@ export const ADD_CLINICS_CELL_BASE_STRUCTURE: (
       },
       {
         // Категорий
-        cellType: EnCellTypes.inline,
+        cellType: EnCellTypes.default,
         data: null,
       },
       ////////////////////////////////
