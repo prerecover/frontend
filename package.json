@@ -6,7 +6,7 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "format": "prettier",
+    "format": "prettier --write src/**/*",
     "lint": "next lint",
     "eslint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "compile": "graphql-codegen --config codegen.yaml",
