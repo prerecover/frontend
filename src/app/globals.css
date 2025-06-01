@@ -36,10 +36,12 @@ button:focus {
   }
   @keyframes scale-fade {
     0% {
-      opacity: 0;
-      scale: 0.75;
+      translate: 0 -33%;
+      opacity: 0.4;
+      scale: 0.45;
     }
     40% {
+      translate: 0 0;
       opacity: 1;
       scale: 1;
     }
@@ -51,7 +53,7 @@ button:focus {
       opacity: 1;
     }
     100% {
-      opacity: 0;
+      opacity: 0.2;
       scale: 0.75;
     }
   }
