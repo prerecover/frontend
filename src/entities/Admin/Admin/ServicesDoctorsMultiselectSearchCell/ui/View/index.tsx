@@ -36,8 +36,6 @@ const View: FC<Props> = ({ data }) => {
     });
   }, [data]);
 
-  console.log(selectedItems);
-
   return (
     <p>
       {data.length ? (
