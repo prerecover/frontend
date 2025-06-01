@@ -27,13 +27,13 @@ const ExitModal: FC<Props> = ({ children }) => {
         <div className="grid grid-cols-2 gap-x-4">
           <DialogClose>
             <Button
-              className="py-2.5 h-auto font-semibold w-full"
+              className="py-2.5 h-[45px] font-semibold w-full"
               variant="default"
             >
               Отменить
             </Button>
           </DialogClose>
-          <Button className="py-2.5 h-auto font-semibold" variant="outline">
+          <Button className="py-2.5 h-[45px] font-semibold" variant="outline">
             Выйти
           </Button>
         </div>
