@@ -36,8 +36,6 @@ sw.*
 workbox-*
 swe-worker-*
 
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo
