@@ -7,6 +7,7 @@ import { TDoctorsDataStructure } from '@/shared/types/Admin/Doctors/data-structu
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { nanoid } from 'nanoid';
 import { create } from 'zustand';
 
 interface State {
@@ -75,10 +76,7 @@ export const useDoctorsStore = create<State>()((set, get) => ({
   addAddCell_S: () => {
     set(({ addCells }) => {
       return {
-        addCells: [
-          ADD_DOCTORS_CELL_BASE_STRUCTURE(`add-cell-id-${addCells.length - 1}`),
-          ...addCells,
-        ],
+        addCells: [ADD_DOCTORS_CELL_BASE_STRUCTURE(`${nanoid()}`), ...addCells],
       };
     });
   },

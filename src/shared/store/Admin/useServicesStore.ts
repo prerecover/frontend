@@ -8,6 +8,7 @@ import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
 import { create } from 'zustand';
+import { nanoid } from 'nanoid';
 
 interface State {
   addCells: TAddBody;
@@ -76,9 +77,7 @@ export const useServicesStore = create<State>()((set, get) => ({
     set(({ addCells }) => {
       return {
         addCells: [
-          ADD_SERVICES_CELL_BASE_STRUCTURE(
-            `add-cell-id-${addCells.length - 1}`
-          ),
+          ADD_SERVICES_CELL_BASE_STRUCTURE(`${nanoid()}`),
           ...addCells,
         ],
       };

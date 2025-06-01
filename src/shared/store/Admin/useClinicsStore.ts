@@ -7,6 +7,7 @@ import { TClinicsDataStructure } from '@/shared/types/Admin/Clinics/data-structu
 import { EnModes } from '@/shared/types/Admin/shared/Entities/Modes';
 import { TBodyItemId } from '@/shared/types/Admin/shared/Utils/BodyItemId';
 import { TCellFuncParams } from '@/shared/types/Admin/shared/Utils/CellDataUpdate';
+import { nanoid } from 'nanoid';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -78,9 +79,7 @@ export const useClinicsStore = create<State>()(
       set(({ addCells }) => {
         return {
           addCells: [
-            ADD_CLINICS_CELL_BASE_STRUCTURE(
-              `add-cell-id-${addCells.length - 1}`
-            ),
+            ADD_CLINICS_CELL_BASE_STRUCTURE(`${nanoid()}`),
             ...addCells,
           ],
         };
