@@ -6,7 +6,7 @@ import { gql } from '@apollo/client';
 export default async function Page() {
   const ALL_APPOINTMENTS_QUERY = gql(`
 query AllAppointments{
-     allAppointments(approoved: false) {
+     allAppointments(status: "Approoved") {
         _id
         createdAt
         notify
@@ -31,7 +31,7 @@ lastName
             _id
         }
         service{
-            duration
+            durationMax
         }
     }
 }

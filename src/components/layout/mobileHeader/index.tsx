@@ -13,6 +13,7 @@ import { useAuth } from '@/app/(auth)/auth-wrapper';
 import { useNotifyModal } from '@/shared/store/notifyModal';
 import { useNotifyStore } from '@/shared/store/notifyStore';
 import Link from 'next/link';
+import { useProfileModal } from '@/shared/store/profileModal';
 
 export default function MobileHeader({
   className,
@@ -24,10 +25,12 @@ export default function MobileHeader({
 }) {
   const { isOpen, setIsOpen } = useBurgerMenu();
 
+
   const { notifications } = useNotifyStore();
   const haveUnread =
     notifications.filter((el) => el.isRead === false).length > 0;
   const router = useRouter();
+  const { push } = router
   const { user } = useAuth();
   const blockLocation = [
     '/',
@@ -99,7 +102,7 @@ export default function MobileHeader({
               ) : (
                 <></>
               )}
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <div
                   className="relative mt-1"
                   onClick={() => setModalOpen(!modalOpen)}
@@ -115,12 +118,9 @@ export default function MobileHeader({
                   )}
                 </div>
                 <div
-                  className="w-[30px] h-[30px] rounded-[50%] overflow-hidden cursor-pointer slider:hidden"
-                  onClick={() =>
-                    router.push(
-                      `${user?._id ? `/account/${user.userId}` : '/login'}`
-                    )
-                  }
+                //  slider:hidden
+                  className="w-[40px] h-[40px] rounded-[50%] overflow-hidden cursor-pointer"
+                  onClick={() => push(`/account/${user._id}`)}
                 >
                   <Image
                     src={user?.avatar ? user?.avatar : userImg}

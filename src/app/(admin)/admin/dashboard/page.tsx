@@ -26,7 +26,7 @@ query Search {
             specialization{
                 _id
                 title
-}
+        }
             workExp
             country{
                 title
@@ -35,11 +35,10 @@ query Search {
         services {
             _id
             description
-            duration
+            durationMax
             online
-            price
+            priceMax
             title
-            img
             doctors{
                 firstName 
                 lastName
@@ -52,6 +51,7 @@ query Search {
 }
     `);
   const { data } = await getClient().query({ query: SEARCH_QUERY });
+  
   return (
     <>
       <Header title={['Работа сайта']} />

@@ -8,7 +8,7 @@ import { cookies } from 'next/headers';
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   const token = cookies().get('access_token')?.value;
-  return new ApolloClient({
+  const app = new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
       uri: `${process.env.NEXT_PUBLIC_BACKEND}/graphql`,
@@ -17,5 +17,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
       },
       credentials: 'same-origin',
     }),
-  });
+  })
+  
+  return app
 });

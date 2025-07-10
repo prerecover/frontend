@@ -39,6 +39,7 @@ export interface IUserDetail {
   sleepTime?: number;
   temperature?: number;
   user?: IUser;
+  learning?: number;
 }
 
 export interface IAuthByTelegram {
